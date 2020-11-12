@@ -1,0 +1,61 @@
+.konten-kk{
+    font-size: 14px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* number of lines to show */
+      -webkit-box-orient: vertical;
+  }
+  
+  .judul-kk{
+    overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* number of lines to show */
+      -webkit-box-orient: vertical;
+  }
+  
+  .carousel-control-prev,
+  .carousel-control-next{
+    filter: invert(100%);
+  }
+  
+  .wadah-card{
+    min-height: 270px;
+  }
+  
+  @media only screen and (max-width:590px) and (max-width:700px){
+    .wadah-card{
+      min-height: 520px;
+    }
+    /* .carousel-control-prev{
+      margin-left: 5rem;
+    }
+    .carousel-control-next{
+      margin-right: 10rem;
+    }  */
+    .gambar-kk{
+      width: 30rem;
+    } 
+  
+  
+  }
+  
+  /* @media only screen and (max-width:590px){
+    .carousel-control-prev{
+      margin-left: 0;
+    }
+  }
+  @media only screen and (max-width:590px){
+    .carousel-control-next{
+      margin-right: 0;
+    }
+  }*/
+  
+  .carousel-indicators .active{
+    background-color: #464143;
+  }
+  
+  .carousel-indicators li{
+    background-color: black;
+  }

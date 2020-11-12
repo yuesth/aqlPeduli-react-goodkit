@@ -1,0 +1,42 @@
+button.rec-dot{
+    background-color: darkgrey;
+    box-shadow: none;
+    width: 30px;
+    height: 5px;
+    border-radius: 0%;
+}
+
+button.rec-dot:hover, button.rec-dot:focus  {
+  background-color: #3c2be4;
+  box-shadow: none;
+}
+
+button.rec-dot_active{
+  background-color: rgb(102, 88, 234);
+  width: 30px;
+  height: 5px;
+  border-radius: 0%;
+}
+
+/* button.bTybGL:hover:enabled{
+  background-color: #3c2be4;
+}
+
+button.kyJvRZ:hover:enabled{
+  background-color: #3c2be4;
+} */
+
+@media only screen and (min-width:590px){
+  .car-kep .ewJlEB .galrjd .rec-arrow-left, .car-kep .ewJlEB .galrjd .rec-arrow-right{
+    display: none;
+  }
+
+  .car-kep .rec-dot, .car-kep .rec-dot_active{
+    display: none;
+  }
+
+  .car-kk .rec-dot, .car-kk .rec-dot_active{
+    display: none;
+  }
+
+}

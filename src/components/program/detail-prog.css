@@ -1,0 +1,30 @@
+ol.timeline:before {
+    content: ' ';
+    background: #d4d9df;
+    display: inline-block;
+    position: absolute;
+    left: -1.75rem;
+    width: 2px;
+    height: 100%;
+    z-index: 400;
+}
+
+ol.timeline > li:before {
+    content: ' ';
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+    left: -2.25rem;
+    width: 20px;
+    height: 20px;
+    z-index: 400;
+}
+
+ol.timeline{
+    list-style-type: none;
+    position: relative;
+}
+
+/* .gambar-up-det-prog{
+    display: none;
+} */

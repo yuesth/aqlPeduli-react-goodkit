@@ -1,0 +1,114 @@
+.tulisan-kk{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+.konten-kk{
+    font-size: 14px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* number of lines to show */
+      -webkit-box-orient: vertical;
+  }
+
+.judul-kk{
+    overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* number of lines to show */
+      -webkit-box-orient: vertical;
+  }
+  
+
+  
+  .wadah-card{
+    min-height: 270px;
+  }
+
+  .rec.rec-arrow{
+    border-radius: 0;
+    background-color: rgb(102, 88, 234);
+    color: white;
+  }
+
+  .rec.rec-arrow:hover:enabled{
+    background-color: #3c2be4;
+    color: white;
+  }
+
+  button.bTybGL:hover:enabled{
+    background-color: #3c2be4;
+  }
+
+  button.kyJvRZ:hover:enabled{
+    background-color: #3c2be4;
+  }
+
+  .rec.rec-arrow:disabled{
+    background-color: #3c2be4;
+    opacity: 0.4;
+    color: white;
+  }
+
+  button.bTybGL:hover:disabled{
+    background-color: #3c2be4;
+    opacity: 0.4;
+  }
+
+  button.kyJvRZ:hover:disabled{
+    background-color: #3c2be4;
+    opacity: 0.4;
+  }
+  
+  @media only screen and (max-width:590px) and (max-width:700px){
+    .wadah-card{
+      min-height: 520px;
+    }
+
+    /* .carousel-control-prev{
+      margin-left: 5rem;
+    }
+    .carousel-control-next{
+      margin-right: 10rem;
+    }  */
+  
+  
+  }
+  
+  /* @media only screen and (max-width:590px){
+    .carousel-control-prev{
+      margin-left: 0;
+    }
+  }
+  @media only screen and (max-width:590px){
+    .carousel-control-next{
+      margin-right: 0;
+    }
+  }*/
+  
+  .carousel-indicators .active{
+    background-color: #464143;
+  }
+  
+  .carousel-indicators li{
+    background-color: black;
+  }
+  
+  .judulKepedulianKita{
+      width: auto;
+      height: auto;
+  }
+  
+  h2{
+      text-decoration: none;
+      color: #111111;
+  }
+  
+  .border-kita{
+      border-left: 4px solid #111111;
+      padding-left: 5px;
+  }

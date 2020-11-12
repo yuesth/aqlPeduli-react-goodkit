@@ -1,0 +1,78 @@
+@media only screen and (max-width:590px){
+    .row-besar{
+      visibility: hidden;
+      display: none;
+    }
+  }
+ 
+  @media only screen and (min-width:590px){
+   .row-kecil{
+     visibility: hidden;
+     display: none;
+   }
+ }
+
+ .kategoriBtn{
+    color: #000000;
+    height: auto;
+    width: auto;
+}
+
+.kategoriBtn:hover{
+    color: #E92998;
+    height: auto;
+    width: auto;
+  }
+
+  .kategoriBtn.active {
+    color: #E92998;
+    height: auto;
+    width: auto;
+  }
+
+
+  /*  */
+
+  .item-donasi{
+    float: left; 
+    margin: 7px;
+    display: none;
+}
+
+.show{
+  display: block;
+}
+
+.kontenListProgram{
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+.titleListProgram{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+.des-prog{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+.item-donasi{
+  float: left;
+  display: none;
+}
+
+.show{
+  display: block;
+}
