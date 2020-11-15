@@ -2,67 +2,50 @@ import React, { useState, useEffect } from "react"
 import NavbarGK from "../components/navbar"
 import FooterGK from "../components/footer"
 import { Link } from "react-router-dom"
+import { Col, Container, Breadcrumb } from 'react-bootstrap'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 
-function NavbarDetailKK() {
+function SkeletonDetailKK() {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light fixed-top p-3" style={{ backgroundColor: `#ffffff` }}>
+        <SkeletonTheme color="#e3e3e3">
             <div className="container-lg">
-                {/* Brand */}
-                <a className="navbar-brand d-lg-none" href="./index.html">AQL Peduli</a>
-                {/* Toggler */}
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon" />
-                </button>
-                {/* Collapse */}
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    {/* Navigation */}
-                    <ul className="navbar-nav justify-content-end w-100">
-                        {/* <li className="nav-item"> */}
-                        <a className="nav-link" id="landingsDropdown" href="/" role="button" aria-haspopup="true" aria-expanded="false">
-                            <h4>Beranda</h4>
-                        </a>
-                        {/* </li> */}
-                        {/* <li className="nav-item"> */}
-                        <a className="nav-link" id="landingsDropdown" href="/profil" role="button" aria-haspopup="true" aria-expanded="false">
-                            <h4>Profil</h4>
-                        </a>
-                        {/* </li> */}
-                        {/* <li className="nav-item"> */}
-                        <a className="nav-link" id="pagesDropdown" href="program" role="button" aria-haspopup="true" aria-expanded="false">
-                            <h4>Kepedulian</h4>
-                        </a>
-                        {/* </li> */}
-                    </ul>
-                    {/* Brand */}
-                    <a className="navbar-brand d-none d-lg-block px-lg-6" href="/">
-                        <img
-                            src={`${process.env.PUBLIC_URL}/images/logo-aql.png`}
-                            width="100"
-                            height="60"
-                            className="d-inline-block align-top"
-                            alt="AQL logo"
-                        />
-                    </a>
-                    <ul className="navbar-nav justify-content-start w-100">
-                        <li className="nav-item dropdown">
-                            <a className="nav-link" id="accountDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <h3>Berita</h3>
-                            </a>
-                        </li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link" id="docsDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <h3>Informasi</h3>
-                            </a>
-                        </li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link" id="docsDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <h3>Khazanah</h3>
-                            </a>
-                        </li>
-                    </ul>
+                <div className="row align-items-center justify-content-center">
+                    <div className="col-md-8" style={{ textAlign: `center` }}>
+                        <Skeleton reactangle={true} height={50} width={290} />
+                    </div>
+                </div>
+                <div className="row align-items-center justify-content-center mb-5">
+                    <Col md={10} lg={9}>
+                        <Skeleton reactangle={true} height={22} width={360} />
+                    </Col>
+                </div>
+                <div className="row align-items-center justify-content-center">
+                    <Col md={10} lg={9}>
+                        <Skeleton reactangle={true} height={350} width={600} />
+                    </Col>
+                </div>
+                <div className="row align-items-center justify-content-center">
+                    <Col md={10} lg={9}>
+                        <p><Skeleton></Skeleton></p>
+                    </Col>
+                </div>
+                <div className="row align-items-center justify-content-center">
+                    <Col md={10} lg={9}>
+                        <p>
+                            <Skeleton count={10}></Skeleton>
+                        </p>
+                    </Col>
                 </div>
             </div>
-        </nav>
+        </SkeletonTheme>
+    )
+}
+
+function DariTanggal(props) {
+    var dariTanggal = new Date(props.tanggal)
+    var string = dariTanggal.getDate().toString() + " " + dariTanggal.toLocaleString('default', { month: 'long' }) + " " + dariTanggal.getFullYear()
+    return (
+        <>{string}</>
     )
 }
 
@@ -70,9 +53,65 @@ function DetailKK(props) {
     const id = props.match.params.id
     const urlDetailKk = `http://167.99.72.148/kepeduliankitas/${id}`
     const [detailkk, setDetailkk] = useState([])
+    const [isLoadingdetkk, setIsLoadingdetkk] = useState(true)
+    useEffect(() => {
+        fetch(urlDetailKk).then(res => res.json()).then(parsedJson => (
+            {
+                id: `${parsedJson.id}`,
+                judul: `${parsedJson.judulKepedulianKita}`,
+                konten: `${parsedJson.kontenKepedulianKita}`,
+                tanggal: `${parsedJson.tanggalKepedulianKita}`,
+                gambar: `http://167.99.72.148${parsedJson.gambarKepedulianKita.url}`,
+            }
+        )).then(
+            items => {
+                setDetailkk(items)
+                setIsLoadingdetkk(false)
+            }
+        )
+    })
     return (
         <>
-            <NavbarDetailKK />
+            <NavbarGK></NavbarGK>
+            <section className="pt-10 pt-md-12">
+                {isLoadingdetkk ? <SkeletonDetailKK></SkeletonDetailKK> :
+                    <div className="container-lg">
+                        <div className="row align-items-center justify-content-center mb-9">
+                            <div className="col-md-8" style={{ textAlign: `center` }}>
+                                <h2 className="display-4 mb-4 mb-md-0">
+                                    {detailkk.judul} <br />
+                                </h2>
+                            </div>
+                        </div>
+                        <div className="row align-items-center justify-content-center mb-5">
+                            <Col md={10} lg={8}>
+                                <Breadcrumb>
+                                    <Breadcrumb.Item href="/kk" style={{ textDecoration: `none`, color: `#E92998` }}>Program Kepedulian</Breadcrumb.Item>
+                                    <Breadcrumb.Item active>{detailkk.judul}</Breadcrumb.Item>
+                                </Breadcrumb>
+                            </Col>
+                        </div>
+                        <div className="row align-items-center justify-content-center mb-5" style={{ textAlign: `center` }}>
+                            <div className="col-md-10 col-lg-9">
+                                <img className="img-fluid" src={detailkk.gambar} alt="..." />
+                            </div>
+                        </div>
+                        <div className="row align-items-center justify-content-center mb-6">
+                            <div className="col-md-10 col-lg-9 ml-5">
+                                <span className="small text-muted mt-n1 mb-0">
+                                    <DariTanggal tanggal={detailkk.tanggal}></DariTanggal>
+                                </span>
+                            </div>
+                        </div>
+                        <div className="row align-items-center justify-content-center mb-9">
+                            <div className="col-md-10 col-lg-9">
+                                <p className="text-justify p-4">{detailkk.konten}</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </section>
+            <FooterGK></FooterGK>
         </>
     )
 }

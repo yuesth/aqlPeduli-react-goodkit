@@ -2,11 +2,56 @@ import React, { useState, useEffect } from "react"
 import NavbarGK from "../components/navbar"
 import FooterGK from "../components/footer"
 import { Link } from 'react-router-dom'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import "./kepeduliankita.css"
+
+function SkeletonKKList() {
+    return (
+        <SkeletonTheme color="#e3e3e3">
+            <div className="row">
+                <div className="col-6">
+                    <Skeleton reactangle={true} height={168} width={288} />
+                </div>
+                <div className="col-6">
+                    <p><Skeleton count={3}></Skeleton></p>
+                    <p className="">
+                        <Skeleton count={3}></Skeleton>
+                    </p>
+                    <p><Skeleton></Skeleton></p>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-6">
+                    <Skeleton reactangle={true} height={168} width={288} />
+                </div>
+                <div className="col-6">
+                    <p><Skeleton count={3}></Skeleton></p>
+                    <p className="">
+                        <Skeleton count={3}></Skeleton>
+                    </p>
+                    <p><Skeleton></Skeleton></p>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-6">
+                    <Skeleton reactangle={true} height={168} width={288} />
+                </div>
+                <div className="col-6">
+                    <p><Skeleton count={3}></Skeleton></p>
+                    <p className="">
+                        <Skeleton count={3}></Skeleton>
+                    </p>
+                    <p><Skeleton></Skeleton></p>
+                </div>
+            </div>
+        </SkeletonTheme>
+    )
+}
 
 function LayoutKK() {
     const urlKk = "http://167.99.72.148/kepeduliankitas"
     const [kk, setKk] = useState([])
+    const [isLoadingkk, setIsLoadingkk] = useState(true);
     useEffect(() => {
         fetch(urlKk).then(res => res.json()).then(parsedJson => parsedJson.map(data => (
             {
@@ -17,7 +62,10 @@ function LayoutKK() {
                 gambar: `http://167.99.72.148${data.gambarKepedulianKita.url}`,
             }
         ))).then(
-            items => setKk(items)
+            items => {
+                setKk(items)
+                setIsLoadingkk(false)
+            }
         )
     })
     const listkk = kk.map((doc, idx) => {
@@ -34,7 +82,7 @@ function LayoutKK() {
                         {doc.konten}
                     </p>
                     <Link to={`/kk/${doc.id}`}>
-                        <a className="h6 text-uppercase" href="#!">
+                        <a className="h6 text-uppercase" href={`/kk/${doc.id}`}>
                             Baca Lanjut <i className="fe fe-arrow-right" />
                         </a>
                     </Link>
@@ -58,7 +106,9 @@ function LayoutKK() {
                             AQL Peduli setiap hari terus bergerak dan tiada henti berkiprah untuk umat, apa saja yang ada di sekitar kita dan seantero dunia.
                             Berikut ini beberapa contoh program kepedulian kita dari donasi teman-teman semua.
                         </p>
-                        {listkk}
+                        {isLoadingkk ? <SkeletonKKList></SkeletonKKList>
+                            :
+                            listkk}
                     </div>
                 </div>
             </div>

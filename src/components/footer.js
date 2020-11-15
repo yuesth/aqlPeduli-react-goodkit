@@ -29,77 +29,77 @@ function Footer() {
         if(idx === 0){
             return (
                 <li className="mb-3">
-                    <a className="text-white" href="#!">{doc.judul}</a>
+                    <a className="text-gray-600" href="#!">{doc.judul}</a>
                 </li>
             )
         }
     })
     return (
         // style={{backgroundColor: `#261793`}}
-        <footer className="footer py-8 pt-md-11" style={{backgroundColor:`rgb(47, 57, 144)`}}>
+        <footer className="footer py-8 pt-md-11" style={{backgroundColor:`#f5f5f5`}}>
             <div className="container-lg">
                 <div className="row">
-                    <div className="col-md-4">
-                        <img src={`${process.env.PUBLIC_URL}/images/footer/aql-logo-footer.png`} alt="" />
+                    <div className="col-md-4 pr-5 mb-5">
+                        <img src={`${process.env.PUBLIC_URL}/images/logo-aql.png`} alt="logo-aql" width="200px" height="130px" />
                         {/* <h2 className="font-family-serif text-white mb-1">
                             AQL Peduli
                         </h2> */}
                     </div>
                     <div className="col-6 col-md">
-                        <h6 className="text-uppercase text-white mb-3 mb-md-5">
+                        <h6 className="text-uppercase text-black mb-3 mb-md-5">
                             AQL Peduli
                         </h6>
                         <ul className="list-unstyled">
                             <li className="mb-3">
-                                <a className="text-white" href="#!">Beranda</a>
+                                <a className="text-gray-600" href="#!">Beranda</a>
                             </li>
                             <li className="mb-3">
-                                <a className="text-white" href="#!">Porfil</a>
+                                <a className="text-gray-600" href="#!">Profil</a>
                             </li>
                             <li>
-                                <a className="text-white" href="#!">Berita</a>
+                                <a className="text-gray-600" href="#!">Berita</a>
                             </li>
                             <li>
-                                <a className="text-white" href="#!">Kepedulian</a>
+                                <a className="text-gray-600" href="#!">Kepedulian</a>
                             </li>
                             <li>
-                                <a className="text-white" href="#!">Informasi</a>
+                                <a className="text-gray-600" href="#!">Informasi</a>
                             </li>
                             <li>
-                                <a className="text-white" href="#!">Khazanah</a>
+                                <a className="text-gray-600" href="#!">Khazanah</a>
                             </li>
                             <li>
-                                <a className="text-white" href="#!">Donasi</a>
+                                <a className="text-gray-600" href="#!">Donasi</a>
                             </li>
                             <li>
-                                <a className="text-white" href="#!">Relawan</a>
+                                <a className="text-gray-600" href="#!">Relawan</a>
                             </li>
                         </ul>
                     </div>
                     <div className="col-6 col-md">
-                        <h6 className="text-uppercase text-white mb-3 mb-md-5">
+                        <h6 className="text-uppercase text-black mb-3 mb-md-5">
                             Kepedulian
                         </h6>
                         <ul className="list-unstyled">
                             <li className="mb-3">
-                                <a className="text-white" href="#!">Peduli Bencana</a>
+                                <a className="text-gray-600" href="#!">Peduli Bencana</a>
                             </li>
                             <li className="mb-3">
-                                <a className="text-white" href="#!">Peduli Masjid</a>
+                                <a className="text-gray-600" href="#!">Peduli Masjid</a>
                             </li>
                             <li className="mb-3">
-                                <a className="text-white" href="#!">Peduli Pangan</a>
+                                <a className="text-gray-600" href="#!">Peduli Pangan</a>
                             </li>
                             <li>
-                                <a className="text-white" href="#!">Peduli Kesehatan</a>
+                                <a className="text-gray-600" href="#!">Peduli Kesehatan</a>
                             </li>
                             <li>
-                                <a className="text-white" href="#!">Dapur Sedekah</a>
+                                <a className="text-gray-600" href="#!">Dapur Sedekah</a>
                             </li>
                         </ul>
                     </div>
                     <div className="col-6 col-md">
-                        <h6 className="text-uppercase text-white mb-3 mb-md-5">
+                        <h6 className="text-uppercase text-black mb-3 mb-md-5">
                             Berita Terbaru
                         </h6>
                         <ul className="list-unstyled">
@@ -109,12 +109,12 @@ function Footer() {
                 </div>
                 <div className="row">
                     <div className="col-12">
-                        <hr className="border-white-10 my-7" />
+                        <hr className="border-black-10 my-7" />
                     </div>
                 </div>
                 <div className="row align-items-center">
                     <div className="col-12 col-md">
-                        <ul className="list-inline list-unstyled text-white small mb-md-0">
+                        <ul className="list-inline list-unstyled text-black small mb-md-0">
                             <li className="list-inline-item">
                                 © 2020 AQL Peduli
                             </li>
@@ -131,7 +131,7 @@ function Footer() {
                         </ul>
                     </div>
                     <div className="col-12 col-md-auto">
-                        <ul className="list-inline list-unstyled text-white mb-0">
+                        <ul className="list-inline list-unstyled text-black mb-0">
                             <li className="list-inline-item">
                                 <a className="icon icon-sm text-reset" href="#!">
                                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

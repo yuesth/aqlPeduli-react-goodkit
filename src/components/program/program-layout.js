@@ -1,16 +1,103 @@
 import React, { useState, useEffect } from 'react'
 import { Col, Row, Container, Button, ProgressBar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import Isotope from 'isotope-layout'
 import "./program-layout.css"
 
+function SkeletonKateg() {
+    return (
+        <SkeletonTheme color="e3e3e3">
+            <Row>
+                <Col>
+                    <Skeleton></Skeleton>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <Skeleton></Skeleton>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <Skeleton></Skeleton>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <Skeleton></Skeleton>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <Skeleton></Skeleton>
+                </Col>
+            </Row>
+        </SkeletonTheme>
+    )
+}
 
-function ProgramLayout() {
+function SkeletonProg() {
+    return (
+        <SkeletonTheme color="#e3e3e3">
+            <div className="row">
+                <div className="col-4">
+                    <div className="card mx-2 p-2 bg-transparent" style={{ width: `290px`, height: `480px` }}>
+                        {/* <SkeletonTheme color="#e3e3e3"> */}
+                        <Skeleton reactangle={true} height={200} width={290} />
+                        <br/>
+                        <h3><Skeleton /></h3>
+                        <br />
+                        <Skeleton count={2} />
+                        <br />
+                        <Skeleton count={2} />
+                        <small><Skeleton count={2} /></small>
+                        {/* </SkeletonTheme> */}
+                    </div>
+                </div>
+                <div className="col-4">
+                    <div className="card mx-2 p-2 bg-transparent" style={{ width: `290px`, height: `480px` }}>
+                        {/* <SkeletonTheme color="e3e3e3"> */}
+                        <Skeleton reactangle={true} height={200} width={290} />
+                        <h3><Skeleton /></h3>
+                        <br />
+                        <Skeleton count={2} />
+                        <br />
+                        <Skeleton count={2} />
+                        <small><Skeleton count={2} /></small>
+                        {/* </SkeletonTheme> */}
+                    </div>
+                </div>
+                <div className="col-4">
+                    <div className="card mx-2 p-2 bg-transparent" style={{ width: `290px`, height: `480px` }}>
+                        {/* <SkeletonTheme color="e3e3e3"> */}
+                        <Skeleton reactangle={true} height={200} width={290} />
+                        <h3><Skeleton /></h3>
+                        <br />
+                        <Skeleton count={2} />
+                        <br />
+                        <Skeleton count={2} />
+                        <small><Skeleton count={2} /></small>
+                        {/* </SkeletonTheme> */}
+
+                    </div>
+                </div>
+            </div>
+        </SkeletonTheme>
+    )
+}
+
+function ProgramLayout(props) {
     const urlListProgram = "http://167.99.72.148/programs"
     const urlKateg = "http://167.99.72.148/kategoris"
     const [program, setProgram] = useState([])
     const [kateg, setKateg] = useState([])
+    const [isLoadingprog, setIsLoadingprog] = useState(true);
+    const [isLoadingkateg, setIsLoadingkateg] = useState(true);
+    const namaprog = props.namaprog
+    console.log(namaprog)
     useEffect(() => {
+        // (namaprog && filterSelection(namaprog)) || filterSelection('all')
         filterSelection('all')
         var btnContainer = document.getElementById("col-list");
         var btns = btnContainer.getElementsByClassName("kategoriBtn");
@@ -36,7 +123,10 @@ function ProgramLayout() {
                 namaKateg: `${data.kategori.namaKategori}`
             }
         ))).then(
-            items => setProgram(items)
+            items => {
+                setProgram(items)
+                setIsLoadingprog(false)
+            }
         )
         fetch(urlKateg).then(res => res.json()).then(parsedJson => parsedJson.map(data => (
             {
@@ -44,12 +134,15 @@ function ProgramLayout() {
                 namaKateg: `${data.namaKategori}`
             }
         ))).then(
-            items => setKateg(items)
+            items => {
+                setKateg(items)
+                setIsLoadingkateg(false)
+            }
         )
     }, [])
 
-    const [isotope, setIsotope] = useState(null);
-    const [filterKey, setFilterKey] = useState("*");
+    // const [isotope, setIsotope] = useState(null);
+    // const [filterKey, setFilterKey] = useState("*");
     // useEffect(() => {
     //     setIsotope(
     //         new Isotope(".filter-container", {
@@ -82,7 +175,7 @@ function ProgramLayout() {
         var hariTerakhir = new Date(new Date(props.tanggal).getTime() + (props.durasi * 24 * 60 * 60 * 1000));
         var sisaHari = Math.floor((hariTerakhir.getTime() - new Date().getTime()) / (1000 * 3600 * 24))
         return (
-            <span>{sisaHari.toString()} hari</span>
+            <span style={{color:`#5146b8`}}>{sisaHari.toString()} hari</span>
         )
     }
 
@@ -101,15 +194,15 @@ function ProgramLayout() {
             RemoveClass(x[i], "show");
             if (x[i].className.indexOf(c) > -1) AddClass(x[i], "show");
         }
-        var btnContainer = document.getElementById("col-list");
-        var btns = btnContainer.getElementsByClassName("kategoriBtn");
-        for (var i = 0; i < btns.length; i++) {
-            btns[i].addEventListener("click", function () {
-                var current = document.getElementsByClassName("active");
-                current[0].className = current[0].className.replace(" active", "");
-                this.className += " active";
-            });
-        }
+        // var btnContainer = document.getElementById("col-list");
+        // var btns = btnContainer.getElementsByClassName("kategoriBtn");
+        // for (var i = 0; i < btns.length; i++) {
+        //     btns[i].addEventListener("click", function () {
+        //         var current = document.getElementsByClassName("active");
+        //         current[0].className = current[0].className.replace(" active", "");
+        //         this.className += " active";
+        //     });
+        // }
     }
     function AddClass(element, name) {
         var i, arr1, arr2;
@@ -185,7 +278,7 @@ function ProgramLayout() {
             <div className={`col-md-4 col-lg-4 col-sm-6 p-2 mt-0 ml-0 mr-0 mb-5 ${namaClass}`}>
                 <div className={`card card-sm rounded-top-left rounded-bottom-right lift lift-lg mt-6`}>
                     <div>
-                        <img className="card-img-top rounded-top-left" src={doc.gambar} alt="..." height="200" />
+                        <img className="card-img-top rounded-top-left img-fluid img-prog" src={doc.gambar} alt="..." />
                     </div>
                     <div className="position-relative">
                         <div className="shape shape-fluid-x shape-top text-white">
@@ -198,24 +291,24 @@ function ProgramLayout() {
                         <span className="small text-muted mt-n1 mb-0">
                             <DariTanggal tanggal={doc.tanggal}></DariTanggal>
                         </span>
-                        <div style={{ minHeight: `55px` }}>
-                            <h3 className="mb-2">
+                        <div style={{ minHeight: `5rem` }}>
+                            <h3>
                                 {doc.judul}
                             </h3>
                         </div>
-                        <p className="font-size-sm mb-4 des-prog">
+                        {/* <p className="font-size-sm mb-4 des-prog">
                             {doc.des}
-                        </p>
-                        <Container>
+                        </p> */}
+                        <Container className="p-0">
                             <Row>
-                                <Col md={5} xs={4} style={{ textAlign: `left`, fontSize: `10px` }}>
-                                    <p style={{ marginBottom: `5px` }}>Sisa Waktu</p>
+                                <Col md={5} xs={4} style={{ textAlign: `left`, fontSize: `12px` }}>
+                                    <p style={{ marginBottom: `0.3rem` }}>Sisa Waktu</p>
                                     {doc.durasi !== null && <SisaHari tanggal={doc.tanggal} durasi={doc.durasi} />
                                     }
                                 </Col>
-                                <Col md={{ span: `7` }} xs={8} style={{ textAlign: `right`, fontSize: `10px` }}>
-                                    <p style={{ marginBottom: `5px` }}>Terkumpul</p>
-                                    <span>Rp.{idr}</span>
+                                <Col md={{ span: `7` }} xs={8} style={{ textAlign: `right`, fontSize: `12px` }}>
+                                    <p style={{ marginBottom: `0.3rem` }}>Terkumpul</p>
+                                    <span style={{color:`#6053db`}}>Rp.{idr}</span>
                                 </Col>
                             </Row>
                         </Container>
@@ -224,7 +317,7 @@ function ProgramLayout() {
                             <PersenTerkumpul total={doc.total} terkumpul={doc.terkumpul}></PersenTerkumpul>
                         </div>
                         <Link to={`/program/${doc.id}`}>
-                            <a className="stretched-link" href="blog-post.html" />
+                            <a className="stretched-link" href="" />
                         </Link>
                     </div>
                 </div>
@@ -233,7 +326,7 @@ function ProgramLayout() {
     })
     return (
         <section className="pt-10 pt-md-12">
-            <div className="container ">
+            <div className="container-lg">
                 <div className="row align-items-center justify-content-center mb-9">
                     <div className="col-md-6" style={{ textAlign: `center` }}>
                         <h2 className="display-4 mb-4 mb-md-0">
@@ -242,9 +335,9 @@ function ProgramLayout() {
                     </div>
                 </div>
                 <div className="row">
-                    <Col md={2} id="col-list" className="pt-10">
+                    <Col md={2} id="col-list" className="pt-10 px-0">
                         <Row>
-                            <Col style={{ textAlign: `center` }}>
+                            <Col className="pl-5">
                                 <h2>Kategori</h2>
                             </Col>
                         </Row>
@@ -256,18 +349,20 @@ function ProgramLayout() {
                                 </Col>
                             </Row>
                             <br />
-                            {kateg.map((doc, idx) => {
-                                var nama1 = doc.namaKateg
-                                var nama2 = nama1.replace(/\s/g, "")
-                                return (
-                                    <Row>
-                                        <Col>
-                                            <Button variant="default" onClick={() => filterSelection(nama2)} key={idx} className="kategoriBtn">{doc.namaKateg}</Button>
-                                            {/* <Button variant="default" onClick={() => setFilterKey(nama2)} key={idx} className="kategBtn">{doc.namaKateg}</Button> */}
-                                        </Col>
-                                    </Row>
-                                )
-                            })}
+                            {isLoadingkateg ? <SkeletonKateg></SkeletonKateg>
+                                :
+                                kateg.map((doc, idx) => {
+                                    var nama1 = doc.namaKateg
+                                    var nama2 = nama1.replace(/\s/g, "")
+                                    return (
+                                        <Row>
+                                            <Col>
+                                                <Button variant="default" onClick={() => filterSelection(nama2)} key={idx} className="kategoriBtn">{doc.namaKateg}</Button>
+                                                {/* <Button variant="default" onClick={() => setFilterKey(nama2)} key={idx} className="kategBtn">{doc.namaKateg}</Button> */}
+                                            </Col>
+                                        </Row>
+                                    )
+                                })}
                         </Row>
                         <Row className="row-kecil mb-2">
                             <Button variant="default" onClick={() => filterSelection('all')} className="kategoriBtn active">Semua</Button>
@@ -286,7 +381,7 @@ function ProgramLayout() {
                             <div className="col-md-10 col-lg-10 text-center text-white">
                                 <form>
                                     <div className="input-group rounded-top-left rounded-bottom-right shadow">
-                                        <input type="email" className="form-control bg-white pr-2 w-60" placeholder="Masukkan nama program" aria-label="Email address" aria-describedby="subscriptionButton" />
+                                        <input type="text" className="form-control bg-white pr-2 w-60" placeholder="Masukkan nama program" aria-label="Email address" aria-describedby="subscriptionButton" />
                                         <div className="input-group-append">
                                             <button className="btn btn-info ml-3" type="button" id="subscriptionButton">
                                                 Cari
@@ -296,9 +391,12 @@ function ProgramLayout() {
                                 </form>
                             </div>
                         </div>
-                        <div className="container-fluid d-flex px-0">
+                        <div className="container-fluid px-0">
                             <div className="row pl-3">
-                                {listprogram2}
+                                {isLoadingprog ? <SkeletonProg></SkeletonProg>
+                                    :
+                                    listprogram2
+                                }
                             </div>
                         </div>
                     </Col>

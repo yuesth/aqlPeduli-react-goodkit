@@ -12,28 +12,31 @@ function SkeletonUpdateLayout() {
                 <div className="col-4">
                     <div className="card mx-2 p-2 bg-transparent" style={{ width: `295px`, height: `480px` }}>
                         <Skeleton reactangle={true} height={180} width={280} />
-                        <h3><Skeleton /></h3>
+                        <br />
                         <p><Skeleton /></p>
                         <p><Skeleton /></p>
-                        <small><Skeleton count={2} /></small>
+                        <p><Skeleton /></p>
+                        <p><Skeleton count={2} /></p>
                     </div>
                 </div>
                 <div className="col-4">
                     <div className="card mx-2 p-2 bg-transparent" style={{ width: `295px`, height: `480px` }}>
                         <Skeleton reactangle={true} height={180} width={280} />
-                        <h3><Skeleton /></h3>
+                        <br />
                         <p><Skeleton /></p>
                         <p><Skeleton /></p>
-                        <small><Skeleton count={2} /></small>
+                        <p><Skeleton /></p>
+                        <p><Skeleton count={2} /></p>
                     </div>
                 </div>
                 <div className="col-4">
                     <div className="card mx-2 p-2 bg-transparent" style={{ width: `295px`, height: `480px` }}>
                         <Skeleton reactangle={true} height={180} width={280} />
-                        <h3><Skeleton /></h3>
+                        <br />
                         <p><Skeleton /></p>
                         <p><Skeleton /></p>
-                        <small><Skeleton count={2} /></small>
+                        <p><Skeleton /></p>
+                        <p><Skeleton count={2} /></p>
                     </div>
                 </div>
             </div>
@@ -117,64 +120,64 @@ function Update() {
     const listup = sortedItemUpdate.map((doc, idx) => {
         return (
             <div className="col-12" style={{ maxWidth: 320, height: `30rem` }} data-aos="fade-up">
-                <div className="card card-sm rounded-top-left rounded-bottom-right lift" style={{ height: `30rem` }}>
-                    <div style={{ textAlign: `center` }}>
-                        <img className="card-img rounded-top-left" src={doc.gambarUp} alt="..." height="180" />
-                    </div>
-                    <div className="position-relative">
-                        <div className="shape shape-fluid-x shape-top text-white">
-                            <div className="shape-img pb-4">
-                                <svg viewBox="0 0 100 50" preserveAspectRatio="none"><path d="M0 25h25L75 0h25v50H0z" fill="currentColor" /></svg>
+                <Link to={`/program/${doc.idProg}`}>
+                    <div className="card card-sm rounded-top-left rounded-bottom-right lift" style={{ height: `30rem` }}>
+                        <div style={{ textAlign: `center` }}>
+                            <img className="card-img rounded-top-left" src={doc.gambarUp} alt="..." height="180" />
+                        </div>
+                        <div className="position-relative">
+                            <div className="shape shape-fluid-x shape-top text-white">
+                                <div className="shape-img pb-4">
+                                    <svg viewBox="0 0 100 50" preserveAspectRatio="none"><path d="M0 25h25L75 0h25v50H0z" fill="currentColor" /></svg>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="card-body">
-                        <div className="d-flex align-items-center mb-3">
-                            <h3 style={{ color: `black` }}>{doc.namaUp}</h3>
-                            <a className="ml-auto text-decoration-none text-stripe stretched-link" href="#!">
-                                <i className="fe fe-arrow-right" />
-                            </a>
+                        <div className="card-body">
+                            <div className="d-flex align-items-center mb-3">
+                                <h3 style={{ color: `black` }}>{doc.namaUp}</h3>
+                                <a className="ml-auto text-decoration-none text-stripe stretched-link" href="#!">
+                                    <i className="fe fe-arrow-right" />
+                                </a>
+                            </div>
+                            <DariTanggal tanggal={doc.tanggalUp}></DariTanggal>
+                            <div style={{ height: `60px` }}>
+                                <p style={{ color: `#E92998` }}>
+                                    {doc.judulProg}
+                                </p>
+                            </div>
+                            <small className="des-update" style={{ color: `black` }}>
+                                {doc.deskripsiUp}
+                            </small>
                         </div>
-                        <DariTanggal tanggal={doc.tanggalUp}></DariTanggal>
-                        <div style={{ height: `60px` }}>
-                            <p style={{ color: `#E92998` }}>
-                                {doc.judulProg}
-                            </p>
-                        </div>
-                        <small className="des-update" style={{ color: `black` }}>
-                            {doc.deskripsiUp}
-                        </small>
                     </div>
-                </div>
+                </Link>
             </div>
         )
     })
     return (
-        <Link>
-            <section className="pt-5 pt-md-5 pb-5 pb-md-5 mt-5">
-                <div className="container-lg">
-                    <div className="row align-items-center justify-content-center mb-9 mt-5">
-                        <div className="col-md-6" style={{ textAlign: `center` }}>
-                            <h2 className=" text-white display-4 mb-4 mb-md-0">
-                                Update Program
+        <section className="pt-5 pt-md-5 pb-5 pb-md-5 mt-5">
+            <div className="container-lg">
+                <div className="row align-items-center justify-content-center mb-9 mt-5">
+                    <div className="col-md-6" style={{ textAlign: `center` }}>
+                        <h2 className=" text-white display-4 mb-4 mb-md-0">
+                            Update Program
                             </h2>
-                        </div>
                     </div>
-                    <div className="row">
-                        <div className="col-12">
-                            <div className="flickity-viewport-visible mx-n4 carousel-main-up-landing">
-                                {isLoadingup ? <SkeletonUpdateLayout></SkeletonUpdateLayout>
-                                    :
-                                    listup}
-                                {/* <Carousel breakPoints={breakPoints}>
+                </div>
+                <div className="row">
+                    <div className="col-12">
+                        <div className="flickity-viewport-visible mx-n4 carousel-main-up-landing">
+                            {isLoadingup ? <SkeletonUpdateLayout></SkeletonUpdateLayout>
+                                :
+                                listup}
+                            {/* <Carousel breakPoints={breakPoints}>
                                 {listup}
                             </Carousel> */}
-                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
-        </Link>
+            </div>
+        </section>
     )
 }
 

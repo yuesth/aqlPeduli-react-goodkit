@@ -11,6 +11,8 @@ function DetailProgram(props) {
     const urlUpdate = `http://167.99.72.148/update-programs`
     const [detailprog, setDetailprog] = useState([])
     const [detailup, setDetailup] = useState([])
+    const [isLoadingdetprog, setIsLoadingdetprog] = useState(true);
+    const [isLoadingdetup, setIsLoadingdetup] = useState(true);
     useEffect(() => {
         fetch(urlDetailProgram).then(res => res.json()).then(parsedJson => (
             {
@@ -29,6 +31,7 @@ function DetailProgram(props) {
         )).then(
             items => {
                 setDetailprog(items)
+                setIsLoadingdetprog(false)
             }
         )
         fetch(urlUpdate).then(res => res.json()).then(parsedJsonUp => parsedJsonUp.map(data => {
@@ -56,6 +59,7 @@ function DetailProgram(props) {
         })).then(
             items2 => {
                 setDetailup(items2)
+                setIsLoadingdetup(false)
             }
         )
     })
@@ -68,7 +72,7 @@ function DetailProgram(props) {
     return (
         <>
             <NavbarGK></NavbarGK>
-            <DetailProg itemprog={detailprog} itemup={itemup}></DetailProg>
+            <DetailProg itemprog={detailprog} itemup={itemup} loadingdetprog={isLoadingdetprog} loadingdetup={isLoadingdetup}></DetailProg>
             <FooterGK></FooterGK>
         </>
     )

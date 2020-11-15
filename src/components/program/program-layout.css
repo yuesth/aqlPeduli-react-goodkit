@@ -10,6 +10,10 @@
      visibility: hidden;
      display: none;
    }
+
+   img.img-prog{
+     height: 170px;
+   }
  }
 
  .kategoriBtn{
@@ -35,7 +39,6 @@
 
   .item-donasi{
     float: left; 
-    margin: 7px;
     display: none;
 }
 

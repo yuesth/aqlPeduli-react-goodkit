@@ -25,6 +25,16 @@ ol.timeline{
     position: relative;
 }
 
+.container-lg{
+    max-width: 1024px;
+}
+
+.wadah-info-det-prog{
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+}
+
 /* .gambar-up-det-prog{
     display: none;
 } */

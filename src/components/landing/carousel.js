@@ -2,7 +2,7 @@ import React from "react"
 
 function CarouselLanding() {
     return (
-        < section className="position-relative pt-10 pt-md-12" style={{ zIndex: 1 }}>
+        < section className="position-relative pt-7 pt-md-9" style={{ zIndex: 1 }}>
             <div className="container-lg">
                 <div className="row">
                     <div className="col-12">
