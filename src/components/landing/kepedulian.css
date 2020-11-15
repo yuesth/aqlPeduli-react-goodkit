@@ -27,7 +27,7 @@ button.kyJvRZ:hover:enabled{
 } */
 
 @media only screen and (min-width:590px){
-  .car-kep .ewJlEB .galrjd .rec-arrow-left, .car-kep .ewJlEB .galrjd .rec-arrow-right{
+  .car-kep .rec-carousel-wrapper .rec-carousel .rec-arrow-left, .car-kep .rec-carousel-wrapper .rec-carousel .rec-arrow-right{
     display: none;
   }
 
