@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Col, Row, Container, Button, ProgressBar, Breadcrumb } from 'react-bootstrap'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import Sticky from 'wil-react-sticky'
-import $, { ready } from 'jquery'
 import "./detail-prog.css"
 
 function SkeletonDetProg() {
@@ -80,12 +79,20 @@ function DariTanggal(props) {
 }
 
 function DetailProg(props) {
+    // const bnykitemup = props.itemup.length
+    // const arritemup = []
+    // for(var i=0; i<bnykitemup; i++){
+    //     arritemup.push(false)
+    // }
+        // const [isShowGbr, setIsShowGbr] = useState([])
+    // setIsShowGbr(arritemup)    
+    // function filterLampiran(index) {
+    //     setIsShowGbr(!isShowGbr[index])
+    // }
+
+    const [isShowGbr, setIsShowGbr] = useState(false)
     function filterLampiran() {
-        $(document).ready(() => {
-            $('.btn-gambar').click(function () {
-                $('.img-gambar').toggle('slow');
-            });
-        })
+        setIsShowGbr(!isShowGbr)
     }
 
     const persenTerkumpul = (props.itemprog.terkumpul / props.itemprog.total) * 100
@@ -107,16 +114,19 @@ function DetailProg(props) {
                             Lampirkan <i class="fe fe-chevron-down"></i>
                         </button>
                         <div className="dropdown-menu" aria-labelledby="dropdownMenuButtonTwo">
-                            <a className="dropdown-item btn-gambar" href="#!" onClick={() => filterLampiran("gambar")}>Gambar</a>
-                            <a className="dropdown-item btn-dok" href="#!" onClick={() => filterLampiran("dokumen")}>Dokumen</a>
+                            <a className="dropdown-item btn-gambar" href="#!" onClick={() => filterLampiran()}>Gambar</a>
+                            <a className="dropdown-item btn-dok" href="#!" onClick={() => filterLampiran()}>Dokumen</a>
                         </div>
                     </div>
                 </div>
-                <div className="m-3 img-gambar">
-                    <a href={doc.gambarUp} class="d-block mb-3 mb-md-0" data-fancybox>
-                        <img className="img-fluid w-100 gambar-up-det-prog" src={doc.gambarUp} alt="" />
-                    </a>
-                </div>
+                {isShowGbr?
+                    <div className="m-3 img-gambar" data-aos="fade-up">
+                        <a href={doc.gambarUp} class="d-block mb-3 mb-md-0" data-fancybox>
+                            <img className="img-fluid w-100 gambar-up-det-prog" src={doc.gambarUp} alt="" />
+                        </a>
+                    </div>
+                    : null
+                }
             </li>
         )
     })
@@ -151,7 +161,7 @@ function DetailProg(props) {
                                             {props.itemprog.des}
                                         </p>
                                         <span style={{ fontSize: `0.8rem` }}>Rp.{props.itemprog.terkumpul !== null && idrterkumpul} dari Rp.<strong>{props.itemprog.total !== null && idrtotal}</strong></span>
-                                        <ProgressBar now={persenTerkumpul} label={`${persenTerkumpul} %`} />
+                                        <ProgressBar now={persenTerkumpul} label={`${persenTerkumpul.toFixed(2)} %`} />
                                         {props.itemprog.durasi !== null && <SisaHari tanggal={props.itemprog.tanggal} durasi={props.itemprog.durasi} />
                                         }
                                         <br />

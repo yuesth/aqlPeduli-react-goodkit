@@ -94,8 +94,7 @@ function ProgramLayout(props) {
     const [kateg, setKateg] = useState([])
     const [isLoadingprog, setIsLoadingprog] = useState(true);
     const [isLoadingkateg, setIsLoadingkateg] = useState(true);
-    const namaprog = props.namaprog
-    console.log(namaprog)
+    // const namaprog = props.namaprog
     useEffect(() => {
         // (namaprog && filterSelection(namaprog)) || filterSelection('all')
         filterSelection('all')
@@ -194,15 +193,6 @@ function ProgramLayout(props) {
             RemoveClass(x[i], "show");
             if (x[i].className.indexOf(c) > -1) AddClass(x[i], "show");
         }
-        // var btnContainer = document.getElementById("col-list");
-        // var btns = btnContainer.getElementsByClassName("kategoriBtn");
-        // for (var i = 0; i < btns.length; i++) {
-        //     btns[i].addEventListener("click", function () {
-        //         var current = document.getElementsByClassName("active");
-        //         current[0].className = current[0].className.replace(" active", "");
-        //         this.className += " active";
-        //     });
-        // }
     }
     function AddClass(element, name) {
         var i, arr1, arr2;
