@@ -76,7 +76,7 @@ function KepedulianLanding() {
     //         )
     //     }, 5000)
     // })
-    const arrGbr = ['natural-disaster2', 'healthcare2', 'jama-masjid2', 'beverages2', 'give-love2']
+    const arrGbr = ['natural-disaster', 'healthcare', 'jama-masjid', 'beverages', 'give-love']
     const listkateg = kateg.map((doc, idx) => {
         var pathGbr = `${process.env.PUBLIC_URL}/images/kepedulian/${arrGbr[idx]}.png`
         return (
@@ -120,7 +120,7 @@ function KepedulianLanding() {
                 }} style={{ margin: `auto auto`, textDecoration: `none` }} className="wadah-item-kecil">
                     <div className="col-12 justify-content-center lift" style={{ maxWidth: `13rem` }}>
                         <div style={{ textAlign: `center` }}>
-                            <img className="img-fluid rounded-top-left rounded-bottom-right mx-auto" src={pathGbr2} alt="..." />
+                            <img className="img-fluid rounded-top-left rounded-bottom-right" src={pathGbr2} alt="..." />
                         </div>
                         <div className="py-4 text-center">
                             <h3 style={{ color: `#000000` }}>
