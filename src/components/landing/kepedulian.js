@@ -118,8 +118,8 @@ function KepedulianLanding() {
                         namaKateg: `${doc.namaKateg}`
                     }
                 }} style={{ margin: `auto auto`, textDecoration: `none` }} className="wadah-item-kecil">
-                    <div className="col-12 justify-content-center lift" style={{ maxWidth: `13rem` }}>
-                        <div style={{ textAlign: `center` }}>
+                    <div className="col-12 justify-content-center lift">
+                        <div style={{ textAlign: `center`, width: `10rem`, height:`10rem`}}>
                             <img className="img-fluid rounded-top-left rounded-bottom-right" src={pathGbr2} alt="..." />
                         </div>
                         <div className="py-4 text-center">

@@ -191,7 +191,7 @@ function Berita() {
             <div className="container-lg">
                 <div className="row">
                     <div className="col-12">
-                        <div style={{ textAlign: `center` }} className="mb-7">
+                        <div style={{ textAlign: `center`, zIndex:`10` }} className="mb-7">
                             <h2 className="display-4 mb-4 mb-md-0">
                                 Berita
                             </h2>
