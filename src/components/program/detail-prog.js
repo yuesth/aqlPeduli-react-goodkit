@@ -95,6 +95,11 @@ function DetailProg(props) {
         setIsShowGbr(!isShowGbr)
     }
 
+    // useEffect(()=>{
+    // var res = props.itemprog.cerita.match(/[\w-]+.(jpg|png|jpeg)/g);
+    // var cerita2 = props.itemprog.cerita.replace(/(\!\[[\w-]+.(jpg|png|jpeg)]\(http:\/\/167.99.72.148\/uploads\/[\w-]+.(jpg|png|jpeg)\))/g, "<img src='"+res[res.length-1]+"' className='img-fluid'></img>")
+    // })
+
     const persenTerkumpul = (props.itemprog.terkumpul / props.itemprog.total) * 100
     var idrterkumpul = parseInt(props.itemprog.terkumpul).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
     var idrtotal = parseInt(props.itemprog.total).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
@@ -190,7 +195,7 @@ function DetailProg(props) {
                             </nav>
                             <div className="tab-content" id="nav-tabContent">
                                 <div className="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                    <p className="text-muted text-justify">
+                                    <p className="text-muted text-justify" style={{whiteSpace:`pre-wrap`}}>
                                         {props.loadingdetprog ? <SkeletonCerita></SkeletonCerita>
                                             :
                                             props.itemprog.cerita

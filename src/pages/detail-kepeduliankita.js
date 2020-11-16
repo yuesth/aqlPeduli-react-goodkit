@@ -50,6 +50,7 @@ function DariTanggal(props) {
 }
 
 function DetailKK(props) {
+    const [kontenfix, setKontenfix] = useState("")
     const id = props.match.params.id
     const urlDetailKk = `http://167.99.72.148/kepeduliankitas/${id}`
     const [detailkk, setDetailkk] = useState([])
@@ -67,8 +68,12 @@ function DetailKK(props) {
             items => {
                 setDetailkk(items)
                 setIsLoadingdetkk(false)
+                return(items.konten)
             }
-        )
+        ).then((ret) => {
+            const konten = ret
+            setKontenfix(konten.replace(/\n/g, `<br/>`))
+        })
     })
     return (
         <>
@@ -105,7 +110,7 @@ function DetailKK(props) {
                         </div>
                         <div className="row align-items-center justify-content-center mb-9">
                             <div className="col-md-10 col-lg-9">
-                                <p className="text-justify p-4">{detailkk.konten}</p>
+                                <p className="text-justify p-4" style={{whiteSpace:`pre-wrap`}}>{detailkk.konten}</p>
                             </div>
                         </div>
                     </div>
