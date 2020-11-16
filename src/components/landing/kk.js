@@ -182,7 +182,7 @@ function KK() {
                 </div> */}
             </div>
 
-            <section className="position-relative pt-10 pt-md-9 bg-white mb-10" >
+            <section className="position-relative pt-10 pb-1 pt-md-9 bg-white mb-10" >
                 <div className="container-lg position-relative" style={{ zIndex: 1 }}>
                     <div className="row align-items-center justify-content-center mb-5">
                         <div className="col-md-6" style={{ textAlign: `center` }}>

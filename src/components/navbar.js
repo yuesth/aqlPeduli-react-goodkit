@@ -7,7 +7,7 @@ function NavbarGK() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light fixed-top p-2" style={{ backgroundColor: `#ffffff` }}>
             <div className="container-lg">
-                <a className="navbar-brand d-lg-none" href="./index.html">AQL Peduli</a>
+                <a className="navbar-brand d-lg-none" href="/">AQL Peduli</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon" />
                 </button>

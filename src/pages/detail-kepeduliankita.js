@@ -86,7 +86,7 @@ function DetailKK(props) {
                         <div className="row align-items-center justify-content-center mb-5">
                             <Col md={10} lg={8}>
                                 <Breadcrumb>
-                                    <Breadcrumb.Item href="/kk" style={{ textDecoration: `none`, color: `#E92998` }}>Program Kepedulian</Breadcrumb.Item>
+                                    <Breadcrumb.Item href="/kk" style={{ textDecoration: `none`, color: `#E92998` }}>Kepedulian Kita</Breadcrumb.Item>
                                     <Breadcrumb.Item active>{detailkk.judul}</Breadcrumb.Item>
                                 </Breadcrumb>
                             </Col>

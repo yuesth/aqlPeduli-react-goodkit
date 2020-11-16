@@ -1,15 +1,14 @@
 @media only screen and (max-width:590px){
-    .row-besar{
-      visibility: hidden;
-      display: none;
-    }
+
   }
  
   @media only screen and (min-width:590px){
-   .row-kecil{
-     visibility: hidden;
-     display: none;
-   }
+   .flex-kateg{
+    display: flex;
+    display: -moz-flex;
+    display: -webkit-flex;
+    flex-direction: column;
+  }
 
    img.img-prog{
      height: 170px;
@@ -78,4 +77,13 @@
 
 .show{
   display: block;
+}
+
+.flex-kateg{
+  display: flex;
+  display: -moz-flex;
+  display: -webkit-flex;
+  -webkit-flex-direction: row; 
+  flex-direction: row; 
+  flex-flow: row wrap;
 }

@@ -111,7 +111,7 @@ function Berita() {
             return (
                 <div className="card card-lg rounded-top-left rounded-bottom-right lift lift-lg mb-5">
                     <div className="row no-gutters">
-                        <div className="col-md-6 bg-cover rounded-top-left my-n2" style={{ backgroundImage: `url(${doc.gambar})`, backgroundPosition: 'center right', maxHeight: `340px` }}>
+                        <div className="col-md-6 bg-cover rounded-top-left" style={{ backgroundImage: `url(${doc.gambar})`, backgroundPosition: 'center right', maxHeight: `340px` }}>
                             <img className="img-fluid invisible" src={`${doc.gambar}`} alt="..." />
                         </div>
                         <div className="col-md-6">
@@ -207,13 +207,13 @@ function Berita() {
                         }
                     </div>
                 </div>
-                <div className="row mt-2">
+                <div className="row mt-1">
                     {isLoadingber ? <SkeletonBerlinLayout></SkeletonBerlinLayout>
                         :
                         beritalain
                     }
                 </div>
-                <div className="row align-items-center mb-8">
+                <div className="row align-items-center mb-8 mt-4">
                     <div className="mx-auto">
                         <a className="btn btn-sm btn-primary" href="#!">
                             Lihat Semua

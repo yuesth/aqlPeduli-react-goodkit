@@ -45,7 +45,7 @@ function SkeletonProg() {
                     <div className="card mx-2 p-2 bg-transparent" style={{ width: `290px`, height: `480px` }}>
                         {/* <SkeletonTheme color="#e3e3e3"> */}
                         <Skeleton reactangle={true} height={200} width={290} />
-                        <br/>
+                        <br />
                         <h3><Skeleton /></h3>
                         <br />
                         <Skeleton count={2} />
@@ -174,7 +174,7 @@ function ProgramLayout(props) {
         var hariTerakhir = new Date(new Date(props.tanggal).getTime() + (props.durasi * 24 * 60 * 60 * 1000));
         var sisaHari = Math.floor((hariTerakhir.getTime() - new Date().getTime()) / (1000 * 3600 * 24))
         return (
-            <span style={{color:`#5146b8`}}>{sisaHari.toString()} hari</span>
+            <span style={{ color: `#5146b8` }}>{sisaHari.toString()} hari</span>
         )
     }
 
@@ -265,7 +265,7 @@ function ProgramLayout(props) {
         var namaKategori2 = namaKategori.replace(/\s/g, "")
         var namaClass = "item-donasi " + namaKategori2
         return (
-            <div className={`col-md-4 col-lg-4 col-sm-6 p-2 mt-0 ml-0 mr-0 mb-5 ${namaClass}`}>
+            <div className={`col-md-4 col-lg-4 col-sm-6 mt-0 ml-0 mr-0 mb-3 ${namaClass}`}>
                 <div className={`card card-sm rounded-top-left rounded-bottom-right lift lift-lg mt-6`}>
                     <div>
                         <img className="card-img-top rounded-top-left img-fluid img-prog" src={doc.gambar} alt="..." />
@@ -277,7 +277,7 @@ function ProgramLayout(props) {
                             </div>
                         </div>
                     </div>
-                    <div className="card-body p-1">
+                    <div className="card-body p-2 pb-3">
                         <span className="small text-muted mt-n1 mb-0">
                             <DariTanggal tanggal={doc.tanggal}></DariTanggal>
                         </span>
@@ -298,7 +298,7 @@ function ProgramLayout(props) {
                                 </Col>
                                 <Col md={{ span: `7` }} xs={8} style={{ textAlign: `right`, fontSize: `12px` }}>
                                     <p style={{ marginBottom: `0.3rem` }}>Terkumpul</p>
-                                    <span style={{color:`#6053db`}}>Rp.{idr}</span>
+                                    <span style={{ color: `#6053db` }}>Rp.{idr}</span>
                                 </Col>
                             </Row>
                         </Container>
@@ -327,47 +327,32 @@ function ProgramLayout(props) {
                 <div className="row">
                     <Col md={2} id="col-list" className="pt-10 px-0">
                         <Row>
-                            <Col className="pl-5">
+                            <Col className="pl-6">
                                 <h2>Kategori</h2>
                             </Col>
                         </Row>
-                        <Row className="row-besar">
-                            <Row>
-                                <Col>
-                                    <Button variant="default" onClick={() => filterSelection('all')} className="kategoriBtn active">Semua</Button>
-                                    {/* <Button variant="default" onClick={() => setFilterKey('*')} className="kategBtn active">Semua</Button> */}
-                                </Col>
-                            </Row>
-                            <br />
+                        <div className="row pl-n5 flex-kateg">
+                            {/* disini */}
+                            <div>
+                                <Button variant="default" onClick={() => filterSelection('all')} className="kategoriBtn active">Semua</Button>
+                            </div>
                             {isLoadingkateg ? <SkeletonKateg></SkeletonKateg>
                                 :
                                 kateg.map((doc, idx) => {
                                     var nama1 = doc.namaKateg
                                     var nama2 = nama1.replace(/\s/g, "")
                                     return (
-                                        <Row>
-                                            <Col>
-                                                <Button variant="default" onClick={() => filterSelection(nama2)} key={idx} className="kategoriBtn">{doc.namaKateg}</Button>
-                                                {/* <Button variant="default" onClick={() => setFilterKey(nama2)} key={idx} className="kategBtn">{doc.namaKateg}</Button> */}
-                                            </Col>
-                                        </Row>
+                                        <div>
+                                            <Button variant="default" onClick={() => filterSelection(nama2)} key={idx} className="kategoriBtn">{doc.namaKateg}</Button>
+                                        </div>
                                     )
-                                })}
-                        </Row>
-                        <Row className="row-kecil mb-2">
-                            <Button variant="default" onClick={() => filterSelection('all')} className="kategoriBtn active">Semua</Button>
-                            {kateg.map((doc, idx) => {
-                                var nama1 = doc.namaKateg
-                                var nama2 = nama1.replace(/\s/g, "")
-                                return (
-                                    <Button variant="default" onClick={() => filterSelection(nama2)} key={idx} className="kategoriBtn">{doc.namaKateg}</Button>
-                                )
-                            })}
-                        </Row>
+                                })
+                            }
+                        </div>
                     </Col>
 
                     <Col md={10}>
-                        <div className="row justify-content-center">
+                        <div className="row justify-content-center mt-3">
                             <div className="col-md-10 col-lg-10 text-center text-white">
                                 <form>
                                     <div className="input-group rounded-top-left rounded-bottom-right shadow">
@@ -382,7 +367,7 @@ function ProgramLayout(props) {
                             </div>
                         </div>
                         <div className="container-fluid px-0">
-                            <div className="row pl-3">
+                            <div className="row pl-4">
                                 {isLoadingprog ? <SkeletonProg></SkeletonProg>
                                     :
                                     listprogram2
@@ -397,3 +382,26 @@ function ProgramLayout(props) {
 }
 
 export default ProgramLayout
+
+{/* <Row>
+                                <Col>
+                                    <Button variant="default" onClick={() => filterSelection('all')} className="kategoriBtn active">Semua</Button>
+                                    {/* <Button variant="default" onClick={() => setFilterKey('*')} className="kategBtn active">Semua</Button>
+                                </Col>
+                            </Row>
+                            <br />
+                            {isLoadingkateg ? <SkeletonKateg></SkeletonKateg>
+                                :
+                                kateg.map((doc, idx) => {
+                                    var nama1 = doc.namaKateg
+                                    var nama2 = nama1.replace(/\s/g, "")
+                                    return (
+                                        <Row>
+                                            <Col>
+                                                <Button variant="default" onClick={() => filterSelection(nama2)} key={idx} className="kategoriBtn">{doc.namaKateg}</Button>
+                                                {/* <Button variant="default" onClick={() => setFilterKey(nama2)} key={idx} className="kategBtn">{doc.namaKateg}</Button>
+                                            </Col>
+                                        </Row>
+                                    )
+                                })
+                            } */}
