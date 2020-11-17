@@ -1,0 +1,35 @@
+.kategoriBtnBerita{
+    color: #000000;
+    height: auto;
+    width: auto;
+}
+
+.kategoriBtnBerita:hover{
+    color: #E92998;
+    height: auto;
+    width: auto;
+  }
+
+  .kategoriBtnBerita.active {
+    color: #E92998;
+    height: auto;
+    width: auto;
+  }
+
+  @media only screen and (min-width:590px){
+    img.img-berita{
+      height: 170px;
+    }
+  }
+
+  .badge-berlin{
+    border-radius: 0;
+  }
+
+  .item-berita{
+    display: none;
+}
+
+.show{
+  display: block;
+}

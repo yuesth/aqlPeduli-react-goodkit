@@ -1,0 +1,34 @@
+.berita-header-img{
+    overflow: hidden;
+    opacity: .9;
+    position: relative;
+}
+
+.berita-headerlain-img{
+    overflow: hidden;
+    opacity: .9;
+    height:7rem;
+    position: relative;
+}
+
+.berita-header-img img, .berita-headerlain-img img{
+    transition: .3s ease;
+}
+
+.berita-header-img img:hover, .berita-headerlain-img img:hover{
+    opacity: 0.6;
+    transform: scale(1.1);
+}
+
+.capt-berita-header{
+    position: absolute;
+    left: 1rem;
+    bottom: 0.3rem;
+}
+
+.capt-beritalain-header{
+    position: absolute;
+    left: 1rem;
+    bottom: 0.3rem;
+    padding-bottom: 0;
+}

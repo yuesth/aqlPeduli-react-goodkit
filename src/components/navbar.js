@@ -31,7 +31,7 @@ function NavbarGK() {
                         </a>
                         {/* </li> */}
                         {/* <li className="nav-item"> */}
-                        <a className="nav-link lift" id="pagesDropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a className="nav-link lift" id="pagesDropdown" href="/berita" role="button" aria-haspopup="true" aria-expanded="false">
                             <h3>Berita</h3>
                         </a>
                         {/* </li> */}
