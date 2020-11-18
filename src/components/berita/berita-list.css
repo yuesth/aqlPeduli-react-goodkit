@@ -26,10 +26,18 @@
     border-radius: 0;
   }
 
-  .item-berita{
+  .judul-berlin-nas{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+  }
+
+  /* .item-berita{
     display: none;
 }
 
 .show{
   display: block;
-}
+} */

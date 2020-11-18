@@ -78,6 +78,61 @@ function BeritaHeader() {
             )
         }
     })
+    const listberitaheaderlain1 = sortedItemBerita.map((doc, idx) => {
+        if (idx > 0 && idx < 6) {
+            if(doc.kategori === "Berita Nasional"){
+                return (
+                    <div className="col-6 col-sm-6 col-md-6 col-lg-6">
+                    <Link to={`/berita/${doc.id}`}>
+                        <div className="berita-headerlain-img mt-5" style={{ height: `10rem` }}>
+                            <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
+                            <div className="carousel-caption text-left capt-beritalain-header">
+                                <span className="badge badge-berlin badge-danger">{doc.kategori}</span>
+                                <h6 style={{ color: `black` }}>
+                                    {doc.judul}
+                                </h6>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+                )
+            }
+            else if(doc.kategori === "Berita Internasional"){
+                return (
+                    <div className="col-6 col-sm-6 col-md-6 col-lg-6">
+                    <Link to={`/berita/${doc.id}`}>
+                        <div className="berita-headerlain-img mt-5" style={{ height: `10rem` }}>
+                            <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
+                            <div className="carousel-caption text-left capt-beritalain-header">
+                                <span className="badge badge-berlin badge-primary">{doc.kategori}</span>
+                                <h6 style={{ color: `black` }}>
+                                    {doc.judul}
+                                </h6>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+                )
+            }
+        }
+    })
+    const listberitaheaderlain2 = sortedItemBerita.map((doc, idx) => {
+        if (idx > 2 && idx < 5) {
+            return (
+                <Link to={`/berita/${doc.id}`}>
+                    <div className="berita-headerlain-img mt-5" style={{height:`10rem`}}>
+                        <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
+                        <div className="carousel-caption text-left capt-beritalain-header">
+                            <span className="badge badge-berlin badge-secondary">{doc.kategori}</span>
+                            <h6 style={{ color: `black` }}>
+                                {doc.judul}
+                            </h6>
+                        </div>
+                    </div>
+                </Link>
+            )
+        }
+    })
     return (
         <>
             <div className="row align-items-center justify-content-center mb-7">
@@ -87,7 +142,7 @@ function BeritaHeader() {
                     </h2>
                 </div>
             </div>
-            <div className="row justify-content-center mt-8">
+            {/* <div className="row justify-content-center mt-8">
                 <div className="col-md-11 col-lg-111 text-center text-white">
                     <form>
                         <div className="input-group rounded-top-left rounded-bottom-right shadow">
@@ -100,14 +155,18 @@ function BeritaHeader() {
                         </div>
                     </form>
                 </div>
-            </div>
+            </div> */}
             <div className="row mt-6 mb-5">
-                <div className="col-12 col-sm-12 col-md-8 col-lg-8">
+                <div className="col-12 col-sm-12 col-md-6 col-lg-6">
                     {listberitaheader}
                 </div>
-                <div className="col-12 col-sm-12 col-md-4 col-lg-4">
-                    {listberitaheaderlain}
+                <div className="col-6 col-sm-6 col-md-6 col-lg-6 d-flex" style={{flexFlow:`row wrap`}}>
+                        {listberitaheaderlain1}
+                    {/* {listberitaheaderlain} */}
                 </div>
+                {/* <div className="col-6 col-sm-6 col-md-3 col-lg-3">
+                        {listberitaheaderlain2}
+                </div> */}
             </div>
         </>
     )

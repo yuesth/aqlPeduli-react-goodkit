@@ -79,21 +79,22 @@ function DariTanggal(props) {
 }
 
 function DetailProg(props) {
-    // const bnykitemup = props.itemup.length
-    // const arritemup = []
-    // for(var i=0; i<bnykitemup; i++){
-    //     arritemup.push(false)
-    // }
-        // const [isShowGbr, setIsShowGbr] = useState([])
-    // setIsShowGbr(arritemup)    
-    // function filterLampiran(index) {
-    //     setIsShowGbr(!isShowGbr[index])
-    // }
-
-    const [isShowGbr, setIsShowGbr] = useState(false)
-    function filterLampiran() {
-        setIsShowGbr(!isShowGbr)
+    const bnykitemup = props.itemup.length
+    const arritemup = []
+    for(var i=0; i<bnykitemup; i++){
+        arritemup.push(false)
     }
+    const [isShowGbr, setIsShowGbr] = useState(arritemup)
+    function filterLampiran(index) {
+        var arrShowGbr = isShowGbr
+        arrShowGbr[index] = !arrShowGbr[index]
+        setIsShowGbr(arrShowGbr)
+    }
+
+    // const [isShowGbr, setIsShowGbr] = useState(false)
+    // function filterLampiran() {
+    //     setIsShowGbr(!isShowGbr)
+    // }
 
     // useEffect(()=>{
     // var res = props.itemprog.cerita.match(/[\w-]+.(jpg|png|jpeg)/g);
@@ -119,12 +120,12 @@ function DetailProg(props) {
                             Lampirkan <i class="fe fe-chevron-down"></i>
                         </button>
                         <div className="dropdown-menu" aria-labelledby="dropdownMenuButtonTwo">
-                            <a className="dropdown-item btn-gambar" href="#!" onClick={() => filterLampiran()}>Gambar</a>
-                            <a className="dropdown-item btn-dok" href="#!" onClick={() => filterLampiran()}>Dokumen</a>
+                            <a className="dropdown-item btn-gambar" href="#!" onClick={() => filterLampiran(idx)}>Gambar</a>
+                            {/* <a className="dropdown-item btn-dok" href="#!" onClick={() => filterLampiran()}>Dokumen</a> */}
                         </div>
                     </div>
                 </div>
-                {isShowGbr?
+                {isShowGbr[idx]?
                     <div className="m-3 img-gambar" data-aos="fade-up">
                         <a href={doc.gambarUp} class="d-block mb-3 mb-md-0" data-fancybox>
                             <img className="img-fluid w-100 gambar-up-det-prog" src={doc.gambarUp} alt="" />
@@ -136,9 +137,9 @@ function DetailProg(props) {
         )
     })
     return (
-        <section className="pt-10 pt-md-12">
-            <div className="container-lg" id="wadahSticky">
-                <div className="row align-items-center justify-content-center mb-5">
+        <section className="pt-10 pt-md-11">
+            <div className="container-xl" id="wadahSticky">
+                <div className="row align-items-center justify-content-center mb-4">
                     <Col>
                         <Breadcrumb>
                             <Breadcrumb.Item href="/program" style={{ textDecoration: `none`, color: `#E92998` }}>Program Kepedulian</Breadcrumb.Item>

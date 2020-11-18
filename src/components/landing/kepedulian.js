@@ -140,8 +140,8 @@ function KepedulianLanding() {
     ];
     return (
         < section className="pt-10 pt-md-11 bg-light" >
-            <div className="container-lg">
-                <div className="row align-items-center justify-content-center mb-9">
+            <div className="container-xl">
+                <div className="row align-items-center justify-content-center mb-7">
                     <div className="col-md-6" style={{ textAlign: `center` }}>
                         <h2 className="display-4 mb-4 mb-md-0">
                             Kepedulian <br />

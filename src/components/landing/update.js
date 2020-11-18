@@ -155,9 +155,9 @@ function Update() {
         )
     })
     return (
-        <section className="pt-5 pt-md-5 pb-5 pb-md-5 mt-5">
-            <div className="container-lg">
-                <div className="row align-items-center justify-content-center mb-9 mt-5">
+        <section className="pt-8 pt-md-8 pb-8 pb-md-8">
+            <div className="container-xl">
+                <div className="row align-items-center justify-content-center mb-7">
                     <div className="col-md-6" style={{ textAlign: `center` }}>
                         <h2 className=" text-white display-4 mb-4 mb-md-0">
                             Update Program

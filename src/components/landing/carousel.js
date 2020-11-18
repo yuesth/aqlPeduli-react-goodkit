@@ -53,7 +53,7 @@ function CarouselLanding() {
     })
     return (
         < section className="position-relative pt-7 pt-md-9" style={{ zIndex: 1 }}>
-            <div className="container-lg">
+            <div className="container-xl">
                 <div className="row">
                     <div className="col-12">
                         <div className="position-absolute bottom-right text-warning mb-n8 mr-n7">

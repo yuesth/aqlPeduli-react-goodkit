@@ -187,8 +187,8 @@ function Berita() {
         }
     })
     return (
-        <section className="pt-9 pt-md-11">
-            <div className="container-lg">
+        <section className="pt-10 pt-md-11">
+            <div className="container-xl">
                 <div className="row">
                     <div className="col-12">
                         <div style={{ textAlign: `center`, zIndex:`10` }} className="mb-7">

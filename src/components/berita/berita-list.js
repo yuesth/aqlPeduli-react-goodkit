@@ -122,15 +122,20 @@ function BeritaList() {
         }
         element.className = arr1.join(" ");
     }
-    function filterEvent(namakateg) {
-        if (namakateg !== "Event") {
-            setIsShowevent(false)
-            filterSelection(namakateg)
-        }
-        else if (namakateg === "Event") {
-            setIsShowevent(true)
-        }
-    }
+
+    // function filterEvent(namakateg) {
+    //     if (namakateg !== "Event") {
+    //         setIsShowevent(false)
+    //         filterSelection(namakateg)
+    //     }
+    //     else if (namakateg === "Event") {
+    //         setIsShowevent(true)
+    //     }
+    //     else if(namakateg=== "all"){
+    //         filterSelection('all')
+    //         setIsShowevent(true)
+    //     }
+    // }
 
     const urlBerita = "http://167.99.72.148/beritas"
     const urlKategberita = "http://167.99.72.148/kategoriberitas"
@@ -157,7 +162,7 @@ function BeritaList() {
         )
     })
     useEffect(() => {
-        // filterEvent('all')
+        // filterEvent("all")
         // var btnContainer = document.getElementById("col-list");
         // var btns = btnContainer.getElementsByClassName("kategoriBtnBerita");
         // for (var i = 0; i < btns.length; i++) {
@@ -288,14 +293,139 @@ function BeritaList() {
             }
         }
     })
+    var itBerNasUt = 1
+    const beritanasionalutama = sortedItemBerita.map((doc, idx) => {
+        var kategBeritaLain = doc.kategori
+        var namaKategoriBeritaLain = kategBeritaLain.replace(/\s/g, "")
+        if (namaKategoriBeritaLain !== "Event") {
+            if (namaKategoriBeritaLain === "BeritaNasional") {
+                if (itBerNasUt === 1) {
+                    itBerNasUt = itBerNasUt + 1
+                    return (
+                        <Link to={`/berita/${doc.id}`}>
+                            <div className="berita-header-img">
+                                <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
+                                <div className="carousel-caption text-left capt-berita-header">
+                                    <span className="badge badge-berlin badge-danger">{doc.kategori}</span>
+                                    <h2>
+                                        {doc.judul}
+                                    </h2>
+                                </div>
+                            </div>
+                        </Link>
+                    )
+                }
+            }
+        }
+    })
+    var itBerInterUt = 1
+    const beritainterutama = sortedItemBerita.map((doc, idx) => {
+        var kategBeritaLain = doc.kategori
+        var namaKategoriBeritaLain = kategBeritaLain.replace(/\s/g, "")
+        if (namaKategoriBeritaLain !== "Event") {
+            if (namaKategoriBeritaLain === "BeritaInternasional") {
+                if (itBerInterUt === 1) {
+                    itBerInterUt = itBerInterUt + 1
+                    return (
+                        <Link to={`/berita/${doc.id}`}>
+                            <div className="berita-header-img">
+                                <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
+                                <div className="carousel-caption text-left capt-berita-header">
+                                    <span className="badge badge-berlin badge-primary">{doc.kategori}</span>
+                                    <h2>
+                                        {doc.judul}
+                                    </h2>
+                                </div>
+                            </div>
+                        </Link>
+                    )
+                }
+            }
+        }
+    })
+    var itBerNasLain = 1
+    const beritanasionallain = sortedItemBerita.map((doc, idx) => {
+        var kategBeritaLain = doc.kategori
+        var namaKategoriBeritaLain = kategBeritaLain.replace(/\s/g, "")
+        if (namaKategoriBeritaLain !== "Event") {
+            if (namaKategoriBeritaLain === "BeritaNasional") {
+                if (itBerNasLain === 1) {
+                    // itBerNasLain = itBerNasLain + 1
+                    return (
+                        <div className={`card card-lg rounded-top-left rounded-bottom-right mb-4 lift`}>
+                            <div className="row no-gutters">
+                                <div className="col-md-6">
+                                    <div className="card-body p-5">
+                                        <h6 className="mb-4 judul-berlin-nas">
+                                            {doc.judul}
+                                        </h6>
+                                        <span className="badge badge-berlin badge-danger">Nasional</span>
+                                        <br/>
+                                        <span className="small text-muted mt-n1 mb-0 ml-2" style={{fontSize:`0.8rem`}}>
+                                            <DariTanggal tanggal={doc.tanggal}></DariTanggal>
+                                        </span>
+                                        <Link to={`/berita/${doc.id}`} className="stretched-link"></Link>
+                                    </div>
+                                </div>
+                                <div className="col-md-6 rounded-top-left">
+                                    <img className="img-fluid w-70 h-70 my-auto" src={`${doc.gambar}`} alt="..." />
+                                </div>
+                            </div>
+                        </div>
+                    )
+                }
+            }
+        }
+    })
+    var itBerInterLain = 1
+    const beritainterlain = sortedItemBerita.map((doc, idx) => {
+        var kategBeritaLain = doc.kategori
+        var namaKategoriBeritaLain = kategBeritaLain.replace(/\s/g, "")
+        if (namaKategoriBeritaLain !== "Event") {
+            if (namaKategoriBeritaLain === "BeritaInternasional") {
+                if (itBerInterLain === 1) {
+                    // itBerNasLain = itBerNasLain + 1
+                    return (
+                        <div className={`card card-lg rounded-top-left rounded-bottom-right mb-4 lift`}>
+                            <div className="row no-gutters">
+                                <div className="col-md-6">
+                                    <div className="card-body p-5">
+                                        <h6 className="mb-4 judul-berlin-nas">
+                                            {doc.judul}
+                                        </h6>
+                                        <span className="badge badge-berlin badge-primary">Internasional</span>
+                                        <br/>
+                                        <span className="small text-muted mt-n1 mb-0 ml-2" style={{fontSize:`0.8rem`}}>
+                                            <DariTanggal tanggal={doc.tanggal}></DariTanggal>
+                                        </span>
+                                        <Link to={`/berita/${doc.id}`} className="stretched-link"></Link>
+                                    </div>
+                                </div>
+                                <div className="col-md-6 rounded-top-left">
+                                    <img className="img-fluid w-70 h-70 my-auto" src={`${doc.gambar}`} alt="..." />
+                                </div>
+                            </div>
+                        </div>
+                    )
+                }
+            }
+        }
+    })
     return (
         <div className="row" id="wadahStickyBerita">
-            <Col md={10}>
+            <Col md={12}>
                 <div className="container-fluid px-0">
                     {isShowevent ?
-                        <div className="row pl-4 border border-gray-300 rounded-top-left rounded-bottom-right mb-5">
-                            <div className="row pl-7 pt-4 ">
-                                <h2>Event</h2>
+                        <div className="row px-4 border border-gray-300 rounded-top-left rounded-bottom-right mb-8">
+                            <div className="row pl-4 pr-0 pt-4 w-100">
+                                <div className="col-md-3">
+                                    <h2 className="my-auto text-airbnb">Event</h2>
+                                </div>
+                                <div className="col-md-4 offset-md-5 text-right">
+                                    <a className="ml-auto text-decoration-none text-stripe stretched-link" href="#!">
+                                        Lihat Lainnya <i className="fe fe-arrow-right" />
+                                    </a>
+                                </div>
                             </div>
                             <div className="row px-4 ">
                                 {isLoadingberlist ? <SkeletonBeritaEvent></SkeletonBeritaEvent>
@@ -306,12 +436,57 @@ function BeritaList() {
                         </div>
                         : null
                     }
-                    <div className="row px-4">
-                        {listberitalain}
+                    <div className="row px-4 mb-8">
+                        <div className="row pl-4 pr-0 pt-4 w-100">
+                            <div className="col-md-3">
+                                <h2 className="my-auto">Berita Nasional</h2>
+                            </div>
+                            <div className="col-md-4 offset-md-5 text-right">
+                                <a className="ml-auto text-decoration-none text-stripe stretched-link" href="#!">
+                                    Lihat Lainnya <i className="fe fe-arrow-right" />
+                                </a>
+                            </div>
+                        </div>
+                        <div className="row w-100">
+                            <div className="col-12 col-sm-12 col-md-6 col-lg-6 my-4">
+                                {beritanasionalutama}
+                            </div>
+                            <div className="col-12 col-sm-12 col-md-6 col-lg-6 my-4">
+                                <h3>Berita Nasional Terbaru</h3>
+                                <div className="overflow-auto mt-6" style={{height:`16rem`}}>
+                                    {beritanasionallain}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="row px-4 mb-8">
+                        <div className="row pl-4 pr-0 pt-4 w-100">
+                            <div className="col-md-4">
+                                <h2 className="my-auto">Berita Internasional</h2>
+                            </div>
+                            <div className="col-md-4 offset-md-4 text-right">
+                                <a className="ml-auto text-decoration-none text-stripe stretched-link" href="#!">
+                                    Lihat Lainnya <i className="fe fe-arrow-right" />
+                                </a>
+                            </div>
+                        </div>
+                        <div className="row w-100">
+                            <div className="col-12 col-sm-12 col-md-6 col-lg-6 my-4">
+                                {beritainterutama}
+                            </div>
+                            <div className="col-12 col-sm-12 col-md-6 col-lg-6 my-4">
+                                <h3>Berita Internasional Terbaru</h3>
+                                <div className="overflow-auto mt-6" style={{height:`16rem`}}>
+                                    {beritainterlain}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </Col>
-            <Col md={2} id="col-list" className="pt-5 px-0">
+            {/* <Col md={2} id="col-list" className="pt-5 px-0">
                 <Sticky containerSelectorFocus="#wadahStickyBerita" offsetTop={70} stickyEnableRange={[768, Infinity]}>
                     <Row>
                         <Col className="pl-6">
@@ -319,9 +494,9 @@ function BeritaList() {
                         </Col>
                     </Row>
                     <div className="row pl-n5 flex-kateg">
-                        {/* <div>
-                            <Button variant="default" onClick={() => filterEvent('all')} className="kategoriBtnBerita active">Semua</Button>
-                        </div> */}
+                        <div>
+                            <Button variant="default" onClick={() => filterEvent("all")} className="kategoriBtnBerita">Semua</Button>
+                        </div>
                         {isLoadingberkateg ? <SkeletonBeritaKateg></SkeletonBeritaKateg>
                             :
                             kategberita.map((doc, idx) => {
@@ -329,7 +504,6 @@ function BeritaList() {
                                 var nama2 = nama1.replace(/\s/g, "")
                                 return (
                                     <div>
-                                        {/* <Button variant="default" onClick={() => filterSelection(nama2)} key={idx} className="kategoriBtn">{doc.namaKateg}</Button> */}
                                         <Button variant="default" onClick={() => filterEvent(nama2)} key={idx} className="kategoriBtnBerita">{doc.namaKateg}</Button>
                                     </div>
                                 )
@@ -337,7 +511,7 @@ function BeritaList() {
                         }
                     </div>
                 </Sticky>
-            </Col>
+            </Col> */}
         </div>
     )
 }

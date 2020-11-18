@@ -155,7 +155,7 @@ function KK() {
         return (
             <div className="card card-lg rounded-top-left rounded-bottom-right mb-5">
                 <div className="row no-gutters">
-                    <div className="col-md-6 bg-cover rounded-top-left my-n2" style={{ backgroundImage: `url(${doc.gambarKk})`, backgroundPosition: 'center right', maxHeight: `340px` }}>
+                    <div className="col-md-6 bg-cover rounded-top-left my-n2" style={{ backgroundImage: `url(${doc.gambarKk})`, backgroundPosition: 'center right', height: `340px` }}>
                         <img className="img-fluid invisible" src={`${doc.gambarKk}`} alt="..." />
                     </div>
                     <div className="col-md-6">
@@ -182,9 +182,9 @@ function KK() {
                 </div> */}
             </div>
 
-            <section className="position-relative pt-10 pb-1 pt-md-9 bg-white mb-10" >
-                <div className="container-lg position-relative" style={{ zIndex: 1 }}>
-                    <div className="row align-items-center justify-content-center mb-5">
+            <section className="position-relative pt-10 pt-md-11 bg-white" >
+                <div className="container-xl position-relative" style={{ zIndex: 1 }}>
+                    <div className="row align-items-center justify-content-center mb-7">
                         <div className="col-md-6" style={{ textAlign: `center` }}>
                             <h2 className="display-4 mb-4 mb-md-0">
                                 Kepedulian Kita <br />

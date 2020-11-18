@@ -13,6 +13,7 @@ function DetailProgram(props) {
     const [detailup, setDetailup] = useState([])
     const [isLoadingdetprog, setIsLoadingdetprog] = useState(true);
     const [isLoadingdetup, setIsLoadingdetup] = useState(true);
+    const [isShowgbrdetup, setIsShowgbrdetup] = useState([])
     useEffect(() => {
         fetch(urlDetailProgram).then(res => res.json()).then(parsedJson => (
             {
@@ -57,7 +58,7 @@ function DetailProgram(props) {
                 )
             }
         })).then(
-            items2 => {
+            (items2) => {
                 setDetailup(items2)
                 setIsLoadingdetup(false)
             }
