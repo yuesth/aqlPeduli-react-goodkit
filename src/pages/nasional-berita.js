@@ -81,7 +81,7 @@ function BeritaHeaderNas(props) {
             <div className="row mb-2">
                 <Col md={12} lg={12} className="px-auto">
                     <Breadcrumb>
-                        <Breadcrumb.Item href="/berita" style={{ textDecoration: `none`, color: `#E92998` }}></Breadcrumb.Item>
+                        <Breadcrumb.Item href="/berita" style={{ textDecoration: `none`, color: `#E92998` }}>Berita</Breadcrumb.Item>
                         <Breadcrumb.Item active>Berita Nasional</Breadcrumb.Item>
                     </Breadcrumb>
                 </Col>

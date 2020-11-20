@@ -66,20 +66,54 @@ function BeritaHeader() {
     const sortedItemBerita = itemBerita.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
     const listberitaheader = sortedItemBerita.map((doc, idx) => {
         if (idx === 0) {
-            return (
-                <Link to={`/berita/${doc.id}`}>
-                    <div className="berita-header-img">
-                        <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
-                        <div className="shadow-header"></div>
-                        <div className="carousel-caption text-left capt-berita-header">
-                            <span className="badge badge-berlin badge-secondary">{doc.kategori}</span>
-                            <h2 className="text-white">
-                                {doc.judul}
-                            </h2>
+            if(doc.kategori === "Berita Nasional"){
+                return (
+                    <Link to={`/berita/${doc.id}`}>
+                        <div className="berita-header-img">
+                            <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
+                            <div className="shadow-header"></div>
+                            <div className="carousel-caption text-left capt-berita-header">
+                                <span className="badge badge-berlin badge-danger">{doc.kategori}</span>
+                                <h2 className="text-white">
+                                    {doc.judul}
+                                </h2>
+                            </div>
                         </div>
-                    </div>
-                </Link>
-            )
+                    </Link>
+                )
+            }
+            else if(doc.kategori === "Berita Internasional"){
+                return (
+                    <Link to={`/berita/${doc.id}`}>
+                        <div className="berita-header-img">
+                            <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
+                            <div className="shadow-header"></div>
+                            <div className="carousel-caption text-left capt-berita-header">
+                                <span className="badge badge-berlin badge-primary">{doc.kategori}</span>
+                                <h2 className="text-white">
+                                    {doc.judul}
+                                </h2>
+                            </div>
+                        </div>
+                    </Link>
+                )
+            }
+            else if(doc.kategori === "Event"){
+                return (
+                    <Link to={`/berita/${doc.id}`}>
+                        <div className="berita-header-img">
+                            <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
+                            <div className="shadow-header"></div>
+                            <div className="carousel-caption text-left capt-berita-header">
+                                <span className="badge badge-berlin badge-secondary">{doc.kategori}</span>
+                                <h2 className="text-white">
+                                    {doc.judul}
+                                </h2>
+                            </div>
+                        </div>
+                    </Link>
+                )
+            }
         }
     })
     const listberitaheaderlain = sortedItemBerita.map((doc, idx) => {

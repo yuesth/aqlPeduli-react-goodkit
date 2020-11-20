@@ -10,9 +10,9 @@
     height: 50%;
     bottom: 0;
     left: 0;
-    box-shadow: 0 -10px 10px 10px black inset;
-    -webkit-box-shadow:0 -10px 70px 30px black inset;
-    -moz-box-shadow: 0 -10px 70px 30px black inset;
+    box-shadow: 0 -10px 50px 40px black inset;
+    -webkit-box-shadow:0 -10px 40px 20px black inset;
+    -moz-box-shadow: 0 -10px 40px 20px black inset;
 }
 
 .berita-headerlain-img{
