@@ -306,7 +306,11 @@ function ProgramLayout(props) {
                         <div>
                             <PersenTerkumpul total={doc.total} terkumpul={doc.terkumpul}></PersenTerkumpul>
                         </div>
-                        <Link to={`/program/${doc.id}`}>
+                        <Link to={{
+                            pathname:`/program/${doc.id}`,
+                            state:{
+                                fromUpdateLanding:false,
+                            }}}>
                             <a className="stretched-link" href="" />
                         </Link>
                     </div>
@@ -353,7 +357,7 @@ function ProgramLayout(props) {
 
                     <Col md={10}>
                         <div className="row justify-content-center mt-3">
-                            <div className="col-md-10 col-lg-10 text-center text-white">
+                            <div className="col-md-12 col-lg-12 text-center text-white">
                                 <form>
                                     <div className="input-group rounded-top-left rounded-bottom-right shadow">
                                         <input type="text" className="form-control bg-white pr-2 w-60" placeholder="Masukkan nama program" aria-label="Email address" aria-describedby="subscriptionButton" />
@@ -367,7 +371,7 @@ function ProgramLayout(props) {
                             </div>
                         </div>
                         <div className="container-fluid px-0">
-                            <div className="row pl-4">
+                            <div className="row">
                                 {isLoadingprog ? <SkeletonProg></SkeletonProg>
                                     :
                                     listprogram2

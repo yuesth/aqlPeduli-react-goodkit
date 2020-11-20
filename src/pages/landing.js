@@ -14,7 +14,7 @@ function Landing() {
             <CarouselLanding></CarouselLanding>
             <KepedulianLanding></KepedulianLanding>
             <KepeduliankitaLanding></KepeduliankitaLanding>
-            <div className="bg-dark mt-10" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/dist/assets/img/patterns/pattern-1.svg)` }}>
+            <div className="bg-dark" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/dist/assets/img/patterns/pattern-1.svg)` }}>
                 <UpdateLanding></UpdateLanding>
             </div>
             <BeritaLanding></BeritaLanding>

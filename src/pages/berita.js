@@ -8,8 +8,8 @@ function Berita(){
     return(
         <>
         <NavbarGK></NavbarGK>
-        <section className="pt-8 pt-md-12">
-            <div className="container-lg">
+        <section className="pt-10 pt-md-11">
+            <div className="container-xl">
                 <BeritaHeader></BeritaHeader>
                 <BeritaList></BeritaList>
             </div>

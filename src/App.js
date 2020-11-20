@@ -8,6 +8,9 @@ import Kepeduliankita from "./pages/kepeduliankita"
 import DetailKepeduliankita from "./pages/detail-kepeduliankita"
 import Berita from "./pages/berita"
 import DetailBerita from "./pages/detail-berita"
+import BeritaNasional from "./pages/nasional-berita"
+import BeritaInternasional from "./pages/internasional-berita"
+import EventBerita from "./pages/event-berita"
 import Coba from "./pages/coba"
 import Coba2 from "./pages/coba2"
 
@@ -24,6 +27,9 @@ function App() {
           <Route path="/kk/:id" exact component={DetailKepeduliankita}></Route>
           <Route path="/berita" exact component={Berita}></Route>
           <Route path="/berita/:id" exact component={DetailBerita}></Route>
+          <Route path="/beritanasional" exact component={BeritaNasional}></Route>
+          <Route path="/beritainter" exact component={BeritaInternasional}></Route>
+          <Route path="/events" exact component={EventBerita}></Route>
           <Route path="/coba" exact component={Coba}></Route>
           <Route path="/coba2" exact component={Coba2}></Route>
         </Switch>

@@ -70,7 +70,7 @@ function LayoutKK() {
     })
     const listkk = kk.map((doc, idx) => {
         return (
-            <div className="row align-items-center mb-7 lift">
+            <div className="row align-items-center mb-7">
                 <div className="col-md-6">
                     <img className="img-fluid mb-6 mb-md-0" src={doc.gambar} alt="..." />
                 </div>

@@ -109,7 +109,7 @@ function Berita() {
     const beritaUtama = sortedItemBerita.map((doc, idx) => {
         if (idx == 0) {
             return (
-                <div className="card card-lg rounded-top-left rounded-bottom-right lift lift-lg mb-5">
+                <div className="card card-lg rounded-top-left rounded-bottom-right lift lift-lg mb-7">
                     <div className="row no-gutters">
                         <div className="col-md-6 bg-cover rounded-top-left" style={{ backgroundImage: `url(${doc.gambar})`, backgroundPosition: 'center right', maxHeight: `340px` }}>
                             <img className="img-fluid invisible" src={`${doc.gambar}`} alt="..." />
@@ -129,7 +129,7 @@ function Berita() {
                                     {/* <div className="avatar avatar-xs">
                                         <img className="avatar-img rounded-circle" src={`${process.env.PUBLIC_URL}/dist/assets/img/avatars/avatar-1.jpg`} alt="..." />
                                     </div> */}
-                                    <div className="ml-4 text-left">
+                                    <div className="text-left">
                                         <p className="mb-0">
                                             <DariTanggal tanggal={doc.tanggal}></DariTanggal>
                                         </p>
@@ -150,8 +150,8 @@ function Berita() {
         if (idx !== 0 && idx < 4) {
             return (
                 <div className="col-md-4">
-                    <div className="card card-sm rounded-top-left rounded-bottom-right lift lift-lg mt-6">
-                        <img className="card-img-top rounded-top-left" src={doc.gambar} alt="..." height="170" />
+                    <div className="card card-sm rounded-top-left rounded-bottom-right lift lift-lg card-berita-landing mb-7">
+                        <img className="card-img-top rounded-top-left" src={doc.gambar} alt="..." height="235" />
                         <div className="position-relative">
                             <div className="shape shape-fluid-x shape-top text-white">
                                 <div className="shape-img pb-5">
@@ -187,12 +187,12 @@ function Berita() {
         }
     })
     return (
-        <section className="pt-10 pt-md-11">
+        <section className="mt-7 mt-md-7 pt-7 pt-md-7 mb-7 mb-md-7 pb-7 pb-md-7">
             <div className="container-xl">
                 <div className="row">
                     <div className="col-12">
                         <div style={{ textAlign: `center`, zIndex:`10` }} className="mb-7">
-                            <h2 className="display-4 mb-4 mb-md-0">
+                            <h2 className="display-4">
                                 Berita
                             </h2>
                         </div>
@@ -213,11 +213,11 @@ function Berita() {
                         beritalain
                     }
                 </div>
-                <div className="row align-items-center mb-8 mt-4">
+                <div className="row align-items-center mb-7">
                     <div className="mx-auto">
-                        <a className="btn btn-sm btn-primary" href="#!">
+                        <Link className="btn btn-sm btn-primary" to={`/berita`}>
                             Lihat Semua
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -47,3 +47,7 @@
 .navbar::before{
     display: none;
 }
+
+.nav-link h3:hover{
+color: #2f3990;
+}

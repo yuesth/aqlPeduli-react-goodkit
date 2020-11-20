@@ -13,6 +13,10 @@
    img.img-prog{
      height: 170px;
    }
+
+   .flex-kateg .btn:not(:disabled):not(.disabled).active{
+    box-shadow: none;
+  }
  }
 
  .kategoriBtn{
@@ -86,4 +90,8 @@
   -webkit-flex-direction: row; 
   flex-direction: row; 
   flex-flow: row wrap;
+}
+
+.flex-kateg .btn:not(:disabled):not(.disabled).active{
+  box-shadow: none;
 }

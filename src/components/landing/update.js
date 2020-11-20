@@ -119,8 +119,13 @@ function Update() {
     const sortedItemUpdate = itemUpdate.sort((a, b) => { return new Date(b.tanggalUp) - new Date(a.tanggalUp) })
     const listup = sortedItemUpdate.map((doc, idx) => {
         return (
-            <div className="col-12" style={{ maxWidth: 320, height: `30rem` }} data-aos="fade-up">
-                <Link to={`/program/${doc.idProg}`}>
+            <div className="col-12 mb-7" style={{ maxWidth: 320, height: `30rem` }} data-aos="fade-up">
+                <Link to={{
+                    pathname:`/program/${doc.idProg}`,
+                    state:{
+                        fromUpdateLanding: true,
+                    },
+                    }}>
                     <div className="card card-sm rounded-top-left rounded-bottom-right lift" style={{ height: `30rem` }}>
                         <div style={{ textAlign: `center` }}>
                             <img className="card-img rounded-top-left" src={doc.gambarUp} alt="..." height="180" />
@@ -155,11 +160,11 @@ function Update() {
         )
     })
     return (
-        <section className="pt-8 pt-md-8 pb-8 pb-md-8">
+        <section className="pt-7 pt-md-7 pb-7 pb-md-7 mt-7 mt-md-7 mb-7 mb-md-7">
             <div className="container-xl">
                 <div className="row align-items-center justify-content-center mb-7">
                     <div className="col-md-6" style={{ textAlign: `center` }}>
-                        <h2 className=" text-white display-4 mb-4 mb-md-0">
+                        <h2 className=" text-white display-4">
                             Update Program
                             </h2>
                     </div>

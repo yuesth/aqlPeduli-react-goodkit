@@ -3,6 +3,28 @@ import { Link } from 'react-router-dom'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import "./berita-header.css"
 
+function SkeletonBeritaHeader() {
+    return (
+        <SkeletonTheme color="#e3e3e3">
+            <div className="row mt-6 mb-5">
+                <div className="col-6">
+                    <Skeleton reactangle={true} height={360} width={548} />
+                </div>
+                <div className="col-3">
+                    <Skeleton reactangle={true} height={160} width={242} />
+                    <br />
+                    <Skeleton reactangle={true} height={160} width={242} />
+                </div>
+                <div className="col-3">
+                    <Skeleton reactangle={true} height={160} width={242} />
+                    <br />
+                    <Skeleton reactangle={true} height={160} width={242} />
+                </div>
+            </div>
+        </SkeletonTheme>
+    )
+}
+
 function BeritaHeader() {
     const urlBerita = "http://167.99.72.148/beritas"
     const [berita, setBerita] = useState([])
@@ -10,9 +32,7 @@ function BeritaHeader() {
     useEffect(() => {
         fetch(urlBerita).then(res => res.json()).then(parsedJson => {
             setBerita(parsedJson)
-            setTimeout(() => {
-                setIsLoadingberheader(false)
-            }, 5000)
+            setIsLoadingberheader(false)
         })
     })
     const itemBerita = []
@@ -48,11 +68,12 @@ function BeritaHeader() {
         if (idx === 0) {
             return (
                 <Link to={`/berita/${doc.id}`}>
-                    <div className="berita-header-img my-4">
+                    <div className="berita-header-img">
                         <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
+                        <div className="shadow-header"></div>
                         <div className="carousel-caption text-left capt-berita-header">
                             <span className="badge badge-berlin badge-secondary">{doc.kategori}</span>
-                            <h2>
+                            <h2 className="text-white">
                                 {doc.judul}
                             </h2>
                         </div>
@@ -80,38 +101,40 @@ function BeritaHeader() {
     })
     const listberitaheaderlain1 = sortedItemBerita.map((doc, idx) => {
         if (idx > 0 && idx < 6) {
-            if(doc.kategori === "Berita Nasional"){
+            if (doc.kategori === "Berita Nasional") {
                 return (
-                    <div className="col-6 col-sm-6 col-md-6 col-lg-6">
-                    <Link to={`/berita/${doc.id}`}>
-                        <div className="berita-headerlain-img mt-5" style={{ height: `10rem` }}>
-                            <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
-                            <div className="carousel-caption text-left capt-beritalain-header">
-                                <span className="badge badge-berlin badge-danger">{doc.kategori}</span>
-                                <h6 style={{ color: `black` }}>
-                                    {doc.judul}
-                                </h6>
+                    <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 px-1">
+                        <Link to={`/berita/${doc.id}`}>
+                            <div className="berita-headerlain-img h-100">
+                                <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
+                                <div className="shadow-header"></div>
+                                <div className="carousel-caption text-left capt-beritalain-header">
+                                    <span className="badge badge-berlin badge-danger">{doc.kategori}</span>
+                                    <h6 style={{ color: `white` }} className="judul-berita-lain">
+                                        {doc.judul}
+                                    </h6>
+                                </div>
                             </div>
-                        </div>
-                    </Link>
-                </div>
+                        </Link>
+                    </div>
                 )
             }
-            else if(doc.kategori === "Berita Internasional"){
+            else if (doc.kategori === "Berita Internasional") {
                 return (
-                    <div className="col-6 col-sm-6 col-md-6 col-lg-6">
-                    <Link to={`/berita/${doc.id}`}>
-                        <div className="berita-headerlain-img mt-5" style={{ height: `10rem` }}>
-                            <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
-                            <div className="carousel-caption text-left capt-beritalain-header">
-                                <span className="badge badge-berlin badge-primary">{doc.kategori}</span>
-                                <h6 style={{ color: `black` }}>
-                                    {doc.judul}
-                                </h6>
+                    <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 px-1">
+                        <Link to={`/berita/${doc.id}`}>
+                            <div className="berita-headerlain-img h-100">
+                                <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
+                                <div className="shadow-header"></div>
+                                <div className="carousel-caption text-left capt-beritalain-header">
+                                    <span className="badge badge-berlin badge-primary">{doc.kategori}</span>
+                                    <h6 style={{ color: `white` }} className="judul-berita-lain">
+                                        {doc.judul}
+                                    </h6>
+                                </div>
                             </div>
-                        </div>
-                    </Link>
-                </div>
+                        </Link>
+                    </div>
                 )
             }
         }
@@ -120,7 +143,7 @@ function BeritaHeader() {
         if (idx > 2 && idx < 5) {
             return (
                 <Link to={`/berita/${doc.id}`}>
-                    <div className="berita-headerlain-img mt-5" style={{height:`10rem`}}>
+                    <div className="berita-headerlain-img mt-5" style={{ height: `10rem` }}>
                         <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
                         <div className="carousel-caption text-left capt-beritalain-header">
                             <span className="badge badge-berlin badge-secondary">{doc.kategori}</span>
@@ -156,18 +179,20 @@ function BeritaHeader() {
                     </form>
                 </div>
             </div> */}
-            <div className="row mt-6 mb-5">
-                <div className="col-12 col-sm-12 col-md-6 col-lg-6">
-                    {listberitaheader}
-                </div>
-                <div className="col-6 col-sm-6 col-md-6 col-lg-6 d-flex" style={{flexFlow:`row wrap`}}>
+            {isLoadingberheader ? <SkeletonBeritaHeader></SkeletonBeritaHeader>
+                :
+                <div className="row mt-6 mb-8">
+                    <div className="col-12 col-sm-12 col-md-6 col-lg-6">
+                        {listberitaheader}
+                    </div>
+                    <div className="col-12 col-sm-12 col-md-12 col-lg-6 d-flex no-gutters" style={{ flexFlow: `row wrap` }}>
                         {listberitaheaderlain1}
-                    {/* {listberitaheaderlain} */}
-                </div>
-                {/* <div className="col-6 col-sm-6 col-md-3 col-lg-3">
+                    </div>
+                    {/* <div className="col-6 col-sm-6 col-md-3 col-lg-3">
                         {listberitaheaderlain2}
                 </div> */}
-            </div>
+                </div>
+            }
         </>
     )
 }

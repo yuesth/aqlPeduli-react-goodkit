@@ -118,11 +118,11 @@ function KepedulianLanding() {
                         namaKateg: `${doc.namaKateg}`
                     }
                 }} style={{ margin: `auto auto`, textDecoration: `none` }} className="wadah-item-kecil">
-                    <div className="col-12 justify-content-center lift">
+                    <div className="col-12 justify-content-center lift pt-3">
                         <div style={{ textAlign: `center`, width: `10rem`, height:`10rem`}}>
-                            <img className="img-fluid rounded-top-left rounded-bottom-right" src={pathGbr2} alt="..." />
+                            <img className="img-fluid rounded-top-left rounded-bottom-right" src={pathGbr2} alt="..." width="120" height="120"/>
                         </div>
-                        <div className="py-4 text-center">
+                        <div className="text-center">
                             <h3 style={{ color: `#000000` }}>
                                 {doc.namaKateg}
                             </h3>
@@ -139,11 +139,11 @@ function KepedulianLanding() {
         { width: 1200, itemsToShow: 5 }
     ];
     return (
-        < section className="pt-10 pt-md-11 bg-light" >
+        < section className="mt-7 mt-md-7 pt-7 pt-md-7 mb-7 mb-md-7 pb-7 pb-md-7 bg-light" >
             <div className="container-xl">
                 <div className="row align-items-center justify-content-center mb-7">
                     <div className="col-md-6" style={{ textAlign: `center` }}>
-                        <h2 className="display-4 mb-4 mb-md-0">
+                        <h2 className="display-4">
                             Kepedulian <br />
                         </h2>
                     </div>

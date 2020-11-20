@@ -153,7 +153,7 @@ function KK() {
     })
     const listKK4 = kk.map((doc, idx) => {
         return (
-            <div className="card card-lg rounded-top-left rounded-bottom-right mb-5">
+            <div className="card card-lg rounded-top-left rounded-bottom-right mb-7">
                 <div className="row no-gutters">
                     <div className="col-md-6 bg-cover rounded-top-left my-n2" style={{ backgroundImage: `url(${doc.gambarKk})`, backgroundPosition: 'center right', height: `340px` }}>
                         <img className="img-fluid invisible" src={`${doc.gambarKk}`} alt="..." />
@@ -182,11 +182,11 @@ function KK() {
                 </div> */}
             </div>
 
-            <section className="position-relative pt-10 pt-md-11 bg-white" >
+            <section className="position-relative mt-7 mt-md-7 pt-7 pt-md-7 mb-7 mb-md-7 pb-7 pb-md-7 bg-white" >
                 <div className="container-xl position-relative" style={{ zIndex: 1 }}>
                     <div className="row align-items-center justify-content-center mb-7">
                         <div className="col-md-6" style={{ textAlign: `center` }}>
-                            <h2 className="display-4 mb-4 mb-md-0">
+                            <h2 className="display-4">
                                 Kepedulian Kita <br />
                             </h2>
                         </div>
@@ -228,7 +228,7 @@ function KK() {
                         {/* </div>
                     </div> */}
                     </div>
-                    <div className="row align-items-center mt-5 mb-8">
+                    <div className="row align-items-center mb-7">
                         <div className="mx-auto" style={{zIndex:`10`}}>
                             <a className="btn btn-sm btn-primary" href="/kk">
                                 Lihat Lainnya

@@ -123,24 +123,8 @@ function BeritaList() {
         element.className = arr1.join(" ");
     }
 
-    // function filterEvent(namakateg) {
-    //     if (namakateg !== "Event") {
-    //         setIsShowevent(false)
-    //         filterSelection(namakateg)
-    //     }
-    //     else if (namakateg === "Event") {
-    //         setIsShowevent(true)
-    //     }
-    //     else if(namakateg=== "all"){
-    //         filterSelection('all')
-    //         setIsShowevent(true)
-    //     }
-    // }
-
     const urlBerita = "http://167.99.72.148/beritas"
-    const urlKategberita = "http://167.99.72.148/kategoriberitas"
     const [beritalist, setBeritalist] = useState([])
-    const [kategberita, setKategberita] = useState([])
     const [isLoadingberlist, setIsLoadingberlist] = useState(true);
     const [isLoadingberkateg, setIsLoadingberkateg] = useState(true);
     const [isShowevent, setIsShowevent] = useState(true)
@@ -149,29 +133,6 @@ function BeritaList() {
             setBeritalist(parsedJson)
             setIsLoadingberlist(false)
         })
-        fetch(urlKategberita).then(res => res.json()).then(parsedJson => parsedJson.map(data => (
-            {
-                id: `${data.id}`,
-                namaKateg: `${data.namaKategori}`
-            }
-        ))).then(
-            items => {
-                setKategberita(items)
-                setIsLoadingberkateg(false)
-            }
-        )
-    })
-    useEffect(() => {
-        // filterEvent("all")
-        // var btnContainer = document.getElementById("col-list");
-        // var btns = btnContainer.getElementsByClassName("kategoriBtnBerita");
-        // for (var i = 0; i < btns.length; i++) {
-        //     btns[i].addEventListener("click", function () {
-        //         var current = document.getElementsByClassName("active");
-        //         current[0].className = current[0].className.replace(" active", "");
-        //         this.className += " active";
-        //     });
-        // }
     })
     const itemBerita = []
     beritalist.map(data => {
@@ -209,8 +170,8 @@ function BeritaList() {
         if (namaKategoriBerita == "Event" && it <= 3) {
             it += 1
             return (
-                <div className={`col-md-4 col-lg-4 col-sm-6 mt-0 ml-0 mr-0 mb-3`}>
-                    <div className={`card card-sm rounded-top-left rounded-bottom-right lift lift-lg mt-2`}>
+                <div className={`col-md-4 col-lg-4 col-sm-6 mt-0 mb-3 mt-2`}>
+                    <div className={`card card-sm rounded-top-left rounded-bottom-right lift lift-lg`}>
                         <div>
                             <img className="card-img-top rounded-top-left img-fluid img-berita" src={doc.gambar} alt="..." />
                         </div>
@@ -305,9 +266,10 @@ function BeritaList() {
                         <Link to={`/berita/${doc.id}`}>
                             <div className="berita-header-img">
                                 <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
+                                <div className="shadow-header"></div>
                                 <div className="carousel-caption text-left capt-berita-header">
                                     <span className="badge badge-berlin badge-danger">{doc.kategori}</span>
-                                    <h2>
+                                    <h2 className="text-white">
                                         {doc.judul}
                                     </h2>
                                 </div>
@@ -327,12 +289,13 @@ function BeritaList() {
                 if (itBerInterUt === 1) {
                     itBerInterUt = itBerInterUt + 1
                     return (
-                        <Link to={`/berita/${doc.id}`}>
+                        <Link to={`/berita/${doc.id}`} style={{ boxShadow: `0 -100px 20px black inset` }}>
                             <div className="berita-header-img">
                                 <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
+                                <div className="shadow-header"></div>
                                 <div className="carousel-caption text-left capt-berita-header">
                                     <span className="badge badge-berlin badge-primary">{doc.kategori}</span>
-                                    <h2>
+                                    <h2 className="text-white">
                                         {doc.judul}
                                     </h2>
                                 </div>
@@ -352,7 +315,7 @@ function BeritaList() {
                 if (itBerNasLain === 1) {
                     // itBerNasLain = itBerNasLain + 1
                     return (
-                        <div className={`card card-lg rounded-top-left rounded-bottom-right mb-4 lift`}>
+                        <div className={`card card-lg rounded-top-left border border-gray-300 rounded-bottom-right mb-4`}>
                             <div className="row no-gutters">
                                 <div className="col-md-6">
                                     <div className="card-body p-5">
@@ -360,15 +323,15 @@ function BeritaList() {
                                             {doc.judul}
                                         </h6>
                                         <span className="badge badge-berlin badge-danger">Nasional</span>
-                                        <br/>
-                                        <span className="small text-muted mt-n1 mb-0 ml-2" style={{fontSize:`0.8rem`}}>
+                                        <br />
+                                        <span className="small text-muted mt-n1 mb-0 ml-2" style={{ fontSize: `0.8rem` }}>
                                             <DariTanggal tanggal={doc.tanggal}></DariTanggal>
                                         </span>
                                         <Link to={`/berita/${doc.id}`} className="stretched-link"></Link>
                                     </div>
                                 </div>
                                 <div className="col-md-6 rounded-top-left">
-                                    <img className="img-fluid w-70 h-70 my-auto" src={`${doc.gambar}`} alt="..." />
+                                    <img className="img-fluid w-100 h-70" src={`${doc.gambar}`} alt="..." style={{ marginTop: `1rem`, marginBottom: `1rem` }} />
                                 </div>
                             </div>
                         </div>
@@ -386,7 +349,7 @@ function BeritaList() {
                 if (itBerInterLain === 1) {
                     // itBerNasLain = itBerNasLain + 1
                     return (
-                        <div className={`card card-lg rounded-top-left rounded-bottom-right mb-4 lift`}>
+                        <div className={`card card-lg rounded-top-left border border-gray-300 rounded-bottom-right mb-4`}>
                             <div className="row no-gutters">
                                 <div className="col-md-6">
                                     <div className="card-body p-5">
@@ -394,15 +357,15 @@ function BeritaList() {
                                             {doc.judul}
                                         </h6>
                                         <span className="badge badge-berlin badge-primary">Internasional</span>
-                                        <br/>
-                                        <span className="small text-muted mt-n1 mb-0 ml-2" style={{fontSize:`0.8rem`}}>
+                                        <br />
+                                        <span className="small text-muted mt-n1 mb-0 ml-2" style={{ fontSize: `0.8rem` }}>
                                             <DariTanggal tanggal={doc.tanggal}></DariTanggal>
                                         </span>
                                         <Link to={`/berita/${doc.id}`} className="stretched-link"></Link>
                                     </div>
                                 </div>
                                 <div className="col-md-6 rounded-top-left">
-                                    <img className="img-fluid w-70 h-70 my-auto" src={`${doc.gambar}`} alt="..." />
+                                    <img className="img-fluid w-100 h-70 my-auto" src={`${doc.gambar}`} alt="..." style={{ marginTop: `1rem`, marginBottom: `1rem` }} />
                                 </div>
                             </div>
                         </div>
@@ -412,19 +375,19 @@ function BeritaList() {
         }
     })
     return (
-        <div className="row" id="wadahStickyBerita">
+        <div className="row no-gutters" id="wadahStickyBerita">
             <Col md={12}>
-                <div className="container-fluid px-0">
+                <div className="container-xl px-0">
                     {isShowevent ?
-                        <div className="row px-4 border border-gray-300 rounded-top-left rounded-bottom-right mb-8">
+                        <div className="row border border-gray-300 rounded-top-left rounded-bottom-right mb-8">
                             <div className="row pl-4 pr-0 pt-4 w-100">
                                 <div className="col-md-3">
                                     <h2 className="my-auto text-airbnb">Event</h2>
                                 </div>
                                 <div className="col-md-4 offset-md-5 text-right">
-                                    <a className="ml-auto text-decoration-none text-stripe stretched-link" href="#!">
+                                    <Link className="ml-auto text-decoration-none text-stripe stretched-link" to={`/events`}>
                                         Lihat Lainnya <i className="fe fe-arrow-right" />
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                             <div className="row px-4 ">
@@ -442,9 +405,9 @@ function BeritaList() {
                                 <h2 className="my-auto">Berita Nasional</h2>
                             </div>
                             <div className="col-md-4 offset-md-5 text-right">
-                                <a className="ml-auto text-decoration-none text-stripe stretched-link" href="#!">
+                                <Link className="ml-auto text-decoration-none text-stripe" to={`/beritanasional`}>
                                     Lihat Lainnya <i className="fe fe-arrow-right" />
-                                </a>
+                                </Link>
                             </div>
                         </div>
                         <div className="row w-100">
@@ -453,7 +416,7 @@ function BeritaList() {
                             </div>
                             <div className="col-12 col-sm-12 col-md-6 col-lg-6 my-4">
                                 <h3>Berita Nasional Terbaru</h3>
-                                <div className="overflow-auto mt-6" style={{height:`16rem`}}>
+                                <div className="overflow-auto mt-6 p-3 border border-gray-300" style={{ height: `18.5rem` }}>
                                     {beritanasionallain}
                                 </div>
                             </div>
@@ -467,9 +430,9 @@ function BeritaList() {
                                 <h2 className="my-auto">Berita Internasional</h2>
                             </div>
                             <div className="col-md-4 offset-md-4 text-right">
-                                <a className="ml-auto text-decoration-none text-stripe stretched-link" href="#!">
+                                <Link className="ml-auto text-decoration-none text-stripe stretched-link" to={`/beritainter`}>
                                     Lihat Lainnya <i className="fe fe-arrow-right" />
-                                </a>
+                                </Link>
                             </div>
                         </div>
                         <div className="row w-100">
@@ -478,7 +441,7 @@ function BeritaList() {
                             </div>
                             <div className="col-12 col-sm-12 col-md-6 col-lg-6 my-4">
                                 <h3>Berita Internasional Terbaru</h3>
-                                <div className="overflow-auto mt-6" style={{height:`16rem`}}>
+                                <div className="overflow-auto mt-6 p-3 border border-gray-300" style={{height:`18.5rem`}}>
                                     {beritainterlain}
                                 </div>
                             </div>
@@ -486,32 +449,6 @@ function BeritaList() {
                     </div>
                 </div>
             </Col>
-            {/* <Col md={2} id="col-list" className="pt-5 px-0">
-                <Sticky containerSelectorFocus="#wadahStickyBerita" offsetTop={70} stickyEnableRange={[768, Infinity]}>
-                    <Row>
-                        <Col className="pl-6">
-                            <h2>Kategori</h2>
-                        </Col>
-                    </Row>
-                    <div className="row pl-n5 flex-kateg">
-                        <div>
-                            <Button variant="default" onClick={() => filterEvent("all")} className="kategoriBtnBerita">Semua</Button>
-                        </div>
-                        {isLoadingberkateg ? <SkeletonBeritaKateg></SkeletonBeritaKateg>
-                            :
-                            kategberita.map((doc, idx) => {
-                                var nama1 = doc.namaKateg
-                                var nama2 = nama1.replace(/\s/g, "")
-                                return (
-                                    <div>
-                                        <Button variant="default" onClick={() => filterEvent(nama2)} key={idx} className="kategoriBtnBerita">{doc.namaKateg}</Button>
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
-                </Sticky>
-            </Col> */}
         </div>
     )
 }

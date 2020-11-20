@@ -55,3 +55,7 @@
 .my-float{
 	margin-top:16px;
 }
+
+.container-xl{
+  max-width: 1160px;
+}

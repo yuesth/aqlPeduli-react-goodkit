@@ -1,0 +1,10 @@
+
+.judul-ber-list-nas{
+    font-size: 1.3rem;
+}
+
+@media only screen and (max-width:540px){
+    .judul-ber-list-nas{
+        font-size: 0.7rem;
+    }
+}

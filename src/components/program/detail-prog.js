@@ -81,7 +81,7 @@ function DariTanggal(props) {
 function DetailProg(props) {
     const bnykitemup = props.itemup.length
     const arritemup = []
-    for(var i=0; i<bnykitemup; i++){
+    for (var i = 0; i < bnykitemup; i++) {
         arritemup.push(false)
     }
     const [isShowGbr, setIsShowGbr] = useState(arritemup)
@@ -90,11 +90,6 @@ function DetailProg(props) {
         arrShowGbr[index] = !arrShowGbr[index]
         setIsShowGbr(arrShowGbr)
     }
-
-    // const [isShowGbr, setIsShowGbr] = useState(false)
-    // function filterLampiran() {
-    //     setIsShowGbr(!isShowGbr)
-    // }
 
     // useEffect(()=>{
     // var res = props.itemprog.cerita.match(/[\w-]+.(jpg|png|jpeg)/g);
@@ -125,7 +120,7 @@ function DetailProg(props) {
                         </div>
                     </div>
                 </div>
-                {isShowGbr[idx]?
+                {isShowGbr[idx] ?
                     <div className="m-3 img-gambar" data-aos="fade-up">
                         <a href={doc.gambarUp} class="d-block mb-3 mb-md-0" data-fancybox>
                             <img className="img-fluid w-100 gambar-up-det-prog" src={doc.gambarUp} alt="" />
@@ -160,7 +155,7 @@ function DetailProg(props) {
                             <br />
                             <Col md={12} sm={12} lg={5}>
                                 <Sticky containerSelectorFocus="#wadahSticky" offsetTop={70} stickyEnableRange={[768, Infinity]}>
-                                    <div className="kop rounded-bottom-right rounded-top-left ml-3 mt-3 wadah-info-det-prog">
+                                    <div className="kop rounded-bottom-right rounded-top-left ml-3 wadah-info-det-prog">
                                         <p className="mb-1 text-info"><small>{props.itemprog.namaKateg}</small></p>
                                         <h2>{props.itemprog.judul}</h2>
                                         <p style={{ fontSize: `14px` }} className="mb-1">
@@ -172,10 +167,10 @@ function DetailProg(props) {
                                         }
                                         <br />
                                         <div className="row mt-3">
-                                            <div className="col-12 col-sm-7 col-md-7 my-2 lift" style={{ textAlign: `center` }}>
+                                            <div className="col-12 col-sm-7 col-md-7 my-2" style={{ textAlign: `center` }}>
                                                 <Button variant="success" style={{ padding: `0.75rem 1.00rem` }}>DONASI SEKARANG</Button>
                                             </div>
-                                            <div className="col-12 col-sm-5 col-md-5 lift btn-bagika-det-prog my-2" style={{ textAlign: `center` }}>
+                                            <div className="col-12 col-sm-5 col-md-5 btn-bagika-det-prog my-2" style={{ textAlign: `center` }}>
                                                 <Button variant="primary" style={{ padding: `0.75rem 1.00rem` }}>BAGIKAN</Button>
                                             </div>
                                         </div>
@@ -187,32 +182,61 @@ function DetailProg(props) {
                 </Container>
                 <div className="row align-items-center mb-5 px-4">
                     <div className="col-12 col-md-7 col-lg-7">
-                        <div>
-                            <nav>
-                                <div className="nav nav-tabs" id="nav-tab" role="tablist">
-                                    <a className="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Cerita</a>
-                                    <a className="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Update</a>
-                                </div>
-                            </nav>
-                            <div className="tab-content" id="nav-tabContent">
-                                <div className="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                    <p className="text-muted text-justify" style={{whiteSpace:`pre-wrap`}}>
-                                        {props.loadingdetprog ? <SkeletonCerita></SkeletonCerita>
-                                            :
-                                            props.itemprog.cerita
-                                        }
-                                    </p>
-                                </div>
-                                <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                    <ol className="timeline timeline-success m-5">
-                                        {props.loadingdetup ? <SKeletonUpdate></SKeletonUpdate>
-                                            :
-                                            listup
-                                        }
-                                    </ol>
+                        {props.fromupdate ?
+                            <div>
+                                <nav>
+                                    <div className="nav nav-tabs" id="nav-tab" role="tablist">
+                                        <a className="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Cerita</a>
+                                        <a className="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Update</a>
+                                    </div>
+                                </nav>
+                                <div className="tab-content" id="nav-tabContent">
+                                    <div className="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                        <p className="text-muted" style={{ whiteSpace: `pre-wrap`, textAlign:`justify` }}>
+                                            {props.loadingdetprog ? <SkeletonCerita></SkeletonCerita>
+                                                :
+                                                props.itemprog.cerita
+                                            }
+                                        </p>
+                                    </div>
+                                    <div className="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                        <ol className="timeline timeline-success m-5">
+                                            {props.loadingdetup ? <SKeletonUpdate></SKeletonUpdate>
+                                                :
+                                                listup
+                                            }
+                                        </ol>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            :
+                            <div>
+                                <nav>
+                                    <div className="nav nav-tabs" id="nav-tab" role="tablist">
+                                        <a className="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Cerita</a>
+                                        <a className="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Update</a>
+                                    </div>
+                                </nav>
+                                <div className="tab-content" id="nav-tabContent">
+                                    <div className="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                        <p className="text-muted" style={{ whiteSpace: `pre-wrap`, textAlign:`justify` }}>
+                                            {props.loadingdetprog ? <SkeletonCerita></SkeletonCerita>
+                                                :
+                                                props.itemprog.cerita
+                                            }
+                                        </p>
+                                    </div>
+                                    <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                        <ol className="timeline timeline-success m-5">
+                                            {props.loadingdetup ? <SKeletonUpdate></SKeletonUpdate>
+                                                :
+                                                listup
+                                            }
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

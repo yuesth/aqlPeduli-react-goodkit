@@ -36,7 +36,7 @@ function Footer() {
     })
     return (
         // style={{backgroundColor: `#261793`}}
-        <footer className="footer py-8 pt-md-11" style={{backgroundColor:`#f5f5f5`}}>
+        <footer className="footer py-7 py-md-7" style={{backgroundColor:`#f5f5f5`}}>
             <div className="container-lg">
                 <div className="row">
                     <div className="col-md-4 pr-5 mb-5">
@@ -56,22 +56,22 @@ function Footer() {
                             <li className="mb-3">
                                 <a className="text-gray-600" href="#!">Profil</a>
                             </li>
-                            <li>
+                            <li className="mb-3">
                                 <a className="text-gray-600" href="#!">Berita</a>
                             </li>
-                            <li>
+                            <li className="mb-3">
                                 <a className="text-gray-600" href="#!">Kepedulian</a>
                             </li>
-                            <li>
+                            <li className="mb-3">
                                 <a className="text-gray-600" href="#!">Informasi</a>
                             </li>
-                            <li>
+                            <li className="mb-3">
                                 <a className="text-gray-600" href="#!">Khazanah</a>
                             </li>
-                            <li>
+                            <li className="mb-3">
                                 <a className="text-gray-600" href="#!">Donasi</a>
                             </li>
-                            <li>
+                            <li className="mb-3">
                                 <a className="text-gray-600" href="#!">Relawan</a>
                             </li>
                         </ul>
@@ -90,10 +90,10 @@ function Footer() {
                             <li className="mb-3">
                                 <a className="text-gray-600" href="#!">Peduli Pangan</a>
                             </li>
-                            <li>
+                            <li className="mb-3">
                                 <a className="text-gray-600" href="#!">Peduli Kesehatan</a>
                             </li>
-                            <li>
+                            <li className="mb-3">
                                 <a className="text-gray-600" href="#!">Dapur Sedekah</a>
                             </li>
                         </ul>

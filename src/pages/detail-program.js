@@ -7,6 +7,10 @@ import DetailProg from "../components/program/detail-prog"
 
 function DetailProgram(props) {
     const id = props.match.params.id
+    var fromUpdateLanding = false
+    if(props.location.state){
+        fromUpdateLanding = props.location.state.fromUpdateLanding
+    }
     const urlDetailProgram = `http://167.99.72.148/programs/${id}`
     const urlUpdate = `http://167.99.72.148/update-programs`
     const [detailprog, setDetailprog] = useState([])
@@ -14,6 +18,7 @@ function DetailProgram(props) {
     const [isLoadingdetprog, setIsLoadingdetprog] = useState(true);
     const [isLoadingdetup, setIsLoadingdetup] = useState(true);
     const [isShowgbrdetup, setIsShowgbrdetup] = useState([])
+    const [fromupdate, setFromupdate] = useState(fromUpdateLanding)
     useEffect(() => {
         fetch(urlDetailProgram).then(res => res.json()).then(parsedJson => (
             {
@@ -73,7 +78,7 @@ function DetailProgram(props) {
     return (
         <>
             <NavbarGK></NavbarGK>
-            <DetailProg itemprog={detailprog} itemup={itemup} loadingdetprog={isLoadingdetprog} loadingdetup={isLoadingdetup}></DetailProg>
+            <DetailProg itemprog={detailprog} itemup={itemup} loadingdetprog={isLoadingdetprog} loadingdetup={isLoadingdetup} fromupdate={fromupdate}></DetailProg>
             <FooterGK></FooterGK>
         </>
     )
