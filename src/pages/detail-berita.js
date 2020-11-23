@@ -4,6 +4,7 @@ import FooterGK from "../components/footer"
 import { Link } from "react-router-dom"
 import { Col, Container, Breadcrumb } from 'react-bootstrap'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import ReactMarkdown from 'react-markdown'
 
 function SkeletonDetailBerita() {
     return (
@@ -75,6 +76,24 @@ function DetailBerita(props) {
             setKontenfix(isi.replace(/\n/g, `<br/>`))
         })
     })
+    const myImg = (props) => {
+        return (
+            // <img src={props.src} className="img-fluid"/>
+            <a href={props.src} className="d-block mb-3 mb-md-0" data-fancybox>
+                <img src={props.src} className="img-fluid" />
+            </a>
+
+        )
+    }
+    const myParagraph = (props) => {
+        return (
+            <p className="text-justify">{props.children}</p>
+        )
+    }
+    const renderMyImg = {
+        image: myImg,
+        paragraph: myParagraph,
+    }
     return (
         <>
             <NavbarGK></NavbarGK>
@@ -110,7 +129,8 @@ function DetailBerita(props) {
                         </div>
                         <div className="row align-items-center justify-content-center mb-7 no-gutters" style={{ textAlign: `center` }}>
                             <div className="col-md-10 col-lg-9">
-                                <p className="text-justify" style={{ whiteSpace: `pre-wrap` }}>{detailberita.isi}</p>
+                                {/* <p className="text-justify" style={{ whiteSpace: `pre-wrap` }}>{detailberita.isi}</p> */}
+                                <ReactMarkdown children={detailberita.isi} renderers={renderMyImg}></ReactMarkdown>
                             </div>
                         </div>
                     </div>

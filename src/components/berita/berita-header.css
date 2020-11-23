@@ -1,7 +1,9 @@
 .berita-header-img{
     overflow: hidden;
     position: relative;
-    /* box-shadow: 0 -100px 20px black inset; */
+    box-shadow: 0 -10rem 20px 20px black inset;
+    -webkit-box-shadow:0 -10rem 20px 20px black inset;
+    -moz-box-shadow: 0 -10rem 20px 20px black inset;
 }
 
 .shadow-header{
@@ -18,7 +20,9 @@
 .berita-headerlain-img{
     overflow: hidden;
     position: relative;
-    /* box-shadow: 0 -100px 20px black inset; */
+    box-shadow: 0 -80px 20px 20px black inset;
+    -webkit-box-shadow:0 -80px 20px 20px black inset;
+    -moz-box-shadow: 0 -80px 20px 20px black inset;
 }
 
 .berita-header-img img, .berita-headerlain-img img{
@@ -26,9 +30,9 @@
 }
 
 .berita-header-img img:hover, .berita-headerlain-img img:hover{
-    /* opacity: 0.6; */
+    opacity: 0.6;
     transform: scale(1.1);
-    box-shadow: none;
+    /* box-shadow: none; */
 }
 
 .capt-berita-header{

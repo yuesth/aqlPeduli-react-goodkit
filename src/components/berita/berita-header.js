@@ -71,7 +71,7 @@ function BeritaHeader() {
                     <Link to={`/berita/${doc.id}`}>
                         <div className="berita-header-img">
                             <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
-                            <div className="shadow-header"></div>
+                            {/* <div className="shadow-header"></div> */}
                             <div className="carousel-caption text-left capt-berita-header">
                                 <span className="badge badge-berlin badge-danger">{doc.kategori}</span>
                                 <h2 className="text-white">
@@ -87,7 +87,7 @@ function BeritaHeader() {
                     <Link to={`/berita/${doc.id}`}>
                         <div className="berita-header-img">
                             <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
-                            <div className="shadow-header"></div>
+                            {/* <div className="shadow-header"></div> */}
                             <div className="carousel-caption text-left capt-berita-header">
                                 <span className="badge badge-berlin badge-primary">{doc.kategori}</span>
                                 <h2 className="text-white">
@@ -103,7 +103,7 @@ function BeritaHeader() {
                     <Link to={`/berita/${doc.id}`}>
                         <div className="berita-header-img">
                             <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
-                            <div className="shadow-header"></div>
+                            {/* <div className="shadow-header"></div> */}
                             <div className="carousel-caption text-left capt-berita-header">
                                 <span className="badge badge-berlin badge-secondary">{doc.kategori}</span>
                                 <h2 className="text-white">
@@ -141,7 +141,7 @@ function BeritaHeader() {
                         <Link to={`/berita/${doc.id}`}>
                             <div className="berita-headerlain-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
-                                <div className="shadow-header"></div>
+                                {/* <div className="shadow-header"></div> */}
                                 <div className="carousel-caption text-left capt-beritalain-header">
                                     <span className="badge badge-berlin badge-danger">{doc.kategori}</span>
                                     <h6 style={{ color: `white` }} className="judul-berita-lain">
@@ -159,7 +159,7 @@ function BeritaHeader() {
                         <Link to={`/berita/${doc.id}`}>
                             <div className="berita-headerlain-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
-                                <div className="shadow-header"></div>
+                                {/* <div className="shadow-header"></div> */}
                                 <div className="carousel-caption text-left capt-beritalain-header">
                                     <span className="badge badge-berlin badge-primary">{doc.kategori}</span>
                                     <h6 style={{ color: `white` }} className="judul-berita-lain">

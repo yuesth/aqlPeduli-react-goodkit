@@ -35,6 +35,10 @@ ol.timeline{
     top: 0;
 }
 
+.breadcrumb{
+    font-size: 1.25rem;
+}
+
 /* .gambar-up-det-prog{
     display: none;
 } */

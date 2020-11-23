@@ -19,7 +19,6 @@ function SkeletonBeritaEvent() {
                         <Skeleton count={2} />
                         <br />
                         <Skeleton count={2} />
-                        <small><Skeleton count={2} /></small>
                         {/* </SkeletonTheme> */}
                     </div>
                 </div>
@@ -32,7 +31,6 @@ function SkeletonBeritaEvent() {
                         <Skeleton count={2} />
                         <br />
                         <Skeleton count={2} />
-                        <small><Skeleton count={2} /></small>
                         {/* </SkeletonTheme> */}
                     </div>
                 </div>
@@ -45,7 +43,6 @@ function SkeletonBeritaEvent() {
                         <Skeleton count={2} />
                         <br />
                         <Skeleton count={2} />
-                        <small><Skeleton count={2} /></small>
                         {/* </SkeletonTheme> */}
 
                     </div>
@@ -266,7 +263,7 @@ function BeritaList() {
                         <Link to={`/berita/${doc.id}`}>
                             <div className="berita-header-img">
                                 <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
-                                <div className="shadow-header"></div>
+                                {/* <div className="shadow-header"></div> */}
                                 <div className="carousel-caption text-left capt-berita-header">
                                     <span className="badge badge-berlin badge-danger">{doc.kategori}</span>
                                     <h2 className="text-white">
@@ -292,7 +289,7 @@ function BeritaList() {
                         <Link to={`/berita/${doc.id}`} style={{ boxShadow: `0 -100px 20px black inset` }}>
                             <div className="berita-header-img">
                                 <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
-                                <div className="shadow-header"></div>
+                                {/* <div className="shadow-header"></div> */}
                                 <div className="carousel-caption text-left capt-berita-header">
                                     <span className="badge badge-berlin badge-primary">{doc.kategori}</span>
                                     <h2 className="text-white">
@@ -416,6 +413,7 @@ function BeritaList() {
                             </div>
                             <div className="col-12 col-sm-12 col-md-6 col-lg-6 my-4">
                                 <h3>Berita Nasional Terbaru</h3>
+                                <div className="border-event-akan"></div>
                                 <div className="overflow-auto mt-6 p-3 border border-gray-300" style={{ height: `18.5rem` }}>
                                     {beritanasionallain}
                                 </div>
@@ -441,6 +439,7 @@ function BeritaList() {
                             </div>
                             <div className="col-12 col-sm-12 col-md-6 col-lg-6 my-4">
                                 <h3>Berita Internasional Terbaru</h3>
+                                <div className="border-event-akan"></div>
                                 <div className="overflow-auto mt-6 p-3 border border-gray-300" style={{height:`18.5rem`}}>
                                     {beritainterlain}
                                 </div>

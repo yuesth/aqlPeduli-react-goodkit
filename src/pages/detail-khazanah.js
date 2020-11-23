@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react"
 import NavbarGK from "../components/navbar"
 import FooterGK from "../components/footer"
-import { Link } from "react-router-dom"
 import { Col, Container, Breadcrumb } from 'react-bootstrap'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
-import "./detail-kepeduliankita.css"
 import ReactMarkdown from 'react-markdown'
 
-function SkeletonDetailKK() {
+function SkeletonDetailKhazanah() {
     return (
         <SkeletonTheme color="#e3e3e3">
             <div className="container-lg">
@@ -43,47 +41,49 @@ function SkeletonDetailKK() {
     )
 }
 
-function DariTanggal(props) {
-    var dariTanggal = new Date(props.tanggal)
-    var string = dariTanggal.getDate().toString() + " " + dariTanggal.toLocaleString('default', { month: 'long' }) + " " + dariTanggal.getFullYear()
-    return (
-        <>{string}</>
-    )
-}
 
-function DetailKK(props) {
-    const [kontenfix, setKontenfix] = useState("")
+function DetailKhazanah(props) {
+    function DariTanggal(props) {
+        var dariTanggal = new Date(props.tanggal)
+        var string = dariTanggal.getDate().toString() + " " + dariTanggal.toLocaleString('default', { month: 'long' }) + " " + dariTanggal.getFullYear()
+        return (
+            <>{string}</>
+        )
+    }
     const id = props.match.params.id
-    const urlDetailKk = `http://167.99.72.148/kepeduliankitas/${id}`
-    const [detailkk, setDetailkk] = useState([])
-    const [isLoadingdetkk, setIsLoadingdetkk] = useState(true)
+    const [kontenfix, setKontenfix] = useState("")
+    const urlDetailKha = `http://167.99.72.148/khazanahs/${id}`
+    const [detailkha, setDetailkha] = useState([])
+    const [isLoadingdetkha, setIsLoadingdetkha] = useState(true)
     useEffect(() => {
-        fetch(urlDetailKk).then(res => res.json()).then(parsedJson => (
+        fetch(urlDetailKha).then(res => res.json()).then(parsedJson => (
             {
                 id: `${parsedJson.id}`,
-                judul: `${parsedJson.judulKepedulianKita}`,
-                konten: `${parsedJson.kontenKepedulianKita}`,
-                tanggal: `${parsedJson.tanggalKepedulianKita}`,
-                gambar: `http://167.99.72.148${parsedJson.gambarKepedulianKita.url}`,
+                pemateri: `${parsedJson.pemateriKhazanah}`,
+                tanggal: `${parsedJson.tanggalKhazanah}`,
+                judul: `${parsedJson.judulKhazanah}`,
+                isi: `${parsedJson.isiKhazanah}`,
+                gambar: `http://167.99.72.148${parsedJson.gambarKhazanah.url}`,
+                urlvideo: `${parsedJson.urlvideoKhazanah}`
             }
         )).then(
             items => {
-                setDetailkk(items)
-                setIsLoadingdetkk(false)
-                return(items.konten)
+                setDetailkha(items)
+                setIsLoadingdetkha(false)
+                return (items.isi)
             }
         ).then((ret) => {
             var str2 = ret.match(/http:\/\/167.99.72.148\/uploads\/([A-z])\w+\.(png|jpg|jpeg)/g)
-            if(str2 !== null){
+            if (str2 !== null) {
                 var res = ret.replace(/!\[[A-z]\w+\.(png|jpg|jpeg)\]\(http:\/\/167.99.72.148\/uploads\/([A-z])\w+\.(png|jpg|jpeg)\)/g, `<img className='img-fluid' src="${str2[0]}"></img>`)
                 setKontenfix(res)
             }
-            else{
+            else {
                 setKontenfix(ret)
             }
         })
     })
-    const markup = {__html: kontenfix}
+    const markup = { __html: kontenfix }
     const myImg = (props) => {
         return (
             // <img src={props.src} className="img-fluid"/>
@@ -106,40 +106,40 @@ function DetailKK(props) {
         <>
             <NavbarGK></NavbarGK>
             <section className="pt-10 pt-md-12">
-                {isLoadingdetkk ? <SkeletonDetailKK></SkeletonDetailKK> :
+                {isLoadingdetkha ? <SkeletonDetailKhazanah></SkeletonDetailKhazanah> :
                     <div className="container-xl">
                         <div className="row align-items-center justify-content-center mb-7">
                             <div className="col-md-8" style={{ textAlign: `center` }}>
                                 <h2 className="display-4 mb-4 mb-md-0">
-                                    {detailkk.judul} <br />
+                                    {detailkha.judul} <br />
                                 </h2>
                             </div>
                         </div>
                         <div className="row align-items-center justify-content-center mb-2">
                             <Col md={10} lg={9} className="px-auto">
                                 <Breadcrumb>
-                                    <Breadcrumb.Item href="/kk" style={{ textDecoration: `none`, color: `#E92998` }}>Kepedulian Kita</Breadcrumb.Item>
-                                    <Breadcrumb.Item active>{detailkk.judul}</Breadcrumb.Item>
+                                    <Breadcrumb.Item href="/khazanah" style={{ textDecoration: `none`, color: `#E92998` }}>Khazanah</Breadcrumb.Item>
+                                    <Breadcrumb.Item active>{detailkha.judul}</Breadcrumb.Item>
                                 </Breadcrumb>
                             </Col>
                         </div>
                         <div className="row align-items-center justify-content-center mb-7">
                             <div className="col-md-10 col-lg-9">
-                                <img className="img-fluid w-100" src={detailkk.gambar} alt="..." />
+                                <img className="img-fluid w-100" src={detailkha.gambar} alt="..." />
                             </div>
                         </div>
                         <div className="row align-items-center justify-content-center mb-7">
                             <div className="col-md-10 col-lg-9">
                                 <span className="small text-muted mb-0">
-                                    <DariTanggal tanggal={detailkk.tanggal}></DariTanggal>
+                                    <DariTanggal tanggal={detailkha.tanggal}></DariTanggal>
                                 </span>
                             </div>
                         </div>
                         <div className="row align-items-center justify-content-center mb-7 no-gutters" style={{ textAlign: `center` }}>
                             <div className="col-md-10 col-lg-9">
-                                {/* <p className="text-justify" style={{whiteSpace:`pre-wrap`}}>{detailkk.konten}</p> */}
+                                {/* <p className="text-justify" style={{ whiteSpace: `pre-wrap` }}>{kontenfix}</p> */}
                                 {/* <p className="text-justify" style={{whiteSpace:`pre-wrap`}} dangerouslySetInnerHTML={markup}></p> */}
-                                <ReactMarkdown children={detailkk.konten} renderers={renderMyImg}></ReactMarkdown>
+                                <ReactMarkdown children={detailkha.isi} renderers={renderMyImg}></ReactMarkdown>
                             </div>
                         </div>
                     </div>
@@ -150,4 +150,4 @@ function DetailKK(props) {
     )
 }
 
-export default DetailKK
+export default DetailKhazanah

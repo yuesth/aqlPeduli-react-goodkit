@@ -3,6 +3,8 @@ import { Col, Row, Container, Button, ProgressBar, Breadcrumb } from 'react-boot
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import Sticky from 'wil-react-sticky'
 import "./detail-prog.css"
+import ReactMarkdown from 'react-markdown'
+
 
 function SkeletonDetProg() {
     return (
@@ -81,14 +83,21 @@ function DariTanggal(props) {
 function DetailProg(props) {
     const bnykitemup = props.itemup.length
     const arritemup = []
+    const arriconup = []
     for (var i = 0; i < bnykitemup; i++) {
         arritemup.push(false)
+        arriconup.push(false)
     }
     const [isShowGbr, setIsShowGbr] = useState(arritemup)
+    const [isiconup, setIsiconup] = useState(arriconup)
     function filterLampiran(index) {
         var arrShowGbr = isShowGbr
         arrShowGbr[index] = !arrShowGbr[index]
         setIsShowGbr(arrShowGbr)
+
+        var arriconup = isiconup
+        arriconup[index] = !arriconup[index]
+        setIsiconup(arriconup)
     }
 
     // useEffect(()=>{
@@ -111,8 +120,12 @@ function DetailProg(props) {
                 </p>
                 <div className="dropdown">
                     <div>
-                        <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButtonTwo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Lampirkan <i class="fe fe-chevron-down"></i>
+                        <button className="btn btn-primary" type="button" aria-haspopup="true" aria-expanded="false" onClick={() => filterLampiran(idx)}>
+                            Lampirkan
+                            {isiconup[idx] ? <i class="fe fe-chevron-up"></i>
+                            :
+                                <i class="fe fe-chevron-down"></i>
+                            }
                         </button>
                         <div className="dropdown-menu" aria-labelledby="dropdownMenuButtonTwo">
                             <a className="dropdown-item btn-gambar" href="#!" onClick={() => filterLampiran(idx)}>Gambar</a>
@@ -131,10 +144,29 @@ function DetailProg(props) {
             </li>
         )
     })
+    const markup = { __html: props.kontenfix }
+    const myImg = (props) => {
+        return (
+            // <img src={props.src} className="img-fluid"/>
+            <a href={props.src} className="d-block mb-3 mb-md-0" data-fancybox>
+                <img src={props.src} className="img-fluid" />
+            </a>
+
+        )
+    }
+    const myParagraph = (props) => {
+        return (
+            <p className="text-justify">{props.children}</p>
+        )
+    }
+    const renderMyImg = {
+        image: myImg,
+        paragraph: myParagraph,
+    }
     return (
         <section className="pt-10 pt-md-11">
             <div className="container-xl" id="wadahSticky">
-                <div className="row align-items-center justify-content-center mb-4">
+                <div className="row align-items-center justify-content-center">
                     <Col>
                         <Breadcrumb>
                             <Breadcrumb.Item href="/program" style={{ textDecoration: `none`, color: `#E92998` }}>Program Kepedulian</Breadcrumb.Item>
@@ -180,7 +212,7 @@ function DetailProg(props) {
                         </Row>
                     }
                 </Container>
-                <div className="row align-items-center mb-5 px-4">
+                <div className="row align-items-center mb-5">
                     <div className="col-12 col-md-7 col-lg-7">
                         {props.fromupdate ?
                             <div>
@@ -192,12 +224,11 @@ function DetailProg(props) {
                                 </nav>
                                 <div className="tab-content" id="nav-tabContent">
                                     <div className="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                        <p className="text-muted" style={{ whiteSpace: `pre-wrap`, textAlign:`justify` }}>
-                                            {props.loadingdetprog ? <SkeletonCerita></SkeletonCerita>
-                                                :
-                                                props.itemprog.cerita
-                                            }
-                                        </p>
+                                        {props.loadingdetprog ? <SkeletonCerita></SkeletonCerita> :
+                                            // <p className="text-muted" style={{ whiteSpace: `pre-wrap`, textAlign: `justify` }} dangerouslySetInnerHTML={markup}>
+                                            // </p>
+                                            <ReactMarkdown children={props.itemprog.cerita} renderers={renderMyImg}></ReactMarkdown>
+                                        }
                                     </div>
                                     <div className="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                                         <ol className="timeline timeline-success m-5">
@@ -219,12 +250,17 @@ function DetailProg(props) {
                                 </nav>
                                 <div className="tab-content" id="nav-tabContent">
                                     <div className="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                        <p className="text-muted" style={{ whiteSpace: `pre-wrap`, textAlign:`justify` }}>
+                                        {/* <p className="text-muted" style={{ whiteSpace: `pre-wrap`, textAlign: `justify` }}>
                                             {props.loadingdetprog ? <SkeletonCerita></SkeletonCerita>
                                                 :
                                                 props.itemprog.cerita
                                             }
-                                        </p>
+                                        </p> */}
+                                        {props.loadingdetprog ? <SkeletonCerita></SkeletonCerita> :
+                                            // <p className="text-muted" style={{ whiteSpace: `pre-wrap`, textAlign: `justify` }} dangerouslySetInnerHTML={markup}>
+                                            // </p>
+                                            <ReactMarkdown children={props.itemprog.cerita} renderers={renderMyImg}></ReactMarkdown>
+                                        }
                                     </div>
                                     <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                                         <ol className="timeline timeline-success m-5">

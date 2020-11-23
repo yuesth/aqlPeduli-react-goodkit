@@ -83,6 +83,7 @@ function Berita() {
     berita.map(data => {
         if (data.gambarBerita !== null) {
             var item1 = {
+                id:`${data.id}`,
                 penulis: `${data.penulisBerita}`,
                 tanggal: `${data.tanggalBerita}`,
                 judul: `${data.judulBerita}`,
@@ -95,6 +96,7 @@ function Berita() {
         }
         else {
             var item2 = {
+                id:`${data.id}`,
                 penulis: `${data.penulisBerita}`,
                 tanggal: `${data.tanggalBerita}`,
                 judul: `${data.judulBerita}`,
@@ -138,7 +140,7 @@ function Berita() {
                                         </p>
                                     </div>
                                 </div>
-                                <a className="stretched-link" href="blog-post.html" />
+                                <Link className="stretched-link" to={`/berita/${doc.id}`} />
                             </div>
                         </div>
                     </div>
@@ -179,7 +181,7 @@ function Berita() {
                                     </p>
                                 </div>
                             </div>
-                            <a className="stretched-link" href="blog-post.html" />
+                            <Link className="stretched-link" to={`/berita/${doc.id}`} />
                         </div>
                     </div>
                 </div>

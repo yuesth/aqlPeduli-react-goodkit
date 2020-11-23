@@ -51,3 +51,7 @@
 .nav-link h3:hover{
 color: #2f3990;
 }
+
+.navbar-teks{
+    font-size: 1.4rem;
+}

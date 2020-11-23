@@ -3,7 +3,8 @@ import NavbarGK from "../components/navbar"
 import FooterGK from "../components/footer"
 import { Link } from "react-router-dom"
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
-import {Col, Breadcrumb} from 'react-bootstrap'
+import { Col, Breadcrumb } from 'react-bootstrap'
+import Sticky from 'wil-react-sticky'
 import "./nasional-berita.css"
 
 function SkeletonBeritaHeader() {
@@ -35,7 +36,7 @@ function BeritaHeaderNas(props) {
                 <Link to={`/berita/${doc.id}`}>
                     <div className="berita-header-img">
                         <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
-                        <div className="shadow-header"></div>
+                        {/* <div className="shadow-header"></div> */}
                         <div className="carousel-caption text-left capt-berita-header">
                             <span className="badge badge-berlin badge-danger">{doc.kategori}</span>
                             <h2 className="text-white judul-berita-lain">
@@ -55,7 +56,7 @@ function BeritaHeaderNas(props) {
                     <Link to={`/berita/${doc.id}`}>
                         <div className="berita-headerlain-img h-100">
                             <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
-                            <div className="shadow-header"></div>
+                            {/* <div className="shadow-header"></div> */}
                             <div className="carousel-caption text-left capt-beritalain-header">
                                 <span className="badge badge-berlin badge-danger">{doc.kategori}</span>
                                 <h6 style={{ color: `white` }} className="judul-berita-lain">
@@ -78,21 +79,23 @@ function BeritaHeaderNas(props) {
                     </h2>
                 </div>
             </div>
-            <div className="row mb-2">
-                <Col md={12} lg={12} className="px-auto">
-                    <Breadcrumb>
-                        <Breadcrumb.Item href="/berita" style={{ textDecoration: `none`, color: `#E92998` }}>Berita</Breadcrumb.Item>
-                        <Breadcrumb.Item active>Berita Nasional</Breadcrumb.Item>
-                    </Breadcrumb>
-                </Col>
-            </div>
+            <Sticky containerSelectorFocus="#wadahStickyBerNas" offsetTop={70} stickyEnableRange={[768, Infinity]}>
+                <div className="row mb-2">
+                    <Col md={12} lg={12} className="px-auto">
+                        <Breadcrumb>
+                            <Breadcrumb.Item href="/berita" style={{ textDecoration: `none`, color: `#E92998` }}>Berita</Breadcrumb.Item>
+                            <Breadcrumb.Item active>Berita Nasional</Breadcrumb.Item>
+                        </Breadcrumb>
+                    </Col>
+                </div>
+            </Sticky>
             {props.isloadingberheadernas ? <SkeletonBeritaHeader></SkeletonBeritaHeader>
                 :
                 <div className="row mt-6 mb-5">
                     <div className="col-12 col-sm-12 col-md-6 col-lg-6">
                         {listberitaheadernas}
                     </div>
-                    <div className="col-12 col-sm-12 col-md-12 col-lg-6 d-flex no-gutters" style={{ flexFlow: `row wrap` }}>
+                    <div className="col-12 col-sm-12 col-md-12 col-lg-6 d-flex" style={{ flexFlow: `row wrap` }}>
                         {listberitaheaderlainnas}
                     </div>
                 </div>
@@ -116,16 +119,17 @@ function BeritaListNas(props) {
         if (namaKategoriBeritaLain !== "Event") {
             if (namaKategoriBeritaLain === "BeritaNasional") {
                 return (
-                    <div className="col-12 col-md-8 mb-5 mt-4">
+                    <div className="col-12 col-md-12 mb-5 mt-5">
                         <div className={`card rounded-top-left rounded-bottom-right ${namaClass}`}>
                             <div className="row">
-                                <div className="col-4 col-md-4 rounded-top-left py-auto">
-                                    <img className="img-fluid h-100" src={`${doc.gambar}`} alt="..." width="250" height="200"/>
+                                <div className="col-6 col-md-6 rounded-top-left py-auto">
+                                    <img className="img-fluid h-70 w-100" src={`${doc.gambar}`} alt="..." />
                                 </div>
                                 <div className="col-6 col-md-6">
                                     <div className="card-body p-5">
                                         <span className="badge badge-berlin badge-danger">Nasional</span>
-                                        <span className="small text-muted mt-n1 mb-0 ml-2">
+                                        <br />
+                                        <span className="small text-muted mb-0 span-tanggal-ber-list-nas">
                                             <DariTanggal tanggal={doc.tanggal}></DariTanggal>
                                         </span>
                                         <h2 className="display-6 judul-ber-list-nas">
@@ -143,7 +147,7 @@ function BeritaListNas(props) {
     })
     return (
         <>
-            <div className="row mt-6 mb-5 justify-content-center">
+            <div className="row mt-6 mb-5">
                 {/* <div className="col-10-col-md-10"> */}
                 {listberitanas}
                 {/* </div> */}
@@ -183,7 +187,7 @@ function BeritaNasional() {
         <>
             <NavbarGK></NavbarGK>
             <section className="pt-10 pt-md-11">
-                <div className="container-xl">
+                <div className="container-xl" id="wadahStickyBerNas">
                     <BeritaHeaderNas data={sortedItemBerita} isloadingberheadernas={isLoadingberheadernas}></BeritaHeaderNas>
                     <BeritaListNas data={sortedItemBerita}></BeritaListNas>
                 </div>

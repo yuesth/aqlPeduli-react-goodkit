@@ -11,7 +11,9 @@ function Landing() {
     return (
         <>
             <NavbarGK></NavbarGK>
-            <CarouselLanding></CarouselLanding>
+            <div className="bg-dark mb-10" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/dist/assets/img/patterns/pattern-1.svg)` }}>
+                <CarouselLanding></CarouselLanding>
+            </div>
             <KepedulianLanding></KepedulianLanding>
             <KepeduliankitaLanding></KepeduliankitaLanding>
             <div className="bg-dark" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/dist/assets/img/patterns/pattern-1.svg)` }}>

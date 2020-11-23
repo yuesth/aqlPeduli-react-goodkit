@@ -25,28 +25,28 @@ function NavbarGK() {
                     <Link className="nav-link px-3" id="landingsDropdown" to={{
                         pathname: `/program`,
                     }} role="button" aria-haspopup="true" aria-expanded="false">
-                        <h3>Kepedulian</h3>
+                        <h3 className="navbar-teks">Kepedulian</h3>
                     </Link>
                     {/* <li className="nav-item"> */}
                     <a className="nav-link px-3" id="landingsDropdown" href="/profil" role="button" aria-haspopup="true" aria-expanded="false">
-                        <h3>Profil</h3>
+                        <h3 className="navbar-teks">Profil</h3>
                     </a>
                     {/* </li> */}
                 </ul>
                 <ul className="navbar-nav justify-content-end w-100 pr-lg-6">
                     {/* <li className="nav-item"> */}
                     <a className="nav-link px-3" id="pagesDropdown" href="/berita" role="button" aria-haspopup="true" aria-expanded="false">
-                        <h3>Berita</h3>
+                        <h3 className="navbar-teks">Berita</h3>
                     </a>
                     {/* </li> */}
                     {/* <li className="nav-item dropdown lift"> */}
                     <a className="nav-link px-3" id="accountDropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        <h3>Informasi</h3>
+                        <h3 className="navbar-teks">Informasi</h3>
                     </a>
                     {/* </li> */}
                     {/* <li className="nav-item dropdown lift"> */}
-                    <a className="nav-link px-3" id="docsDropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        <h3>Khazanah</h3>
+                    <a className="nav-link px-3" id="docsDropdown" href="/khazanah" role="button" aria-haspopup="true" aria-expanded="false">
+                        <h3 className="navbar-teks">Khazanah</h3>
                     </a>
                     <a href="#"><button className="navbar-donasi lift">DONASI</button></a>
                     <a href="#"><button className="navbar-relawan lift">RELAWAN</button></a>

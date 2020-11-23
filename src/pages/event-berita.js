@@ -13,42 +13,39 @@ function SkeletonEvent() {
         <SkeletonTheme color="#e3e3e3">
             <div className="row">
                 <div className="col-4">
-                    <div className="card mx-2 p-2 bg-transparent" style={{ width: `246px`, height: `367px` }}>
+                    <div className="card mx-2 p-2 bg-transparent" style={{ width: `386px`, height: `359px` }}>
                         {/* <SkeletonTheme color="#e3e3e3"> */}
-                        <Skeleton reactangle={true} height={200} width={290} />
+                        <Skeleton reactangle={true} height={200} width={360} />
                         <br />
                         <h3><Skeleton /></h3>
                         <br />
                         <Skeleton count={2} />
                         <br />
                         <Skeleton count={2} />
-                        <small><Skeleton count={2} /></small>
                         {/* </SkeletonTheme> */}
                     </div>
                 </div>
                 <div className="col-4">
-                    <div className="card mx-2 p-2 bg-transparent" style={{ width: `246px`, height: `367px` }}>
+                    <div className="card mx-2 p-2 bg-transparent" style={{ width: `386px`, height: `359px` }}>
                         {/* <SkeletonTheme color="e3e3e3"> */}
-                        <Skeleton reactangle={true} height={200} width={290} />
+                        <Skeleton reactangle={true} height={200} width={360} />
                         <h3><Skeleton /></h3>
                         <br />
                         <Skeleton count={2} />
                         <br />
                         <Skeleton count={2} />
-                        <small><Skeleton count={2} /></small>
                         {/* </SkeletonTheme> */}
                     </div>
                 </div>
                 <div className="col-4">
-                    <div className="card mx-2 p-2 bg-transparent" style={{ width: `246px`, height: `367px` }}>
+                    <div className="card mx-2 p-2 bg-transparent" style={{ width: `386px`, height: `359px` }}>
                         {/* <SkeletonTheme color="e3e3e3"> */}
-                        <Skeleton reactangle={true} height={200} width={290} />
+                        <Skeleton reactangle={true} height={200} width={360} />
                         <h3><Skeleton /></h3>
                         <br />
                         <Skeleton count={2} />
                         <br />
                         <Skeleton count={2} />
-                        <small><Skeleton count={2} /></small>
                         {/* </SkeletonTheme> */}
 
                     </div>
@@ -207,7 +204,7 @@ function EventBerita() {
                     <div className="row mb-4">
                         <div className="col-12 col-md-12">
                             <h2>
-                                Akan Berlangsung
+                                Sudah Berlangsung
                                 <div className="border-event-akan"></div>
                             </h2>
                         </div>

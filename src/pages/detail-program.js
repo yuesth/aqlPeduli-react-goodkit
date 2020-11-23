@@ -17,7 +17,7 @@ function DetailProgram(props) {
     const [detailup, setDetailup] = useState([])
     const [isLoadingdetprog, setIsLoadingdetprog] = useState(true);
     const [isLoadingdetup, setIsLoadingdetup] = useState(true);
-    const [isShowgbrdetup, setIsShowgbrdetup] = useState([])
+    const [kontenfix, setKontenfix] = useState("")
     const [fromupdate, setFromupdate] = useState(fromUpdateLanding)
     useEffect(() => {
         fetch(urlDetailProgram).then(res => res.json()).then(parsedJson => (
@@ -38,8 +38,26 @@ function DetailProgram(props) {
             items => {
                 setDetailprog(items)
                 setIsLoadingdetprog(false)
+                return(items.cerita)
             }
-        )
+        ).then((ret)=>{
+            // var str2 = ret.match(/http:\/\/167.99.72.148\/uploads\/([A-z])\w+\.(png|jpg|jpeg)/g)
+            // if(str2 !== null){
+            //     var res = ret.replace(/!\[[A-z]\w+\.(png|jpg|jpeg)\]\(http:\/\/167.99.72.148\/uploads\/([A-z])\w+\.(png|jpg|jpeg)\)/g, `<img className='img-fluid' src="${str2[0]}"></img>`)
+            //     setKontenfix(res)
+            // }
+            // else{
+            //     setKontenfix(ret)
+            // }
+            var str2 = ret.match(/http:\/\/167.99.72.148\/uploads\/([A-z])\w+\.(png|jpg|jpeg)/g)
+            if(str2 !== null){
+                var res = ret.replace(/!\[[A-z]\w+\.(png|jpg|jpeg)\]\(http:\/\/167.99.72.148\/uploads\/([A-z])\w+\.(png|jpg|jpeg)\)/g, `<img className="img-fluid w-50" src="${str2[0]}"></img>`)
+                setKontenfix(res)
+            }
+            else{
+                setKontenfix(ret)
+            }
+        })
         fetch(urlUpdate).then(res => res.json()).then(parsedJsonUp => parsedJsonUp.map(data => {
             if (data.gambarUpdate !== null) {
                 return ({
@@ -78,7 +96,7 @@ function DetailProgram(props) {
     return (
         <>
             <NavbarGK></NavbarGK>
-            <DetailProg itemprog={detailprog} itemup={itemup} loadingdetprog={isLoadingdetprog} loadingdetup={isLoadingdetup} fromupdate={fromupdate}></DetailProg>
+            <DetailProg itemprog={detailprog} itemup={itemup} loadingdetprog={isLoadingdetprog} loadingdetup={isLoadingdetup} fromupdate={fromupdate} kontenfix={kontenfix}></DetailProg>
             <FooterGK></FooterGK>
         </>
     )
