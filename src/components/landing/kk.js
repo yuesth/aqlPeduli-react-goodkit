@@ -228,7 +228,7 @@ function KK() {
                         {/* </div>
                     </div> */}
                     </div>
-                    <div className="row align-items-center mb-7">
+                    <div className="row align-items-center mb-7 mt-3">
                         <div className="mx-auto" style={{zIndex:`10`}}>
                             <a className="btn btn-sm btn-primary" href="/kk">
                                 Lihat Lainnya

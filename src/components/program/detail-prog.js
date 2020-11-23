@@ -100,11 +100,6 @@ function DetailProg(props) {
         setIsiconup(arriconup)
     }
 
-    // useEffect(()=>{
-    // var res = props.itemprog.cerita.match(/[\w-]+.(jpg|png|jpeg)/g);
-    // var cerita2 = props.itemprog.cerita.replace(/(\!\[[\w-]+.(jpg|png|jpeg)]\(http:\/\/167.99.72.148\/uploads\/[\w-]+.(jpg|png|jpeg)\))/g, "<img src='"+res[res.length-1]+"' className='img-fluid'></img>")
-    // })
-
     const persenTerkumpul = (props.itemprog.terkumpul / props.itemprog.total) * 100
     var idrterkumpul = parseInt(props.itemprog.terkumpul).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
     var idrtotal = parseInt(props.itemprog.total).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
@@ -123,7 +118,7 @@ function DetailProg(props) {
                         <button className="btn btn-primary" type="button" aria-haspopup="true" aria-expanded="false" onClick={() => filterLampiran(idx)}>
                             Lampirkan
                             {isiconup[idx] ? <i class="fe fe-chevron-up"></i>
-                            :
+                                :
                                 <i class="fe fe-chevron-down"></i>
                             }
                         </button>
@@ -198,7 +193,7 @@ function DetailProg(props) {
                                         {props.itemprog.durasi !== null && <SisaHari tanggal={props.itemprog.tanggal} durasi={props.itemprog.durasi} />
                                         }
                                         <br />
-                                        <div className="row mt-3">
+                                        <div className="row mt-3 button-donasi-atas">
                                             <div className="col-12 col-sm-7 col-md-7 my-2" style={{ textAlign: `center` }}>
                                                 <Button variant="success" style={{ padding: `0.75rem 1.00rem` }}>DONASI SEKARANG</Button>
                                             </div>
@@ -275,6 +270,16 @@ function DetailProg(props) {
                         }
                     </div>
                 </div>
+                {/* <Sticky containerSelectorFocus="#wadahSticky" offsetTop={70} stickyEnableRange={[100, 540]}> */}
+                    <div className="row no-gutters button-donasi-bawah d-flex bg-white" style={{ position: `fixed`, bottom: `0rem`, width: `100%`, height:`4rem`, zIndex: `9999` }}>
+                        <div className="col-6 col-sm-6 col-md-6 my-2" style={{ textAlign: `center` }}>
+                            <Button className="btn-sm w-80 h-100" variant="success">DONASI SEKARANG</Button>
+                        </div>
+                        <div className="col-6 col-sm-6 col-md-6 btn-bagika-det-prog my-2" style={{ textAlign: `center` }}>
+                            <Button className="btn-sm w-80 h-100" variant="primary">BAGIKAN</Button>
+                        </div>
+                    </div>
+                {/* </Sticky> */}
             </div>
         </section>
     )

@@ -39,6 +39,23 @@ ol.timeline{
     font-size: 1.25rem;
 }
 
+.button-donasi-bawah{
+    display: none;
+    visibility: hidden;
+}
+
+@media only screen and (max-width:540px){
+    .button-donasi-bawah{
+        display: inline;
+        visibility: visible;
+    }
+
+    .button-donasi-atas{
+        display: none;
+        visibility: hidden;
+    }
+}
+
 /* .gambar-up-det-prog{
     display: none;
 } */
