@@ -57,9 +57,9 @@ function KepedulianLanding() {
         ))).then(
             items => {
                 setKateg(items)
-                setTimeout(() => {
-                    setIsLoading(false)
-                }, 2000)
+                // setTimeout(() => {
+                setIsLoading(false)
+                // }, 2000)
             }
         )
     }, [])
@@ -111,25 +111,31 @@ function KepedulianLanding() {
     const listKategori2 = kateg.map((doc, idx) => {
         var pathGbr2 = `${process.env.PUBLIC_URL}/images/kepedulian/${arrGbr[idx]}.png`
         return (
-            <div className="lift">
-                <Link to={{
-                    pathname: `/program`,
-                    state: {
-                        namaKateg: `${doc.namaKateg}`
-                    }
-                }} style={{ margin: `auto auto`, textDecoration: `none` }} className="wadah-item-kecil">
-                    <div className="col-12 justify-content-center lift pt-3">
-                        <div style={{ textAlign: `center`, width: `10rem`, height:`10rem`}}>
-                            <img className="img-fluid rounded-top-left rounded-bottom-right" src={pathGbr2} alt="..." width="120" height="120"/>
-                        </div>
-                        <div className="text-center">
-                            <h3 style={{ color: `#000000` }}>
-                                {doc.namaKateg}
-                            </h3>
-                        </div>
+            // <div className="lift">
+            // <Link to={{
+            //     pathname: `/program`,
+            //     state: {
+            //         namaKateg: `${doc.namaKateg}`
+            //     }
+            // }} style={{ margin: `auto auto`, textDecoration: `none` }} className="wadah-item-kecil">
+                <div className="col-4 col-md-4 col-lg justify-content-center lift m-lg-1 kartu-kep">
+                    <div style={{ textAlign: `center`, height: `9rem` }} className="align-items-center justify-content-center">
+                        <img className="img-fluid rounded-top-left rounded-bottom-right" src={pathGbr2} alt="..." width="120" height="120" />
                     </div>
-                </Link>
-            </div>
+                    <div className="text-center w-100" style={{height:`3rem`, textAlign:`center`}}>
+                        <h3 style={{ color: `#000000` }}>
+                            {doc.namaKateg}
+                        </h3>
+                    </div>
+                    <Link to={{
+                        pathname: `/program`,
+                        state: {
+                            namaKateg: `${doc.namaKateg}`
+                        }
+                    }} className="stretched-link"></Link>
+                </div>
+            // </Link>
+            // </div>
         )
     })
     const breakPoints = [
@@ -148,20 +154,20 @@ function KepedulianLanding() {
                         </h2>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-12 car-kep">
+                <div className="row car-kep align-items-center justify-content-center">
+                    {/* <div className=""> */}
                         {isLoading ?
-                        <Skeleton2Layout></Skeleton2Layout>
-                        :
-                            <Carousel breakPoints={breakPoints}>
-                                {listKategori2}
-                            </Carousel>
+                            <Skeleton2Layout></Skeleton2Layout>
+                            :
+                            // <Carousel breakPoints={breakPoints}>
+                            listKategori2
+                            // </Carousel>
                         }
                         {/* <div className="main-kepedulian">
                             {listKategori2}
                         </div> */}
                     </div>
-                </div>
+                {/* </div> */}
             </div>
         </section >
 

@@ -26,6 +26,10 @@ button.kyJvRZ:hover:enabled{
   background-color: #3c2be4;
 } */
 
+.kartu-kep{
+  margin-top: 2rem;
+}
+
 @media only screen and (min-width:590px){
   .car-kep .rec-carousel-wrapper .rec-carousel .rec-arrow-left, .car-kep .rec-carousel-wrapper .rec-carousel .rec-arrow-right{
     display: none;
@@ -37,6 +41,10 @@ button.kyJvRZ:hover:enabled{
 
   .car-kk .rec-dot, .car-kk .rec-dot_active{
     display: none;
+  }
+
+  .kartu-kep{
+    margin-top: 0;
   }
 
 }

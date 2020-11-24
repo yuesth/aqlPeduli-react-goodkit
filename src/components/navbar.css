@@ -3,7 +3,7 @@
     padding: 8px 8px;
     margin-right: 1.5rem;
     margin-left: 1.5rem;
-    margin-bottom:20px;
+    margin-bottom:10px;
     border: none;
     width: auto;
     height: auto;
@@ -14,24 +14,24 @@
     border-radius: 5px;
     cursor: pointer;
     outline: none;
-    background: #E92998;
+    background:rgb(47, 57, 144);
 }
 
 .navbar-relawan{
     display: inline-flex;
     padding: 8px 8px;
-    margin-bottom:20px;
-    border: none;
+    margin-bottom:10px;
+    border: 1px solid rgb(47, 57, 144);
     width: auto;
     height: auto;
     font-size: 14px;
     font-weight: bold;
     text-transform: uppercase;
-    color: #fff0e6;
+    color: rgb(47, 57, 144);
     border-radius: 5px;
     cursor: pointer;
     outline: none;
-    background: #2205c7;
+    background: white;
 }
 
 @media only screen and (max-width:590px){

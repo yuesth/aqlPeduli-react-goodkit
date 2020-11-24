@@ -1,5 +1,12 @@
 @media only screen and (max-width:590px){
+    .span-sisahari, .span-terkumpul{
+      font-size: 0.7rem;
+    }
 
+    .kateg-wide{
+      display: none;
+      visibility: hidden;
+    }
   }
  
   @media only screen and (min-width:590px){
@@ -16,6 +23,11 @@
 
    .flex-kateg .btn:not(:disabled):not(.disabled).active{
     box-shadow: none;
+  }
+
+  .kateg-thin{
+    display: none;
+    visibility: hidden;
   }
  }
 

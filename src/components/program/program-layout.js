@@ -174,7 +174,7 @@ function ProgramLayout(props) {
         var hariTerakhir = new Date(new Date(props.tanggal).getTime() + (props.durasi * 24 * 60 * 60 * 1000));
         var sisaHari = Math.floor((hariTerakhir.getTime() - new Date().getTime()) / (1000 * 3600 * 24))
         return (
-            <span style={{ color: `#5146b8` }}>{sisaHari.toString()} hari</span>
+            <span style={{ color: `#5146b8` }} className="span-sisahari">{sisaHari.toString()} hari</span>
         )
     }
 
@@ -265,8 +265,8 @@ function ProgramLayout(props) {
         var namaKategori2 = namaKategori.replace(/\s/g, "")
         var namaClass = "item-donasi " + namaKategori2
         return (
-            <div className={`col-md-4 col-lg-4 col-sm-6 mt-0 ml-0 mr-0 mb-3 ${namaClass}`}>
-                <div className={`card card-sm rounded-top-left rounded-bottom-right lift lift-lg mt-6`}>
+            <div className={`col-md-4 col-lg-4 col-sm-6 col-6 mt-0 ml-0 mr-0 mb-3 ${namaClass}`}>
+                <div className={`card card-sm rounded-top-left rounded-bottom-right lift lift-lg mt-md-5 mt-2`}>
                     <div>
                         <img className="card-img-top rounded-top-left img-fluid img-prog" src={doc.gambar} alt="..." />
                     </div>
@@ -291,14 +291,14 @@ function ProgramLayout(props) {
                         </p> */}
                         <Container className="p-0">
                             <Row>
-                                <Col md={5} xs={4} style={{ textAlign: `left`, fontSize: `12px` }}>
+                                <Col md={5} xs={6} style={{ textAlign: `left`, fontSize: `12px` }}>
                                     <p style={{ marginBottom: `0.3rem` }}>Sisa Waktu</p>
                                     {doc.durasi !== null && <SisaHari tanggal={doc.tanggal} durasi={doc.durasi} />
                                     }
                                 </Col>
-                                <Col md={{ span: `7` }} xs={8} style={{ textAlign: `right`, fontSize: `12px` }}>
+                                <Col md={7} xs={6} style={{ textAlign: `right`, fontSize: `12px` }}>
                                     <p style={{ marginBottom: `0.3rem` }}>Terkumpul</p>
-                                    <span style={{ color: `#6053db` }}>Rp.{idr}</span>
+                                    <span style={{ color: `#6053db` }} className="span-terkumpul">Rp.{idr}</span>
                                 </Col>
                             </Row>
                         </Container>
@@ -307,10 +307,11 @@ function ProgramLayout(props) {
                             <PersenTerkumpul total={doc.total} terkumpul={doc.terkumpul}></PersenTerkumpul>
                         </div>
                         <Link to={{
-                            pathname:`/program/${doc.id}`,
-                            state:{
-                                fromUpdateLanding:false,
-                            }}}>
+                            pathname: `/program/${doc.id}`,
+                            state: {
+                                fromUpdateLanding: false,
+                            }
+                        }}>
                             <a className="stretched-link" href="" />
                         </Link>
                     </div>
@@ -329,7 +330,7 @@ function ProgramLayout(props) {
                     </div>
                 </div>
                 <div className="row">
-                    <Col md={2} id="col-list" className="pt-10 px-0">
+                    <Col md={2} id="col-list" className="pt-10 px-0 kateg-wide">
                         <Row>
                             <Col className="pl-6">
                                 <h2>Kategori</h2>
@@ -366,6 +367,28 @@ function ProgramLayout(props) {
                                                 Cari
                                         </button>
                                         </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div className="row justify-content-center mt-3 kateg-thin">
+                            <div className="col-md-12 col-lg-12 text-center text-white">
+                                <form>
+                                    <div className="mb-3">
+                                        <select className="custom-select">
+                                            <option selected value={1} onClick={() => filterSelection('all')}>Semua</option>
+                                            {
+                                                kateg.map((doc, idx) => {
+                                                    var nama1 = doc.namaKateg
+                                                    var nama2 = nama1.replace(/\s/g, "")
+                                                    return (
+                                                        <>
+                                                            <option value={idx+2} onClick={() => filterSelection(nama2)} key={idx}>{doc.namaKateg}</option>
+                                                        </>
+                                                    )
+                                                })
+                                            }
+                                        </select>
                                     </div>
                                 </form>
                             </div>
