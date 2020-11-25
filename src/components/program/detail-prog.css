@@ -82,6 +82,24 @@ ol.timeline{
     }
 }
 
+.btn-donasi-sekarang{
+    background-color: #E92988;
+}
+
+.btn-donasi-sekarang:hover{
+    background-color: #b8206c;
+}
+
+.btn-bagikan{
+    background-color: #DCE0F3;
+    color: black;
+}
+
+.btn-bagikan:hover{
+    background-color: #b8bbcc;
+    color: black;
+}
+
 /* .gambar-up-det-prog{
     display: none;
 } */

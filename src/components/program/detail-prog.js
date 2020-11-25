@@ -278,10 +278,10 @@ function DetailProg(props) {
                                         </div>
                                         <div className="row button-donasi-atas">
                                             <div className="col-12 col-sm-7 col-md-7">
-                                                <Button variant="success" style={{ padding: `0.75rem 1.00rem` }} onClick={handleShow}>DONASI SEKARANG</Button>
+                                                <Button variant="success" style={{ padding: `0.75rem 1.00rem` }} className="btn-donasi-sekarang" onClick={handleShow}>DONASI SEKARANG</Button>
                                             </div>
                                             <div className="col-12 col-sm-5 col-md-5 btn-bagika-det-prog">
-                                                <Button variant="primary" style={{ padding: `0.75rem 1.00rem` }}>BAGIKAN</Button>
+                                                <Button variant="primary" style={{ padding: `0.75rem 1.00rem` }} className="btn-bagikan">BAGIKAN</Button>
                                             </div>
                                             <ModalDonasi status={showmodal} handleclose={handleClose}></ModalDonasi>
                                         </div>
