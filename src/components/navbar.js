@@ -50,8 +50,8 @@ function NavbarGK() {
                 </ul>
                 <ul className="navbar-nav justify-content-end w-100 pr-lg-6">
 
-                    <a href="#"><button className="navbar-donasi lift mt-1">DONASI</button></a>
-                    <a href="#"><button className="navbar-relawan lift mt-1">RELAWAN</button></a>
+                    <Link to={`/program`}><button className="navbar-donasi lift mt-1">DONASI</button></Link>
+                    <Link to={`/relawan`}><button className="navbar-relawan lift mt-1">RELAWAN</button></Link>
                 </ul>
             </div>
             {/* </div> */}

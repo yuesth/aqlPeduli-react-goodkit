@@ -79,7 +79,7 @@ function BeritaHeaderInter(props) {
                     </h2>
                 </div>
             </div>
-            <Sticky containerSelectorFocus="#wadahStickyBerInter" offsetTop={70} stickyEnableRange={[768, Infinity]}>
+            {/* <Sticky containerSelectorFocus="#wadahStickyBerInter" offsetTop={70} stickyEnableRange={[768, Infinity]}> */}
                 <div className="row mb-2">
                     <Col md={12} lg={12} className="px-auto">
                         <Breadcrumb>
@@ -88,7 +88,7 @@ function BeritaHeaderInter(props) {
                         </Breadcrumb>
                     </Col>
                 </div>
-            </Sticky>
+            {/* </Sticky> */}
             {props.isloadingberheadernas ? <SkeletonBeritaHeader></SkeletonBeritaHeader>
                 :
                 <div className="row mt-6 mb-5">

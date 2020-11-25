@@ -1,0 +1,39 @@
+.galeri-img{
+    overflow: hidden;
+    position: relative;
+}
+
+.galeri-img img, .galeri-img img{
+    transition: .3s ease;
+}
+
+.galeri-img .img-galeri-thumb:hover, .galeri-img .img-galeri-thumb:hover{
+    /* opacity: 0.6; */
+    transform: scale(1.1);
+    /* box-shadow: none; */
+}
+
+.img-galeri-capt{
+    color: black;
+}
+
+.img-galeri-capt:hover{
+    color: rgb(47, 57, 144);
+}
+
+.galeri-img-cam{
+    width: 53px;
+    height: auto;
+    background: #000;
+    position: absolute;
+    bottom: 40%;
+    left: 40%;
+    opacity: .7;
+    padding: 4px;
+    border-radius: 5px;
+}
+
+.galeri-img-cam img{
+    width: 100%;
+    height: auto;
+}

@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.2.0",
     "bootstrap": "^4.5.3",
     "flickity": "^2.2.1",
+    "flickity-as-nav-for": "^2.0.1",
     "flickity-imagesloaded": "^2.0.0",
     "isotope-layout": "^3.0.6",
     "jquery": "^3.5.1",

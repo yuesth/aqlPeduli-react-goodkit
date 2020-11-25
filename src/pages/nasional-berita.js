@@ -79,7 +79,7 @@ function BeritaHeaderNas(props) {
                     </h2>
                 </div>
             </div>
-            <Sticky containerSelectorFocus="#wadahStickyBerNas" offsetTop={70} stickyEnableRange={[768, Infinity]}>
+            {/* <Sticky containerSelectorFocus="#wadahStickyBerNas" offsetTop={70} stickyEnableRange={[768, Infinity]}> */}
                 <div className="row mb-2">
                     <Col md={12} lg={12} className="px-auto">
                         <Breadcrumb>
@@ -88,7 +88,7 @@ function BeritaHeaderNas(props) {
                         </Breadcrumb>
                     </Col>
                 </div>
-            </Sticky>
+            {/* </Sticky> */}
             {props.isloadingberheadernas ? <SkeletonBeritaHeader></SkeletonBeritaHeader>
                 :
                 <div className="row mt-6 mb-5">
