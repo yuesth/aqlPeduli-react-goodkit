@@ -1,0 +1,11 @@
+.logo-footer{
+    width: 200px;
+    height: 130px;
+}
+
+@media only screen and (max-width:590px){
+    .logo-footer{
+        width: 100px;
+        height: 70px;
+    }
+}

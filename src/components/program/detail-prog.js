@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Col, Row, Container, Button, ProgressBar, Breadcrumb } from 'react-bootstrap'
+import { Col, Row, Container, Button, ProgressBar, Breadcrumb, Modal } from 'react-bootstrap'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import Sticky from 'wil-react-sticky'
 import "./detail-prog.css"
@@ -13,7 +13,7 @@ function SkeletonDetProg() {
                 <div className="col-7">
                     <Skeleton reactangle={true} height={350} width={600} />
                 </div>
-                <div className="col-12">
+                <div className="col-5">
                     <Skeleton reactangle={true} width={369} height={78}></Skeleton>
                     <br />
                     <Skeleton count={3}></Skeleton>
@@ -66,7 +66,7 @@ function SisaHari(props) {
     var hariTerakhir = new Date(new Date(props.tanggal).getTime() + (props.durasi * 24 * 60 * 60 * 1000));
     var sisaHari = Math.floor((hariTerakhir.getTime() - new Date().getTime()) / (1000 * 3600 * 24))
     return (
-        <span className="mb-3">{sisaHari.toString()} hari lagi</span>
+        <span>{sisaHari.toString()} hari lagi</span>
     )
 }
 
@@ -77,6 +77,80 @@ function DariTanggal(props) {
         <span style={{ fontSize: `0.8rem` }}>
             {string}
         </span>
+    )
+}
+
+function ModalDonasi(props) {
+    return (
+        <>
+            <Modal show={props.status} onHide={props.handleclose} backdrop="static" keyboard={false}>
+                <Modal.Header closeButton>
+                    {/* <Modal.Title className="align-items-center justify-content-center">Donasi Anda bisa disalurkan melalui</Modal.Title> */}
+                </Modal.Header>
+                <Modal.Body className="pt-0">
+                    <div className="row align-items-center justify-content-center mb-5">
+                        <div className="col-md-11 col-lg-10">
+                            <h3 className="mb-5 mb-md-0 text-center font-family-serif">
+                                Donasi Anda bisa disalurkan melalui
+                            </h3>
+                        </div>
+                    </div>
+                    <div className="row rek-mandiri mb-5">
+                        <div className="col-4 col-md-4">
+                            <img src={`${process.env.PUBLIC_URL}/images/donasi/mandiri.png`} alt="bank mandiri" className="img-fluid" />
+                        </div>
+                        <div className="col-8 col-md-8">
+                            <span className="text-muted" style={{ fontSize: `14px` }}>Bank Mandiri <br /> a.n Yayasan Pusat Peradaban Islam <br /> 156 001600 5151</span>
+                        </div>
+                    </div>
+                    <div className="row rek-bnis mb-5">
+                        <div className="col-4 col-md-4">
+                            <img src={`${process.env.PUBLIC_URL}/images/donasi/mandiris.png`} alt="bank mandiri syariah" className="img-fluid" />
+                        </div>
+                        <div className="col-8 col-md-8">
+                            <span className="text-muted" style={{ fontSize: `14px` }}>Bank Mandiri Syariah <br /> a.n Yayasan Pusat Peradaban Islam <br /> 7888 844419</span>
+                        </div>
+                    </div>
+                    <div className="row align-items-center justify-content-center mb-5">
+                        <div className="col-md-10 col-lg-10">
+                            <img className="img-fluid w-100" src={`${process.env.PUBLIC_URL}/images/donasi/qrcode1.png`} alt="QR Code 1" />
+                        </div>
+                    </div>
+                    <div className="row align-items-center justify-content-center mb-3">
+                        <div className="col-md-11 col-lg-11">
+                            <h5 className="mb-5 mb-md-0 text-center">
+                                Sudah berdonasi? Jangan lupa konfirmasi ya
+                            </h5>
+                        </div>
+                    </div>
+                    <div className="row align-items-center justify-content-center mb-5">
+                        <div className="col-md-11 col-lg-11">
+                            <button className="btn btn-success rounded-top-right rounded-bottom-left rounded-top-left rounded-bottom-right rounded-sm w-100 btn-via-wa">
+                                <i className="fa fa-whatsapp" /> Via WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                    <div className="row align-items-center justify-content-center mb-3">
+                        <div className="col-md-11 col-lg-11">
+                            <h5 className="mb-5 mb-md-0 text-center">
+                                Donasi langsung tanpa konfirmasi melalui
+                            </h5>
+                        </div>
+                    </div>
+                    <div className="row align-items-center justify-content-center mb-5">
+                        <div className="col-md-11 col-lg-11">
+                            <button className="btn btn-light rounded-top-right rounded-bottom-left rounded-top-left rounded-bottom-right rounded-sm w-100 align-items-center justify-content-center btn-via-bb">
+                                {/* <i className="fa fa-whatsapp" /> */}
+                                <img src={`${process.env.PUBLIC_URL}/images/donasi/berkahberjamaah.png`} className="img-fluid" height="35" width="35" />
+                                <h3 className="mb-0 mt-1 ml-2">
+                                    <strong>Berkah Berjamaah</strong>
+                                </h3>
+                            </button>
+                        </div>
+                    </div>
+                </Modal.Body>
+            </Modal>
+        </>
     )
 }
 
@@ -99,6 +173,10 @@ function DetailProg(props) {
         arriconup[index] = !arriconup[index]
         setIsiconup(arriconup)
     }
+
+    const [showmodal, setShowmodal] = useState(false)
+    const handleClose = () => setShowmodal(false);
+    const handleShow = () => setShowmodal(true);
 
     const persenTerkumpul = (props.itemprog.terkumpul / props.itemprog.total) * 100
     var idrterkumpul = parseInt(props.itemprog.terkumpul).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
@@ -139,7 +217,7 @@ function DetailProg(props) {
             </li>
         )
     })
-    const markup = { __html: props.kontenfix }
+    // const markup = { __html: props.kontenfix }
     const myImg = (props) => {
         return (
             // <img src={props.src} className="img-fluid"/>
@@ -174,8 +252,8 @@ function DetailProg(props) {
                         :
                         <Row className="mb-5">
                             <Col md={12} sm={12} lg={7} className="px-0">
-                                <div>
-                                    {props.itemprog.gambar !== null && <img className="img-fluid w-100" src={props.itemprog.gambar}></img>
+                                <div style={{ height: `368px` }}>
+                                    {props.itemprog.gambar !== null && <img className="img-fluid w-100 h-100" src={props.itemprog.gambar}></img>
                                     }
                                 </div>
                             </Col>
@@ -184,22 +262,28 @@ function DetailProg(props) {
                                 <Sticky containerSelectorFocus="#wadahSticky" offsetTop={70} stickyEnableRange={[768, Infinity]}>
                                     <div className="kop rounded-bottom-right rounded-top-left ml-3 wadah-info-det-prog">
                                         <p className="mb-1 text-info"><small>{props.itemprog.namaKateg}</small></p>
-                                        <h2>{props.itemprog.judul}</h2>
-                                        <p style={{ fontSize: `14px` }} className="mb-1">
-                                            {props.itemprog.des}
-                                        </p>
-                                        <span style={{ fontSize: `0.8rem` }}>Rp.{props.itemprog.terkumpul !== null && idrterkumpul} dari Rp.<strong>{props.itemprog.total !== null && idrtotal}</strong></span>
-                                        <ProgressBar now={persenTerkumpul} label={`${persenTerkumpul.toFixed(2)} %`} />
-                                        {props.itemprog.durasi !== null && <SisaHari tanggal={props.itemprog.tanggal} durasi={props.itemprog.durasi} />
-                                        }
-                                        <br />
-                                        <div className="row mt-3 button-donasi-atas">
-                                            <div className="col-12 col-sm-7 col-md-7 my-2" style={{ textAlign: `center` }}>
-                                                <Button variant="success" style={{ padding: `0.75rem 1.00rem` }}>DONASI SEKARANG</Button>
+                                        <div style={{ height: `5rem` }}>
+                                            <h2 className="judul-det-prog mb-3">{props.itemprog.judul}</h2>
+                                        </div>
+                                        <div style={{ height: `6rem` }} className="mb-3">
+                                            <p style={{ fontSize: `14px` }} className="des-det-prog">
+                                                {props.itemprog.des}
+                                            </p>
+                                        </div>
+                                        <div style={{ height: `5rem` }} className="mb-3">
+                                            <span style={{ fontSize: `0.8rem` }}>Rp.{props.itemprog.terkumpul !== null && idrterkumpul} dari Rp.<strong>{props.itemprog.total !== null && idrtotal}</strong></span>
+                                            <ProgressBar now={persenTerkumpul} label={`${persenTerkumpul.toFixed(2)} %`} />
+                                            {props.itemprog.durasi !== null && <SisaHari tanggal={props.itemprog.tanggal} durasi={props.itemprog.durasi} />
+                                            }
+                                        </div>
+                                        <div className="row button-donasi-atas">
+                                            <div className="col-12 col-sm-7 col-md-7">
+                                                <Button variant="success" style={{ padding: `0.75rem 1.00rem` }} onClick={handleShow}>DONASI SEKARANG</Button>
                                             </div>
-                                            <div className="col-12 col-sm-5 col-md-5 btn-bagika-det-prog my-2" style={{ textAlign: `center` }}>
+                                            <div className="col-12 col-sm-5 col-md-5 btn-bagika-det-prog">
                                                 <Button variant="primary" style={{ padding: `0.75rem 1.00rem` }}>BAGIKAN</Button>
                                             </div>
+                                            <ModalDonasi status={showmodal} handleclose={handleClose}></ModalDonasi>
                                         </div>
                                     </div>
                                 </Sticky>
@@ -271,14 +355,14 @@ function DetailProg(props) {
                     </div>
                 </div>
                 {/* <Sticky containerSelectorFocus="#wadahSticky" offsetTop={70} stickyEnableRange={[100, 540]}> */}
-                    <div className="row no-gutters button-donasi-bawah d-flex bg-white" style={{ position: `fixed`, bottom: `0rem`, width: `100%`, height:`4rem`, zIndex: `9999` }}>
-                        <div className="col-6 col-sm-6 col-md-6 my-2" style={{ textAlign: `center` }}>
-                            <Button className="btn-sm w-80 h-100" variant="success">DONASI SEKARANG</Button>
-                        </div>
-                        <div className="col-6 col-sm-6 col-md-6 btn-bagika-det-prog my-2" style={{ textAlign: `center` }}>
-                            <Button className="btn-sm w-80 h-100" variant="primary">BAGIKAN</Button>
-                        </div>
+                <div className="row no-gutters button-donasi-bawah d-flex bg-white" style={{ position: `fixed`, bottom: `0rem`, width: `100%`, height: `4rem`, zIndex: `9999` }}>
+                    <div className="col-6 col-sm-6 col-md-6 my-2" style={{ textAlign: `center` }}>
+                        <Button className="btn-sm w-80 h-100" variant="success">DONASI SEKARANG</Button>
                     </div>
+                    <div className="col-6 col-sm-6 col-md-6 btn-bagika-det-prog my-2" style={{ textAlign: `center` }}>
+                        <Button className="btn-sm w-80 h-100" variant="primary">BAGIKAN</Button>
+                    </div>
+                </div>
                 {/* </Sticky> */}
             </div>
         </section>

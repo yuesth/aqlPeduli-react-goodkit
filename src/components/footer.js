@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react"
+import "./footer.css"
 
 function Footer() {
     const urlBerita = "http://167.99.72.148/beritas"
@@ -40,7 +41,7 @@ function Footer() {
             <div className="container-lg">
                 <div className="row">
                     <div className="col-md-4 pr-5 mb-5">
-                        <img src={`${process.env.PUBLIC_URL}/images/logo-aql.png`} alt="logo-aql" width="200px" height="130px" />
+                        <img src={`${process.env.PUBLIC_URL}/images/logo-aql.png`} alt="logo-aql" width="200px" height="130px" className="logo-footer"/>
                         {/* <h2 className="font-family-serif text-white mb-1">
                             AQL Peduli
                         </h2> */}

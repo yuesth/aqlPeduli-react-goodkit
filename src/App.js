@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Landing from "./pages/landing"
 import Program from "./pages/program"
 import Profil from "./pages/profil"
+import Relawan from "./pages/relawan"
 import DetailProgram from "./pages/detail-program"
 import Kepeduliankita from "./pages/kepeduliankita"
 import DetailKepeduliankita from "./pages/detail-kepeduliankita"
@@ -28,6 +29,7 @@ function App() {
             <Route path="/" exact component={Landing}></Route>
             <Route path="/program" exact component={Program}></Route>
             <Route path="/profil" exact component={Profil}></Route>
+            <Route path="/relawan" exact component={Relawan}></Route>
             <Route path="/program/:id" exact component={DetailProgram}></Route>
             <Route path="/kk" exact component={Kepeduliankita}></Route>
             <Route path="/kk/:id" exact component={DetailKepeduliankita}></Route>

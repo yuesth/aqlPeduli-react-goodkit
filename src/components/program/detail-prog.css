@@ -44,6 +44,27 @@ ol.timeline{
     visibility: hidden;
 }
 
+.btn-via-bb{
+    /* background-image: url(%PUBLIC_URL%/images/donasi/wa.png); */
+    display: flex;
+}
+
+.judul-det-prog{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+.des-det-prog{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
 @media only screen and (max-width:540px){
     .button-donasi-bawah{
         display: inline;
@@ -53,6 +74,11 @@ ol.timeline{
     .button-donasi-atas{
         display: none;
         visibility: hidden;
+    }
+
+    .modal-content{
+        width: 80%;
+        margin:0 auto;
     }
 }
 
