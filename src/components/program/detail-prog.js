@@ -4,6 +4,8 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import Sticky from 'wil-react-sticky'
 import "./detail-prog.css"
 import ReactMarkdown from 'react-markdown'
+import CopyToClipboard from 'react-copy-to-clipboard'
+import $ from 'jquery'
 
 
 function SkeletonDetProg() {
@@ -81,6 +83,8 @@ function DariTanggal(props) {
 }
 
 function ModalDonasi(props) {
+    const phone = '6282220825719'
+    const text = `Assalamu'alaikum Warohmatulloh Wabarokatuh\nDengan ini saya menyumbang donasi untuk ${props.judulprog} sebesar .... \nSemoga bermanfaat bagi yang membutuhkan terima kasih.`
     return (
         <>
             <Modal show={props.status} onHide={props.handleclose} backdrop="static" keyboard={false}>
@@ -90,7 +94,7 @@ function ModalDonasi(props) {
                 <Modal.Body className="pt-0">
                     <div className="row align-items-center justify-content-center mb-5">
                         <div className="col-md-11 col-lg-10">
-                            <h3 className="mb-5 mb-md-0 text-center font-family-serif">
+                            <h3 className="mb-5 mb-md-0 text-center">
                                 Donasi Anda bisa disalurkan melalui
                             </h3>
                         </div>
@@ -113,7 +117,7 @@ function ModalDonasi(props) {
                     </div>
                     <div className="row align-items-center justify-content-center mb-5">
                         <div className="col-md-10 col-lg-10">
-                            <img className="img-fluid w-100" src={`${process.env.PUBLIC_URL}/images/donasi/qrcode1.png`} alt="QR Code 1" />
+                            <img className="img-fluid w-100" src={`${process.env.PUBLIC_URL}/images/donasi/qrcode2.jpeg`} alt="QR Code 1" />
                         </div>
                     </div>
                     <div className="row align-items-center justify-content-center mb-3">
@@ -125,7 +129,7 @@ function ModalDonasi(props) {
                     </div>
                     <div className="row align-items-center justify-content-center mb-5">
                         <div className="col-md-11 col-lg-11">
-                            <button className="btn btn-success rounded-top-right rounded-bottom-left rounded-top-left rounded-bottom-right rounded-sm w-100 btn-via-wa">
+                            <button className="btn btn-success rounded-top-right rounded-bottom-left rounded-top-left rounded-bottom-right rounded-sm w-100 btn-via-wa" onClick={() => window.open(`https://api.whatsapp.com/send?phone=+${phone}*&text=%20${text}`, `_blank`)}>
                                 <i className="fa fa-whatsapp" /> Via WhatsApp
                             </button>
                         </div>
@@ -139,13 +143,63 @@ function ModalDonasi(props) {
                     </div>
                     <div className="row align-items-center justify-content-center mb-5">
                         <div className="col-md-11 col-lg-11">
-                            <button className="btn btn-light rounded-top-right rounded-bottom-left rounded-top-left rounded-bottom-right rounded-sm w-100 align-items-center justify-content-center btn-via-bb">
+                            <button className="btn btn-light rounded-top-right rounded-bottom-left rounded-top-left rounded-bottom-right rounded-sm w-100 align-items-center justify-content-center btn-via-bb" onClick={() => window.open(`${props.linkbb}`, '_blank')}>
                                 {/* <i className="fa fa-whatsapp" /> */}
                                 <img src={`${process.env.PUBLIC_URL}/images/donasi/berkahberjamaah.png`} className="img-fluid" height="35" width="35" />
                                 <h3 className="mb-0 mt-1 ml-2">
                                     <strong>Berkah Berjamaah</strong>
                                 </h3>
                             </button>
+                        </div>
+                    </div>
+                </Modal.Body>
+            </Modal>
+        </>
+    )
+}
+
+function ModalShare(props) {
+    return (
+        <>
+            <Modal show={props.status} onHide={props.handlecloseshare} keyboard={false} className="modal-bagikan">
+                <Modal.Header closeButton>
+                    <Modal.Title className="align-items-center justify-content-center">Bagikan</Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="pt-0">
+                    <div>
+                        <div className="icon-container1 d-flex">
+                            <div className="smd">
+                                <a href="">
+                                    <i className=" img-thumbnail fab fa-twitter fa fa-2x" style={{ color: '#4c6ef5', backgroundColor: 'aliceblue' }} />
+                                    <p>Twitter</p>
+                                </a>
+                            </div>
+                            <div className="smd">
+                                <a href="">
+                                    <i className="img-thumbnail fab fa-facebook fa fa-2x" style={{ color: '#3b5998', backgroundColor: '#eceff5' }} />
+                                    <p>Facebook</p>
+                                </a>
+                            </div>
+                            <div className="smd">
+                                <a href="">
+                                    <i className="img-thumbnail fab fa-2x fa-telegram fa" style={{ color: '#4c6ef5', backgroundColor: 'aliceblue' }} />
+                                    <p>Telegram</p>
+                                </a>
+                            </div>
+                            <div className="smd">
+                                <a href="">
+                                    <i className="img-thumbnail fab fa-whatsapp fa fa-2x" style={{ color: '#25D366', backgroundColor: '#cef5dc' }} />
+                                    <p>Whatsapp</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+                            <label style={{ fontWeight: 400 }}>Page Link <span className="message" /></label><br />
+                            <div className="row"> <input className="col-10 ur" type="url" placeholder={`http://206.189.94.211/program/${props.id}`} id="myInput" aria-describedby="inputGroup-sizing-default" style={{ height: 40 }} />
+                                <CopyToClipboard onCopy={props.handlecopied} text={`http://206.189.94.211/program/${props.id}`}>
+                                    <button className="cpy" onClick={props.messagecopied}><i className="far fa-clone fa" /></button>
+                                </CopyToClipboard>
+                            </div>
                         </div>
                     </div>
                 </Modal.Body>
@@ -163,20 +217,26 @@ function DetailProg(props) {
         arriconup.push(false)
     }
     const [isShowGbr, setIsShowGbr] = useState(arritemup)
-    const [isiconup, setIsiconup] = useState(arriconup)
     function filterLampiran(index) {
         var arrShowGbr = isShowGbr
         arrShowGbr[index] = !arrShowGbr[index]
         setIsShowGbr(arrShowGbr)
-
-        var arriconup = isiconup
-        arriconup[index] = !arriconup[index]
-        setIsiconup(arriconup)
     }
 
     const [showmodal, setShowmodal] = useState(false)
     const handleClose = () => setShowmodal(false);
     const handleShow = () => setShowmodal(true);
+
+    const [showshare, setShowshare] = useState(false)
+    const handleCloseShare = () => setShowshare(false);
+    const handleShowShare = () => setShowshare(true);
+
+    const [copyurl, setCopyurl] = useState("")
+    const [copied, setCopied] = useState(false)
+    const handlecopied = () => setCopied(true)
+    const messagecopied = () => {
+        $(".message").text("link copied");
+    }
 
     const persenTerkumpul = (props.itemprog.terkumpul / props.itemprog.total) * 100
     var idrterkumpul = parseInt(props.itemprog.terkumpul).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
@@ -195,7 +255,7 @@ function DetailProg(props) {
                     <div>
                         <button className="btn btn-primary" type="button" aria-haspopup="true" aria-expanded="false" onClick={() => filterLampiran(idx)}>
                             Lampirkan
-                            {isiconup[idx] ? <i class="fe fe-chevron-up"></i>
+                            {isShowGbr[idx] ? <i class="fe fe-chevron-up"></i>
                                 :
                                 <i class="fe fe-chevron-down"></i>
                             }
@@ -220,7 +280,6 @@ function DetailProg(props) {
     // const markup = { __html: props.kontenfix }
     const myImg = (props) => {
         return (
-            // <img src={props.src} className="img-fluid"/>
             <a href={props.src} className="d-block mb-3 mb-md-0" data-fancybox>
                 <img src={props.src} className="img-fluid" />
             </a>
@@ -277,13 +336,16 @@ function DetailProg(props) {
                                             }
                                         </div>
                                         <div className="row button-donasi-atas">
-                                            <div className="col-12 col-sm-7 col-md-7">
-                                                <Button variant="success" style={{ padding: `0.75rem 1.00rem` }} className="btn-donasi-sekarang" onClick={handleShow}>DONASI SEKARANG</Button>
+                                            <div className="col-12 col-sm-10 col-md-10">
+                                                <Button variant="success" className="btn-donasi-sekarang w-100" onClick={handleShow}>DONASI SEKARANG</Button>
                                             </div>
-                                            <div className="col-12 col-sm-5 col-md-5 btn-bagika-det-prog">
-                                                <Button variant="primary" style={{ padding: `0.75rem 1.00rem` }} className="btn-bagikan">BAGIKAN</Button>
+                                            <div className="col-12 col-sm-2 col-md-2 btn-bagika-det-prog pl-0">
+                                                <Button variant="primary" className="btn-bagikan" onClick={handleShowShare}>
+                                                    <i className="fa fa-share-alt" />
+                                                </Button>
                                             </div>
-                                            <ModalDonasi status={showmodal} handleclose={handleClose}></ModalDonasi>
+                                            <ModalDonasi status={showmodal} handleclose={handleClose} linkbb={props.itemprog.linkbb} judulprog={props.itemprog.judul}></ModalDonasi>
+                                            <ModalShare status={showshare} handlecloseshare={handleCloseShare} id={props.itemprog.id} handlecopied={handlecopied} messagecopied={messagecopied}></ModalShare>
                                         </div>
                                     </div>
                                 </Sticky>
@@ -356,11 +418,11 @@ function DetailProg(props) {
                 </div>
                 {/* <Sticky containerSelectorFocus="#wadahSticky" offsetTop={70} stickyEnableRange={[100, 540]}> */}
                 <div className="row no-gutters button-donasi-bawah d-flex bg-white" style={{ position: `fixed`, bottom: `0rem`, width: `100%`, height: `4rem`, zIndex: `9999` }}>
-                    <div className="col-6 col-sm-6 col-md-6 my-2" style={{ textAlign: `center` }}>
-                        <Button className="btn-sm w-80 h-100" variant="success">DONASI SEKARANG</Button>
+                    <div className="col-9 col-sm-6 col-md-6 my-2 justify-content-center">
+                        <Button className="btn-sm h-100 w-100" variant="success" onClick={handleShow} className="btn-donasi-kecil-sekarang">DONASI SEKARANG</Button>
                     </div>
-                    <div className="col-6 col-sm-6 col-md-6 btn-bagika-det-prog my-2" style={{ textAlign: `center` }}>
-                        <Button className="btn-sm w-80 h-100" variant="primary">BAGIKAN</Button>
+                    <div className="col-3 col-sm-6 col-md-6 btn-bagika-det-prog my-2">
+                        <Button className="btn-sm h-100" variant="primary" onClick={handleShowShare} className="btn-bagikan"> <i className="fa fa-share-alt" /></Button>
                     </div>
                 </div>
                 {/* </Sticky> */}
@@ -371,79 +433,4 @@ function DetailProg(props) {
 
 export default DetailProg
 
-
-{/* <div className="row align-items-center justify-content-center mb-5">
-                    <Col>
-                        <Breadcrumb>
-                            <Breadcrumb.Item href="/program" style={{ textDecoration: `none`, color: `#E92998` }}>Program Kepedulian</Breadcrumb.Item>
-                            <Breadcrumb.Item active>{props.itemprog.judul}</Breadcrumb.Item>
-                        </Breadcrumb>
-                    </Col>
-                </div>
-                <div className="row mb-5 row-prog">
-                    <div className="col-sm-12 col-md-12 col-lg-7 px-4">
-                        {props.loadingdetprog ? <SkeletonImgDetProg></SkeletonImgDetProg>
-                            :
-                            <div className="mb-5">
-                                {
-                                    props.itemprog.gambar !== null && <img className="img-fluid w-100" src={props.itemprog.gambar}></img>
-                                }
-                            </div>
-                        }
-                        <div className="row align-items-center mb-5">
-                            <div className="col-12 col-md-12 col-lg-12">
-                                <div>
-                                    <nav>
-                                        <div className="nav nav-tabs" id="nav-tab" role="tablist">
-                                            <a className="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Cerita</a>
-                                            <a className="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Update</a>
-                                        </div>
-                                    </nav>
-                                    <div className="tab-content" id="nav-tabContent">
-                                        <div className="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                            <p className="text-muted text-justify">
-                                                {props.loadingdetprog ? <SkeletonCerita></SkeletonCerita>
-                                                    :
-                                                    props.itemprog.cerita
-                                                }
-                                            </p>
-                                        </div>
-                                        <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                            <ol className="timeline timeline-success m-5">
-                                                {props.loadingdetup ? <SKeletonUpdate></SKeletonUpdate>
-                                                    :
-                                                    listup
-                                                }
-                                            </ol>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {props.loadingdetprog ? <SkeletonDetProg></SkeletonDetProg>
-                    :
-                        <div className="col-12 col-sm-12 col-md-12 col-lg-5 sticky-prog">
-                            <div className="kop rounded-bottom-right rounded-top-left p-2 lift m-3">
-                                <p className="mb-1 text-info"><small>{props.itemprog.namaKateg}</small></p>
-                                <h2>{props.itemprog.judul}</h2>
-                                <p style={{ fontSize: `14px` }} className="mb-1">
-                                    {props.itemprog.des}
-                                </p>
-                                <span style={{ fontSize: `0.8rem` }}>Rp.{props.itemprog.terkumpul !== null && idrterkumpul} dari Rp.<strong>{props.itemprog.total !== null && idrtotal}</strong></span>
-                                <ProgressBar now={persenTerkumpul} label={`${persenTerkumpul} %`} />
-                                {props.itemprog.durasi !== null && <SisaHari tanggal={props.itemprog.tanggal} durasi={props.itemprog.durasi} />
-                                }
-                                <br />
-                                <div className="row mt-3">
-                                    <div className="col-12 col-sm-7 col-md-7 my-2 lift" style={{ textAlign: `center` }}>
-                                        <Button variant="success" style={{ padding: `0.75rem 1.00rem` }}>DONASI SEKARANG</Button>
-                                    </div>
-                                    <div className="col-12 col-sm-5 col-md-5 lift btn-bagika-det-prog my-2" style={{ textAlign: `center` }}>
-                                        <Button variant="primary" style={{ padding: `0.75rem 1.00rem` }}>BAGIKAN</Button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                </div> */}
+// https://api.whatsapp.com/send?phone=6282220825719&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Varela%202.

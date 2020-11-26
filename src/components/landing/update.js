@@ -82,7 +82,7 @@ function Update() {
                 idProg: doc.program.id,
                 tanggalUp: doc.tanggalpelaksanaanUpdate,
                 deskripsiUp: doc.deskripsiUpdate,
-                gambarUp: `http://167.99.72.148${doc.gambarUpdate.url}`
+                gambarUp: `${doc.gambarUpdate.url}`
             }
             itemUpdate.push(item1)
         }

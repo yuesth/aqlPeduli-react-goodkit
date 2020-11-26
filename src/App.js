@@ -47,7 +47,7 @@ function App() {
           </Switch>
         </ScrollToTop>
       </BrowserRouter>
-      <a href="https://api.whatsapp.com/send?phone=6282220825719&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Varela%202." className="float" target="_blank" style={{bottom:`5rem`}}>
+      <a href="https://api.whatsapp.com/send?phone=6282220825719&text=" className="float float-wapp" target="_blank">
         <i className="fa fa-whatsapp my-float"/>
       </a>
 
@@ -56,3 +56,4 @@ function App() {
 }
 
 export default App;
+// Assalamu'alaikum Warohmatulloh Wabarokatuh. Kami dari AQL Peduli, ada yang bisa kami bantu?

@@ -141,7 +141,7 @@ function BeritaList() {
                 judul: `${data.judulBerita}`,
                 isi: `${data.isiBerita}`,
                 tag: `${data.tagBerita}`,
-                gambar: `http://167.99.72.148${data.gambarBerita.url}`,
+                gambar: `${data.gambarBerita.url}`,
                 kategori: `${data.kategoriberita.namaKategori}`
             }
             itemBerita.push(item1)

@@ -63,7 +63,7 @@ function DetailBerita(props) {
                 judul: `${parsedJson.judulBerita}`,
                 isi: `${parsedJson.isiBerita}`,
                 tanggal: `${parsedJson.tanggalBerita}`,
-                gambar: `http://167.99.72.148${parsedJson.gambarBerita.url}`,
+                gambar: `${parsedJson.gambarBerita.url}`,
             }
         )).then(
             items => {

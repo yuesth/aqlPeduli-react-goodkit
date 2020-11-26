@@ -2,7 +2,52 @@ import React, { useState, useEffect } from "react"
 import NavbarGK from "../components/navbar"
 import FooterGK from "../components/footer"
 import { Link } from "react-router-dom"
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 
+function SkeletonKhazanah() {
+    return (
+        <SkeletonTheme color="#e3e3e3">
+            <div className="row">
+                <div className="col-3">
+                    <div className="card mx-2 p-2 bg-transparent" style={{ width: `258px`, height: `262px` }}>
+                        <Skeleton reactangle={true} height={78} width={258} />
+                        <br />
+                        <h3><Skeleton /></h3>
+                        <br />
+                        <Skeleton count={2} />
+                    </div>
+                </div>
+                <div className="col-3">
+                    <div className="card mx-2 p-2 bg-transparent" style={{ width: `258px`, height: `262px` }}>
+                        <Skeleton reactangle={true} height={78} width={258} />
+                        <br />
+                        <h3><Skeleton /></h3>
+                        <br />
+                        <Skeleton count={2} />
+                    </div>
+                </div>
+                <div className="col-3">
+                    <div className="card mx-2 p-2 bg-transparent" style={{ width: `258px`, height: `262px` }}>
+                        <Skeleton reactangle={true} height={78} width={258} />
+                        <br />
+                        <h3><Skeleton /></h3>
+                        <br />
+                        <Skeleton count={2} />
+                    </div>
+                </div>
+                <div className="col-3">
+                    <div className="card mx-2 p-2 bg-transparent" style={{ width: `258px`, height: `262px` }}>
+                        <Skeleton reactangle={true} height={78} width={258} />
+                        <br />
+                        <h3><Skeleton /></h3>
+                        <br />
+                        <Skeleton count={2} />
+                    </div>
+                </div>
+            </div>
+        </SkeletonTheme>
+    )
+}
 
 function Khazanah() {
     function DariTanggal(props) {
@@ -31,7 +76,7 @@ function Khazanah() {
                 tanggal: `${data.tanggalKhazanah}`,
                 judul: `${data.judulKhazanah}`,
                 isi: `${data.isiKhazanah}`,
-                gambar: `http://167.99.72.148${data.gambarKhazanah.url}`,
+                gambar: `${data.gambarKhazanah.url}`,
                 urlvideo: `${data.urlvideoKhazanah}`
             }
             itemKhazanah.push(item1)
@@ -58,10 +103,10 @@ function Khazanah() {
                             <h2 className="display-6">
                                 {doc.judul}
                             </h2>
-                            <span className="small text-muted mb-7" style={{fontSize:`12px`}}>
+                            <span className="small text-muted mb-7" style={{ fontSize: `12px` }}>
                                 <DariTanggal tanggal={doc.tanggal}></DariTanggal>
                             </span>
-                            <br/>
+                            <br />
                             <p className="font-size-sm text-gray-600 mb-0">
                                 {doc.pemateri}
                             </p>
@@ -86,7 +131,10 @@ function Khazanah() {
                     </div>
                     <div className="row mb-9">
                         {/* <div className="col-6 col-md-4 col-lg-3"> */}
-                        {itemkhazanahlayout}
+                        {isLoadingkhazanah? <SkeletonKhazanah></SkeletonKhazanah>
+                        :
+                        itemkhazanahlayout
+                        }
                         {/* {itemkhazanahlayout}
                         {itemkhazanahlayout}
                         {itemkhazanahlayout}

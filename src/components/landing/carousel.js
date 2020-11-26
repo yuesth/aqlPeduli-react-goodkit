@@ -7,7 +7,11 @@ import { Link } from "react-router-dom"
 function SkeletonCarouselLanding() {
     return (
         <SkeletonTheme color="#e3e3e3">
-            <Skeleton reactangle={true} height={600} width={1096} />
+            <div className="row justify-content-center">
+                <div className="col-11 justify-content-center">
+                    <Skeleton reactangle={true} height={600} width={1096} />
+                </div>
+            </div>
         </SkeletonTheme>
     )
 }
@@ -29,7 +33,7 @@ function CarouselLanding() {
         fetch(urlListProgramCar).then(res => res.json()).then(parsedJson => parsedJson.map(data => (
             {
                 id: `${data.id}`,
-                gambar: `http://167.99.72.148${data.banner.url}`,
+                gambar: `${data.banner.url}`,
                 idProg: `${data.program.id}`
             }
         ))).then(
@@ -45,7 +49,7 @@ function CarouselLanding() {
                         imagesLoaded: true,
                         pageDots: false,
                         wrapAround: true,
-                        autoPlay:true,
+                        autoPlay: true,
                     })
                 )
             })

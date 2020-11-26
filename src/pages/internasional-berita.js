@@ -122,8 +122,8 @@ function BeritaListInter(props) {
                     <div className="col-12 col-md-12 mb-5 mt-5">
                         <div className={`card rounded-top-left rounded-bottom-right ${namaClass}`}>
                             <div className="row">
-                                <div className="col-6 col-md-6 rounded-top-left h-50">
-                                    <img className="img-fluid h-50 w-100" src={`${doc.gambar}`} alt="..." />
+                                <div className="col-6 col-md-6 rounded-top-left " style={{maxWidth:`20rem`}}>
+                                    <img className="img-fluid w-100" src={`${doc.gambar}`} alt="..." style={{maxHeight:`15rem`, maxWidth:`20rem`}} />
                                 </div>
                                 <div className="col-6 col-md-6">
                                     <div className="card-body">
@@ -176,7 +176,7 @@ function BeritaInternasional() {
                 judul: `${data.judulBerita}`,
                 isi: `${data.isiBerita}`,
                 tag: `${data.tagBerita}`,
-                gambar: `http://167.99.72.148${data.gambarBerita.url}`,
+                gambar: `${data.gambarBerita.url}`,
                 kategori: `${data.kategoriberita.namaKategori}`
             }
             itemBerita.push(item1)

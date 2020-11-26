@@ -70,6 +70,50 @@ function BeritaHeaderNas(props) {
             // }
         }
     })
+    const listberitaheaderlain1 = props.data.map((doc, idx) => {
+        if (idx > 0 && idx < 3) {
+            if (doc.kategori === "Berita Nasional") {
+                return (
+                    <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 px-1 h-100">
+                        <Link to={`/berita/${doc.id}`}>
+                            <div className="berita-headerlain-img h-100">
+                                <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
+                                {/* <div className="shadow-header"></div> */}
+                                <div className="carousel-caption text-left capt-beritalain-header">
+                                    <span className="badge badge-berlin badge-danger">{doc.kategori}</span>
+                                    <h6 style={{ color: `white` }} className="judul-berita-lain">
+                                        {doc.judul}
+                                    </h6>
+                                </div>
+                            </div>
+                        </Link>
+                    </div>
+                )
+            }
+        }
+    })
+    const listberitaheaderlain2 = props.data.map((doc, idx) => {
+        if (idx > 2 && idx < 5) {
+            if (doc.kategori === "Berita Nasional") {
+                return (
+                    <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 px-1 h-100">
+                        <Link to={`/berita/${doc.id}`}>
+                            <div className="berita-headerlain-img h-100">
+                                <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
+                                {/* <div className="shadow-header"></div> */}
+                                <div className="carousel-caption text-left capt-beritalain-header">
+                                    <span className="badge badge-berlin badge-danger">{doc.kategori}</span>
+                                    <h6 style={{ color: `white` }} className="judul-berita-lain">
+                                        {doc.judul}
+                                    </h6>
+                                </div>
+                            </div>
+                        </Link>
+                    </div>
+                )
+            }
+        }
+    })
     return (
         <>
             <div className="row align-items-center justify-content-center mb-7">
@@ -92,11 +136,17 @@ function BeritaHeaderNas(props) {
             {props.isloadingberheadernas ? <SkeletonBeritaHeader></SkeletonBeritaHeader>
                 :
                 <div className="row mt-6 mb-5">
-                    <div className="col-12 col-sm-12 col-md-6 col-lg-6">
+                    <div className="col-12 col-sm-12 col-md-6 col-lg-6" style={{maxHeight:`360px`}}>
                         {listberitaheadernas}
                     </div>
-                    <div className="col-12 col-sm-12 col-md-12 col-lg-6 d-flex" style={{ flexFlow: `row wrap` }}>
-                        {listberitaheaderlainnas}
+                    <div className="col-12 col-sm-12 col-md-12 col-lg-6" style={{maxHeight:`360px`}}>
+                        {/* {listberitaheaderlainnas} */}
+                        <div className="row h-50">
+                            {listberitaheaderlain1}
+                        </div>
+                        <div className="row h-50">
+                            {listberitaheaderlain2}
+                        </div>
                     </div>
                 </div>
             }
@@ -122,8 +172,8 @@ function BeritaListNas(props) {
                     <div className="col-12 col-md-12 mb-5 mt-5">
                         <div className={`card rounded-top-left rounded-bottom-right ${namaClass}`}>
                             <div className="row">
-                                <div className="col-6 col-md-6 rounded-top-left py-auto">
-                                    <img className="img-fluid h-70 w-100" src={`${doc.gambar}`} alt="..." />
+                                <div className="col-6 col-md-6 rounded-top-left w-auto" style={{maxWidth:`20rem`}}>
+                                    <img className="img-fluid w-100" src={`${doc.gambar}`} alt="..." style={{maxHeight:`15rem`, maxWidth:`20rem`}}/>
                                 </div>
                                 <div className="col-6 col-md-6">
                                     <div className="card-body p-5">
@@ -176,7 +226,7 @@ function BeritaNasional() {
                 judul: `${data.judulBerita}`,
                 isi: `${data.isiBerita}`,
                 tag: `${data.tagBerita}`,
-                gambar: `http://167.99.72.148${data.gambarBerita.url}`,
+                gambar: `${data.gambarBerita.url}`,
                 kategori: `${data.kategoriberita.namaKategori}`
             }
             itemBerita.push(item1)

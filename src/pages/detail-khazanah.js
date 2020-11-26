@@ -63,7 +63,7 @@ function DetailKhazanah(props) {
                 tanggal: `${parsedJson.tanggalKhazanah}`,
                 judul: `${parsedJson.judulKhazanah}`,
                 isi: `${parsedJson.isiKhazanah}`,
-                gambar: `http://167.99.72.148${parsedJson.gambarKhazanah.url}`,
+                gambar: `${parsedJson.gambarKhazanah.url}`,
                 urlvideo: `${parsedJson.urlvideoKhazanah}`
             }
         )).then(

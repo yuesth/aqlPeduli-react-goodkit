@@ -29,7 +29,8 @@ function DetailProgram(props) {
                 terkumpul: `${parsedJson.totalterkumpulProgram}`,
                 durasi: `${parsedJson.durasiProgram}`,
                 des: `${parsedJson.deskripsiProgram}`,
-                gambar: `http://167.99.72.148${parsedJson.gambarProgram.url}`,
+                linkbb: `${parsedJson.linkBerkahberjamaah}`,
+                gambar: `${parsedJson.gambarProgram.url}`,
                 cerita: `${parsedJson.cerita}`,
                 namaKateg: `${parsedJson.kategori.namaKategori}`,
                 updateProg: `${parsedJson.update_programs}`
@@ -41,14 +42,6 @@ function DetailProgram(props) {
                 return(items.cerita)
             }
         ).then((ret)=>{
-            // var str2 = ret.match(/http:\/\/167.99.72.148\/uploads\/([A-z])\w+\.(png|jpg|jpeg)/g)
-            // if(str2 !== null){
-            //     var res = ret.replace(/!\[[A-z]\w+\.(png|jpg|jpeg)\]\(http:\/\/167.99.72.148\/uploads\/([A-z])\w+\.(png|jpg|jpeg)\)/g, `<img className='img-fluid' src="${str2[0]}"></img>`)
-            //     setKontenfix(res)
-            // }
-            // else{
-            //     setKontenfix(ret)
-            // }
             var str2 = ret.match(/http:\/\/167.99.72.148\/uploads\/([A-z])\w+\.(png|jpg|jpeg)/g)
             if(str2 !== null){
                 var res = ret.replace(/!\[[A-z]\w+\.(png|jpg|jpeg)\]\(http:\/\/167.99.72.148\/uploads\/([A-z])\w+\.(png|jpg|jpeg)\)/g, `<img className="img-fluid w-50" src="${str2[0]}"></img>`)
@@ -65,7 +58,7 @@ function DetailProgram(props) {
                     namaUp: `${data.namaUpdate}`,
                     desUp: `${data.deskripsiUpdate}`,
                     tanggalUp: `${data.tanggalpelaksanaanUpdate}`,
-                    gambarUp: `http://167.99.72.148${data.gambarUpdate.url}`,
+                    gambarUp: `${data.gambarUpdate.url}`,
                     idProg: `${data.program.id}`
                 })
             }

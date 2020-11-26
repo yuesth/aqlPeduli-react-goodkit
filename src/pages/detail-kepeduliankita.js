@@ -64,7 +64,7 @@ function DetailKK(props) {
                 judul: `${parsedJson.judulKepedulianKita}`,
                 konten: `${parsedJson.kontenKepedulianKita}`,
                 tanggal: `${parsedJson.tanggalKepedulianKita}`,
-                gambar: `http://167.99.72.148${parsedJson.gambarKepedulianKita.url}`,
+                gambar: `${parsedJson.gambarKepedulianKita.url}`,
             }
         )).then(
             items => {

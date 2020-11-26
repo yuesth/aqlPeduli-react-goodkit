@@ -47,7 +47,7 @@ function KK() {
             {
                 idKk: `${data.id}`,
                 judulKk: `${data.judulKepedulianKita}`,
-                gambarKk: `http://167.99.72.148${data.gambarKepedulianKita.url}`,
+                gambarKk: `${data.gambarKepedulianKita.url}`,
                 tanggalKk: `${data.tanggalKepedulianKita}`,
                 kontenKk: `${data.kontenKepedulianKita}`
             }

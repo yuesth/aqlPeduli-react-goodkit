@@ -45,7 +45,7 @@ function BeritaHeader() {
                 judul: `${data.judulBerita}`,
                 isi: `${data.isiBerita}`,
                 tag: `${data.tagBerita}`,
-                gambar: `http://167.99.72.148${data.gambarBerita.url}`,
+                gambar: `${data.gambarBerita.url}`,
                 kategori: `${data.kategoriberita.namaKategori}`
             }
             itemBerita.push(item1)
@@ -70,7 +70,7 @@ function BeritaHeader() {
                 return (
                     <Link to={`/berita/${doc.id}`}>
                         <div className="berita-header-img">
-                            <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
+                            <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." style={{ maxHeight:`360px` }}/>
                             {/* <div className="shadow-header"></div> */}
                             <div className="carousel-caption text-left capt-berita-header">
                                 <span className="badge badge-berlin badge-danger">{doc.kategori}</span>
@@ -86,7 +86,7 @@ function BeritaHeader() {
                 return (
                     <Link to={`/berita/${doc.id}`}>
                         <div className="berita-header-img">
-                            <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
+                            <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." style={{ maxHeight:`360px` }}/>
                             {/* <div className="shadow-header"></div> */}
                             <div className="carousel-caption text-left capt-berita-header">
                                 <span className="badge badge-berlin badge-primary">{doc.kategori}</span>
@@ -102,7 +102,7 @@ function BeritaHeader() {
                 return (
                     <Link to={`/berita/${doc.id}`}>
                         <div className="berita-header-img">
-                            <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
+                            <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." style={{ maxHeight:`360px` }}/>
                             {/* <div className="shadow-header"></div> */}
                             <div className="carousel-caption text-left capt-berita-header">
                                 <span className="badge badge-berlin badge-secondary">{doc.kategori}</span>
@@ -134,10 +134,10 @@ function BeritaHeader() {
         }
     })
     const listberitaheaderlain1 = sortedItemBerita.map((doc, idx) => {
-        if (idx > 0 && idx < 6) {
+        if (idx > 0 && idx < 4) {
             if (doc.kategori === "Berita Nasional") {
                 return (
-                    <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 px-1">
+                    <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 px-1 h-100">
                         <Link to={`/berita/${doc.id}`}>
                             <div className="berita-headerlain-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
@@ -155,7 +155,7 @@ function BeritaHeader() {
             }
             else if (doc.kategori === "Berita Internasional") {
                 return (
-                    <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 px-1">
+                    <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 px-1 h-100">
                         <Link to={`/berita/${doc.id}`}>
                             <div className="berita-headerlain-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
@@ -175,19 +175,42 @@ function BeritaHeader() {
     })
     const listberitaheaderlain2 = sortedItemBerita.map((doc, idx) => {
         if (idx > 2 && idx < 5) {
-            return (
-                <Link to={`/berita/${doc.id}`}>
-                    <div className="berita-headerlain-img mt-5" style={{ height: `10rem` }}>
-                        <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
-                        <div className="carousel-caption text-left capt-beritalain-header">
-                            <span className="badge badge-berlin badge-secondary">{doc.kategori}</span>
-                            <h6 style={{ color: `black` }}>
-                                {doc.judul}
-                            </h6>
-                        </div>
+            if (doc.kategori === "Berita Nasional") {
+                return (
+                    <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 px-1 h-100">
+                        <Link to={`/berita/${doc.id}`}>
+                            <div className="berita-headerlain-img h-100">
+                                <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
+                                {/* <div className="shadow-header"></div> */}
+                                <div className="carousel-caption text-left capt-beritalain-header">
+                                    <span className="badge badge-berlin badge-danger">{doc.kategori}</span>
+                                    <h6 style={{ color: `white` }} className="judul-berita-lain">
+                                        {doc.judul}
+                                    </h6>
+                                </div>
+                            </div>
+                        </Link>
                     </div>
-                </Link>
-            )
+                )
+            }
+            else if (doc.kategori === "Berita Internasional") {
+                return (
+                    <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 px-1 h-100">
+                        <Link to={`/berita/${doc.id}`}>
+                            <div className="berita-headerlain-img h-100">
+                                <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
+                                {/* <div className="shadow-header"></div> */}
+                                <div className="carousel-caption text-left capt-beritalain-header">
+                                    <span className="badge badge-berlin badge-primary">{doc.kategori}</span>
+                                    <h6 style={{ color: `white` }} className="judul-berita-lain">
+                                        {doc.judul}
+                                    </h6>
+                                </div>
+                            </div>
+                        </Link>
+                    </div>
+                )
+            }
         }
     })
     return (
@@ -219,8 +242,14 @@ function BeritaHeader() {
                     <div className="col-12 col-sm-12 col-md-6 col-lg-6">
                         {listberitaheader}
                     </div>
-                    <div className="col-12 col-sm-12 col-md-12 col-lg-6 d-flex no-gutters" style={{ flexFlow: `row wrap` }}>
-                        {listberitaheaderlain1}
+                    <div className="col-12 col-sm-12 col-md-12 col-lg-6" style={{ maxHeight:`360px` }}>
+                        {/* {listberitaheaderlain1} */}
+                        <div className="row h-50">
+                            {listberitaheaderlain1}
+                        </div>
+                        <div className="row h-50">
+                            {listberitaheaderlain2}
+                        </div>
                     </div>
                     {/* <div className="col-6 col-sm-6 col-md-3 col-lg-3">
                         {listberitaheaderlain2}

@@ -114,7 +114,7 @@ function ProgramLayout(props) {
                 id: `${data.id}`,
                 judul: `${data.judulProgram}`,
                 tanggal: `${data.created_at}`,
-                gambar: `http://167.99.72.148${data.gambarProgram.url}`,
+                gambar: `${data.gambarProgram.url}`,
                 total: `${data.totaldanaProgram}`,
                 terkumpul: `${data.totalterkumpulProgram}`,
                 durasi: `${data.durasiProgram}`,
