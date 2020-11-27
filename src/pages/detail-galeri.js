@@ -9,6 +9,37 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import ReactMarkdown from 'react-markdown'
 import "flickity-as-nav-for"
 
+function SkeletonDetailGaleri() {
+    return (
+        <SkeletonTheme color="#e3e3e3">
+            <div className="container-lg">
+                <div className="row align-items-center justify-content-center">
+                    <div className="col-md-8" style={{ textAlign: `center` }}>
+                        <Skeleton reactangle={true} height={50} width={290} />
+                    </div>
+                </div>
+                <div className="row align-items-center justify-content-center mb-5">
+                    <Col md={10} lg={9} style={{ textAlign: `center` }}>
+                        <Skeleton reactangle={true} height={22} width={360} />
+                    </Col>
+                </div>
+                <div className="row align-items-center justify-content-center">
+                    <Col md={10} lg={9} style={{ textAlign: `center` }}>
+                        <p>
+                            <Skeleton count={8}></Skeleton>
+                        </p>
+                    </Col>
+                </div>
+                <div className="row align-items-center justify-content-center">
+                    <Col md={10} lg={9} style={{ textAlign: `center` }}>
+                        <Skeleton reactangle={true} height={350} width={600} />
+                    </Col>
+                </div>
+            </div>
+        </SkeletonTheme>
+    )
+}
+
 function DetailGaleri(props) {
     const id = props.match.params.id
     const urlDetailgaleri = `http://167.99.72.148/informasis/${id}`
@@ -20,7 +51,9 @@ function DetailGaleri(props) {
     useEffect(() => {
         fetch(urlDetailgaleri).then(res => res.json()).then(parsedJson => {
             setDetailgaleri(parsedJson)
-            setIsLoadingdetgaleri(false)
+            setTimeout(()=>{
+                setIsLoadingdetgaleri(false)
+            },3000)
             return (parsedJson.gambarGaleri)
         })
             .then((ret) =>
@@ -47,7 +80,8 @@ function DetailGaleri(props) {
                         asNavFor: '.galeri-main',
                         contain: true,
                         pageDots: false,
-                        prevNextButtons:false,
+                        prevNextButtons: false,
+                        wrapAround:true,
                     })
                 )
             })
@@ -93,40 +127,43 @@ function DetailGaleri(props) {
         <>
             <NavbarGK></NavbarGK>
             <section className="pt-10 pt-md-12">
-                <div className="container-xl">
-                    <div className="row align-items-center justify-content-center mb-7">
-                        <div className="col-md-8" style={{ textAlign: `center` }}>
-                            <h2 className="display-4 mb-4 mb-md-0">
-                                {detailgaleri.judulGaleri} <br />
-                            </h2>
-                        </div>
-                    </div>
-                    <div className="row align-items-center justify-content-center mb-2">
-                        <Col md={10} lg={9} className="px-auto">
-                            <Breadcrumb>
-                                <Breadcrumb.Item href="/informasi" style={{ textDecoration: `none`, color: `#E92998` }}>Galeri</Breadcrumb.Item>
-                                <Breadcrumb.Item active>{detailgaleri.judulGaleri}</Breadcrumb.Item>
-                            </Breadcrumb>
-                        </Col>
-                    </div>
-                    <div className="row align-items-center justify-content-center mb-7 no-gutters" style={{ textAlign: `center` }}>
-                        <div className="col-md-10 col-lg-9">
-                            {/* <p className="text-justify" style={{whiteSpace:`pre-wrap`}}>{detailkk.konten}</p> */}
-                            {/* <p className="text-justify" style={{whiteSpace:`pre-wrap`}} dangerouslySetInnerHTML={markup}></p> */}
-                            <ReactMarkdown children={detailgaleri.kontenGaleri} renderers={renderMyImg}></ReactMarkdown>
-                        </div>
-                    </div>
-                    <div className="row align-items-center justify-content-center mb-7">
-                        <div className="col-md-10 col-lg-9">
-                            <div className="flickity-buttons-overlap flickity-items-fade shadow-lg galeri-main mb-5">
-                                {galeribesar}
-                            </div>
-                            <div className="flickity-buttons-overlap flickity-items-fade shadow-lg galeri-nav">
-                                {galerikecil}
+                {isLoadingdetgaleri ? <SkeletonDetailGaleri></SkeletonDetailGaleri>
+                    :
+                    <div className="container-xl">
+                        <div className="row align-items-center justify-content-center mb-7">
+                            <div className="col-md-8" style={{ textAlign: `center` }}>
+                                <h2 className="display-4 mb-4 mb-md-0">
+                                    {detailgaleri.judulGaleri} <br />
+                                </h2>
                             </div>
                         </div>
+                        <div className="row align-items-center justify-content-center mb-2">
+                            <Col md={10} lg={9} className="px-auto">
+                                <Breadcrumb>
+                                    <Breadcrumb.Item href="/informasi" style={{ textDecoration: `none`, color: `#E92998` }}>Galeri</Breadcrumb.Item>
+                                    <Breadcrumb.Item active>{detailgaleri.judulGaleri}</Breadcrumb.Item>
+                                </Breadcrumb>
+                            </Col>
+                        </div>
+                        <div className="row align-items-center justify-content-center mb-7 no-gutters" style={{ textAlign: `center` }}>
+                            <div className="col-md-10 col-lg-9">
+                                {/* <p className="text-justify" style={{whiteSpace:`pre-wrap`}}>{detailkk.konten}</p> */}
+                                {/* <p className="text-justify" style={{whiteSpace:`pre-wrap`}} dangerouslySetInnerHTML={markup}></p> */}
+                                <ReactMarkdown children={detailgaleri.kontenGaleri} renderers={renderMyImg}></ReactMarkdown>
+                            </div>
+                        </div>
+                        <div className="row align-items-center justify-content-center mb-7">
+                            <div className="col-md-10 col-lg-9">
+                                <div className="flickity-buttons-overlap flickity-items-fade shadow-lg galeri-main mb-5">
+                                    {galeribesar}
+                                </div>
+                                <div className="flickity-buttons-overlap flickity-items-fade shadow-lg galeri-nav">
+                                    {galerikecil}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                }
             </section>
             <FooterGK></FooterGK>
         </>

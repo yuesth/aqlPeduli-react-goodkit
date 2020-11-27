@@ -145,7 +145,7 @@ function KepedulianLanding() {
         { width: 1200, itemsToShow: 5 }
     ];
     return (
-        < section className="mt-7 mt-md-7 pt-7 pt-md-7 mb-7 mb-md-7 pb-7 pb-md-7 bg-light" >
+        < section className="mt-7 mt-md-7 pt-7 pt-md-7 mb-7 mb-md-7 pb-7 pb-md-7" >
             <div className="container-xl">
                 <div className="row align-items-center justify-content-center mb-7">
                     <div className="col-md-6" style={{ textAlign: `center` }}>

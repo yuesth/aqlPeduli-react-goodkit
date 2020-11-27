@@ -6,6 +6,7 @@ import Flickity from "flickity"
 import "./kk.css"
 import ButtonBacaLagi from "../button-bacalagi"
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
+import "flickity-as-nav-for"
 
 function Skeleton2Layout() {
     return (
@@ -34,10 +35,10 @@ function KK() {
         var dariTanggal = new Date(props.tanggal)
         var string = dariTanggal.getDate().toString() + " " + dariTanggal.toLocaleString('default', { month: 'long' }) + " " + dariTanggal.getFullYear()
         return (
-            <p className="mb-1"><small>{string}</small></p>
+            <>{string}</>
         )
     }
-    const urlKepeduliankita = "http://167.99.72.148/kepeduliankitas"
+    const urlKepeduliankita = "http://167.99.72.148/kepeduliankitas?_limit=3"
     const [kk, setKk] = useState([])
     const [flickkk1, setFlickkk1] = useState([])
     const [flickkk2, setFlickkk2] = useState([])
@@ -54,33 +55,28 @@ function KK() {
         ))).then(
             items => {
                 setKk(items)
-                setTimeout(() => {
-                    setIsLoading(false)
-                }, 5000)
+                setIsLoading(false)
             }
-        )
+        ).then(() => {
+            setFlickkk1(
+                new Flickity('.kk-main', {
+                    imagesLoaded: true,
+                    pageDots: false,
+                    wrapAround: true
+                })
+            )
+            setFlickkk2(
+                new Flickity('.kk-nav', {
+                    fade: true,
+                    imagesLoaded: true,
+                    pageDots: false,
+                    prevNextButtons: false,
+                    asNavFor: '.kk-main',
+                    draggable: false
+                })
+            )
+        })
     })
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         setFlickkk1(
-    //             new Flickity('.carousel-nav', {
-    //                 fade: true,
-    //                 imagesLoaded: true,
-    //                 pageDots: false,
-    //                 prevNextButtons: false,
-    //                 asNavFor: '.carousel-main',
-    //                 draggable: false
-    //             })
-    //         )
-    //         setFlickkk2(
-    //             new Flickity('.carousel-main', {
-    //                 imagesLoaded: true,
-    //                 pageDots: false,
-    //                 wrapAround: true,
-    //             })
-    //         )
-    //     }, 10000)
-    // })
     const gambarkk = kk.map((doc, idx) => {
         return (
             <div className="w-100 bg-cover" style={{ backgroundImage: `url(${doc.gambarKk})` }}>
@@ -90,13 +86,28 @@ function KK() {
     })
     const tulisankk = kk.map((doc, idx) => {
         return (
+            // <div className="col-12 text-center">
+            //     <blockquote>
+            //         <h2>{doc.judulKk}</h2>
+            //         <DariTanggal tanggal={doc.tanggalKk}></DariTanggal>
+            //         <p className="lead mb-5 mb-md-8 tulisan-kk">
+            //             {doc.kontenKk}
+            //         </p>
+            //     </blockquote>
+            // </div>
             <div className="col-12 text-center">
                 <blockquote>
                     <h2>{doc.judulKk}</h2>
-                    <DariTanggal tanggal={doc.tanggalKk}></DariTanggal>
                     <p className="lead mb-5 mb-md-8 tulisan-kk">
                         {doc.kontenKk}
                     </p>
+                    <footer className="d-flex align-items-center justify-content-center">
+                        <div className="ml-4 text-left">
+                            <p className="small text-muted mt-n1 mb-0">
+                                <DariTanggal tanggal={doc.tanggalKk}></DariTanggal>
+                            </p>
+                        </div>
+                    </footer>
                 </blockquote>
             </div>
         )
@@ -175,14 +186,7 @@ function KK() {
     })
     return (
         <>
-            <div className="position-relative">
-
-                {/* <div className="position-absolute top-right text-primary-dark mt-n12">
-                    <svg width={129} height={208} viewBox="0 0 129 208" fill="none" xmlns="http://www.w3.org/2000/svg"><g clipPath="url(#decoration5clip0)"><path fillRule="evenodd" clipRule="evenodd" d="M142.812 201.281a6.47 6.47 0 1112.94.002 6.47 6.47 0 01-12.94-.002zm1.618 0a4.851 4.851 0 119.702 0 4.851 4.851 0 01-9.702 0zm4.851-27.018l4.811-4.811 1.144 1.143-4.811 4.811 4.811 4.811-1.144 1.144-4.811-4.811-4.811 4.811-1.143-1.144 4.811-4.811-4.811-4.811 1.143-1.143 4.811 4.811zm-32.343 1.143a6.468 6.468 0 1112.936 0 6.468 6.468 0 01-12.936 0zm1.617 0a4.851 4.851 0 119.702 0 4.851 4.851 0 01-9.702 0zm4.851 24.732l4.811-4.811 1.144 1.143-4.811 4.811 4.811 4.811-1.144 1.144-4.811-4.811-4.811 4.811-1.143-1.144 4.811-4.811-4.811-4.811 1.143-1.143 4.811 4.811z" fill="currentColor" /></g><g clipPath="url(#decoration5clip1)"><path fillRule="evenodd" clipRule="evenodd" d="M142.812 149.281a6.47 6.47 0 1112.94.002 6.47 6.47 0 01-12.94-.002zm1.618 0a4.851 4.851 0 119.702 0 4.851 4.851 0 01-9.702 0zm4.851-27.018l4.811-4.811 1.144 1.143-4.811 4.811 4.811 4.811-1.144 1.144-4.811-4.811-4.811 4.811-1.143-1.144 4.811-4.811-4.811-4.811 1.143-1.143 4.811 4.811zm-32.343 1.143a6.468 6.468 0 1112.936 0 6.468 6.468 0 01-12.936 0zm1.617 0a4.851 4.851 0 119.702 0 4.851 4.851 0 01-9.702 0zm4.851 24.732l4.811-4.811 1.144 1.143-4.811 4.811 4.811 4.811-1.144 1.144-4.811-4.811-4.811 4.811-1.143-1.144 4.811-4.811-4.811-4.811 1.143-1.143 4.811 4.811z" fill="currentColor" /></g><g clipPath="url(#decoration5clip2)"><path fillRule="evenodd" clipRule="evenodd" d="M142.812 97.281a6.47 6.47 0 1112.939.002 6.47 6.47 0 01-12.939-.002zm1.618 0a4.851 4.851 0 119.703 0 4.851 4.851 0 01-9.703 0zm4.851-27.018l4.811-4.811 1.144 1.143-4.811 4.811 4.811 4.811-1.144 1.144-4.811-4.811-4.811 4.81-1.143-1.143 4.811-4.81-4.811-4.812 1.143-1.143 4.811 4.81zm-32.343 1.143a6.469 6.469 0 1112.937 0 6.469 6.469 0 01-12.937 0zm1.617 0a4.851 4.851 0 119.703 0 4.851 4.851 0 01-9.703 0zm4.851 24.732l4.811-4.811 1.144 1.143-4.811 4.811 4.811 4.811-1.144 1.144-4.811-4.811-4.811 4.811-1.143-1.144 4.811-4.81-4.811-4.812 1.143-1.143 4.811 4.81z" fill="currentColor" /></g><g clipPath="url(#decoration5clip3)"><path fillRule="evenodd" clipRule="evenodd" d="M38.813 149.281a6.47 6.47 0 1112.938 0 6.47 6.47 0 01-12.938 0zm1.617 0a4.851 4.851 0 119.702 0 4.851 4.851 0 01-9.702 0zm4.851-27.018l4.811-4.811 1.144 1.143-4.811 4.811 4.81 4.811-1.143 1.144-4.81-4.811-4.812 4.811-1.143-1.144 4.81-4.811-4.81-4.811 1.143-1.143 4.811 4.811zm-32.343 1.143a6.469 6.469 0 1112.937.001 6.469 6.469 0 01-12.938-.001zm1.617 0a4.851 4.851 0 119.702 0 4.851 4.851 0 01-9.702 0zm4.851 24.732l4.811-4.811 1.144 1.143-4.811 4.811 4.81 4.811-1.143 1.144-4.81-4.811-4.812 4.811-1.143-1.144 4.81-4.811-4.81-4.811 1.143-1.143 4.811 4.811z" fill="currentColor" /></g><g clipPath="url(#decoration5clip4)"><path fillRule="evenodd" clipRule="evenodd" d="M38.813 97.281a6.469 6.469 0 1112.937 0 6.469 6.469 0 01-12.938 0zm1.617 0a4.852 4.852 0 119.703 0 4.852 4.852 0 01-9.703 0zm4.851-27.018l4.811-4.811 1.144 1.143-4.811 4.811 4.81 4.811-1.143 1.144-4.81-4.811-4.812 4.81-1.143-1.143 4.81-4.81-4.81-4.812 1.143-1.143 4.811 4.81zm-32.343 1.143a6.469 6.469 0 1112.937 0 6.469 6.469 0 01-12.938 0zm1.617 0a4.852 4.852 0 119.703 0 4.852 4.852 0 01-9.703 0zm4.851 24.732l4.811-4.811 1.144 1.143-4.811 4.811 4.81 4.811-1.143 1.144-4.81-4.811-4.812 4.811-1.143-1.144 4.81-4.81-4.81-4.812 1.143-1.143 4.811 4.81z" fill="currentColor" /></g><g clipPath="url(#decoration5clip5)"><path fillRule="evenodd" clipRule="evenodd" d="M38.813 45.281a6.469 6.469 0 1112.937 0 6.469 6.469 0 01-12.938 0zm1.617 0a4.852 4.852 0 119.703 0 4.852 4.852 0 01-9.703 0zm4.851-27.018l4.811-4.811 1.144 1.143-4.811 4.811 4.81 4.811-1.143 1.144-4.81-4.811-4.812 4.81-1.143-1.143 4.81-4.81-4.81-4.812 1.143-1.143 4.811 4.81zm-32.343 1.143a6.469 6.469 0 1112.937 0 6.469 6.469 0 01-12.938 0zm1.617 0a4.852 4.852 0 119.703 0 4.852 4.852 0 01-9.703 0zm4.851 24.732l4.811-4.811 1.144 1.143-4.811 4.811 4.81 4.811-1.143 1.144-4.81-4.811-4.812 4.81-1.143-1.143 4.81-4.81-4.81-4.812 1.143-1.143 4.811 4.81z" fill="currentColor" /></g><g clipPath="url(#decoration5clip6)"><path fillRule="evenodd" clipRule="evenodd" d="M90.813 175.281a6.47 6.47 0 1112.938 0 6.47 6.47 0 01-12.939 0zm1.617 0a4.851 4.851 0 119.702 0 4.851 4.851 0 01-9.702 0zm4.851-27.018l4.811-4.811 1.144 1.143-4.811 4.811 4.811 4.811-1.144 1.144-4.81-4.811-4.812 4.811-1.143-1.144 4.81-4.811-4.81-4.811 1.143-1.143 4.811 4.811zm-32.344 1.143a6.469 6.469 0 1112.938.001 6.469 6.469 0 01-12.938-.001zm1.618 0a4.851 4.851 0 119.702 0 4.851 4.851 0 01-9.702 0zm4.851 24.732l4.811-4.811 1.144 1.143-4.811 4.811 4.81 4.811-1.143 1.144-4.81-4.811-4.812 4.811-1.143-1.144 4.81-4.811-4.81-4.811 1.143-1.143 4.811 4.811z" fill="currentColor" /></g><g clipPath="url(#decoration5clip7)"><path fillRule="evenodd" clipRule="evenodd" d="M90.813 123.281a6.47 6.47 0 1112.938 0 6.47 6.47 0 01-12.939 0zm1.617 0a4.851 4.851 0 119.702 0 4.851 4.851 0 01-9.702 0zm4.851-27.018l4.811-4.811 1.144 1.143-4.811 4.811 4.811 4.811-1.144 1.144-4.81-4.811-4.812 4.811-1.143-1.144 4.81-4.81-4.81-4.812 1.143-1.143 4.811 4.81zm-32.344 1.143a6.469 6.469 0 1112.938 0 6.469 6.469 0 01-12.938 0zm1.618 0a4.852 4.852 0 119.703 0 4.852 4.852 0 01-9.703 0zm4.851 24.732l4.811-4.811 1.144 1.143-4.811 4.811 4.81 4.811-1.143 1.144-4.81-4.811-4.812 4.811-1.143-1.144 4.81-4.811-4.81-4.811 1.143-1.143 4.811 4.811z" fill="currentColor" /></g><g clipPath="url(#decoration5clip8)"><path fillRule="evenodd" clipRule="evenodd" d="M90.813 71.281a6.469 6.469 0 1112.937 0 6.469 6.469 0 01-12.938 0zm1.617 0a4.852 4.852 0 119.703 0 4.852 4.852 0 01-9.703 0zm4.851-27.018l4.811-4.811 1.144 1.143-4.811 4.811 4.811 4.811-1.144 1.144-4.81-4.811-4.812 4.81-1.143-1.143 4.81-4.81-4.81-4.812 1.143-1.143 4.811 4.81zm-32.344 1.143a6.469 6.469 0 1112.938 0 6.469 6.469 0 01-12.938 0zm1.618 0a4.852 4.852 0 119.703 0 4.852 4.852 0 01-9.703 0zm4.851 24.732l4.811-4.811 1.144 1.143-4.811 4.811 4.81 4.811-1.143 1.144-4.81-4.811-4.812 4.81-1.143-1.143 4.81-4.81-4.81-4.812 1.143-1.143 4.811 4.81z" fill="currentColor" /></g><defs><clipPath id="decoration4clip0"><path transform="matrix(0 -1 -1 0 155.75 207.75)" fill="#fff" d="M0 0h51.75v51.75H0z" /></clipPath><clipPath id="decoration4clip1"><path transform="rotate(-90 155.75 0)" fill="#fff" d="M0 0h51.75v51.75H0z" /></clipPath><clipPath id="decoration4clip2"><path transform="matrix(0 -1 -1 0 155.75 103.75)" fill="#fff" d="M0 0h51.75v51.75H0z" /></clipPath><clipPath id="decoration4clip3"><path transform="matrix(0 -1 -1 0 51.75 155.75)" fill="#fff" d="M0 0h51.75v51.75H0z" /></clipPath><clipPath id="decoration4clip4"><path transform="matrix(0 -1 -1 0 51.75 103.75)" fill="#fff" d="M0 0h51.75v51.75H0z" /></clipPath><clipPath id="decoration4clip5"><path transform="matrix(0 -1 -1 0 51.75 51.75)" fill="#fff" d="M0 0h51.75v51.75H0z" /></clipPath><clipPath id="decoration4clip6"><path transform="matrix(0 -1 -1 0 103.75 181.75)" fill="#fff" d="M0 0h51.75v51.75H0z" /></clipPath><clipPath id="decoration4clip7"><path transform="matrix(0 -1 -1 0 103.75 129.75)" fill="#fff" d="M0 0h51.75v51.75H0z" /></clipPath><clipPath id="decoration4clip8"><path transform="matrix(0 -1 -1 0 103.75 77.75)" fill="#fff" d="M0 0h51.75v51.75H0z" /></clipPath></defs></svg>
-                </div> */}
-            </div>
-
-            <section className="position-relative mt-7 mt-md-7 pt-7 pt-md-7 mb-7 mb-md-7 pb-7 pb-md-7 bg-light" >
+            <section className="position-relative mt-7 mt-md-7 pt-7 pt-md-7 pb-7 pb-md-7 bg-light" >
                 <div className="container-xl position-relative" style={{ zIndex: 1 }}>
                     <div className="row align-items-center justify-content-center mb-7">
                         <div className="col-md-6" style={{ textAlign: `center` }}>
@@ -194,45 +198,40 @@ function KK() {
                             <svg width={185} height={186} viewBox="0 0 185 186" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx={2} cy={2} r={2} fill="currentColor" /><circle cx={22} cy={2} r={2} fill="currentColor" /><circle cx={42} cy={2} r={2} fill="currentColor" /><circle cx={62} cy={2} r={2} fill="currentColor" /><circle cx={82} cy={2} r={2} fill="currentColor" /><circle cx={102} cy={2} r={2} fill="currentColor" /><circle cx={122} cy={2} r={2} fill="currentColor" /><circle cx={142} cy={2} r={2} fill="currentColor" /><circle cx={162} cy={2} r={2} fill="currentColor" /><circle cx={182} cy={2} r={2} fill="currentColor" /><circle cx={2} cy={22} r={2} fill="currentColor" /><circle cx={22} cy={22} r={2} fill="currentColor" /><circle cx={42} cy={22} r={2} fill="currentColor" /><circle cx={62} cy={22} r={2} fill="currentColor" /><circle cx={82} cy={22} r={2} fill="currentColor" /><circle cx={102} cy={22} r={2} fill="currentColor" /><circle cx={122} cy={22} r={2} fill="currentColor" /><circle cx={142} cy={22} r={2} fill="currentColor" /><circle cx={162} cy={22} r={2} fill="currentColor" /><circle cx={182} cy={22} r={2} fill="currentColor" /><circle cx={2} cy={42} r={2} fill="currentColor" /><circle cx={22} cy={42} r={2} fill="currentColor" /><circle cx={42} cy={42} r={2} fill="currentColor" /><circle cx={62} cy={42} r={2} fill="currentColor" /><circle cx={82} cy={42} r={2} fill="currentColor" /><circle cx={102} cy={42} r={2} fill="currentColor" /><circle cx={122} cy={42} r={2} fill="currentColor" /><circle cx={142} cy={42} r={2} fill="currentColor" /><circle cx={162} cy={42} r={2} fill="currentColor" /><circle cx={182} cy={42} r={2} fill="currentColor" /><circle cx={2} cy={62} r={2} fill="currentColor" /><circle cx={22} cy={62} r={2} fill="currentColor" /><circle cx={42} cy={62} r={2} fill="currentColor" /><circle cx={62} cy={62} r={2} fill="currentColor" /><circle cx={82} cy={62} r={2} fill="currentColor" /><circle cx={102} cy={62} r={2} fill="currentColor" /><circle cx={122} cy={62} r={2} fill="currentColor" /><circle cx={142} cy={62} r={2} fill="currentColor" /><circle cx={162} cy={62} r={2} fill="currentColor" /><circle cx={182} cy={62} r={2} fill="currentColor" /><circle cx={2} cy={82} r={2} fill="currentColor" /><circle cx={22} cy={82} r={2} fill="currentColor" /><circle cx={42} cy={82} r={2} fill="currentColor" /><circle cx={62} cy={82} r={2} fill="currentColor" /><circle cx={82} cy={82} r={2} fill="currentColor" /><circle cx={102} cy={82} r={2} fill="currentColor" /><circle cx={122} cy={82} r={2} fill="currentColor" /><circle cx={142} cy={82} r={2} fill="currentColor" /><circle cx={162} cy={82} r={2} fill="currentColor" /><circle cx={182} cy={82} r={2} fill="currentColor" /><circle cx={2} cy={102} r={2} fill="currentColor" /><circle cx={22} cy={102} r={2} fill="currentColor" /><circle cx={42} cy={102} r={2} fill="currentColor" /><circle cx={62} cy={102} r={2} fill="currentColor" /><circle cx={82} cy={102} r={2} fill="currentColor" /><circle cx={102} cy={102} r={2} fill="currentColor" /><circle cx={122} cy={102} r={2} fill="currentColor" /><circle cx={142} cy={102} r={2} fill="currentColor" /><circle cx={162} cy={102} r={2} fill="currentColor" /><circle cx={182} cy={102} r={2} fill="currentColor" /><circle cx={2} cy={122} r={2} fill="currentColor" /><circle cx={22} cy={122} r={2} fill="currentColor" /><circle cx={42} cy={122} r={2} fill="currentColor" /><circle cx={62} cy={122} r={2} fill="currentColor" /><circle cx={82} cy={122} r={2} fill="currentColor" /><circle cx={102} cy={122} r={2} fill="currentColor" /><circle cx={122} cy={122} r={2} fill="currentColor" /><circle cx={142} cy={122} r={2} fill="currentColor" /><circle cx={162} cy={122} r={2} fill="currentColor" /><circle cx={182} cy={122} r={2} fill="currentColor" /><circle cx={2} cy={142} r={2} fill="currentColor" /><circle cx={22} cy={142} r={2} fill="currentColor" /><circle cx={42} cy={142} r={2} fill="currentColor" /><circle cx={62} cy={142} r={2} fill="currentColor" /><circle cx={82} cy={142} r={2} fill="currentColor" /><circle cx={102} cy={142} r={2} fill="currentColor" /><circle cx={122} cy={142} r={2} fill="currentColor" /><circle cx={142} cy={142} r={2} fill="currentColor" /><circle cx={162} cy={142} r={2} fill="currentColor" /><circle cx={182} cy={142} r={2} fill="currentColor" /><circle cx={2} cy={162} r={2} fill="currentColor" /><circle cx={22} cy={162} r={2} fill="currentColor" /><circle cx={42} cy={162} r={2} fill="currentColor" /><circle cx={62} cy={162} r={2} fill="currentColor" /><circle cx={82} cy={162} r={2} fill="currentColor" /><circle cx={102} cy={162} r={2} fill="currentColor" /><circle cx={122} cy={162} r={2} fill="currentColor" /><circle cx={142} cy={162} r={2} fill="currentColor" /><circle cx={162} cy={162} r={2} fill="currentColor" /><circle cx={182} cy={162} r={2} fill="currentColor" /><circle cx={2} cy={182} r={2} fill="currentColor" /><circle cx={22} cy={182} r={2} fill="currentColor" /><circle cx={42} cy={182} r={2} fill="currentColor" /><circle cx={62} cy={182} r={2} fill="currentColor" /><circle cx={82} cy={182} r={2} fill="currentColor" /><circle cx={102} cy={182} r={2} fill="currentColor" /><circle cx={122} cy={182} r={2} fill="currentColor" /><circle cx={142} cy={182} r={2} fill="currentColor" /><circle cx={162} cy={182} r={2} fill="currentColor" /><circle cx={182} cy={182} r={2} fill="currentColor" /></svg>
                         </div>
                     </div>
-                    <div className="row car-kk">
-                        {isLoading ?
+                    <div className="row car-kk mb-7">
+                        {/* {isLoading ?
                             <Skeleton2Layout></Skeleton2Layout>
                             :
                             <Carousel itemsToShow={1} enableAutoPlay autoPlaySpeed={7000}>
                                 {listKK4}
                             </Carousel>
-                        }
-                        {/* <div className="col-12">
-                        <div className="card rounded-top-left-lg rounded-bottom-right-lg carousel-main">
-                            {listKK4} */}
-                        {/* <div className="row no-gutters position-relative">
-                                            <div className="col-md-6">
-                                                <div className="card-img-slider rounded-top-left-lg overflow-hidden carousel-nav">
-                                                    {gambarkk}
-                                                    {/* <Carousel itemsToShow={1}> 
-                                                    {gambarkk}
-                                                {/*</Carousel> */}
-                        {/*</div>
+                        } */}
+                        {isLoading? <Skeleton2Layout></Skeleton2Layout>:
+                            <div className="col-12">
+                                <div className="card rounded-top-left-lg rounded-bottom-right-lg">
+                                    <div className="row no-gutters position-relative">
+                                        <div className="col-md-6">
+                                            <div className="card-img-slider rounded-top-left-lg overflow-hidden kk-nav" data-flickity="{&quot;fade&quot;: true, &quot;imagesLoaded&quot;: true, &quot;pageDots&quot;: false, &quot;prevNextButtons&quot;: false, &quot;asNavFor&quot;: &quot;#testmonialsSlider&quot;, &quot;draggable&quot;: false}">
+                                                {gambarkk}
                                             </div>
-                                            <div className="col-md-6 position-static">
-                                                <div className="card-body py-4 py-lg-4">
-                                                    <div className="flickity-soft-edges flickity-buttons-adjacent flickity-buttons-rounded flickity-buttons-bottom-left position-static mx-n4 carousel-main">
-                                                        {tulisankk}
-                                                        {/* <Carousel itemsToShow={1}>
-                                                        {tulisankk}
-                                                </Carousel> //}
-                                                    </div>
+                                        </div>
+                                        <div className="col-md-6 position-static">
+                                            <div className="card-body py-9 py-lg-11">
+                                                <div className="flickity-soft-edges flickity-buttons-adjacent flickity-buttons-rounded flickity-buttons-bottom-left position-static mx-n4 kk-main">
+                                                    {tulisankk}
                                                 </div>
                                             </div>
-                                        </div> */}
-                        {/* </div>
-                    </div> */}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
                     </div>
                     <div className="row align-items-center mb-7 mt-3">
-                        <div className="mx-auto" style={{zIndex:`10`}}>
+                        <div className="mx-auto" style={{ zIndex: `10` }}>
                             <a className="btn btn-sm btn-primary" href="/kk">
                                 Lihat Lainnya
-                        </a>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -309,3 +308,24 @@ export default KK
 
 
 
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         setFlickkk1(
+    //             new Flickity('.carousel-nav', {
+    //                 fade: true,
+    //                 imagesLoaded: true,
+    //                 pageDots: false,
+    //                 prevNextButtons: false,
+    //                 asNavFor: '.carousel-main',
+    //                 draggable: false
+    //             })
+    //         )
+    //         setFlickkk2(
+    //             new Flickity('.carousel-main', {
+    //                 imagesLoaded: true,
+    //                 pageDots: false,
+    //                 wrapAround: true,
+    //             })
+    //         )
+    //     }, 10000)
+    // })
