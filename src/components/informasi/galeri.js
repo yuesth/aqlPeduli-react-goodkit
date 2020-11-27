@@ -44,16 +44,16 @@ function Galeri() {
     // alert(JSON.stringify(gambar[0].gambar))
     const itemgaleri = gambar.map((doc, idx) => {
         return (
-            <div className="col-6 col-sm-6 col-md-4 col-lg-3 px-0 column-item-galeri">
+            <div className="col-6 col-sm-6 col-md-4 col-lg-3 column-item-galeri">
                 <Link to={`/galeri/${doc.id}`}>
                     <div className="card rounded-top-left rounded-top-right rounded-bottom-left rounded-bottom-right">
-                        <div className="galeri-img" style={{borderRadius:`0.5rem`, width:`262px`}}>
-                            <img className="img-fluid img-galeri-thumb" style={{borderRadius:`0.5rem`, width:`262px`}} src={doc.thumb} alt="..." />
+                        <div className="galeri-img w-100" style={{ borderRadius: `0.5rem 0.5rem 0 0` }}>
+                            <img className="img-fluid img-galeri-thumb w-100" src={doc.thumb} alt="..." />
                             <div className="galeri-img-cam">
-                                <img src={`${process.env.PUBLIC_URL}/images/galeri/camera.png`} alt=""/>
+                                <img src={`${process.env.PUBLIC_URL}/images/galeri/camera.png`} alt="" />
                             </div>
                         </div>
-                        <div className="card-body p-0 py-3">
+                        <div className="card-body p-2 py-3">
                             <div style={{ minHeight: `5rem` }}>
                                 <h4 className="img-galeri-capt">
                                     {doc.judul}
@@ -72,10 +72,12 @@ function Galeri() {
     return (
         <>
             <div className="row mb-5">
-                <div className="border-kita">
-                    <h2 className="mb-0">
-                        Galeri
-                            </h2>
+                <div className="col">
+                    <div className="border-kita">
+                        <h2 className="mb-0">
+                            Galeri
+                    </h2>
+                    </div>
                 </div>
             </div>
             <div className="row mb-9">

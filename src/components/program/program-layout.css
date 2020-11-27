@@ -29,6 +29,9 @@
     display: none;
     visibility: hidden;
   }
+  .div-judul-program{
+    height: 4.5rem;
+  }
  }
 
  .kategoriBtn{

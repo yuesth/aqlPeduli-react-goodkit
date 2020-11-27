@@ -80,11 +80,6 @@ ol.timeline{
         display: none;
         visibility: hidden;
     }
-
-    .modal-content{
-        width: 80%;
-        margin:0 auto;
-    }
 }
 
 .btn-donasi-sekarang{

@@ -56,7 +56,7 @@ function CarouselLanding() {
     })
     const listcarousel = programcar.map((doc, idx) => {
         return (
-            <div style={{ width: `calc(100% - 10rem)`, maxWidth: `780px` }}>
+            <div style={{ width: `calc(100% - 5rem)`, maxWidth: `780px` }}>
                 <Link to={{
                     pathname: `/program/${doc.idProg}`,
                     state: {

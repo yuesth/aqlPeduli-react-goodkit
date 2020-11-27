@@ -1,9 +1,9 @@
 .berita-header-img{
     overflow: hidden;
     position: relative;
-    box-shadow: 0 -10rem 20px 20px black inset;
+    /* box-shadow: 0 -10rem 20px 20px black inset;
     -webkit-box-shadow:0 -10rem 20px 20px black inset;
-    -moz-box-shadow: 0 -10rem 20px 20px black inset;
+    -moz-box-shadow: 0 -10rem 20px 20px black inset; */
 }
 
 .shadow-header{
@@ -30,22 +30,33 @@
 }
 
 .berita-header-img img:hover, .berita-headerlain-img img:hover{
-    opacity: 0.6;
+    /* opacity: 0.6; */
     transform: scale(1.1);
     /* box-shadow: none; */
 }
 
 .capt-berita-header{
     position: absolute;
-    left: 1rem;
-    bottom: 0.3rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-bottom: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background: -moz-linear-gradient(top,rgba(0,0,0,0) 0,rgba(0,0,0,.6) 50%,rgba(0,0,0,1) 100%);
+    background: -webkit-linear-gradient(top,rgba(0,0,0,0) 0,rgba(0,0,0,.6) 50%,rgba(0,0,0,1) 100%);
 }
 
 .capt-beritalain-header{
     position: absolute;
-    left: 1rem;
-    bottom: 0.3rem;
+    left: 0;
+    right:0;
+    bottom: 0;
     padding-bottom: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background: -moz-linear-gradient(top,rgba(0,0,0,0) 0,rgba(0,0,0,.6) 50%,rgba(0,0,0,1) 100%);
+    background: -webkit-linear-gradient(top,rgba(0,0,0,0) 0,rgba(0,0,0,.6) 50%,rgba(0,0,0,1) 100%);
 }
 
 .judul-berita-lain{

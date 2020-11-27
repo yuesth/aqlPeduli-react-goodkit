@@ -261,7 +261,7 @@ function BeritaList() {
                     itBerNasUt = itBerNasUt + 1
                     return (
                         <Link to={`/berita/${doc.id}`}>
-                            <div className="berita-header-img">
+                            <div className="berita-header-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
                                 {/* <div className="shadow-header"></div> */}
                                 <div className="carousel-caption text-left capt-berita-header">
@@ -287,7 +287,7 @@ function BeritaList() {
                     itBerInterUt = itBerInterUt + 1
                     return (
                         <Link to={`/berita/${doc.id}`} style={{ boxShadow: `0 -100px 20px black inset` }}>
-                            <div className="berita-header-img">
+                            <div className="berita-header-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
                                 {/* <div className="shadow-header"></div> */}
                                 <div className="carousel-caption text-left capt-berita-header">
@@ -314,7 +314,7 @@ function BeritaList() {
                     return (
                         <div className={`card card-lg rounded-top-left border border-gray-300 rounded-bottom-right mb-4`}>
                             <div className="row no-gutters">
-                                <div className="col-md-6">
+                                <div className="col-md-6 col-6">
                                     <div className="card-body p-5">
                                         <h6 className="mb-4 judul-berlin-nas">
                                             {doc.judul}
@@ -327,8 +327,8 @@ function BeritaList() {
                                         <Link to={`/berita/${doc.id}`} className="stretched-link"></Link>
                                     </div>
                                 </div>
-                                <div className="col-md-6 rounded-top-left">
-                                    <img className="img-fluid w-100 h-70" src={`${doc.gambar}`} alt="..." style={{ marginTop: `1rem`, marginBottom: `1rem` }} />
+                                <div className="col-md-6 col-6 rounded-top-left">
+                                    <img className="img-fluid w-100 h-75" src={`${doc.gambar}`} alt="..." style={{ marginTop: `1.5rem`, marginBottom: `1rem` }} />
                                 </div>
                             </div>
                         </div>
@@ -348,7 +348,7 @@ function BeritaList() {
                     return (
                         <div className={`card card-lg rounded-top-left border border-gray-300 rounded-bottom-right mb-4`}>
                             <div className="row no-gutters">
-                                <div className="col-md-6">
+                                <div className="col-md-6 col-6">
                                     <div className="card-body p-5">
                                         <h6 className="mb-4 judul-berlin-nas">
                                             {doc.judul}
@@ -361,8 +361,8 @@ function BeritaList() {
                                         <Link to={`/berita/${doc.id}`} className="stretched-link"></Link>
                                     </div>
                                 </div>
-                                <div className="col-md-6 rounded-top-left">
-                                    <img className="img-fluid w-100 h-70 my-auto" src={`${doc.gambar}`} alt="..." style={{ marginTop: `1rem`, marginBottom: `1rem` }} />
+                                <div className="col-md-6 col-6 rounded-top-left">
+                                    <img className="img-fluid w-100 h-75 my-auto" src={`${doc.gambar}`} alt="..." style={{ marginTop: `1.5rem`, marginBottom: `1rem` }} />
                                 </div>
                             </div>
                         </div>

@@ -265,23 +265,23 @@ function ProgramLayout(props) {
         var namaKategori2 = namaKategori.replace(/\s/g, "")
         var namaClass = "item-donasi " + namaKategori2
         return (
-            <div className={`col-md-4 col-lg-4 col-sm-6 col-6 mt-0 ml-0 mr-0 mb-3 ${namaClass}`}>
-                <div className={`card card-sm rounded-top-left rounded-bottom-right lift lift-lg mt-md-5 mt-2`}>
+            <div className={`col-md-4 col-lg-4 col-md-4 col-sm-6 col-6 mt-0 ml-0 mr-0 mb-3 ${namaClass}`}>
+                <div className={`card card-sm rounded-top-left rounded-bottom-right lift lift-lg mb-md-5 mb-2`}>
                     <div>
                         <img className="card-img-top rounded-top-left img-fluid img-prog" src={doc.gambar} alt="..." />
                     </div>
-                    <div className="position-relative">
+                    {/* <div className="position-relative">
                         <div className="shape shape-fluid-x shape-top text-white">
                             <div className="shape-img pb-5">
                                 <svg viewBox="0 0 100 50" preserveAspectRatio="none"><path d="M0 25h25L75 0h25v50H0z" fill="currentColor" /></svg>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="card-body p-2 pb-3">
                         <span className="small text-muted mt-n1 mb-0">
                             <DariTanggal tanggal={doc.tanggal}></DariTanggal>
                         </span>
-                        <div style={{ minHeight: `5rem` }}>
+                        <div style={{ height: `6rem` }} className="div-judul-program">
                             <h3>
                                 {doc.judul}
                             </h3>
@@ -291,12 +291,12 @@ function ProgramLayout(props) {
                         </p> */}
                         <Container className="p-0">
                             <Row>
-                                <Col md={5} xs={6} style={{ textAlign: `left`, fontSize: `12px` }}>
+                                <Col md={5} xs={12} style={{ textAlign: `left`, fontSize: `12px` }}>
                                     <p style={{ marginBottom: `0.3rem` }}>Sisa Waktu</p>
                                     {doc.durasi !== null && <SisaHari tanggal={doc.tanggal} durasi={doc.durasi} />
                                     }
                                 </Col>
-                                <Col md={7} xs={6} style={{ textAlign: `right`, fontSize: `12px` }}>
+                                <Col md={7} xs={12} style={{ textAlign: `left`, fontSize: `12px` }}>
                                     <p style={{ marginBottom: `0.3rem` }}>Terkumpul</p>
                                     <span style={{ color: `#6053db` }} className="span-terkumpul">Rp.{idr}</span>
                                 </Col>
@@ -330,7 +330,7 @@ function ProgramLayout(props) {
                     </div>
                 </div>
                 <div className="row">
-                    <Col md={2} id="col-list" className="pt-10 px-0 kateg-wide">
+                    <Col md={2} id="col-list" className="px-0 kateg-wide">
                         <Row>
                             <Col className="pl-6">
                                 <h2>Kategori</h2>
@@ -357,7 +357,7 @@ function ProgramLayout(props) {
                     </Col>
 
                     <Col md={10}>
-                        <div className="row justify-content-center mt-3">
+                        {/* <div className="row justify-content-center mt-3">
                             <div className="col-md-12 col-lg-12 text-center text-white">
                                 <form>
                                     <div className="input-group rounded-top-left rounded-bottom-right shadow">
@@ -370,7 +370,7 @@ function ProgramLayout(props) {
                                     </div>
                                 </form>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="row justify-content-center mt-3 kateg-thin">
                             <div className="col-md-12 col-lg-12 text-center text-white">
                                 <form>

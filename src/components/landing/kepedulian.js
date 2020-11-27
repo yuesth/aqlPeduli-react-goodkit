@@ -118,14 +118,14 @@ function KepedulianLanding() {
             //         namaKateg: `${doc.namaKateg}`
             //     }
             // }} style={{ margin: `auto auto`, textDecoration: `none` }} className="wadah-item-kecil">
-                <div className="col-4 col-md-4 col-lg justify-content-center lift m-lg-1 kartu-kep">
-                    <div style={{ textAlign: `center`, height: `9rem` }} className="align-items-center justify-content-center">
-                        <img className="img-fluid rounded-top-left rounded-bottom-right" src={pathGbr2} alt="..." width="120" height="120" />
+                <div className="col-4 col-md-4 col-lg justify-content-center lift m-lg-1 pb-1 kartu-kep">
+                    <div style={{ textAlign: `center`, height: `8rem` }} className="align-items-center justify-content-center">
+                        <img className="img-fluid rounded-top-left rounded-bottom-right" src={pathGbr2} alt="..." width="110" height="120" />
                     </div>
                     <div className="text-center w-100" style={{height:`3rem`, textAlign:`center`}}>
-                        <h3 style={{ color: `#000000` }}>
+                        <h4 style={{ color: `#000000` }}>
                             {doc.namaKateg}
-                        </h3>
+                        </h4>
                     </div>
                     <Link to={{
                         pathname: `/program`,
@@ -148,7 +148,7 @@ function KepedulianLanding() {
         < section className="mt-7 mt-md-7 pt-7 pt-md-7 mb-7 mb-md-7 pb-7 pb-md-7" >
             <div className="container-xl">
                 <div className="row align-items-center justify-content-center mb-7">
-                    <div className="col-md-6" style={{ textAlign: `center` }}>
+                    <div className="col-md-6" style={{ textAlign: `center`, zIndex:`999` }}>
                         <h2 className="display-4">
                             Kepedulian <br />
                         </h2>

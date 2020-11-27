@@ -6,3 +6,10 @@
     position: absolute;
     bottom: 120px;
 }
+
+@media only screen and (max-width:590px){
+    .carousel-main-car-landing .flickity-prev-next-button{
+        display: none;
+        visibility: hidden;
+    }
+}
