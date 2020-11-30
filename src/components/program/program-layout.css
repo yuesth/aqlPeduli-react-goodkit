@@ -46,7 +46,7 @@
     width: auto;
   }
 
-  .kategoriBtn.active {
+  .kategoriBtn:active, .kategoriBtn.is-checked {
     color: #E92998;
     height: auto;
     width: auto;
@@ -91,7 +91,7 @@
 
 .item-donasi{
   float: left;
-  display: none;
+  display: block;
 }
 
 .show{

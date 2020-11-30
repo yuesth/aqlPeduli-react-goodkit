@@ -13,11 +13,11 @@
     /* box-shadow: none; */
 }
 
-.img-galeri-capt{
+.img-galeri-capt, .img-emagz-capt{
     color: black;
 }
 
-.img-galeri-capt:hover{
+.img-galeri-capt:hover, .img-emagz-capt:hover{
     color: rgb(47, 57, 144);
 }
 

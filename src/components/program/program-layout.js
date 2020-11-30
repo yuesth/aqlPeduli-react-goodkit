@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import Isotope from 'isotope-layout'
 import "./program-layout.css"
+import $ from 'jquery'
 
 function SkeletonKateg() {
     return (
@@ -88,26 +89,17 @@ function SkeletonProg() {
 }
 
 function ProgramLayout(props) {
+    var init = ""
+    props.namakateg !== "" ? init=props.namakateg : init="*"
     const urlListProgram = "http://167.99.72.148/programs"
     const urlKateg = "http://167.99.72.148/kategoris"
     const [program, setProgram] = useState([])
     const [kateg, setKateg] = useState([])
     const [isLoadingprog, setIsLoadingprog] = useState(true);
     const [isLoadingkateg, setIsLoadingkateg] = useState(true);
-    // const namaprog = props.namaprog
-    useEffect(() => {
-        // (namaprog && filterSelection(namaprog)) || filterSelection('all')
-        filterSelection('all')
-        var btnContainer = document.getElementById("col-list");
-        var btns = btnContainer.getElementsByClassName("kategoriBtn");
-        for (var i = 0; i < btns.length; i++) {
-            btns[i].addEventListener("click", function () {
-                var current = document.getElementsByClassName("active");
-                current[0].className = current[0].className.replace(" active", "");
-                this.className += " active";
-            });
-        }
-    })
+    const [isotope, setIsotope] = useState(null)
+    const [filterKey, setFilterKey] = useState(init)
+    const [kategbtn, setKategbtn] = useState(init)
     useEffect(() => {
         fetch(urlListProgram).then(res => res.json()).then(parsedJson => parsedJson.map(data => (
             {
@@ -125,6 +117,12 @@ function ProgramLayout(props) {
             items => {
                 setProgram(items)
                 setIsLoadingprog(false)
+                setIsotope(
+                    new Isotope('.container-filter', {
+                        itemSelector: ".item-filter",
+                        layoutMode: "fitRows"
+                    })
+                )
             }
         )
         fetch(urlKateg).then(res => res.json()).then(parsedJson => parsedJson.map(data => (
@@ -140,27 +138,32 @@ function ProgramLayout(props) {
         )
     }, [])
 
-    // const [isotope, setIsotope] = useState(null);
-    // const [filterKey, setFilterKey] = useState("*");
-    // useEffect(() => {
-    //     setIsotope(
-    //         new Isotope(".filter-container", {
-    //             itemSelector: ".filter-item",
-    //             layoutMode: "fitRows"
-    //         })
-    //     );
-    // }, []);
+    useEffect(() => {
+        // filterSelection('all')
+        // props.namakateg !== "" ? filterSelection(props.namakateg) : filterSelection("all")
+        if (isotope) {
+            filterKey === "*"
+                ? isotope.arrange({ filter: `*` })
+                : isotope.arrange({ filter: `.${filterKey}` })
+        }
+        // $('.flex-kateg').each(function (i, buttonGroup) {
+        //     var $buttonGroup = $(buttonGroup);
+        //     $buttonGroup.on('click', 'button', function () {
+        //         $buttonGroup.find('.is-checked').removeClass('is-checked');
+        //         $(this).addClass('is-checked');
+        //     });
+        // });
+        // var btnContainer = document.getElementById("col-list");
+        // var btns = btnContainer.getElementsByClassName("kategoriBtn");
+        // for (var i = 0; i < btns.length; i++) {
+        //     btns[i].addEventListener("click", function () {
+        //         var current = document.getElementsByClassName("active");
+        //         current[0].className = current[0].className.replace(" active", "");
+        //         this.className += " active";
+        //     });
+        // }
+    }, [isotope, filterKey])
 
-    // useEffect(
-    //     () => {
-    //         if (isotope) {
-    //             filterKey === "*"
-    //                 ? isotope.arrange({ filter: `*` })
-    //                 : isotope.arrange({ filter: `.${filterKey}` });
-    //         }
-    //     },
-    //     [isotope, filterKey]
-    // );
 
     function DariTanggal(props) {
         var dariTanggal = new Date(props.tanggal)
@@ -187,12 +190,23 @@ function ProgramLayout(props) {
 
     function filterSelection(c) {
         var x, i;
+        const d = c;
         x = document.getElementsByClassName("item-donasi");
-        if (c == "all") c = "";
+        if (c === "all") c = "";
         for (i = 0; i < x.length; i++) {
             RemoveClass(x[i], "show");
             if (x[i].className.indexOf(c) > -1) AddClass(x[i], "show");
         }
+        // $(`.kateg-${c}`).addClass('is-checked')
+    }
+
+    const filterSelection2 = (c) => {
+        setFilterKey(c)
+        c === "*" ? setKategbtn("all") : setKategbtn(c)
+        $('select option:selected').removeAttr('selected');
+        c === "*" ? $(`select option[value=${'all'}]`).attr('selected', 'selected') : $(`select option[value=${c}]`).attr('selected', 'selected')
+        $('.flex-kateg').find('.is-checked').removeClass('is-checked');
+        c === "*" ? $(`.kateg-all`).addClass('is-checked') : $(`.kateg-${c}`).addClass('is-checked')
     }
     function AddClass(element, name) {
         var i, arr1, arr2;
@@ -265,18 +279,11 @@ function ProgramLayout(props) {
         var namaKategori2 = namaKategori.replace(/\s/g, "")
         var namaClass = "item-donasi " + namaKategori2
         return (
-            <div className={`col-md-4 col-lg-4 col-md-4 col-sm-6 col-6 mt-0 ml-0 mr-0 mb-3 ${namaClass}`}>
+            <div className={`col-md-4 col-lg-4 col-md-4 col-sm-6 col-6 mt-0 ml-0 mr-0 mb-3 item-filter ${namaClass}`}>
                 <div className={`card card-sm rounded-top-left rounded-bottom-right lift lift-lg mb-md-5 mb-2`}>
                     <div>
                         <img className="card-img-top rounded-top-left img-fluid img-prog" src={doc.gambar} alt="..." />
                     </div>
-                    {/* <div className="position-relative">
-                        <div className="shape shape-fluid-x shape-top text-white">
-                            <div className="shape-img pb-5">
-                                <svg viewBox="0 0 100 50" preserveAspectRatio="none"><path d="M0 25h25L75 0h25v50H0z" fill="currentColor" /></svg>
-                            </div>
-                        </div>
-                    </div> */}
                     <div className="card-body p-2 pb-3">
                         <span className="small text-muted mt-n1 mb-0">
                             <DariTanggal tanggal={doc.tanggal}></DariTanggal>
@@ -337,19 +344,14 @@ function ProgramLayout(props) {
                             </Col>
                         </Row>
                         <div className="row pl-n5 flex-kateg">
-                            {/* disini */}
-                            <div>
-                                <Button variant="default" onClick={() => filterSelection('all')} className="kategoriBtn active">Semua</Button>
-                            </div>
+                            <Button variant="default" onClick={() => filterSelection2('*')} className={`kategoriBtn kateg-all is-checked`}>Semua</Button>
                             {isLoadingkateg ? <SkeletonKateg></SkeletonKateg>
                                 :
                                 kateg.map((doc, idx) => {
                                     var nama1 = doc.namaKateg
                                     var nama2 = nama1.replace(/\s/g, "")
                                     return (
-                                        <div>
-                                            <Button variant="default" onClick={() => filterSelection(nama2)} key={idx} className="kategoriBtn">{doc.namaKateg}</Button>
-                                        </div>
+                                        <Button variant="default" onClick={() => filterSelection2(nama2)} key={idx} className={`kategoriBtn kateg-${nama2}`}>{doc.namaKateg}</Button>
                                     )
                                 })
                             }
@@ -357,33 +359,19 @@ function ProgramLayout(props) {
                     </Col>
 
                     <Col md={10}>
-                        {/* <div className="row justify-content-center mt-3">
-                            <div className="col-md-12 col-lg-12 text-center text-white">
-                                <form>
-                                    <div className="input-group rounded-top-left rounded-bottom-right shadow">
-                                        <input type="text" className="form-control bg-white pr-2 w-60" placeholder="Masukkan nama program" aria-label="Email address" aria-describedby="subscriptionButton" />
-                                        <div className="input-group-append">
-                                            <button className="btn btn-info ml-3" type="button" id="subscriptionButton">
-                                                Cari
-                                        </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div> */}
                         <div className="row justify-content-center mt-3 kateg-thin">
                             <div className="col-md-12 col-lg-12 text-center text-white">
                                 <form>
                                     <div className="mb-3">
                                         <select className="custom-select">
-                                            <option selected value={1} onClick={() => filterSelection('all')}>Semua</option>
+                                            <option selected className="kateg-all" value={'all'} onClick={() => filterSelection2('*')}>Semua</option>
                                             {
                                                 kateg.map((doc, idx) => {
                                                     var nama1 = doc.namaKateg
                                                     var nama2 = nama1.replace(/\s/g, "")
                                                     return (
                                                         <>
-                                                            <option value={idx+2} onClick={() => filterSelection(nama2)} key={idx}>{doc.namaKateg}</option>
+                                                            <option value={nama2} className={`kateg-${nama2}`} onClick={() => filterSelection2(nama2)} key={idx}>{doc.namaKateg}</option>
                                                         </>
                                                     )
                                                 })
@@ -394,7 +382,7 @@ function ProgramLayout(props) {
                             </div>
                         </div>
                         <div className="container-fluid px-0">
-                            <div className="row">
+                            <div className="row container-filter">
                                 {isLoadingprog ? <SkeletonProg></SkeletonProg>
                                     :
                                     listprogram2
@@ -409,26 +397,3 @@ function ProgramLayout(props) {
 }
 
 export default ProgramLayout
-
-{/* <Row>
-                                <Col>
-                                    <Button variant="default" onClick={() => filterSelection('all')} className="kategoriBtn active">Semua</Button>
-                                    {/* <Button variant="default" onClick={() => setFilterKey('*')} className="kategBtn active">Semua</Button>
-                                </Col>
-                            </Row>
-                            <br />
-                            {isLoadingkateg ? <SkeletonKateg></SkeletonKateg>
-                                :
-                                kateg.map((doc, idx) => {
-                                    var nama1 = doc.namaKateg
-                                    var nama2 = nama1.replace(/\s/g, "")
-                                    return (
-                                        <Row>
-                                            <Col>
-                                                <Button variant="default" onClick={() => filterSelection(nama2)} key={idx} className="kategoriBtn">{doc.namaKateg}</Button>
-                                                {/* <Button variant="default" onClick={() => setFilterKey(nama2)} key={idx} className="kategBtn">{doc.namaKateg}</Button>
-                                            </Col>
-                                        </Row>
-                                    )
-                                })
-                            } */}

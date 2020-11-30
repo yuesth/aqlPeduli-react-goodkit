@@ -311,7 +311,7 @@ function DetailProg(props) {
                         :
                         <Row className="mb-5">
                             <Col md={12} sm={12} lg={7} className="px-0">
-                                <div style={{ height: `368px` }}>
+                                <div>
                                     {props.itemprog.gambar !== null && <img className="img-fluid w-100 h-100" src={props.itemprog.gambar}></img>
                                     }
                                 </div>

@@ -1,7 +1,52 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import "./galeri.css"
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 
+function SkeletonGaleri(){
+    return(
+        <SkeletonTheme color="#e3e3e3">
+            <div className="row">
+                <div className="col-3">
+                    <div className="card mx-2 p-2 bg-transparent" style={{ width: `258px`, height: `262px` }}>
+                        <Skeleton reactangle={true} height={78} width={258} />
+                        <br />
+                        <h3><Skeleton /></h3>
+                        <br />
+                        <Skeleton count={2} />
+                    </div>
+                </div>
+                <div className="col-3">
+                    <div className="card mx-2 p-2 bg-transparent" style={{ width: `258px`, height: `262px` }}>
+                        <Skeleton reactangle={true} height={78} width={258} />
+                        <br />
+                        <h3><Skeleton /></h3>
+                        <br />
+                        <Skeleton count={2} />
+                    </div>
+                </div>
+                <div className="col-3">
+                    <div className="card mx-2 p-2 bg-transparent" style={{ width: `258px`, height: `262px` }}>
+                        <Skeleton reactangle={true} height={78} width={258} />
+                        <br />
+                        <h3><Skeleton /></h3>
+                        <br />
+                        <Skeleton count={2} />
+                    </div>
+                </div>
+                <div className="col-3">
+                    <div className="card mx-2 p-2 bg-transparent" style={{ width: `258px`, height: `262px` }}>
+                        <Skeleton reactangle={true} height={78} width={258} />
+                        <br />
+                        <h3><Skeleton /></h3>
+                        <br />
+                        <Skeleton count={2} />
+                    </div>
+                </div>
+            </div>
+        </SkeletonTheme>
+    )
+}
 
 function Galeri() {
     const urlGaleri = "http://167.99.72.148/informasis"
@@ -81,7 +126,7 @@ function Galeri() {
                 </div>
             </div>
             <div className="row mb-9">
-                {itemgaleri}
+                {isLoadinggaleri ? <SkeletonGaleri></SkeletonGaleri> : itemgaleri}
             </div>
         </>
     )

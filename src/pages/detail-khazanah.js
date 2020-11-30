@@ -87,7 +87,7 @@ function DetailKhazanah(props) {
     const myImg = (props) => {
         return (
             // <img src={props.src} className="img-fluid"/>
-            <a href={props.src} className="d-block mb-3 mb-md-0" data-fancybox>
+            <a href={props.src} className="d-block mb-3 mb-md-0" style={{textAlign:`center`}} data-fancybox>
                 <img src={props.src} className="img-fluid" />
             </a>
 
@@ -140,6 +140,13 @@ function DetailKhazanah(props) {
                                 {/* <p className="text-justify" style={{ whiteSpace: `pre-wrap` }}>{kontenfix}</p> */}
                                 {/* <p className="text-justify" style={{whiteSpace:`pre-wrap`}} dangerouslySetInnerHTML={markup}></p> */}
                                 <ReactMarkdown children={detailkha.isi} renderers={renderMyImg}></ReactMarkdown>
+                            </div>
+                        </div>
+                        <div className="row align-items-center justify-content-center mb-7 no-gutters" style={{ textAlign: `center` }}>
+                            <div className="col-md-10 col-lg-9">
+                                <div className="embed-responsive embed-responsive-16by9">
+                                    <iframe className="embed-responsive-item" src={detailkha.urlvideo} allowFullScreen />
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -59,7 +59,7 @@ function LayoutKK() {
                 judul: `${data.judulKepedulianKita}`,
                 konten: `${data.kontenKepedulianKita}`,
                 tanggal: `${data.tanggalKepedulianKita}`,
-                gambar: `http://167.99.72.148${data.gambarKepedulianKita.url}`,
+                gambar: `${data.gambarKepedulianKita.url}`,
             }
         ))).then(
             items => {

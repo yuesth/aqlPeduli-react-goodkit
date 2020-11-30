@@ -110,6 +110,8 @@ function KepedulianLanding() {
     })
     const listKategori2 = kateg.map((doc, idx) => {
         var pathGbr2 = `${process.env.PUBLIC_URL}/images/kepedulian/${arrGbr[idx]}.png`
+        var namaKategori = `${doc.namaKateg}`
+        var namaKategori2 = namaKategori.replace(/\s/g, "")
         return (
             // <div className="lift">
             // <Link to={{
@@ -130,7 +132,7 @@ function KepedulianLanding() {
                     <Link to={{
                         pathname: `/program`,
                         state: {
-                            namaKateg: `${doc.namaKateg}`
+                            namaKateg: namaKategori2
                         }
                     }} className="stretched-link"></Link>
                 </div>
