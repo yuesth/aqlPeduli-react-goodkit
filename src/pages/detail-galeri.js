@@ -7,6 +7,7 @@ import { Link } from "react-router-dom"
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 // import "./detail-kepeduliankita.css"
 import ReactMarkdown from 'react-markdown'
+import "./detail-galeri.css"
 import "flickity-as-nav-for"
 
 function SkeletonDetailGaleri() {
@@ -66,24 +67,25 @@ function DetailGaleri(props) {
                 ))
             ).then((itemsgambar) => {
                 setDetailgalerigbr(itemsgambar)
-                setFlickgaleriut(
-                    new Flickity('.galeri-main', {
-                        imagesLoaded: true,
-                        pageDots: false,
-                        wrapAround: true,
-                        contain: true
-                        // autoPlay:true,
-                    })
-                )
-                setFlickgalerilain(
-                    new Flickity('.galeri-nav', {
-                        asNavFor: '.galeri-main',
-                        contain: true,
-                        pageDots: false,
-                        prevNextButtons: false,
-                        wrapAround:true,
-                    })
-                )
+                setTimeout(()=>{
+                    setFlickgaleriut(
+                        new Flickity('.galeri-main', {
+                            imagesLoaded: true,
+                            pageDots: false,
+                            wrapAround: true,
+                            contain: true
+                            // autoPlay:true,
+                        })
+                    )
+                    setFlickgalerilain(
+                        new Flickity('.galeri-nav', {
+                            asNavFor: '.galeri-main',
+                            pageDots: false,
+                            prevNextButtons: false,
+                            wrapAround:true,
+                        })
+                    )
+                },4000)
             })
     })
     const galeribesar = detailgalerigbr.map((doc, idx) => {
@@ -100,8 +102,8 @@ function DetailGaleri(props) {
     })
     const galerikecil = detailgalerigbr.map((doc, idx) => {
         return (
-            <div className="carousel-cell">
-                <img src={doc.gambarkecil} className="img-fluid" />
+            <div className="carousel-cell car-cell-kecil">
+                <img src={doc.gambarkecil} className="img-fluid w-100 h-100" />
             </div>
         )
     })

@@ -216,7 +216,7 @@ function KK() {
                                             </div>
                                         </div>
                                         <div className="col-md-6 position-static">
-                                            <div className="card-body py-9 py-lg-11">
+                                            <div className="card-body">
                                                 <div className="flickity-soft-edges flickity-buttons-adjacent flickity-buttons-rounded flickity-buttons-bottom-left position-static mx-n4 kk-main">
                                                     {tulisankk}
                                                 </div>

@@ -105,7 +105,7 @@ function Relawan() {
                     </div>
                     <Form action="https://api.sheetmonkey.io/form/rtCNxiEBTmxguKWYnDYBjU" method="POST">
                         <div className="row data-pribadi mb-7">
-                            <div className="col-12-col-md-12 w-100">
+                            <div className="col-11 col-md-12 w-100">
                                 <div className="row judul-dp mb-3">
                                     <div className="col-12 col-md-12">
                                         <h4>
@@ -182,7 +182,7 @@ function Relawan() {
 
 
                         <div className="row data-medsos mb-7">
-                            <div className="col-12-col-md-12 w-100">
+                            <div className="col-11 col-md-12 w-100">
                                 <div className="row judul-dp mb-3">
                                     <div className="col-12 col-md-12">
                                         <h4>
@@ -220,7 +220,7 @@ function Relawan() {
 
 
                         <div className="row data-motivasi mb-7">
-                            <div className="col-12-col-md-12 w-100">
+                            <div className="col-11 col-md-12 w-100">
                                 <div className="row judul-dp mb-3">
                                     <div className="col-12 col-md-12">
                                         <h4>

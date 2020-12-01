@@ -86,10 +86,11 @@ function DetailProgram(props) {
             itemup.push(doc)
         }
     })
+    const sortedItemUp = itemup.sort((a, b) => { return new Date(b.tanggalUp) - new Date(a.tanggalUp) })
     return (
         <>
             <NavbarGK></NavbarGK>
-            <DetailProg itemprog={detailprog} itemup={itemup} loadingdetprog={isLoadingdetprog} loadingdetup={isLoadingdetup} fromupdate={fromupdate} kontenfix={kontenfix}></DetailProg>
+            <DetailProg itemprog={detailprog} itemup={sortedItemUp} loadingdetprog={isLoadingdetprog} loadingdetup={isLoadingdetup} fromupdate={fromupdate} kontenfix={kontenfix}></DetailProg>
             <FooterGK></FooterGK>
         </>
     )

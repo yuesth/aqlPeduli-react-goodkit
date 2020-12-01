@@ -201,7 +201,6 @@ function ProgramLayout(props) {
             RemoveClass(x[i], "show");
             if (x[i].className.indexOf(c) > -1) AddClass(x[i], "show");
         }
-        // $(`.kateg-${c}`).addClass('is-checked')
     }
 
     const filterSelection2 = (c, d) => {
@@ -278,7 +277,9 @@ function ProgramLayout(props) {
         )
     })
 
-    const listprogram2 = program.map((doc, idx) => {
+    const sortedItemProgram = program.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
+
+    const listprogram2 = sortedItemProgram.map((doc, idx) => {
         var tostring = parseInt(doc.terkumpul)
         var idr = tostring.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
         var namaKategori = doc.namaKateg
@@ -325,7 +326,7 @@ function ProgramLayout(props) {
                                 fromUpdateLanding: false,
                             }
                         }}>
-                            <a className="stretched-link" href="" />
+                            <a className="stretched-link" />
                         </Link>
                     </div>
                 </div>
@@ -391,14 +392,14 @@ function ProgramLayout(props) {
                                         <i class="fe fe-chevron-down"></i>
                                     </button>
                                     <div className="dropdown-menu w-100 flex-kateg-thin" aria-labelledby="dropdownMenuButtonTwo">
-                                        <a className="dropdown-item w-100 kateg-thin-all is-checked" href="#!" onClick={() => filterSelection2("*", "Semua")}>Semua</a>
+                                        <a className="dropdown-item w-100 kategoriBtn kateg-thin-all is-checked" onClick={() => filterSelection2("*", "Semua")} style={{cursor:`pointer`}}>Semua</a>
                                         {
                                             kateg.map((doc, idx) => {
                                                 var nama1 = doc.namaKateg
                                                 var nama2 = nama1.replace(/\s/g, "")
                                                 return (
                                                     <>
-                                                        <a className={`dropdown-item kateg-thin-${nama2}`} href="#!" onClick={() => filterSelection2(nama2, nama1)}>{doc.namaKateg}</a>
+                                                        <a className={`dropdown-item kategoriBtn kateg-thin-${nama2}`} onClick={() => filterSelection2(nama2, nama1)} style={{cursor:`pointer`}}>{doc.namaKateg}</a>
                                                     </>
                                                 )
                                             })

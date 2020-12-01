@@ -99,6 +99,24 @@ function ModalDonasi(props) {
                             </h3>
                         </div>
                     </div>
+                    <div className="row align-items-center justify-content-center mb-5">
+                        <div className="col-md-11 col-lg-11">
+                            <button className="btn btn-light rounded-top-right rounded-bottom-left rounded-top-left rounded-bottom-right rounded-sm w-100 align-items-center justify-content-center btn-via-bb" onClick={() => window.open(`${props.linkbb}`, '_blank')}>
+                                {/* <i className="fa fa-whatsapp" /> */}
+                                <img src={`${process.env.PUBLIC_URL}/images/donasi/berkahberjamaah.png`} className="img-fluid" height="35" width="35" />
+                                <h3 className="mb-0 mt-1 ml-2">
+                                    <strong>Berkah Berjamaah</strong>
+                                </h3>
+                            </button>
+                        </div>
+                    </div>
+                    <div className="row align-items-center justify-content-center mb-3">
+                        <div className="col-md-11 col-lg-11">
+                            <h4 className="mb-5 mb-md-0 text-center">
+                                Atau
+                            </h4>
+                        </div>
+                    </div>
                     <div className="row rek-mandiri mb-5">
                         <div className="col-4 col-md-4">
                             <img src={`${process.env.PUBLIC_URL}/images/donasi/mandiri.png`} alt="bank mandiri" className="img-fluid" />
@@ -131,24 +149,6 @@ function ModalDonasi(props) {
                         <div className="col-md-11 col-lg-11">
                             <button className="btn btn-success rounded-top-right rounded-bottom-left rounded-top-left rounded-bottom-right rounded-sm w-100 btn-via-wa" onClick={() => window.open(`https://api.whatsapp.com/send?phone=+${phone}*&text=%20${text}`, `_blank`)}>
                                 <i className="fa fa-whatsapp" /> Via WhatsApp
-                            </button>
-                        </div>
-                    </div>
-                    <div className="row align-items-center justify-content-center mb-3">
-                        <div className="col-md-11 col-lg-11">
-                            <h5 className="mb-5 mb-md-0 text-center">
-                                Donasi langsung tanpa konfirmasi melalui
-                            </h5>
-                        </div>
-                    </div>
-                    <div className="row align-items-center justify-content-center mb-5">
-                        <div className="col-md-11 col-lg-11">
-                            <button className="btn btn-light rounded-top-right rounded-bottom-left rounded-top-left rounded-bottom-right rounded-sm w-100 align-items-center justify-content-center btn-via-bb" onClick={() => window.open(`${props.linkbb}`, '_blank')}>
-                                {/* <i className="fa fa-whatsapp" /> */}
-                                <img src={`${process.env.PUBLIC_URL}/images/donasi/berkahberjamaah.png`} className="img-fluid" height="35" width="35" />
-                                <h3 className="mb-0 mt-1 ml-2">
-                                    <strong>Berkah Berjamaah</strong>
-                                </h3>
                             </button>
                         </div>
                     </div>
@@ -261,7 +261,7 @@ function DetailProg(props) {
                             }
                         </button>
                         <div className="dropdown-menu" aria-labelledby="dropdownMenuButtonTwo">
-                            <a className="dropdown-item btn-gambar" href="#!" onClick={() => filterLampiran(idx)}>Gambar</a>
+                            <a className="dropdown-item btn-gambar" onClick={() => filterLampiran(idx)}>Gambar</a>
                             {/* <a className="dropdown-item btn-dok" href="#!" onClick={() => filterLampiran()}>Dokumen</a> */}
                         </div>
                     {/* </div> */}

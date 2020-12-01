@@ -81,7 +81,7 @@ function Emagz() {
                     </div>
                     <a href={doc.link}>
                         <div className="card-body p-2 py-3" style={{textAlign:`center`}}>
-                            <div style={{ minHeight: `5rem` }}>
+                            <div style={{ minHeight: `1rem` }}>
                                 <h4 className="img-emagz-capt">
                                     Unduh
                                 </h4>
