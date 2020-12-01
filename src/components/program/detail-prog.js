@@ -252,7 +252,7 @@ function DetailProg(props) {
                     {doc.desUp}
                 </p>
                 <div className="dropdown">
-                    <div>
+                    {/* <div> */}
                         <button className="btn btn-primary" type="button" aria-haspopup="true" aria-expanded="false" onClick={() => filterLampiran(idx)}>
                             Lampirkan
                             {isShowGbr[idx] ? <i class="fe fe-chevron-up"></i>
@@ -264,7 +264,7 @@ function DetailProg(props) {
                             <a className="dropdown-item btn-gambar" href="#!" onClick={() => filterLampiran(idx)}>Gambar</a>
                             {/* <a className="dropdown-item btn-dok" href="#!" onClick={() => filterLampiran()}>Dokumen</a> */}
                         </div>
-                    </div>
+                    {/* </div> */}
                 </div>
                 {isShowGbr[idx] ?
                     <div className="m-3 img-gambar" data-aos="fade-up">
@@ -318,7 +318,7 @@ function DetailProg(props) {
                             </Col>
                             <br />
                             <Col md={12} sm={12} lg={5}>
-                                <Sticky containerSelectorFocus="#wadahSticky" offsetTop={70} stickyEnableRange={[768, Infinity]}>
+                                <Sticky containerSelectorFocus="#wadahSticky" offsetTop={70} stickyEnableRange={[900, Infinity]}>
                                     <div className="kop rounded-bottom-right rounded-top-left ml-3 wadah-info-det-prog">
                                         <p className="mb-1 text-info"><small>{props.itemprog.namaKateg}</small></p>
                                         <div style={{ height: `5rem` }}>

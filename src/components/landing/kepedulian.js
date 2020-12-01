@@ -132,7 +132,7 @@ function KepedulianLanding() {
                     <Link to={{
                         pathname: `/program`,
                         state: {
-                            namaKateg: namaKategori2
+                            namaKateg: namaKategori
                         }
                     }} className="stretched-link"></Link>
                 </div>

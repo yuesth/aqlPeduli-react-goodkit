@@ -90,7 +90,11 @@ function SkeletonProg() {
 
 function ProgramLayout(props) {
     var init = ""
-    props.namakateg !== "" ? init=props.namakateg : init="*"
+    var nama1 = props.namakateg
+    var nama2 = nama1.replace(/\s/g, "")
+    var initKategbtn = ""
+    props.namakateg !== "" ? init = nama2 : init = "*"
+    props.namakateg !== "" ? initKategbtn = props.namakateg : initKategbtn = "Semua"
     const urlListProgram = "http://167.99.72.148/programs"
     const urlKateg = "http://167.99.72.148/kategoris"
     const [program, setProgram] = useState([])
@@ -99,7 +103,7 @@ function ProgramLayout(props) {
     const [isLoadingkateg, setIsLoadingkateg] = useState(true);
     const [isotope, setIsotope] = useState(null)
     const [filterKey, setFilterKey] = useState(init)
-    const [kategbtn, setKategbtn] = useState(init)
+    const [kategbtn, setKategbtn] = useState(initKategbtn)
     useEffect(() => {
         fetch(urlListProgram).then(res => res.json()).then(parsedJson => parsedJson.map(data => (
             {
@@ -200,13 +204,15 @@ function ProgramLayout(props) {
         // $(`.kateg-${c}`).addClass('is-checked')
     }
 
-    const filterSelection2 = (c) => {
+    const filterSelection2 = (c, d) => {
         setFilterKey(c)
-        c === "*" ? setKategbtn("all") : setKategbtn(c)
-        $('select option:selected').removeAttr('selected');
-        c === "*" ? $(`select option[value=${'all'}]`).attr('selected', 'selected') : $(`select option[value=${c}]`).attr('selected', 'selected')
+        setKategbtn(d)
+        // $('select option:selected').removeAttr('selected');
+        // c === "*" ? $(`select option[value=${'all'}]`).attr('selected', 'selected') : $(`select option[value=${c}]`).attr('selected', 'selected')
         $('.flex-kateg').find('.is-checked').removeClass('is-checked');
         c === "*" ? $(`.kateg-all`).addClass('is-checked') : $(`.kateg-${c}`).addClass('is-checked')
+        $('.flex-kateg-thin').find('.is-checked').removeClass('is-checked')
+        c === "*" ? $(`.kateg-thin-all`).addClass('is-checked') : $(`.kateg-thin-${c}`).addClass('is-checked')
     }
     function AddClass(element, name) {
         var i, arr1, arr2;
@@ -344,14 +350,14 @@ function ProgramLayout(props) {
                             </Col>
                         </Row>
                         <div className="row pl-n5 flex-kateg">
-                            <Button variant="default" onClick={() => filterSelection2('*')} className={`kategoriBtn kateg-all is-checked`}>Semua</Button>
+                            <Button variant="default" onClick={() => filterSelection2('*', "Semua")} className={`kategoriBtn kateg-all is-checked`}>Semua</Button>
                             {isLoadingkateg ? <SkeletonKateg></SkeletonKateg>
                                 :
                                 kateg.map((doc, idx) => {
                                     var nama1 = doc.namaKateg
                                     var nama2 = nama1.replace(/\s/g, "")
                                     return (
-                                        <Button variant="default" onClick={() => filterSelection2(nama2)} key={idx} className={`kategoriBtn kateg-${nama2}`}>{doc.namaKateg}</Button>
+                                        <Button variant="default" onClick={() => filterSelection2(nama2, nama1)} key={idx} className={`kategoriBtn kateg-${nama2}`}>{doc.namaKateg}</Button>
                                     )
                                 })
                             }
@@ -361,7 +367,7 @@ function ProgramLayout(props) {
                     <Col md={10}>
                         <div className="row justify-content-center mt-3 kateg-thin">
                             <div className="col-md-12 col-lg-12 text-center text-white">
-                                <form>
+                                {/* <form>
                                     <div className="mb-3">
                                         <select className="custom-select">
                                             <option selected className="kateg-all" value={'all'} onClick={() => filterSelection2('*')}>Semua</option>
@@ -378,7 +384,28 @@ function ProgramLayout(props) {
                                             }
                                         </select>
                                     </div>
-                                </form>
+                                </form> */}
+                                <div className="dropdown mb-3 w-100">
+                                    <button className="btn btn-primary w-100 dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {kategbtn}
+                                        <i class="fe fe-chevron-down"></i>
+                                    </button>
+                                    <div className="dropdown-menu w-100 flex-kateg-thin" aria-labelledby="dropdownMenuButtonTwo">
+                                        <a className="dropdown-item w-100 kateg-thin-all is-checked" href="#!" onClick={() => filterSelection2("*", "Semua")}>Semua</a>
+                                        {
+                                            kateg.map((doc, idx) => {
+                                                var nama1 = doc.namaKateg
+                                                var nama2 = nama1.replace(/\s/g, "")
+                                                return (
+                                                    <>
+                                                        <a className={`dropdown-item kateg-thin-${nama2}`} href="#!" onClick={() => filterSelection2(nama2, nama1)}>{doc.namaKateg}</a>
+                                                    </>
+                                                )
+                                            })
+                                        }
+                                        {/* <a className="dropdown-item btn-dok" href="#!" onClick={() => filterLampiran()}>Dokumen</a> */}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div className="container-fluid px-0">

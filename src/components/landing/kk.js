@@ -79,8 +79,8 @@ function KK() {
     })
     const gambarkk = kk.map((doc, idx) => {
         return (
-            <div className="w-100 bg-cover" style={{ backgroundImage: `url(${doc.gambarKk})` }}>
-                <img src={`${doc.gambarKk}`} alt="..." className="img-fluid invisible" />
+            <div className="w-100" style={{ backgroundImage: `url(${doc.gambarKk})` }}>
+                <img src={`${doc.gambarKk}`} alt="..." className="img-fluid" />
             </div>
         )
     })

@@ -63,7 +63,7 @@ function CarouselLanding() {
                         fromUpdateLanding: false,
                     }
                 }}>
-                    <img className="img-fluid" src={doc.gambar} alt="..." width="812" height="473" />
+                    <img className="img-fluid" src={doc.gambar} alt="..." width="780" height="473" />
                     {/* <div className="carousel-caption capt">
                         <h1 className="text-gray-900">{doc.judul}</h1>
                     </div> */}
