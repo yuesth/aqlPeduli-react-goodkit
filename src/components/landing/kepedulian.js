@@ -151,7 +151,7 @@ function KepedulianLanding() {
             <div className="container-xl">
                 <div className="row align-items-center justify-content-center mb-7">
                     <div className="col-md-6" style={{ textAlign: `center`, zIndex:`999` }}>
-                        <h2 className="display-4">
+                        <h2 style={{fontSize:`2rem`}}>
                             Kepedulian <br />
                         </h2>
                     </div>

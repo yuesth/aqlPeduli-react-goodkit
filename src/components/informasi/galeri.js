@@ -3,8 +3,8 @@ import { Link } from "react-router-dom"
 import "./galeri.css"
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 
-function SkeletonGaleri(){
-    return(
+function SkeletonGaleri() {
+    return (
         <SkeletonTheme color="#e3e3e3">
             <div className="row">
                 <div className="col-3">
@@ -119,9 +119,9 @@ function Galeri() {
             <div className="row mb-5">
                 <div className="col">
                     <div className="border-kita">
-                        <h2 className="mb-0">
+                        <h3 className="mb-0" style={{fontSize:`1.25rem`}}>
                             Galeri
-                    </h2>
+                        </h3>
                     </div>
                 </div>
             </div>

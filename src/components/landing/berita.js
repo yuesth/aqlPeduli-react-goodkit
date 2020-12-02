@@ -194,7 +194,7 @@ function Berita() {
                 <div className="row">
                     <div className="col-12">
                         <div style={{ textAlign: `center`, zIndex:`10` }} className="mb-7">
-                            <h2 className="display-4">
+                            <h2 style={{fontSize:`2rem`}}>
                                 Berita
                             </h2>
                         </div>

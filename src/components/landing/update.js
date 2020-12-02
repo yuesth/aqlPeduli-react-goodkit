@@ -164,7 +164,7 @@ function Update() {
             <div className="container-xl">
                 <div className="row align-items-center justify-content-center mb-7">
                     <div className="col-md-6" style={{ textAlign: `center` }}>
-                        <h2 className=" text-white display-4">
+                        <h2 className=" text-white" style={{fontSize:`2rem`}}>
                             Update Program
                             </h2>
                     </div>

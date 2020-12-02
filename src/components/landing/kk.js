@@ -190,7 +190,7 @@ function KK() {
                 <div className="container-xl position-relative" style={{ zIndex: 1 }}>
                     <div className="row align-items-center justify-content-center mb-7">
                         <div className="col-md-6" style={{ textAlign: `center` }}>
-                            <h2 className="display-4">
+                            <h2 style={{fontSize:`2rem`}}>
                                 Kepedulian Kita <br />
                             </h2>
                         </div>

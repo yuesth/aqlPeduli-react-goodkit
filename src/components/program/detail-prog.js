@@ -76,7 +76,7 @@ function DariTanggal(props) {
     var dariTanggal = new Date(props.tanggal)
     var string = dariTanggal.getDate().toString() + " " + dariTanggal.toLocaleString('default', { month: 'long' }) + " " + dariTanggal.getFullYear()
     return (
-        <span style={{ fontSize: `0.8rem` }}>
+        <span style={{ fontSize: `0.875rem` }}>
             {string}
         </span>
     )
@@ -87,7 +87,7 @@ function ModalDonasi(props) {
     const text = `Assalamu'alaikum Warohmatulloh Wabarokatuh\nDengan ini saya menyumbang donasi untuk ${props.judulprog} sebesar .... \nSemoga bermanfaat bagi yang membutuhkan terima kasih.`
     return (
         <>
-            <Modal show={props.status} onHide={props.handleclose} backdrop="static" keyboard={false}>
+            <Modal show={props.status} onHide={props.handleclose} backdrop="static" keyboard={false} className="modal-donasi">
                 <Modal.Header closeButton>
                     {/* <Modal.Title className="align-items-center justify-content-center">Donasi Anda bisa disalurkan melalui</Modal.Title> */}
                 </Modal.Header>
@@ -159,6 +159,11 @@ function ModalDonasi(props) {
 }
 
 function ModalShare(props) {
+    // useEffect(()=>{
+    //     $('.modal-bagikan .modal-dialog .modal-content ').css("position","absolute")
+    //     $('.modal-bagikan .modal-dialog .modal-content').css("top","300px")
+    //     $('.modal-bagikan .modal-dialog .modal-content').css("border-radius","7px")
+    // })
     return (
         <>
             <Modal show={props.status} onHide={props.handlecloseshare} keyboard={false} className="modal-bagikan">
@@ -337,10 +342,10 @@ function DetailProg(props) {
                                         </div>
                                         <div className="row button-donasi-atas">
                                             <div className="col-12 col-sm-10 col-md-10">
-                                                <Button variant="success" className="btn-donasi-sekarang w-100" onClick={handleShow}>DONASI SEKARANG</Button>
+                                                <Button variant="default" className="btn-donasi-sekarang w-100" onClick={handleShow}>DONASI SEKARANG</Button>
                                             </div>
                                             <div className="col-12 col-sm-2 col-md-2 btn-bagika-det-prog pl-0">
-                                                <Button variant="primary" className="btn-bagikan" onClick={handleShowShare}>
+                                                <Button variant="default" className="btn-bagikan" onClick={handleShowShare}>
                                                     <i className="fa fa-share-alt" />
                                                 </Button>
                                             </div>
@@ -417,11 +422,11 @@ function DetailProg(props) {
                     </div>
                 </div>
                 {/* <Sticky containerSelectorFocus="#wadahSticky" offsetTop={70} stickyEnableRange={[100, 540]}> */}
-                <div className="row no-gutters button-donasi-bawah d-flex bg-white" style={{ position: `fixed`, bottom: `0rem`, width: `100%`, height: `4rem`, zIndex: `9999` }}>
-                    <div className="col-9 col-sm-6 col-md-6 my-2 justify-content-center">
+                <div className="row no-gutters button-donasi-bawah d-flex bg-white" style={{ position: `fixed`, left:`0`, bottom: `0rem`, width: `100%`, height: `4rem`, zIndex: `99` }}>
+                    <div className="col-9 col-sm-6 col-md-6 my-2 justify-content-center" style={{textAlign:`center`}}>
                         <Button className="btn-sm h-100 w-100" variant="success" onClick={handleShow} className="btn-donasi-kecil-sekarang">DONASI SEKARANG</Button>
                     </div>
-                    <div className="col-3 col-sm-6 col-md-6 btn-bagika-det-prog my-2">
+                    <div className="col-3 col-sm-6 col-md-6 btn-bagika-det-prog my-2" style={{textAlign:`center`}}>
                         <Button className="btn-sm h-100" variant="primary" onClick={handleShowShare} className="btn-bagikan"> <i className="fa fa-share-alt" /></Button>
                     </div>
                 </div>

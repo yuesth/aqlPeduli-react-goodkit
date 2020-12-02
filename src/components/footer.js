@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react"
-import {Link} from 'react-router-dom'
+import React, { useState, useEffect } from "react"
+import { Link } from 'react-router-dom'
 import "./footer.css"
 
 function Footer() {
@@ -30,80 +30,105 @@ function Footer() {
     })
     const sortedItemBerita = itemBerita.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
     const berut = sortedItemBerita.map((doc, idx) => {
-        if(idx === 0){
+        if (idx === 0) {
             return (
                 <li className="mb-3">
-                    <Link className="text-gray-600" to={`/berita/${doc.id}`}>{doc.judul}</Link>
+                    <Link className="text-gray-600" to={`/berita/${doc.id}`} style={{fontSize:`0.875rem`}}>{doc.judul}</Link>
                 </li>
             )
         }
     })
     return (
         // style={{backgroundColor: `#261793`}}
-        <footer className="footer py-7 py-md-7" style={{backgroundColor:`#f5f5f5`}}>
+        <footer className="footer py-7 py-md-7" style={{ backgroundColor: `#f5f5f5` }}>
             <div className="container-lg">
                 <div className="row">
                     <div className="col-md-4 pr-5 mb-5">
-                        <img src={`${process.env.PUBLIC_URL}/images/logo-aql.png`} alt="logo-aql" width="200px" height="130px" className="logo-footer"/>
+                        <img src={`${process.env.PUBLIC_URL}/images/logo-aql.png`} alt="logo-aql" width="200px" height="130px" className="logo-footer" />
                         {/* <h2 className="font-family-serif text-white mb-1">
                             AQL Peduli
                         </h2> */}
                     </div>
                     <div className="col-6 col-md">
-                        <h6 className="text-uppercase text-black mb-3 mb-md-5">
+                        <h6 className="text-uppercase text-black mb-3 mb-md-5" style={{fontSize:`1.125rem`}}>
                             AQL Peduli
                         </h6>
                         <ul className="list-unstyled">
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/`}>Beranda</Link>
+                                <Link className="text-gray-600" to={`/`} style={{fontSize:`0.875rem`}}>Beranda</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/profil`}>Profil</Link>
+                                <Link className="text-gray-600" to={`/profil`} style={{fontSize:`0.875rem`}}>Profil</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/berita`}>Berita</Link>
+                                <Link className="text-gray-600" to={`/berita`} style={{fontSize:`0.875rem`}}>Berita</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/program`}>Kepedulian</Link>
+                                <Link className="text-gray-600" to={`/program`} style={{fontSize:`0.875rem`}}>Kepedulian</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/informasi`}>Informasi</Link>
+                                <Link className="text-gray-600" to={`/informasi`} style={{fontSize:`0.875rem`}}>Informasi</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/khazanah`}>Khazanah</Link>
+                                <Link className="text-gray-600" to={`/khazanah`} style={{fontSize:`0.875rem`}}>Khazanah</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/program`}>Donasi</Link>
+                                <Link className="text-gray-600" to={`/program`} style={{fontSize:`0.875rem`}}>Donasi</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/relawan`}>Relawan</Link>
+                                <Link className="text-gray-600" to={`/relawan`} style={{fontSize:`0.875rem`}}>Relawan</Link>
                             </li>
                         </ul>
                     </div>
                     <div className="col-6 col-md">
-                        <h6 className="text-uppercase text-black mb-3 mb-md-5">
+                        <h6 className="text-uppercase text-black mb-3 mb-md-5" style={{fontSize:`1.125rem`}}>
                             Kepedulian
                         </h6>
                         <ul className="list-unstyled">
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/program`}>Peduli Bencana</Link>
+                                <Link className="text-gray-600" to={{
+                                    pathname: `/program`,
+                                    state: {
+                                        namaKateg: 'Peduli Bencana'
+                                    }
+                                }} style={{fontSize:`0.875rem`}}>Peduli Bencana</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/program`}>Peduli Masjid</Link>
+                                <Link className="text-gray-600" to={{
+                                    pathname: `/program`,
+                                    state: {
+                                        namaKateg: 'Peduli Masjid'
+                                    }
+                                }} style={{fontSize:`0.875rem`}}>Peduli Masjid</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/program`}>Peduli Pangan</Link>
+                                <Link className="text-gray-600" to={{
+                                    pathname: `/program`,
+                                    state: {
+                                        namaKateg: 'Peduli Pangan'
+                                    }
+                                }} style={{fontSize:`0.875rem`}}>Peduli Pangan</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/program`}>Peduli Kesehatan</Link>
+                                <Link className="text-gray-600" to={{
+                                    pathname: `/program`,
+                                    state: {
+                                        namaKateg: 'Peduli Kesehatan'
+                                    }
+                                }} style={{fontSize:`0.875rem`}}>Peduli Kesehatan</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/program`}>Dapur Sedekah</Link>
+                                <Link className="text-gray-600" to={{
+                                    pathname: `/program`,
+                                    state: {
+                                        namaKateg: 'Dapur Sedekah'
+                                    }
+                                }} style={{fontSize:`0.875rem`}}>Dapur Sedekah</Link>
                             </li>
                         </ul>
                     </div>
                     <div className="col-6 col-md">
-                        <h6 className="text-uppercase text-black mb-3 mb-md-5">
+                        <h6 className="text-uppercase text-black mb-3 mb-md-5" style={{fontSize:`1.125rem`}}>
                             Berita Terbaru
                         </h6>
                         <ul className="list-unstyled">
@@ -113,7 +138,7 @@ function Footer() {
                 </div>
                 <div className="row">
                     <div className="col-12">
-                        <hr className="border-black-10 my-7" />
+                        <hr className="border-black-10 my-3" />
                     </div>
                 </div>
                 <div className="row align-items-center">

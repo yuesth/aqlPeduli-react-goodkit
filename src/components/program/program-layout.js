@@ -94,7 +94,7 @@ function ProgramLayout(props) {
     var nama2 = nama1.replace(/\s/g, "")
     var initKategbtn = ""
     props.namakateg !== "" ? init = nama2 : init = "*"
-    props.namakateg !== "" ? initKategbtn = props.namakateg : initKategbtn = "Semua"
+    props.namakateg !== "" ? initKategbtn = nama2 : initKategbtn = "Semua"
     const urlListProgram = "http://167.99.72.148/programs"
     const urlKateg = "http://167.99.72.148/kategoris"
     const [program, setProgram] = useState([])
@@ -150,6 +150,8 @@ function ProgramLayout(props) {
                 ? isotope.arrange({ filter: `*` })
                 : isotope.arrange({ filter: `.${filterKey}` })
         }
+        $(`.kateg-${kategbtn}`).addClass('is-checked')
+        $(`.kateg-thin-${kategbtn}`).addClass('is-checked')
         // $('.flex-kateg').each(function (i, buttonGroup) {
         //     var $buttonGroup = $(buttonGroup);
         //     $buttonGroup.on('click', 'button', function () {
@@ -209,10 +211,11 @@ function ProgramLayout(props) {
         // $('select option:selected').removeAttr('selected');
         // c === "*" ? $(`select option[value=${'all'}]`).attr('selected', 'selected') : $(`select option[value=${c}]`).attr('selected', 'selected')
         $('.flex-kateg').find('.is-checked').removeClass('is-checked');
-        c === "*" ? $(`.kateg-all`).addClass('is-checked') : $(`.kateg-${c}`).addClass('is-checked')
+        c === "*" ? $(`.kateg-Semua`).addClass('is-checked') : $(`.kateg-${c}`).addClass('is-checked')
         $('.flex-kateg-thin').find('.is-checked').removeClass('is-checked')
         c === "*" ? $(`.kateg-thin-all`).addClass('is-checked') : $(`.kateg-thin-${c}`).addClass('is-checked')
     }
+
     function AddClass(element, name) {
         var i, arr1, arr2;
         arr1 = element.className.split(" ");
@@ -292,11 +295,11 @@ function ProgramLayout(props) {
                         <img className="card-img-top rounded-top-left img-fluid img-prog" src={doc.gambar} alt="..." />
                     </div>
                     <div className="card-body p-2 pb-3">
-                        <span className="small text-muted mt-n1 mb-0">
+                        <span className="text-muted mt-n1 mb-0" style={{ fontSize: `0.875rem` }}>
                             <DariTanggal tanggal={doc.tanggal}></DariTanggal>
                         </span>
-                        <div style={{ height: `6rem` }} className="div-judul-program">
-                            <h3>
+                        <div style={{ height: `4rem` }} className="div-judul-program">
+                            <h3 className="titleListProgram">
                                 {doc.judul}
                             </h3>
                         </div>
@@ -305,12 +308,12 @@ function ProgramLayout(props) {
                         </p> */}
                         <Container className="p-0">
                             <Row>
-                                <Col md={5} xs={12} style={{ textAlign: `left`, fontSize: `12px` }}>
+                                <Col md={5} xs={12} style={{ textAlign: `left`, fontSize: `0.875rem` }}>
                                     <p style={{ marginBottom: `0.3rem` }}>Sisa Waktu</p>
                                     {doc.durasi !== null && <SisaHari tanggal={doc.tanggal} durasi={doc.durasi} />
                                     }
                                 </Col>
-                                <Col md={7} xs={12} style={{ textAlign: `left`, fontSize: `12px` }}>
+                                <Col md={7} xs={12} style={{ textAlign: `left`, fontSize: `0.875rem` }}>
                                     <p style={{ marginBottom: `0.3rem` }}>Terkumpul</p>
                                     <span style={{ color: `#6053db` }} className="span-terkumpul">Rp.{idr}</span>
                                 </Col>
@@ -338,7 +341,7 @@ function ProgramLayout(props) {
             <div className="container-xl">
                 <div className="row align-items-center justify-content-center mb-7">
                     <div className="col-md-6" style={{ textAlign: `center` }}>
-                        <h2 className="display-4 mb-4 mb-md-0">
+                        <h2 className="mb-4 mb-md-0" style={{fontSize:`1.75rem`}}>
                             Program Kepedulian <br />
                         </h2>
                     </div>
@@ -347,18 +350,18 @@ function ProgramLayout(props) {
                     <Col md={2} id="col-list" className="px-0 kateg-wide">
                         <Row>
                             <Col className="pl-6">
-                                <h2>Kategori</h2>
+                                <h3 style={{fontSize:`1.25rem`}}>Kategori</h3>
                             </Col>
                         </Row>
                         <div className="row pl-n5 flex-kateg">
-                            <Button variant="default" onClick={() => filterSelection2('*', "Semua")} className={`kategoriBtn kateg-all is-checked`}>Semua</Button>
+                            <Button variant="default" onClick={() => filterSelection2('*', "Semua")} className={`kategoriBtn kateg-Semua`}>Semua</Button>
                             {isLoadingkateg ? <SkeletonKateg></SkeletonKateg>
                                 :
                                 kateg.map((doc, idx) => {
                                     var nama1 = doc.namaKateg
                                     var nama2 = nama1.replace(/\s/g, "")
                                     return (
-                                        <Button variant="default" onClick={() => filterSelection2(nama2, nama1)} key={idx} className={`kategoriBtn kateg-${nama2}`}>{doc.namaKateg}</Button>
+                                        <Button variant="default" onClick={() => filterSelection2(nama2, nama2)} key={idx} className={`kategoriBtn kateg-${nama2}`}>{doc.namaKateg}</Button>
                                     )
                                 })
                             }
@@ -386,20 +389,20 @@ function ProgramLayout(props) {
                                         </select>
                                     </div>
                                 </form> */}
-                                <div className="dropdown mb-3 w-100">
-                                    <button className="btn btn-primary w-100 dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div className="dropdown mb-5 w-100">
+                                    <button className="btn btn-default w-100 dropdown-toggle btn-kateg-thin" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         {kategbtn}
                                         <i class="fe fe-chevron-down"></i>
                                     </button>
                                     <div className="dropdown-menu w-100 flex-kateg-thin" aria-labelledby="dropdownMenuButtonTwo">
-                                        <a className="dropdown-item w-100 kategoriBtn kateg-thin-all is-checked" onClick={() => filterSelection2("*", "Semua")} style={{cursor:`pointer`}}>Semua</a>
+                                        <a className="dropdown-item w-100 kategoriBtn kateg-thin-Semua" onClick={() => filterSelection2("*", "Semua")} style={{cursor:`pointer`}}>Semua</a>
                                         {
                                             kateg.map((doc, idx) => {
                                                 var nama1 = doc.namaKateg
                                                 var nama2 = nama1.replace(/\s/g, "")
                                                 return (
                                                     <>
-                                                        <a className={`dropdown-item kategoriBtn kateg-thin-${nama2}`} onClick={() => filterSelection2(nama2, nama1)} style={{cursor:`pointer`}}>{doc.namaKateg}</a>
+                                                        <a className={`dropdown-item kategoriBtn kateg-thin-${nama2}`} onClick={() => filterSelection2(nama2, nama2)} style={{cursor:`pointer`}}>{doc.namaKateg}</a>
                                                     </>
                                                 )
                                             })

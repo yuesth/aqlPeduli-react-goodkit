@@ -35,15 +35,6 @@ ol.timeline{
     top: 0;
 }
 
-.breadcrumb{
-    font-size: 1.1rem;
-}
-
-.breadcrumb li{
-    padding-left: 1rem;
-
-}
-
 .button-donasi-bawah{
     display: none;
     visibility: hidden;
@@ -84,19 +75,23 @@ ol.timeline{
 
 .btn-donasi-sekarang{
     background-color: #E92988;
+    color: white;
 }
 
 .btn-donasi-sekarang:hover{
     background-color: #b8206c;
+    color: white;
 }
 
 .btn-donasi-kecil-sekarang{
     background-color: #E92988;
+    color: white;
     width: 90%;
 }
 
 .btn-donasi-kecil-sekarang:hover{
     background-color: #b8206c;
+    color: white;
 }
 
 .btn-bagikan{
@@ -155,6 +150,10 @@ ol.timeline{
     position: absolute;
     top: 300px;
     border-radius: 7px;
+}
+
+.modal-donasi, .modal-bagikan{
+    z-index: 9999;
 }
 
 /* .gambar-up-det-prog{

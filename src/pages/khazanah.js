@@ -100,10 +100,10 @@ function Khazanah() {
                 <div className={`card rounded-top-left rounded-bottom-right lift`}>
                     <div className="row">
                         <div className="card-body">
-                            <h2 className="display-6">
+                            <h3 style={{fontSize:`1.25rem`}}>
                                 {doc.judul}
-                            </h2>
-                            <span className="small text-muted mb-7" style={{ fontSize: `12px` }}>
+                            </h3>
+                            <span className="text-muted mb-7" style={{ fontSize: `0.875rem` }}>
                                 <DariTanggal tanggal={doc.tanggal}></DariTanggal>
                             </span>
                             <br />
@@ -124,7 +124,7 @@ function Khazanah() {
                 <div className="container-xl">
                     <div className="row align-items-center justify-content-center mb-9">
                         <div className="col-md-6" style={{ textAlign: `center` }}>
-                            <h2 className="display-4 mb-4 mb-md-0">
+                            <h2 className="mb-4 mb-md-0" style={{fontSize:`1.75rem`}}>
                                 Khazanah <br />
                             </h2>
                         </div>

@@ -95,7 +95,7 @@ function LayoutKK() {
             <div className="container">
                 <div className="row align-items-center justify-content-center mb-9">
                     <div className="col-md-6" style={{ textAlign: `center` }}>
-                        <h2 className="display-4 mb-4 mb-md-0">
+                        <h2 className="mb-4 mb-md-0" style={{fontSize:`1.75rem`}}>
                             Kepedulian Kita <br />
                         </h2>
                     </div>

@@ -66,7 +66,7 @@ function Relawan() {
                     <div data-alerts="alerts" data-ids="myid" data-fade={3000} className="alert-submit" />
                     <div className="row align-items-center justify-content-center mb-7">
                         <div className="col-md-6" style={{ textAlign: `center` }}>
-                            <h2 className="display-4 mb-4 mb-md-0">
+                            <h2 className="mb-4 mb-md-0" style={{fontSize:`1.75rem`}}>
                                 Relawan AQL Peduli<br />
                             </h2>
                         </div>
@@ -77,7 +77,8 @@ function Relawan() {
                             {/* <p className="text-justify" style={{whiteSpace:`pre-wrap`}} dangerouslySetInnerHTML={markup}></p> */}
                             <p>
                                 Sebagai negara majemuk, Indonesia memiliki begitu banyak keragaman dan keindahan budaya. Dikombinasikan dengan situasi sosial dan ekonomi yang masih berkembang, negeri tercinta ini juga rentan akan berbagai masalah sosial. Sulit untuk tidak merasa tersentuh saat melihat realita keluarga yang kurang mampu di jalanan kota, merasa geram saat membaca pejabat kementerian yang korupsi di saat masih banyak anak yang mengenyam pendidikan seadanya atau mempertanyakan apa yang bisa dilakukan saar terjebak macet dan banjir di ibukota. Kami yakin, Anda pernah melalui kegundahan tersebut.
-                                </p>
+                                <br/>
+                                <br/>
                                 Syarat Pendaftaran:
                                 <ol>
                                 <li>Muslim/Muslimah</li>
@@ -85,7 +86,7 @@ function Relawan() {
                                 <li>Mau berjuang untuk kemanusiaan</li>
                                 <li>Berjiwa sosial, tangguh, dan disiplin</li>
                                 <li>Bersedia ditempatkan di wilayah JABODETABEK</li>
-                            </ol>
+                                </ol>
                                 Briefing Sosialisasi Lebih Lanjut:
                                 <ol>
                                 <li>Mengisi formulir yang tersedia</li>
@@ -93,19 +94,20 @@ function Relawan() {
                                 <li>Konfirmasi ke Call Center AQL Peduli</li>
                                 <li>Info Contact (WhatsApp) 0822-3919-3515</li>
                                 <li>Follow Instagram AQL Peduli @aqlpeduli</li>
-                            </ol>
+                                </ol>
+                            </p>
                         </div>
                     </div>
                     <div className="row align-items-center justify-content-center mb-7">
                         <div className="col-md-6" style={{ textAlign: `center` }}>
-                            <h1 className=" mb-4 mb-md-0">
+                            <h3 className=" mb-4 mb-md-0" style={{fontSize:`1.25rem`}}>
                                 Daftar Jadi Relawan<br />
-                            </h1>
+                            </h3>
                         </div>
                     </div>
                     <Form action="https://api.sheetmonkey.io/form/rtCNxiEBTmxguKWYnDYBjU" method="POST">
                         <div className="row data-pribadi mb-7">
-                            <div className="col-11 col-md-12 w-100">
+                            <div className="col-12 col-md-12 w-100">
                                 <div className="row judul-dp mb-3">
                                     <div className="col-12 col-md-12">
                                         <h4>
@@ -116,7 +118,7 @@ function Relawan() {
                                 <div className="row form-dp">
                                     <div className="col-12 col-md-6">
                                         <div className="form-group">
-                                            <input type="text" name="NIK" className="form-control w-100" placeholder="Nomor Induk Kependudukan (NIK)" value={data.nik} onChange={updateField} required/>
+                                            <input type="text" name="NIK" className="form-control w-100" placeholder="Nomor Induk Kependudukan" value={data.nik} onChange={updateField} required/>
                                         </div>
                                         <div className="form-group">
                                             <input type="text" name="namaLengkap" className="form-control w-100" placeholder="Nama Lengkap" value={data.fullname} onChange={updateField} required/>
@@ -182,7 +184,7 @@ function Relawan() {
 
 
                         <div className="row data-medsos mb-7">
-                            <div className="col-11 col-md-12 w-100">
+                            <div className="col-12 col-md-12 w-100">
                                 <div className="row judul-dp mb-3">
                                     <div className="col-12 col-md-12">
                                         <h4>
@@ -220,7 +222,7 @@ function Relawan() {
 
 
                         <div className="row data-motivasi mb-7">
-                            <div className="col-11 col-md-12 w-100">
+                            <div className="col-12 col-md-12 w-100">
                                 <div className="row judul-dp mb-3">
                                     <div className="col-12 col-md-12">
                                         <h4>

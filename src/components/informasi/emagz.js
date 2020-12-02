@@ -97,9 +97,9 @@ function Emagz() {
             <div className="row mb-5">
                 <div className="col">
                     <div className="border-kita">
-                        <h2 className="mb-0">
+                        <h3 className="mb-0" style={{fontSize:`1.25rem`}}>
                             Majalah Elektronik
-                    </h2>
+                    </h3>
                     </div>
                 </div>
             </div>

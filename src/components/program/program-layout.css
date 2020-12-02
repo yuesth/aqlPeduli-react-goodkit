@@ -52,6 +52,16 @@
     width: auto;
   }
 
+  .btn-kateg-thin{
+    background-color: rgb(56, 68, 172);
+    color: white;
+  }
+
+  .btn-kateg-thin:hover{
+    background-color: rgb(47, 57, 144);
+    color: white;
+  }
+
 
   /*  */
 
