@@ -52,9 +52,9 @@ function DetailGaleri(props) {
     useEffect(() => {
         fetch(urlDetailgaleri).then(res => res.json()).then(parsedJson => {
             setDetailgaleri(parsedJson)
-            setTimeout(()=>{
-                setIsLoadingdetgaleri(false)
-            },3000)
+            // setTimeout(() => {
+            setIsLoadingdetgaleri(false)
+            // }, 1000)
             return (parsedJson.gambarGaleri)
         })
             .then((ret) =>
@@ -67,43 +67,45 @@ function DetailGaleri(props) {
                 ))
             ).then((itemsgambar) => {
                 setDetailgalerigbr(itemsgambar)
-                setTimeout(()=>{
-                    setFlickgaleriut(
-                        new Flickity('.galeri-main', {
-                            imagesLoaded: true,
-                            pageDots: false,
-                            wrapAround: true,
-                            contain: true
-                            // autoPlay:true,
-                        })
-                    )
-                    setFlickgalerilain(
-                        new Flickity('.galeri-nav', {
-                            asNavFor: '.galeri-main',
-                            pageDots: false,
-                            prevNextButtons: false,
-                            wrapAround:true,
-                        })
-                    )
-                },4000)
+            }).then(() => {
+                // setTimeout(() => {
+                setFlickgaleriut(
+                    new Flickity('.galeri-main', {
+                        imagesLoaded: true,
+                        pageDots: false,
+                        wrapAround: true,
+                        contain: true
+                        // autoPlay:true,
+                    })
+                )
+                setFlickgalerilain(
+                    new Flickity('.galeri-nav', {
+                        asNavFor: '.galeri-main',
+                        pageDots: false,
+                        prevNextButtons: false,
+                        contain: true,
+                        fade: true
+                    })
+                )
+                // }, 3000)
             })
     })
     const galeribesar = detailgalerigbr.map((doc, idx) => {
         return (
-            <div style={{ width: `calc(100% - 10rem)` }}>
-                <Link class="d-block mb-3 mb-md-0" data-fancybox>
-                    <img className="img-fluid" src={doc.gambarbesar} alt="..." />
+            <div style={{ width: `calc(100% - 10rem)` }} className="car-cell-besar">
+                <a class="d-block mb-3 mb-md-0" href={doc.gambarbesar} data-fancybox>
+                    <img className="img-fluid h-100" src={doc.gambarbesar} alt="..." />
                     {/* <div className="carousel-caption capt">
                         <h1 className="text-gray-900">{doc.judul}</h1>
                     </div> */}
-                </Link>
+                </a>
             </div>
         )
     })
     const galerikecil = detailgalerigbr.map((doc, idx) => {
         return (
             <div className="carousel-cell car-cell-kecil">
-                <img src={doc.gambarkecil} className="img-fluid w-100 h-100" />
+                <img src={doc.gambarkecil} className="img-fluid" />
             </div>
         )
     })
@@ -134,7 +136,7 @@ function DetailGaleri(props) {
                     <div className="container-xl">
                         <div className="row align-items-center justify-content-center mb-7">
                             <div className="col-md-8" style={{ textAlign: `center` }}>
-                                <h2 className="mb-4 mb-md-0" style={{fontSize:`1.75rem`}}>
+                                <h2 className="mb-4 mb-md-0" style={{ fontSize: `1.75rem` }}>
                                     {detailgaleri.judulGaleri} <br />
                                 </h2>
                             </div>
@@ -159,7 +161,7 @@ function DetailGaleri(props) {
                                 <div className="flickity-buttons-overlap flickity-items-fade shadow-lg galeri-main mb-5">
                                     {galeribesar}
                                 </div>
-                                <div className="flickity-buttons-overlap flickity-items-fade shadow-lg galeri-nav">
+                                <div className="flickity-items-fade shadow-lg galeri-nav">
                                     {galerikecil}
                                 </div>
                             </div>

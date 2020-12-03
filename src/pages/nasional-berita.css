@@ -11,3 +11,17 @@
         font-size: 0.6rem;
     }
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0
+  }
+    
+  to{
+    opacity: 1
+  }
+}
+	
+.fade-in{
+  animation: fadeIn .5s ease-in;
+}

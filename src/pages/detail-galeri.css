@@ -1,15 +1,26 @@
 @media only screen and (max-width:590px){
     .car-cell-kecil{
-        width: 20%;
-        height: 3.5rem;
+        width: 10%;
+        height: 2rem;
     }
 
-    .galeri-nav .flickity-viewport{
-        height: 3.5rem;
+    .car-cell-besar{
+        height: 9rem;
     }
 
     .galeri-main .flickity-prev-next-button{
         display: none;
         visibility: hidden;
+    }
+}
+
+@media only screen and (min-width:591px){
+    .car-cell-kecil{
+        width:10%;
+        height: 80px;
+    }
+
+    .car-cell-besar{
+        height: 24rem;
     }
 }

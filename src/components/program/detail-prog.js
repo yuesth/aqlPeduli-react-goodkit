@@ -424,10 +424,10 @@ function DetailProg(props) {
                 {/* <Sticky containerSelectorFocus="#wadahSticky" offsetTop={70} stickyEnableRange={[100, 540]}> */}
                 <div className="row no-gutters button-donasi-bawah d-flex bg-white" style={{ position: `fixed`, left:`0`, bottom: `0rem`, width: `100%`, height: `4rem`, zIndex: `99` }}>
                     <div className="col-9 col-sm-6 col-md-6 my-2 justify-content-center" style={{textAlign:`center`}}>
-                        <Button className="btn-sm h-100 w-100" variant="success" onClick={handleShow} className="btn-donasi-kecil-sekarang">DONASI SEKARANG</Button>
+                        <Button className="btn-sm h-100 w-100" variant="default" onClick={handleShow} className="btn-donasi-kecil-sekarang">DONASI SEKARANG</Button>
                     </div>
                     <div className="col-3 col-sm-6 col-md-6 btn-bagika-det-prog my-2" style={{textAlign:`center`}}>
-                        <Button className="btn-sm h-100" variant="primary" onClick={handleShowShare} className="btn-bagikan"> <i className="fa fa-share-alt" /></Button>
+                        <Button className="btn-sm h-100" variant="default" onClick={handleShowShare} className="btn-bagikan"> <i className="fa fa-share-alt" /></Button>
                     </div>
                 </div>
                 {/* </Sticky> */}

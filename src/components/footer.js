@@ -33,7 +33,7 @@ function Footer() {
         if (idx === 0) {
             return (
                 <li className="mb-3">
-                    <Link className="text-gray-600" to={`/berita/${doc.id}`} style={{fontSize:`0.875rem`}}>{doc.judul}</Link>
+                    <Link className="text-gray-600" to={`/berita/${doc.id}`} style={{fontSize:`0.925rem`}}>{doc.judul}</Link>
                 </li>
             )
         }
@@ -55,28 +55,28 @@ function Footer() {
                         </h6>
                         <ul className="list-unstyled">
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/`} style={{fontSize:`0.875rem`}}>Beranda</Link>
+                                <Link className="text-gray-600" to={`/`} style={{fontSize:`0.925rem`}}>Beranda</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/profil`} style={{fontSize:`0.875rem`}}>Profil</Link>
+                                <Link className="text-gray-600" to={`/profil`} style={{fontSize:`0.925rem`}}>Profil</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/berita`} style={{fontSize:`0.875rem`}}>Berita</Link>
+                                <Link className="text-gray-600" to={`/berita`} style={{fontSize:`0.925rem`}}>Berita</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/program`} style={{fontSize:`0.875rem`}}>Kepedulian</Link>
+                                <Link className="text-gray-600" to={`/program`} style={{fontSize:`0.925rem`}}>Kepedulian</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/informasi`} style={{fontSize:`0.875rem`}}>Informasi</Link>
+                                <Link className="text-gray-600" to={`/informasi`} style={{fontSize:`0.925rem`}}>Informasi</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/khazanah`} style={{fontSize:`0.875rem`}}>Khazanah</Link>
+                                <Link className="text-gray-600" to={`/khazanah`} style={{fontSize:`0.925rem`}}>Khazanah</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/program`} style={{fontSize:`0.875rem`}}>Donasi</Link>
+                                <Link className="text-gray-600" to={`/program`} style={{fontSize:`0.925rem`}}>Donasi</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/relawan`} style={{fontSize:`0.875rem`}}>Relawan</Link>
+                                <Link className="text-gray-600" to={`/relawan`} style={{fontSize:`0.925rem`}}>Relawan</Link>
                             </li>
                         </ul>
                     </div>
@@ -91,7 +91,7 @@ function Footer() {
                                     state: {
                                         namaKateg: 'Peduli Bencana'
                                     }
-                                }} style={{fontSize:`0.875rem`}}>Peduli Bencana</Link>
+                                }} style={{fontSize:`0.925rem`}}>Peduli Bencana</Link>
                             </li>
                             <li className="mb-3">
                                 <Link className="text-gray-600" to={{
@@ -99,7 +99,7 @@ function Footer() {
                                     state: {
                                         namaKateg: 'Peduli Masjid'
                                     }
-                                }} style={{fontSize:`0.875rem`}}>Peduli Masjid</Link>
+                                }} style={{fontSize:`0.925rem`}}>Peduli Masjid</Link>
                             </li>
                             <li className="mb-3">
                                 <Link className="text-gray-600" to={{
@@ -107,7 +107,7 @@ function Footer() {
                                     state: {
                                         namaKateg: 'Peduli Pangan'
                                     }
-                                }} style={{fontSize:`0.875rem`}}>Peduli Pangan</Link>
+                                }} style={{fontSize:`0.925rem`}}>Peduli Pangan</Link>
                             </li>
                             <li className="mb-3">
                                 <Link className="text-gray-600" to={{
@@ -115,7 +115,7 @@ function Footer() {
                                     state: {
                                         namaKateg: 'Peduli Kesehatan'
                                     }
-                                }} style={{fontSize:`0.875rem`}}>Peduli Kesehatan</Link>
+                                }} style={{fontSize:`0.925rem`}}>Peduli Kesehatan</Link>
                             </li>
                             <li className="mb-3">
                                 <Link className="text-gray-600" to={{
@@ -123,7 +123,7 @@ function Footer() {
                                     state: {
                                         namaKateg: 'Dapur Sedekah'
                                     }
-                                }} style={{fontSize:`0.875rem`}}>Dapur Sedekah</Link>
+                                }} style={{fontSize:`0.925rem`}}>Dapur Sedekah</Link>
                             </li>
                         </ul>
                     </div>
