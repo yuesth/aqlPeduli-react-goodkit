@@ -6,6 +6,10 @@ import $ from 'jquery'
 import "./relawan.css"
 
 function Relawan() {
+    const SPREADSHEET_ID = "1zdfe0OkZe7llFTztwXC97G45UxPQfJNQbNukLGLq0ls"
+    const CLIENT_ID = "187026482676-bvntnst8anbfnpdhac9mmnc9avpempuv.apps.googleusercontent.com"
+    const API_KEY = "AIzaSyBAW2iZvzQ3aATi9nHWUes0yXJMLlyjAD0"
+    const SCOPE = "https://www.googleapis.com/auth/spreadsheets"
     const [data, setData] = useState({
         NIK: '',
         namaLengkap: '',
@@ -41,7 +45,7 @@ function Relawan() {
     // const [nik, setNik] = useState("")
     // const [nik, setNik] = useState("")
     // const [nik, setNik] = useState("")
-    function submitRelawan(){
+    function submitRelawan() {
         fetch('https://api.sheetmonkey.io/form/rtCNxiEBTmxguKWYnDYBjU', {
             method: "POST",
             headers: {
@@ -66,7 +70,7 @@ function Relawan() {
                     <div data-alerts="alerts" data-ids="myid" data-fade={3000} className="alert-submit" />
                     <div className="row align-items-center justify-content-center mb-7">
                         <div className="col-md-6" style={{ textAlign: `center` }}>
-                            <h2 className="mb-4 mb-md-0" style={{fontSize:`1.75rem`}}>
+                            <h2 className="mb-4 mb-md-0" style={{ fontSize: `1.75rem` }}>
                                 Relawan AQL Peduli<br />
                             </h2>
                         </div>
@@ -76,31 +80,34 @@ function Relawan() {
                             {/* <p className="text-justify" style={{whiteSpace:`pre-wrap`}}>{detailkk.konten}</p> */}
                             {/* <p className="text-justify" style={{whiteSpace:`pre-wrap`}} dangerouslySetInnerHTML={markup}></p> */}
                             <p>
-                                Sebagai negara majemuk, Indonesia memiliki begitu banyak keragaman dan keindahan budaya. Dikombinasikan dengan situasi sosial dan ekonomi yang masih berkembang, negeri tercinta ini juga rentan akan berbagai masalah sosial. Sulit untuk tidak merasa tersentuh saat melihat realita keluarga yang kurang mampu di jalanan kota, merasa geram saat membaca pejabat kementerian yang korupsi di saat masih banyak anak yang mengenyam pendidikan seadanya atau mempertanyakan apa yang bisa dilakukan saar terjebak macet dan banjir di ibukota. Kami yakin, Anda pernah melalui kegundahan tersebut.
+                                Alhamdulillah, sejak berdirinya AQL Peduli telah melakukan kegiatan kemanusiaan dengan program-program yang diantaranya di bidang Pendidikan, Religi, Kesehatan, Pangan dan saat bencana.
                                 <br/>
                                 <br/>
+                                Semua kesuksesan dari kegiatan-kegiatan tersebut tidak terlepas dari peran penting para relawan yang telah ikut berkontribusi dalam kegiatan AQL Peduli.
+                                <br />
+                                <br />
                                 Syarat Pendaftaran:
                                 <ol>
-                                <li>Muslim/Muslimah</li>
-                                <li>Usia minimal 17 tahun</li>
-                                <li>Mau berjuang untuk kemanusiaan</li>
-                                <li>Berjiwa sosial, tangguh, dan disiplin</li>
-                                <li>Bersedia ditempatkan di wilayah JABODETABEK</li>
+                                    <li>Muslim/Muslimah</li>
+                                    <li>Usia minimal 17 tahun</li>
+                                    <li>Mau berjuang untuk kemanusiaan</li>
+                                    <li>Berjiwa sosial, tangguh, dan disiplin</li>
+                                    <li>Bersedia ditempatkan di wilayah JABODETABEK</li>
                                 </ol>
                                 Briefing Sosialisasi Lebih Lanjut:
                                 <ol>
-                                <li>Mengisi formulir yang tersedia</li>
-                                <li>Melampirkan foto pribadi</li>
-                                <li>Konfirmasi ke Call Center AQL Peduli</li>
-                                <li>Info Contact (WhatsApp) 0822-3919-3515</li>
-                                <li>Follow Instagram AQL Peduli @aqlpeduli</li>
+                                    <li>Mengisi formulir yang tersedia</li>
+                                    <li>Melampirkan foto pribadi</li>
+                                    <li>Konfirmasi ke Call Center AQL Peduli</li>
+                                    <li>Info Contact (WhatsApp) 0822-3919-3515</li>
+                                    <li>Follow Instagram AQL Peduli @aqlpeduli</li>
                                 </ol>
                             </p>
                         </div>
                     </div>
                     <div className="row align-items-center justify-content-center mb-7">
                         <div className="col-md-6" style={{ textAlign: `center` }}>
-                            <h3 className=" mb-4 mb-md-0" style={{fontSize:`1.25rem`}}>
+                            <h3 className=" mb-4 mb-md-0" style={{ fontSize: `1.25rem` }}>
                                 Daftar Jadi Relawan<br />
                             </h3>
                         </div>
@@ -118,13 +125,13 @@ function Relawan() {
                                 <div className="row form-dp">
                                     <div className="col-12 col-md-6">
                                         <div className="form-group">
-                                            <input type="text" name="NIK" className="form-control w-100" placeholder="Nomor Induk Kependudukan" value={data.nik} onChange={updateField} required/>
+                                            <input type="text" name="NIK" className="form-control w-100" placeholder="Nomor Induk Kependudukan" value={data.nik} onChange={updateField} required />
                                         </div>
                                         <div className="form-group">
-                                            <input type="text" name="namaLengkap" className="form-control w-100" placeholder="Nama Lengkap" value={data.fullname} onChange={updateField} required/>
+                                            <input type="text" name="namaLengkap" className="form-control w-100" placeholder="Nama Lengkap" value={data.fullname} onChange={updateField} required />
                                         </div>
                                         <div className="form-group">
-                                            <input type="text" name="tempatLahir" className="form-control w-100" placeholder="Tempat Lahir" value={data.pob} onChange={updateField} required/>
+                                            <input type="text" name="tempatLahir" className="form-control w-100" placeholder="Tempat Lahir" value={data.pob} onChange={updateField} required />
                                         </div>
                                         <div className="form-group">
                                             <input type="text" name="umur" className="form-control w-100" placeholder="Umur" value={data.umur} onChange={updateField} />
@@ -149,10 +156,10 @@ function Relawan() {
                                     </div>
                                     <div className="col-12 col-md-6">
                                         <div className="form-group">
-                                            <input type="text" name="namaPanggilan" className="form-control w-100" placeholder="Nama Panggilan" value={data.nickname} onChange={updateField} required/>
+                                            <input type="text" name="namaPanggilan" className="form-control w-100" placeholder="Nama Panggilan" value={data.nickname} onChange={updateField} required />
                                         </div>
                                         <div className="form-group">
-                                            <input type="date" name="tanggalLahir" className="form-control w-100" placeholder="Tanggal Lahir" value={data.dob} onChange={updateField} required/>
+                                            <input type="date" name="tanggalLahir" className="form-control w-100" placeholder="Tanggal Lahir" value={data.dob} onChange={updateField} required />
                                         </div>
                                         <Form.Group>
                                             <Form.Control
@@ -201,7 +208,7 @@ function Relawan() {
                                             <input type="text" name="instagram" className="form-control w-100" placeholder="Instagram" value={data.ig} onChange={updateField} />
                                         </div>
                                         <div className="form-group">
-                                            <input type="text" name="noHp" className="form-control w-100" placeholder="Nomor handphone" value={data.nohp} onChange={updateField} required/>
+                                            <input type="text" name="noHp" className="form-control w-100" placeholder="Nomor handphone" value={data.nohp} onChange={updateField} required />
                                         </div>
                                     </div>
                                     <div className="col-12 col-md-6">
@@ -212,7 +219,7 @@ function Relawan() {
                                             <input type="text" name="whatsapp" className="form-control w-100" placeholder="Nomor Whatsapp" value={data.wa} onChange={updateField} />
                                         </div>
                                         <div className="form-group">
-                                            <input type="email" name="email" className="form-control w-100" placeholder="Email" value={data.email} onChange={updateField} required/>
+                                            <input type="email" name="email" className="form-control w-100" placeholder="Email" value={data.email} onChange={updateField} required />
                                         </div>
                                     </div>
                                 </div>

@@ -105,7 +105,7 @@ function DetailGaleri(props) {
     const galerikecil = detailgalerigbr.map((doc, idx) => {
         return (
             <div className="carousel-cell car-cell-kecil">
-                <img src={doc.gambarkecil} className="img-fluid" />
+                <img src={doc.gambarkecil} className="img-fluid h-100 w-100" />
             </div>
         )
     })

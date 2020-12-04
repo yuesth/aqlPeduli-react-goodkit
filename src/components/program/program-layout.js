@@ -152,6 +152,7 @@ function ProgramLayout(props) {
         }
         $(`.kateg-${kategbtn}`).addClass('is-checked')
         $(`.kateg-thin-${kategbtn}`).addClass('is-checked')
+        
         // $('.flex-kateg').each(function (i, buttonGroup) {
         //     var $buttonGroup = $(buttonGroup);
         //     $buttonGroup.on('click', 'button', function () {
@@ -353,7 +354,7 @@ function ProgramLayout(props) {
                                 <h3 style={{fontSize:`1.25rem`}}>Kategori</h3>
                             </Col>
                         </Row>
-                        <div className="row pl-n5 flex-kateg">
+                        <div className="row pl-n5 flex-kateg mb-md-7">
                             <Button variant="default" onClick={() => filterSelection2('*', "Semua")} className={`kategoriBtn kateg-Semua`}>Semua</Button>
                             {isLoadingkateg ? <SkeletonKateg></SkeletonKateg>
                                 :

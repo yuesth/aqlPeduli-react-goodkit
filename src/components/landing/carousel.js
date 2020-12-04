@@ -30,13 +30,23 @@ function CarouselLanding() {
         speed: 500
     };
     useEffect(() => {
-        fetch(urlListProgramCar).then(res => res.json()).then(parsedJson => parsedJson.map(data => (
-            {
-                id: `${data.id}`,
-                gambar: `${data.banner.url}`,
-                idProg: `${data.program.id}`
+        fetch(urlListProgramCar).then(res => res.json()).then(parsedJson => parsedJson.map(data => {
+            if (data.program !== null) {
+                return ({
+                    id: `${data.id}`,
+                    gambar: `${data.banner.url}`,
+                    idProg: `${data.program.id}`,
+                    link: `${data.linkBanner}`
+                })
             }
-        ))).then(
+            else {
+                return ({
+                    id: `${data.id}`,
+                    gambar: `${data.banner.url}`,
+                    link: `${data.linkBanner}`
+                })
+            }
+        })).then(
             items => {
                 setProgramcar(items)
                 // setTimeout(()=>{
@@ -57,17 +67,19 @@ function CarouselLanding() {
     const listcarousel = programcar.map((doc, idx) => {
         return (
             <div style={{ width: `calc(100% - 5rem)`, maxWidth: `780px` }}>
-                <Link to={{
-                    pathname: `/program/${doc.idProg}`,
-                    state: {
-                        fromUpdateLanding: false,
-                    }
-                }}>
+                <a href={doc.link}
+                // to={{
+                //     pathname: `/program/${doc.idProg}`,
+                //     state: {
+                //         fromUpdateLanding: false,
+                //     }
+                // }} 
+                >
                     <img className="img-fluid" src={doc.gambar} alt="..." width="780" height="473" />
                     {/* <div className="carousel-caption capt">
                         <h1 className="text-gray-900">{doc.judul}</h1>
                     </div> */}
-                </Link>
+                </a>
             </div>
         )
     })
@@ -142,5 +154,46 @@ function CarouselLanding() {
     )
 }
 
+
+// import React from 'react'; 
+// import './App.css'; 
+// import Photos from './Components/Photos'
+
+// class Apps extends React.Component { 
+//     state = { 
+//         photos: null, pages: null, currentPage: null, 
+//     }
+
+//     componentDidMount() { 
+//         fetch('https//localhost:3000/photos?page=1')
+//         .then(res => res.json())
+//         .then(res => { 
+//             this.setState({ 
+//                 photos: res.photos, 
+//                 pages: res.pages, 
+//                 currentPage: res.currentPage 
+//             }) 
+//         }) 
+//     } 
+//     fetchMoreData = () => { 
+//         if (this.state.currentPage - this.state.pages !== 0) { 
+//             fetch(`http://localhost:3000/photos?page=${this.state.currentPage + 1}`)
+//             .then(res => res.json())
+//             .then(res => { 
+//                 this.setState({ 
+//                     photos: [...this.state.photos, ...res.photos], 
+//                     pages: res.pages, 
+//                     currentPage: res.currentPage, 
+//                 }) 
+//             }) 
+//         } 
+//     }
+//     render() { 
+//         return (
+//             <PhotosfetchMoreData={this.fetchMoreData} photos={this.state.photos} pages={this.state.pages} currentPage={this.state.currentPage}/>
+
+//         )
+//     }
+// }
 export default CarouselLanding
 

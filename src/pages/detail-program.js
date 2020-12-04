@@ -32,6 +32,7 @@ function DetailProgram(props) {
                 linkbb: `${parsedJson.linkBerkahberjamaah}`,
                 gambar: `${parsedJson.gambarProgram.url}`,
                 cerita: `${parsedJson.cerita}`,
+                idKateg: `${parsedJson.kategori.id}`,
                 namaKateg: `${parsedJson.kategori.namaKategori}`,
                 updateProg: `${parsedJson.update_programs}`
             }
@@ -41,16 +42,7 @@ function DetailProgram(props) {
                 setIsLoadingdetprog(false)
                 return(items.cerita)
             }
-        ).then((ret)=>{
-            var str2 = ret.match(/http:\/\/167.99.72.148\/uploads\/([A-z])\w+\.(png|jpg|jpeg)/g)
-            if(str2 !== null){
-                var res = ret.replace(/!\[[A-z]\w+\.(png|jpg|jpeg)\]\(http:\/\/167.99.72.148\/uploads\/([A-z])\w+\.(png|jpg|jpeg)\)/g, `<img className="img-fluid w-50" src="${str2[0]}"></img>`)
-                setKontenfix(res)
-            }
-            else{
-                setKontenfix(ret)
-            }
-        })
+        )
         fetch(urlUpdate).then(res => res.json()).then(parsedJsonUp => parsedJsonUp.map(data => {
             if (data.gambarUpdate !== null) {
                 return ({

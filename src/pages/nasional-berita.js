@@ -4,7 +4,7 @@ import FooterGK from "../components/footer"
 import { Link } from "react-router-dom"
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
 import { Col, Breadcrumb } from 'react-bootstrap'
-import InfiniteScroll from 'react-infinite-scroll-component'
+import InfiniteScroll from 'react-infinite-scroller'
 import "./nasional-berita.css"
 
 function SkeletonBeritaHeader() {
@@ -176,84 +176,78 @@ function BeritaListNas(props) {
     return (
         <>
             <div className="row mt-6 mb-5">
-                <InfiniteScroll initialLoad={false} loadMore={props.loadData} hasMore>
-                    {listberitanas}
-                </InfiniteScroll>
+                {/* <InfiniteScroll initialLoad={false} loadMore={props.loadData} hasMore> */}
+                {listberitanas}
+                {/* </InfiniteScroll> */}
             </div>
         </>
     )
 }
 
 function BeritaNasional() {
-    const urlBerita = "http://167.99.72.148/beritas?_where[kategoriberita.namaKategori]=Berita%20Nasional"
-    // const urlBerita2 = "http://167.99.72.148/beritas?_where[kategoriberita.namaKategori]=Berita%20Nasional&_start=0&_limit=4"
+    const urlBerita = "http://167.99.72.148/beritas"
+    const urlBerita2 = "http://167.99.72.148/beritas?_where[kategoriberita.namaKategori]=Berita%20Nasional&_start=0&_limit=5"
     const [beritanas, setBeritanas] = useState([])
     const [beritanasinf, setBeritanasinf] = useState([])
-    // const [beritanas2, setBeritanas2] = useState([])
     const [banyakberita, setBanyakberita] = useState(0)
     const [start, setStart] = useState(4)
     const [visible, setVisible] = useState(4)
     const [isLoadingberheadernas, setIsLoadingberheadernas] = useState(true);
-    const [isall, setIsall] = useState(0);
+    const [hasmore, setHasmore] = useState(true);
     useEffect(() => {
-        fetch(urlBerita).then(res => res.json()).then(parsedJson => {
-            setBeritanas(parsedJson)
+        fetch(urlBerita2).then(res => res.json()).then(parsedJson => 
+            parsedJson.map((doc) => ({
+                id: `${doc.id}`,
+                penulis: `${doc.penulisBerita}`,
+                tanggal: `${doc.tanggalBerita}`,
+                judul: `${doc.judulBerita}`,
+                isi: `${doc.isiBerita}`,
+                tag: `${doc.tagBerita}`,
+                gambar: `${doc.gambarBerita.url}`,
+                kategori: `${doc.kategoriberita.namaKategori}`
+            }))
+        ).then((itemss)=>{
+            setBeritanas(itemss)
+            setBeritanasinf(itemss)
             setIsLoadingberheadernas(false)
         })
 
         // fetch(urlBerita2).then(res => res.json()).then(parsedJson => {
-        //     setBeritanas2(parsedJson)
+        //     setBeritanasinf(parsedJson)
         // })
 
-        // fetch(`http://167.99.72.148/beritas/count`)
-        //     .then((cnt) => setBanyakberita(cnt))
-    })
-
+    }, [])
     const moreData = (val) => {
-        // generateDataBernas(start)
-        // const newData = beritanas.concat(beritanasinf)
-        // setTimeout(()=>{
-        //     setBeritanas(newData)
-        // },3000)
-
-
-        // if (beritanas2.length > banyakberita) {
-        //     setHasMore(false);
-        //     return;
-        // }
-        // const url = `http://167.99.72.148/beritas?_where[kategoriberita.namaKategori]=Berita%20Nasional&_start=${start}&_limit=4`
-        // fetch(url).then(res => res.json()).then(parsedJson => {
-        //     setTimeout(() => setBeritanas2([...beritanas2, parsedJson]), 500)
-        // }).then(() => setStart(prevstart => prevstart + 4))
-
         setVisible(prev => prev + 4)
     }
 
-    const incIsAll = (val) => {
-    }
-
     const generateDataBernas = () => {
-        // if (beritanas.length > banyakberita) {
-        //     setHasMore(false)
-        //     return
-        // }
-        // fetch(`http://167.99.72.148/beritas?_where[kategoriberita.namaKategori]=Berita%20Nasional&_start=${start}&_limit=4`)
-        //     .then((res) => res.json()).then((res) => {
-        //         res.map((doc) => ({
-        //             id: `${doc.id}`,
-        //             penulis: `${doc.penulisBerita}`,
-        //             tanggal: `${doc.tanggalBerita}`,
-        //             judul: `${doc.judulBerita}`,
-        //             isi: `${doc.isiBerita}`,
-        //             tag: `${doc.tagBerita}`,
-        //             gambar: `${doc.gambarBerita.url}`,
-        //             kategori: `${doc.kategoriberita.namaKategori}`
-        //         }))
-        //     })
-        //     .then((items) => {
-        //         setBeritanasinf(items)
-        //         setStart((prevStart) => prevStart + 4)
-        //     })
+        setTimeout(() => {
+            fetch(`http://167.99.72.148/beritas?_where[kategoriberita.namaKategori]=Berita%20Nasional&_start=${start}&_limit=4`)
+                .then((res) => res.json()).then((res) =>
+                    res.map((doc) => ({
+                        id: `${doc.id}`,
+                        penulis: `${doc.penulisBerita}`,
+                        tanggal: `${doc.tanggalBerita}`,
+                        judul: `${doc.judulBerita}`,
+                        isi: `${doc.isiBerita}`,
+                        tag: `${doc.tagBerita}`,
+                        gambar: `${doc.gambarBerita.url}`,
+                        kategori: `${doc.kategoriberita.namaKategori}`
+                    }))
+                )
+                .then((items) => {
+                    const newberita = beritanas.concat(items)
+                    setBeritanasinf(newberita)
+                    setStart((prevStart) => prevStart + 4)
+                    if (items.length === 0) {
+                        setHasmore(false)
+                    }
+                    else {
+                        setHasmore(true)
+                    }
+                })
+        }, 1500)
     }
 
     function DariTanggal(props) {
@@ -330,47 +324,29 @@ function BeritaNasional() {
         )
     }
 
-    const itemBerita = []
-    // const itemBerita2 = []
-    beritanas.map(data => {
-        if (data.kategoriberita.namaKategori === "Berita Nasional") {
-            var item1 = {
-                id: `${data.id}`,
-                penulis: `${data.penulisBerita}`,
-                tanggal: `${data.tanggalBerita}`,
-                judul: `${data.judulBerita}`,
-                isi: `${data.isiBerita}`,
-                tag: `${data.tagBerita}`,
-                gambar: `${data.gambarBerita.url}`,
-                kategori: `${data.kategoriberita.namaKategori}`
-            }
-            itemBerita.push(item1)
-        }
-    })
-    // beritanas2.map(data => {
-    //     var item1 = {
-    //         id: `${data.id}`,
-    //         penulis: `${data.penulisBerita}`,
-    //         tanggal: `${data.tanggalBerita}`,
-    //         judul: `${data.judulBerita}`,
-    //         isi: `${data.isiBerita}`,
-    //         tag: `${data.tagBerita}`,
-    //         gambar: `${data.gambarBerita.url}`,
-    //         kategori: `${data.kategoriberita.namaKategori}`
+    // const itemBerita = []
+    // beritanas.map(data => {
+    //     if (data.kategoriberita.namaKategori === "Berita Nasional") {
+    //         var item1 = {
+    //             id: `${data.id}`,
+    //             penulis: `${data.penulisBerita}`,
+    //             tanggal: `${data.tanggalBerita}`,
+    //             judul: `${data.judulBerita}`,
+    //             isi: `${data.isiBerita}`,
+    //             tag: `${data.tagBerita}`,
+    //             gambar: `${data.gambarBerita.url}`,
+    //             kategori: `${data.kategoriberita.namaKategori}`
+    //         }
+    //         itemBerita.push(item1)
     //     }
-    //     itemBerita2.push(item1)
     // })
-    const sortedItemBerita = itemBerita.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
-    // const sortedItemBerita2 = itemBerita2.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
-    const listberitanas = sortedItemBerita.slice(0, visible).map((doc, idx) => {
+    const sortedItemBerita = beritanas.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
+    const sortedItemBerita2 = beritanasinf.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
+    const listberitanas = sortedItemBerita2.map((doc, idx) => {
+        // var kategBeritaLain = doc.kategori
         var kategBeritaLain = doc.kategori
         var namaKategoriBeritaLain = kategBeritaLain.replace(/\s/g, "")
         var namaClass = "item-berita " + namaKategoriBeritaLain
-        // if (idx ===  sortedItemBerita.length-1) {
-        //     setIsall(true)
-        // }
-        // if (namaKategoriBeritaLain !== "Event") {
-        // if (namaKategoriBeritaLain === "BeritaNasional") {
         return (
             <div className="col-12 col-md-12 mb-5 mt-5 fade-in" key={idx}>
                 <div className={`card rounded-top-left rounded-bottom-right ${namaClass}`}>
@@ -395,8 +371,6 @@ function BeritaNasional() {
                 </div>
             </div>
         )
-        // }
-        // }
     })
 
     return (
@@ -406,12 +380,12 @@ function BeritaNasional() {
                 <div className="container-xl" id="wadahStickyBerNas">
                     <BeritaHeaderNas data={sortedItemBerita} isloadingberheadernas={isLoadingberheadernas}></BeritaHeaderNas>
                     <div className="row mt-6 mb-5">
-                        {/* <InfiniteScroll initialLoad={false} loadMore={moreData} hasMore={()=>beritanas.length === banyakberita ? false : true} loader={loader}> */}
-                        {/* <ItemBeritasNas berita={beritanas}></ItemBeritasNas> */}
-                        {listberitanas}
-                        {/* </InfiniteScroll> */}
+                        <InfiniteScroll initialLoad={false} loadMore={generateDataBernas} hasMore={hasmore} loader={loader}>
+                            {/* <ItemBeritasNas berita={beritanas}></ItemBeritasNas> */}
+                            {listberitanas}
+                        </InfiniteScroll>
                     </div>
-                    {visible >= sortedItemBerita.length ? <></> :
+                    {/* {visible >= sortedItemBerita.length ? <></> :
                         <div className="row align-items-center mb-7">
                             <div className="mx-auto">
                                 <button className="btn btn-sm btn-primary" onClick={moreData}>
@@ -419,7 +393,7 @@ function BeritaNasional() {
                             </button>
                             </div>
                         </div>
-                    }
+                    } */}
                     {/* <BeritaListNas data={sortedItemBerita} loadData={generateDataBernas} banyakberita={banyakberita}></BeritaListNas> */}
                 </div>
             </section>

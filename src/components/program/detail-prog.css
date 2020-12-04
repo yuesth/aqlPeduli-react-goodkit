@@ -146,6 +146,11 @@ ol.timeline{
     color: #ee5535
 }
 
+.norekmessage, .norekmandirismessage, .norekbnimessage, .norekbnismessage, .norekbrimessage, .norekbrismessage {
+    font-size: 11px;
+    color: #ee5535
+}
+
 .modal-bagikan .modal-dialog .modal-content{
     position: absolute;
     top: 300px;

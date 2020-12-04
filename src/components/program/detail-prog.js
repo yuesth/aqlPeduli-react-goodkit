@@ -83,8 +83,53 @@ function DariTanggal(props) {
 }
 
 function ModalDonasi(props) {
-    const phone = '6282220825719'
+    const urlNorek = `http://167.99.72.148/nomor-rekening-kategoris?_where[kategori.id]=${props.idkateggg}`
+    const [norek, setNorek] = useState([])
+    const [mandiricopied, setMandiricopied] = useState(false)
+    const handleMandiri = () => setMandiricopied(true)
+    const [mandiriscopied, setMandiriscopied] = useState(false)
+    const handleMandiris = () => setMandiriscopied(true)
+    const [bnicopied, setbnicopied] = useState(false)
+    const handlebni = () => setbnicopied(true)
+    const [bniscopied, setbniscopied] = useState(false)
+    const handlebnis = () => setbniscopied(true)
+    const [bricopied, setbricopied] = useState(false)
+    const handlebri = () => setbricopied(true)
+    const [briscopied, setbriscopied] = useState(false)
+    const handlebris = () => setbriscopied(true)
+    const norekcopied = () => {
+        $(".norekmessage").text("copied");
+    }
+    const norekmandiriscopied = () => {
+        $(".norekmandirismessage").text("copied");
+    }
+    const norekbnicopied = () => {
+        $(".norekbnimessage").text("copied");
+    }
+    const norekbniscopied = () => {
+        $(".norekbnismessage").text("copied");
+    }
+    const norekbricopied = () => {
+        $(".norekbrimessage").text("copied");
+    }
+    const norekbriscopied = () => {
+        $(".norekbrismessage").text("copied");
+    }
+    const phone = '6282239193515'
     const text = `Assalamu'alaikum Warohmatulloh Wabarokatuh\nDengan ini saya menyumbang donasi untuk ${props.judulprog} sebesar .... \nSemoga bermanfaat bagi yang membutuhkan terima kasih.`
+    useEffect(() => {
+        fetch(urlNorek).then(res => res.json()).then(parsedJson => parsedJson.map(doc => {
+            // if(doc.kategori.id === props.idkateg){
+            return ({
+                id: `${doc.id}`,
+                bank: `${doc.jenisBank}`,
+                norek: `${doc.nomorRekening}`
+            })
+            // }
+        })).then(items => {
+            setNorek(items)
+        })
+    }, [norek])
     return (
         <>
             <Modal show={props.status} onHide={props.handleclose} backdrop="static" keyboard={false} className="modal-donasi">
@@ -117,22 +162,112 @@ function ModalDonasi(props) {
                             </h4>
                         </div>
                     </div>
-                    <div className="row rek-mandiri mb-5">
-                        <div className="col-4 col-md-4">
-                            <img src={`${process.env.PUBLIC_URL}/images/donasi/mandiri.png`} alt="bank mandiri" className="img-fluid" />
-                        </div>
-                        <div className="col-8 col-md-8">
-                            <span className="text-muted" style={{ fontSize: `14px` }}>Bank Mandiri <br /> a.n Yayasan Pusat Peradaban Islam <br /> 156 001600 5151</span>
-                        </div>
-                    </div>
-                    <div className="row rek-bnis mb-5">
-                        <div className="col-4 col-md-4">
-                            <img src={`${process.env.PUBLIC_URL}/images/donasi/mandiris.png`} alt="bank mandiri syariah" className="img-fluid" />
-                        </div>
-                        <div className="col-8 col-md-8">
-                            <span className="text-muted" style={{ fontSize: `14px` }}>Bank Mandiri Syariah <br /> a.n Yayasan Pusat Peradaban Islam <br /> 7888 844419</span>
-                        </div>
-                    </div>
+                    {
+                        norek.map((doc, idx) => {
+                            if (doc.bank === "Mandiri") {
+                                return (
+                                    <div className="row rek-mandiri mb-5">
+                                        <div className="col-4 col-md-4">
+                                            <img src={`${process.env.PUBLIC_URL}/images/donasi/mandiri.png`} alt="bank mandiri" className="img-fluid" />
+                                        </div>
+                                        <div className="col-8 col-md-8">
+                                            <span className="text-muted" style={{ fontSize: `14px` }}>Bank Mandiri <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
+                                            <span className="text-muted" style={{ fontSize: `14px` }}>{doc.norek}</span>
+                                            <CopyToClipboard onCopy={handleMandiri} text={doc.norek}>
+                                                <button className="cpy" onClick={norekcopied}> <i className="far fa-clone fa" /></button>
+                                            </CopyToClipboard>
+                                            <span className="norekmessage" />
+                                        </div>
+                                    </div>
+                                )
+                            }
+                            else if (doc.bank === "BSM") {
+                                return (
+                                    <div className="row rek-bsm mb-5">
+                                        <div className="col-4 col-md-4">
+                                            <img src={`${process.env.PUBLIC_URL}/images/donasi/mandiris.png`} alt="bank mandiri syariah" className="img-fluid" />
+                                        </div>
+                                        <div className="col-8 col-md-8">
+                                            <span className="text-muted" style={{ fontSize: `14px` }}>Bank Mandiri Syariah<br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
+                                            <span className="text-muted" style={{ fontSize: `14px` }}>{doc.norek}</span>
+                                            <CopyToClipboard onCopy={handleMandiris} text={doc.norek}>
+                                                <button className="cpy" onClick={norekmandiriscopied}> <i className="far fa-clone fa" /></button>
+                                            </CopyToClipboard>
+                                            <span className="norekmandirismessage" />
+                                        </div>
+                                    </div>
+                                )
+                            }
+                            else if (doc.bank === "BNI") {
+                                return (
+                                    <div className="row rek-bsm mb-5">
+                                        <div className="col-4 col-md-4">
+                                            <img src={`${process.env.PUBLIC_URL}/images/donasi/bni.png`} alt="bank BNI" className="img-fluid" />
+                                        </div>
+                                        <div className="col-8 col-md-8">
+                                            <span className="text-muted" style={{ fontSize: `14px` }}>Bank BNI <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
+                                            <span className="text-muted" style={{ fontSize: `14px` }}>{doc.norek}</span>
+                                            <CopyToClipboard onCopy={handlebni} text={doc.norek}>
+                                                <button className="cpy" onClick={norekbnicopied}> <i className="far fa-clone fa" /></button>
+                                            </CopyToClipboard>
+                                            <span className="norekbnimessage" />
+                                        </div>
+                                    </div>
+                                )
+                            }
+                            else if (doc.bank === "BNISyariah") {
+                                return (
+                                    <div className="row rek-bsm mb-5">
+                                        <div className="col-4 col-md-4">
+                                            <img src={`${process.env.PUBLIC_URL}/images/donasi/bnis.png`} alt="bank BNI syariah" className="img-fluid" />
+                                        </div>
+                                        <div className="col-8 col-md-8">
+                                            <span className="text-muted" style={{ fontSize: `14px` }}>Bank BNI Syariah <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
+                                            <span className="text-muted" style={{ fontSize: `14px` }}>{doc.norek}</span>
+                                            <CopyToClipboard onCopy={handlebnis} text={doc.norek}>
+                                                <button className="cpy" onClick={norekbniscopied}> <i className="far fa-clone fa" /></button>
+                                            </CopyToClipboard>
+                                            <span className="norekbnismessage" />
+                                        </div>
+                                    </div>
+                                )
+                            }
+                            else if (doc.bank === "BRI") {
+                                return (
+                                    <div className="row rek-bri mb-5">
+                                        <div className="col-4 col-md-4">
+                                            <img src={`${process.env.PUBLIC_URL}/images/donasi/bri.png`} alt="bank BRI" className="img-fluid" />
+                                        </div>
+                                        <div className="col-8 col-md-8">
+                                            <span className="text-muted" style={{ fontSize: `14px` }}>Bank BRI <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
+                                            <span className="text-muted" style={{ fontSize: `14px` }}>{doc.norek}</span>
+                                            <CopyToClipboard onCopy={handlebri} text={doc.norek}>
+                                                <button className="cpy" onClick={norekbricopied}> <i className="far fa-clone fa" /></button>
+                                            </CopyToClipboard>
+                                            <span className="norekbrimessage" />
+                                        </div>
+                                    </div>
+                                )
+                            }
+                            else if (doc.bank === "BRISyariah") {
+                                return (
+                                    <div className="row rek-bsm mb-5">
+                                        <div className="col-4 col-md-4">
+                                            <img src={`${process.env.PUBLIC_URL}/images/donasi/bris.png`} alt="bank bri syariah" className="img-fluid" />
+                                        </div>
+                                        <div className="col-8 col-md-8">
+                                            <span className="text-muted" style={{ fontSize: `14px` }}>Bank BRI Syariah <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
+                                            <span className="text-muted" style={{ fontSize: `14px` }}>{doc.norek}</span>
+                                            <CopyToClipboard onCopy={handlebris} text={doc.norek}>
+                                                <button className="cpy" onClick={norekbriscopied}> <i className="far fa-clone fa" /></button>
+                                            </CopyToClipboard>
+                                            <span className="norekbrismessage" />
+                                        </div>
+                                    </div>
+                                )
+                            }
+                        })
+                    }
                     <div className="row align-items-center justify-content-center mb-5">
                         <div className="col-md-10 col-lg-10">
                             <img className="img-fluid w-100" src={`${process.env.PUBLIC_URL}/images/donasi/qrcode2.jpeg`} alt="QR Code 1" />
@@ -159,11 +294,6 @@ function ModalDonasi(props) {
 }
 
 function ModalShare(props) {
-    // useEffect(()=>{
-    //     $('.modal-bagikan .modal-dialog .modal-content ').css("position","absolute")
-    //     $('.modal-bagikan .modal-dialog .modal-content').css("top","300px")
-    //     $('.modal-bagikan .modal-dialog .modal-content').css("border-radius","7px")
-    // })
     return (
         <>
             <Modal show={props.status} onHide={props.handlecloseshare} keyboard={false} className="modal-bagikan">
@@ -200,7 +330,7 @@ function ModalShare(props) {
                         </div>
                         <div>
                             <label style={{ fontWeight: 400 }}>Page Link <span className="message" /></label><br />
-                            <div className="row"> <input className="col-10 ur" type="url" placeholder={`http://206.189.94.211/program/${props.id}`} id="myInput" aria-describedby="inputGroup-sizing-default" style={{ height: 40 }} />
+                            <div className="row"> <input className="col-10 ur" type="url" id="myInput" aria-describedby="inputGroup-sizing-default" style={{ height: 40 }} value={`http://206.189.94.211/program/${props.id}`} disabled />
                                 <CopyToClipboard onCopy={props.handlecopied} text={`http://206.189.94.211/program/${props.id}`}>
                                     <button className="cpy" onClick={props.messagecopied}><i className="far fa-clone fa" /></button>
                                 </CopyToClipboard>
@@ -215,6 +345,7 @@ function ModalShare(props) {
 
 function DetailProg(props) {
     const bnykitemup = props.itemup.length
+    const idkategg = props.itemprog.idKateg
     const arritemup = []
     const arriconup = []
     for (var i = 0; i < bnykitemup; i++) {
@@ -258,17 +389,17 @@ function DetailProg(props) {
                 </p>
                 <div className="dropdown">
                     {/* <div> */}
-                        <button className="btn btn-primary" type="button" aria-haspopup="true" aria-expanded="false" onClick={() => filterLampiran(idx)}>
-                            Lampirkan
+                    <button className="btn btn-primary" type="button" aria-haspopup="true" aria-expanded="false" onClick={() => filterLampiran(idx)}>
+                        Lampirkan
                             {isShowGbr[idx] ? <i class="fe fe-chevron-up"></i>
-                                :
-                                <i class="fe fe-chevron-down"></i>
-                            }
-                        </button>
-                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButtonTwo">
-                            <a className="dropdown-item btn-gambar" onClick={() => filterLampiran(idx)}>Gambar</a>
-                            {/* <a className="dropdown-item btn-dok" href="#!" onClick={() => filterLampiran()}>Dokumen</a> */}
-                        </div>
+                            :
+                            <i class="fe fe-chevron-down"></i>
+                        }
+                    </button>
+                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButtonTwo">
+                        <a className="dropdown-item btn-gambar" onClick={() => filterLampiran(idx)}>Gambar</a>
+                        {/* <a className="dropdown-item btn-dok" href="#!" onClick={() => filterLampiran()}>Dokumen</a> */}
+                    </div>
                     {/* </div> */}
                 </div>
                 {isShowGbr[idx] ?
@@ -300,6 +431,7 @@ function DetailProg(props) {
         image: myImg,
         paragraph: myParagraph,
     }
+    console.log(props.itemprog.idKateg)
     return (
         <section className="pt-10 pt-md-11">
             <div className="container-xl" id="wadahSticky">
@@ -349,7 +481,7 @@ function DetailProg(props) {
                                                     <i className="fa fa-share-alt" />
                                                 </Button>
                                             </div>
-                                            <ModalDonasi status={showmodal} handleclose={handleClose} linkbb={props.itemprog.linkbb} judulprog={props.itemprog.judul}></ModalDonasi>
+                                            <ModalDonasi status={showmodal} handleclose={handleClose} linkbb={props.itemprog.linkbb} judulprog={props.itemprog.judul} idkateggg={idkategg}></ModalDonasi>
                                             <ModalShare status={showshare} handlecloseshare={handleCloseShare} id={props.itemprog.id} handlecopied={handlecopied} messagecopied={messagecopied}></ModalShare>
                                         </div>
                                     </div>
@@ -422,11 +554,11 @@ function DetailProg(props) {
                     </div>
                 </div>
                 {/* <Sticky containerSelectorFocus="#wadahSticky" offsetTop={70} stickyEnableRange={[100, 540]}> */}
-                <div className="row no-gutters button-donasi-bawah d-flex bg-white" style={{ position: `fixed`, left:`0`, bottom: `0rem`, width: `100%`, height: `4rem`, zIndex: `99` }}>
-                    <div className="col-9 col-sm-6 col-md-6 my-2 justify-content-center" style={{textAlign:`center`}}>
+                <div className="row no-gutters button-donasi-bawah d-flex bg-white" style={{ position: `fixed`, left: `0`, bottom: `0rem`, width: `100%`, height: `4rem`, zIndex: `99` }}>
+                    <div className="col-9 col-sm-6 col-md-6 my-2 justify-content-center" style={{ textAlign: `center` }}>
                         <Button className="btn-sm h-100 w-100" variant="default" onClick={handleShow} className="btn-donasi-kecil-sekarang">DONASI SEKARANG</Button>
                     </div>
-                    <div className="col-3 col-sm-6 col-md-6 btn-bagika-det-prog my-2" style={{textAlign:`center`}}>
+                    <div className="col-3 col-sm-6 col-md-6 btn-bagika-det-prog my-2" style={{ textAlign: `center` }}>
                         <Button className="btn-sm h-100" variant="default" onClick={handleShowShare} className="btn-bagikan"> <i className="fa fa-share-alt" /></Button>
                     </div>
                 </div>

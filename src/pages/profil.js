@@ -14,12 +14,7 @@ function ProfilLayout(props) {
                     <Col md={7}>
                         <h2>Tentang AQL Peduli</h2>
                         <p className="text-muted paragraf1" style={{ textAlign: `justify` }}>
-                            AQL Peduli bagian dari Laznas AQL adalah lembaga amil zakat,
-                            infaq dan sedekah, bernaung dibawah lembaga dakwah
-                            AQL Islamic Center  ( Yayasan Pusat Peradaban Islam )
-                            yang dipimpin KH. Bachtiar Nasir, Lc. MM, berkarakter
-                            Quran dan Sunnah dengan mengedepankan nilai-nilai
-                            kepercayaan, sosial, kemanusiaan, pendidikan dan dakwah.
+                        AQL Peduli adalah sebuah lembaga nirlaba di bawah naungan AQL Islamic Center yang bergerak di bidang sosial yang bersemangat untuk mengedukasi masyarakat dalam hal kemanusiaan mulai pra-bencana, saat bencana dan pasca bencana , dimana dalam kegiatannya terus berusaha memberikan yang terbaik kepada masyarakat yang terkena dampak bencana secara universal, tanpa diskrimanasi dan tidak berafiliasi dengan partai politik manapun.
                         </p>
                     </Col>
                     <Col md={5}>
@@ -35,8 +30,9 @@ function ProfilLayout(props) {
                                 <strong>Latar Belakang</strong>
                             </h3>
                             <p>
-                                CoinBase is an online site and a p2admin platform that allows users to buy, sell and/ or exchange digital and fiat assets safely. Owned and managed by CoinBase Business Services established and Incoperated in Nigeria.. e Business Services established and Incoperated in Nigeria.
-                                e Business Services established and Incoperated in Nigeria.
+                            Sejak berdirinya, AQL Peduli telah melakukan kegiatan kemanusiaan dengan program-program yang diantaranya di bidang Pendidikan, Religi, Kesehatan, Pangan dan saat bencana.
+                            <br/>
+                            Dalam bidang pendidikan membangun madrasah salah satunya di Halmahera, Maluku Utara. Dalam bidang religi membangun masjid, di antaranya di Bogor, Palu, Lombok Utara dan Halmahera Tengah. Dalam bidang kesehatan membangun MCK, pengobatan gratis dan pengadaan ambulance gratis. Dalam bidang pangan, AQL Peduli setiap pekan berbagi makanan kepada dhuafa dalam program dapur sedekah, beras untuk pedalaman, iftar dan sembako dhuafa.
                             </p>
                         </div>
                     </Col>
