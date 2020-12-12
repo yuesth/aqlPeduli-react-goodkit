@@ -24,7 +24,7 @@ function ProfilLayout(props) {
                 <br/>
                 <Row className="row-lb">
                     <Col>
-                        <div className="wadah-lb lift">
+                        <div className="wadah-lb">
                             <img className="img-fluid" src={`${process.env.PUBLIC_URL}/images/profil/latarbelakang2.png`}></img>
                             <h3>
                                 <strong>Latar Belakang</strong>

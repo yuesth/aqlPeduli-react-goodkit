@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+
 .wadah-lb{
     margin: auto auto;
     max-width: 800px;
@@ -5,7 +8,7 @@
     border: 2px solid #E92998;
     border-radius: 20px;
     text-align: center;
-    font-family: 'Poppins';
+    font-family: 'Raleway';
 }
 
 .wadah-alamat{

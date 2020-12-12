@@ -120,7 +120,7 @@ function KepedulianLanding() {
             //         namaKateg: `${doc.namaKateg}`
             //     }
             // }} style={{ margin: `auto auto`, textDecoration: `none` }} className="wadah-item-kecil">
-                <div className="col-4 col-md-4 col-lg justify-content-center lift m-lg-1 pb-1 kartu-kep">
+                <div className="col-6 col-md-4 col-lg justify-content-center lift m-lg-1 pb-1 kartu-kep">
                     <div style={{ textAlign: `center`, height: `8rem` }} className="align-items-center justify-content-center">
                         <img className="img-fluid rounded-top-left rounded-bottom-right" src={pathGbr2} alt="..." width="110" height="120" />
                     </div>
@@ -140,12 +140,6 @@ function KepedulianLanding() {
             // </div>
         )
     })
-    const breakPoints = [
-        { width: 1, itemsToShow: 1 },
-        { width: 550, itemsToShow: 2, itemsToScroll: 2 },
-        { width: 768, itemsToShow: 5 },
-        { width: 1200, itemsToShow: 5 }
-    ];
     return (
         < section className="mt-7 mt-md-7 pt-7 pt-md-7 mb-7 mb-md-7 pb-7 pb-md-7" >
             <div className="container-xl">

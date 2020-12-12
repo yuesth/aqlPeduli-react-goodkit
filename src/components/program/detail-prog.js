@@ -68,7 +68,7 @@ function SisaHari(props) {
     var hariTerakhir = new Date(new Date(props.tanggal).getTime() + (props.durasi * 24 * 60 * 60 * 1000));
     var sisaHari = Math.floor((hariTerakhir.getTime() - new Date().getTime()) / (1000 * 3600 * 24))
     return (
-        <span>{sisaHari.toString()} hari lagi</span>
+        <span style={{fontSize:`1rem`}}>{sisaHari.toString()} hari lagi</span>
     )
 }
 
@@ -171,8 +171,8 @@ function ModalDonasi(props) {
                                             <img src={`${process.env.PUBLIC_URL}/images/donasi/mandiri.png`} alt="bank mandiri" className="img-fluid" />
                                         </div>
                                         <div className="col-8 col-md-8">
-                                            <span className="text-muted" style={{ fontSize: `14px` }}>Bank Mandiri <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
-                                            <span className="text-muted" style={{ fontSize: `14px` }}>{doc.norek}</span>
+                                            <span className="text-muted" style={{ fontSize: `16px` }}>Bank Mandiri <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
+                                            <span className="text-muted" style={{ fontSize: `16px` }}>{doc.norek}</span>
                                             <CopyToClipboard onCopy={handleMandiri} text={doc.norek}>
                                                 <button className="cpy" onClick={norekcopied}> <i className="far fa-clone fa" /></button>
                                             </CopyToClipboard>
@@ -188,8 +188,8 @@ function ModalDonasi(props) {
                                             <img src={`${process.env.PUBLIC_URL}/images/donasi/mandiris.png`} alt="bank mandiri syariah" className="img-fluid" />
                                         </div>
                                         <div className="col-8 col-md-8">
-                                            <span className="text-muted" style={{ fontSize: `14px` }}>Bank Mandiri Syariah<br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
-                                            <span className="text-muted" style={{ fontSize: `14px` }}>{doc.norek}</span>
+                                            <span className="text-muted" style={{ fontSize: `16px` }}>Bank Mandiri Syariah<br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
+                                            <span className="text-muted" style={{ fontSize: `16px` }}>{doc.norek}</span>
                                             <CopyToClipboard onCopy={handleMandiris} text={doc.norek}>
                                                 <button className="cpy" onClick={norekmandiriscopied}> <i className="far fa-clone fa" /></button>
                                             </CopyToClipboard>
@@ -205,8 +205,8 @@ function ModalDonasi(props) {
                                             <img src={`${process.env.PUBLIC_URL}/images/donasi/bni.png`} alt="bank BNI" className="img-fluid" />
                                         </div>
                                         <div className="col-8 col-md-8">
-                                            <span className="text-muted" style={{ fontSize: `14px` }}>Bank BNI <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
-                                            <span className="text-muted" style={{ fontSize: `14px` }}>{doc.norek}</span>
+                                            <span className="text-muted" style={{ fontSize: `16px` }}>Bank BNI <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
+                                            <span className="text-muted" style={{ fontSize: `16px` }}>{doc.norek}</span>
                                             <CopyToClipboard onCopy={handlebni} text={doc.norek}>
                                                 <button className="cpy" onClick={norekbnicopied}> <i className="far fa-clone fa" /></button>
                                             </CopyToClipboard>
@@ -222,8 +222,8 @@ function ModalDonasi(props) {
                                             <img src={`${process.env.PUBLIC_URL}/images/donasi/bnis.png`} alt="bank BNI syariah" className="img-fluid" />
                                         </div>
                                         <div className="col-8 col-md-8">
-                                            <span className="text-muted" style={{ fontSize: `14px` }}>Bank BNI Syariah <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
-                                            <span className="text-muted" style={{ fontSize: `14px` }}>{doc.norek}</span>
+                                            <span className="text-muted" style={{ fontSize: `16px` }}>Bank BNI Syariah <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
+                                            <span className="text-muted" style={{ fontSize: `16px` }}>{doc.norek}</span>
                                             <CopyToClipboard onCopy={handlebnis} text={doc.norek}>
                                                 <button className="cpy" onClick={norekbniscopied}> <i className="far fa-clone fa" /></button>
                                             </CopyToClipboard>
@@ -239,8 +239,8 @@ function ModalDonasi(props) {
                                             <img src={`${process.env.PUBLIC_URL}/images/donasi/bri.png`} alt="bank BRI" className="img-fluid" />
                                         </div>
                                         <div className="col-8 col-md-8">
-                                            <span className="text-muted" style={{ fontSize: `14px` }}>Bank BRI <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
-                                            <span className="text-muted" style={{ fontSize: `14px` }}>{doc.norek}</span>
+                                            <span className="text-muted" style={{ fontSize: `16px` }}>Bank BRI <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
+                                            <span className="text-muted" style={{ fontSize: `16px` }}>{doc.norek}</span>
                                             <CopyToClipboard onCopy={handlebri} text={doc.norek}>
                                                 <button className="cpy" onClick={norekbricopied}> <i className="far fa-clone fa" /></button>
                                             </CopyToClipboard>
@@ -256,8 +256,8 @@ function ModalDonasi(props) {
                                             <img src={`${process.env.PUBLIC_URL}/images/donasi/bris.png`} alt="bank bri syariah" className="img-fluid" />
                                         </div>
                                         <div className="col-8 col-md-8">
-                                            <span className="text-muted" style={{ fontSize: `14px` }}>Bank BRI Syariah <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
-                                            <span className="text-muted" style={{ fontSize: `14px` }}>{doc.norek}</span>
+                                            <span className="text-muted" style={{ fontSize: `16px` }}>Bank BRI Syariah <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
+                                            <span className="text-muted" style={{ fontSize: `16px` }}>{doc.norek}</span>
                                             <CopyToClipboard onCopy={handlebris} text={doc.norek}>
                                                 <button className="cpy" onClick={norekbriscopied}> <i className="far fa-clone fa" /></button>
                                             </CopyToClipboard>
@@ -381,9 +381,9 @@ function DetailProg(props) {
         return (
             <li className="timeline-item active text-left">
                 <DariTanggal tanggal={doc.tanggalUp}></DariTanggal>
-                <h2>
+                <h3 style={{fontSize:`1.25rem`}}>
                     {doc.namaUp}
-                </h2>
+                </h3>
                 <p className="text-muted mb-4">
                     {doc.desUp}
                 </p>
@@ -462,12 +462,12 @@ function DetailProg(props) {
                                             <h2 className="judul-det-prog mb-3">{props.itemprog.judul}</h2>
                                         </div>
                                         <div style={{ height: `6rem` }} className="mb-3">
-                                            <p style={{ fontSize: `14px` }} className="des-det-prog">
+                                            <p style={{ fontSize: `1rem` }} className="des-det-prog">
                                                 {props.itemprog.des}
                                             </p>
                                         </div>
                                         <div style={{ height: `5rem` }} className="mb-3">
-                                            <span style={{ fontSize: `0.8rem` }}>Rp.{props.itemprog.terkumpul !== null && idrterkumpul} dari Rp.<strong>{props.itemprog.total !== null && idrtotal}</strong></span>
+                                            <span style={{ fontSize: `1rem` }}>Rp.{props.itemprog.terkumpul !== null && idrterkumpul} dari Rp.<strong>{props.itemprog.total !== null && idrtotal}</strong></span>
                                             <ProgressBar now={persenTerkumpul} label={`${persenTerkumpul.toFixed(2)} %`} />
                                             {props.itemprog.durasi !== null && <SisaHari tanggal={props.itemprog.tanggal} durasi={props.itemprog.durasi} />
                                             }

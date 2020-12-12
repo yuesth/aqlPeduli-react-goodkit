@@ -137,7 +137,7 @@ function BeritaHeader() {
         if (idx > 0 && idx < 4) {
             if (doc.kategori === "Berita Nasional") {
                 return (
-                    <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 px-1 h-100">
+                    <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 h-100">
                         <Link to={`/berita/${doc.id}`}>
                             <div className="berita-headerlain-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
@@ -155,7 +155,7 @@ function BeritaHeader() {
             }
             else if (doc.kategori === "Berita Internasional") {
                 return (
-                    <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 px-1 h-100">
+                    <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 h-100">
                         <Link to={`/berita/${doc.id}`}>
                             <div className="berita-headerlain-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
@@ -177,7 +177,7 @@ function BeritaHeader() {
         if (idx > 2 && idx < 5) {
             if (doc.kategori === "Berita Nasional") {
                 return (
-                    <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 px-1 h-100">
+                    <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 h-100">
                         <Link to={`/berita/${doc.id}`}>
                             <div className="berita-headerlain-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
@@ -195,7 +195,7 @@ function BeritaHeader() {
             }
             else if (doc.kategori === "Berita Internasional") {
                 return (
-                    <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 px-1 h-100">
+                    <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 h-100">
                         <Link to={`/berita/${doc.id}`}>
                             <div className="berita-headerlain-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />

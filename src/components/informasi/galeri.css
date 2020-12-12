@@ -1,7 +1,23 @@
+@media only screen and (max-width:590px){
+    .img-galeri-capt{
+        font-size: 0.9rem;
+    }
+
+    .galeri-img{
+        height: 10rem;
+    }
+
+    .galeri-img-cam{
+        width: 40px;
+        height: auto;
+    }
+}
+
 .galeri-img{
     overflow: hidden;
     position: relative;
 }
+
 
 .galeri-img img, .galeri-img img{
     transition: .3s ease;
@@ -38,13 +54,6 @@
     height: auto;
 }
 
-@media only screen and (max-width:590px){
-    .img-galeri-capt{
-        font-size: 0.9rem;
-    }
 
-    .galeri-img-cam{
-        width: 40px;
-        height: auto;
-    }
-}
+
+/* http://192.168.43.105:3003 */

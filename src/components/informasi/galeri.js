@@ -93,7 +93,7 @@ function Galeri() {
                 <Link to={`/galeri/${doc.id}`}>
                     <div className="card rounded-top-left rounded-top-right rounded-bottom-left rounded-bottom-right">
                         <div className="galeri-img" style={{ borderRadius: `0.5rem 0.5rem 0 0`, height:`12rem` }}>
-                            <img className="img-fluid img-galeri-thumb w-100" src={doc.thumb} alt="..." />
+                            <img className="img-fluid img-galeri-thumb w-100 h-100" src={doc.thumb} alt="..." />
                             <div className="galeri-img-cam">
                                 <img src={`${process.env.PUBLIC_URL}/images/galeri/camera.png`} alt="" />
                             </div>

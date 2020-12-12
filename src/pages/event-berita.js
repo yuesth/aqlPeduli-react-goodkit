@@ -64,40 +64,50 @@ function EventBerita() {
         )
     }
 
+    const moreDataAB = (val) => {
+        setVisibleAB(prev => prev + 3)
+    }
+    const moreDataSB = (val) => {
+        setVisibleSB(prev => prev + 3)
+    }
+    const moreDataSUB = (val) => {
+        setVisibleSUB(prev => prev + 3)
+    }
+
     function ListEvent(props) {
-        const listevent = props.data.map((doc, idx) => {
-            if (idx < 3) {
-                return (
-                    <div className={`col-md-4 col-lg-4 col-sm-6 mt-0 mb-3 mt-2`}>
-                        <div className={`card card-sm rounded-top-left rounded-bottom-right lift lift-lg`}>
-                            <div>
-                                <img className="card-img-top rounded-top-left img-fluid img-berita" src={doc.gambar} alt="..." />
-                            </div>
-                            <div className="position-relative">
-                                <div className="shape shape-fluid-x shape-top text-white">
-                                    <div className="shape-img pb-5">
-                                        <svg viewBox="0 0 100 50" preserveAspectRatio="none"><path d="M0 25h25L75 0h25v50H0z" fill="currentColor" /></svg>
-                                    </div>
+        const listevent = props.data.slice(0, props.vis).map((doc, idx) => {
+            // if (idx < 3) {
+            return (
+                <div className={`col-md-4 col-lg-4 col-sm-6 mt-0 mb-3 mt-2 fade-in`}>
+                    <div className={`card card-sm rounded-top-left rounded-bottom-right lift lift-lg`}>
+                        <div>
+                            <img className="card-img-top rounded-top-left img-fluid img-berita" src={doc.gambar} alt="imageEvent" />
+                        </div>
+                        <div className="position-relative">
+                            <div className="shape shape-fluid-x shape-top text-white">
+                                <div className="shape-img pb-5">
+                                    <svg viewBox="0 0 100 50" preserveAspectRatio="none"><path d="M0 25h25L75 0h25v50H0z" fill="currentColor" /></svg>
                                 </div>
-                            </div>
-                            <div className="card-body p-2 pb-3">
-                                <span className={`badge badge-${props.warna}`}>{props.status}</span>
-                                <div style={{ minHeight: `7rem` }}>
-                                    <h3>
-                                        {doc.judul}
-                                    </h3>
-                                </div>
-                                <span className="small text-muted mt-n1 mb-0">
-                                    <DariTanggal tanggal={doc.tanggal}></DariTanggal>
-                                </span>
-                                <Link to={`/berita/${doc.id}`}>
-                                    <a className="stretched-link" href="" />
-                                </Link>
                             </div>
                         </div>
+                        <div className="card-body p-2 pb-3">
+                            <span className={`badge badge-${props.warna}`}>{props.status}</span>
+                            <div style={{ minHeight: `4rem` }}>
+                                <h3>
+                                    {doc.judul}
+                                </h3>
+                            </div>
+                            <span className="small text-muted mt-n1 mb-0">
+                                <DariTanggal tanggal={doc.mulai}></DariTanggal> - <DariTanggal tanggal={doc.selesai}></DariTanggal>
+                            </span>
+                            <Link to={`/berita/${doc.id}`}>
+                                <a className="stretched-link" href="" />
+                            </Link>
+                        </div>
                     </div>
-                )
-            }
+                </div>
+            )
+            // }
         })
         return (
             <>
@@ -105,8 +115,11 @@ function EventBerita() {
             </>
         )
     }
-    const urlBerita = "http://167.99.72.148/beritas"
+    const urlBerita = "http://167.99.72.148/events"
     const [event, setEvent] = useState([])
+    const [visibleAB, setVisibleAB] = useState(3)
+    const [visibleSB, setVisibleSB] = useState(3)
+    const [visibleSUB, setVisibleSUB] = useState(3)
     const [isLoadingevent, setIsLoadingevent] = useState(true);
     useEffect(() => {
         fetch(urlBerita).then(res => res.json()).then(parsedJson => {
@@ -114,25 +127,32 @@ function EventBerita() {
             setIsLoadingevent(false)
 
         })
-    })
-    const itemBerita = []
+    }, [])
+    const itemEvent = []
     event.map(data => {
-        if (data.kategoriberita.namaKategori === "Event") {
-            var item1 = {
-                id: `${data.id}`,
-                penulis: `${data.penulisBerita}`,
-                tanggal: `${data.tanggalBerita}`,
-                judul: `${data.judulBerita}`,
-                isi: `${data.isiBerita}`,
-                tag: `${data.tagBerita}`,
-                gambar: `${data.gambarBerita.url}`,
-                kategori: `${data.kategoriberita.namaKategori}`
-            }
-            itemBerita.push(item1)
+        // if (data.kategoriberita.namaKategori === "Event") {
+        var item1 = {
+            id: `${data.id}`,
+            mulai: `${data.tanggalmulaiEvent}`,
+            selesai: `${data.tanggalselesaiEvent}`,
+            judul: `${data.judulEvent}`,
+            isi: `${data.isiEvent}`,
+            gambar: data.gambarEvent[0].url,
         }
+        itemEvent.push(item1)
+        // }
     })
-    const sortedItemBerita = itemBerita.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
 
+    const sortedItemEvent = itemEvent.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
+    const sedangevent = sortedItemEvent.filter((doc, idx) => {
+        return (new Date(doc.mulai) < Date.now() && new Date(doc.selesai) > Date.now())
+    })
+    const akanevent = sortedItemEvent.filter((doc, idx) => {
+        return (new Date(doc.mulai) > Date.now() && new Date(doc.selesai) > Date.now())
+    })
+    const sudahevent = sortedItemEvent.filter((doc, idx) => {
+        return (new Date(doc.mulai) < Date.now() && new Date(doc.selesai) < Date.now())
+    })
     return (
         <>
             <NavbarGK></NavbarGK>
@@ -140,7 +160,7 @@ function EventBerita() {
                 <div className="container-xl">
                     <div className="row align-items-center justify-content-center mb-7">
                         <div className="col-md-6" style={{ textAlign: `center` }}>
-                            <h2 className="mb-4 mb-md-0" style={{fontSize:`1.75rem`}}>
+                            <h2 className="mb-4 mb-md-0" style={{ fontSize: `1.75rem` }}>
                                 Events <br />
                             </h2>
                         </div>
@@ -166,14 +186,14 @@ function EventBerita() {
                     <div className="row mb-4">
                         {isLoadingevent ? <SkeletonEvent></SkeletonEvent>
                             :
-                            <ListEvent data={sortedItemBerita} warna={`success`} status={`Komunitas`}></ListEvent>
+                            <ListEvent data={akanevent} warna={`success`} status={`Komunitas`} vis={visibleAB} loadmore={moreDataAB}></ListEvent>
                         }
                     </div>
                     <div className="row align-items-center mb-7">
                         <div className="mx-auto">
-                            <Link className="btn btn-sm btn-primary" to={`/berita`}>
+                            <buton className="btn btn-sm btn-primary" onClick={moreDataAB}>
                                 Lihat Lainnya
-                        </Link>
+                            </buton>
                         </div>
                     </div>
 
@@ -189,14 +209,14 @@ function EventBerita() {
                     <div className="row mb-4">
                         {isLoadingevent ? <SkeletonEvent></SkeletonEvent>
                             :
-                            <ListEvent data={sortedItemBerita} warna={`info`} status={`Live Streaming`}></ListEvent>
+                            <ListEvent data={sedangevent} warna={`info`} status={`Live Streaming`} vis={visibleSB} loadmore={moreDataSB}></ListEvent>
                         }
                     </div>
                     <div className="row align-items-center mb-7">
                         <div className="mx-auto">
-                            <Link className="btn btn-sm btn-primary" to={`/berita`}>
+                            <button className="btn btn-sm btn-primary" onClick={moreDataSB}>
                                 Lihat Lainnya
-                        </Link>
+                        </button>
                         </div>
                     </div>
 
@@ -212,14 +232,14 @@ function EventBerita() {
                     <div className="row mb-4">
                         {isLoadingevent ? <SkeletonEvent></SkeletonEvent>
                             :
-                            <ListEvent data={sortedItemBerita} warna={`info`} status={`Live Streaming`}></ListEvent>
+                            <ListEvent data={sudahevent} warna={`primary`} status={`Success`} vis={visibleSUB} loadmore={moreDataSUB}></ListEvent>
                         }
                     </div>
                     <div className="row align-items-center mb-7">
                         <div className="mx-auto">
-                            <Link className="btn btn-sm btn-primary" to={`/berita`}>
+                            <button className="btn btn-sm btn-primary" onClick={moreDataSUB}>
                                 Lihat Lainnya
-                        </Link>
+                        </button>
                         </div>
                     </div>
                 </div>

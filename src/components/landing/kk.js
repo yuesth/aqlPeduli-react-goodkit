@@ -96,19 +96,21 @@ function KK() {
             //     </blockquote>
             // </div>
             <div className="col-12 text-center">
-                <blockquote>
-                    <h2>{doc.judulKk}</h2>
-                    <p className="lead mb-5 mb-md-8 tulisan-kk">
-                        {doc.kontenKk}
-                    </p>
-                    <footer className="d-flex align-items-center justify-content-center">
-                        <div className="ml-4 text-left">
-                            <p className="small text-muted mt-n1 mb-0">
-                                <DariTanggal tanggal={doc.tanggalKk}></DariTanggal>
-                            </p>
-                        </div>
-                    </footer>
-                </blockquote>
+                <Link to={`/kk/${doc.idKk}`}>
+                    <blockquote>
+                        <h3 className="text-left" style={{ fontSize: `20px`, color: `black` }}>{doc.judulKk}</h3>
+                        <p className="tulisan-kk text-left">
+                            {doc.kontenKk}
+                        </p>
+                        <footer className="d-flex align-items-center">
+                            <div className="text-left">
+                                <p className="small text-muted mt-n1 mb-0">
+                                    <DariTanggal tanggal={doc.tanggalKk}></DariTanggal>
+                                </p>
+                            </div>
+                        </footer>
+                    </blockquote>
+                </Link>
             </div>
         )
     })
@@ -190,7 +192,7 @@ function KK() {
                 <div className="container-xl position-relative" style={{ zIndex: 1 }}>
                     <div className="row align-items-center justify-content-center mb-7">
                         <div className="col-md-6" style={{ textAlign: `center` }}>
-                            <h2 style={{fontSize:`2rem`}}>
+                            <h2 style={{ fontSize: `2rem` }}>
                                 Kepedulian Kita <br />
                             </h2>
                         </div>
@@ -206,7 +208,7 @@ function KK() {
                                 {listKK4}
                             </Carousel>
                         } */}
-                        {isLoading? <Skeleton2Layout></Skeleton2Layout>:
+                        {isLoading ? <Skeleton2Layout></Skeleton2Layout> :
                             <div className="col-12">
                                 <div className="card rounded-top-left-lg rounded-bottom-right-lg">
                                     <div className="row no-gutters position-relative">
