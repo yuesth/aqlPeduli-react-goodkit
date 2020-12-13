@@ -120,17 +120,23 @@ function EventBerita() {
     const [visibleAB, setVisibleAB] = useState(3)
     const [visibleSB, setVisibleSB] = useState(3)
     const [visibleSUB, setVisibleSUB] = useState(3)
+    const [lenAB, setLenAB] = useState(0)
+    const [lenSB, setLenSB] = useState(0)
+    const [lenSUB, setLenSUB] = useState(0)
     const [isLoadingevent, setIsLoadingevent] = useState(true);
     useEffect(() => {
         fetch(urlBerita).then(res => res.json()).then(parsedJson => {
             setEvent(parsedJson)
             setIsLoadingevent(false)
-
         })
+    }, [])
+    useEffect(() => {
+        setLenSB(sedangevent.length)
+        setLenAB(akanevent.length)
+        setLenSUB(sudahevent.length)
     }, [])
     const itemEvent = []
     event.map(data => {
-        // if (data.kategoriberita.namaKategori === "Event") {
         var item1 = {
             id: `${data.id}`,
             mulai: `${data.tanggalmulaiEvent}`,
@@ -140,7 +146,6 @@ function EventBerita() {
             gambar: data.gambarEvent[0].url,
         }
         itemEvent.push(item1)
-        // }
     })
 
     const sortedItemEvent = itemEvent.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
@@ -186,17 +191,20 @@ function EventBerita() {
                     <div className="row mb-4">
                         {isLoadingevent ? <SkeletonEvent></SkeletonEvent>
                             :
-                            <ListEvent data={akanevent} warna={`success`} status={`Komunitas`} vis={visibleAB} loadmore={moreDataAB}></ListEvent>
+                            <ListEvent data={akanevent} warna={`success`} status={`Komunitas`} vis={visibleAB}></ListEvent>
                         }
                     </div>
-                    <div className="row align-items-center mb-7">
-                        <div className="mx-auto">
-                            <buton className="btn btn-sm btn-primary" onClick={moreDataAB}>
-                                Lihat Lainnya
-                            </buton>
-                        </div>
-                    </div>
-
+                    {
+                        visibleAB >= lenAB ? <></>
+                            :
+                            <div className="row align-items-center mb-7">
+                                <div className="mx-auto">
+                                    <buton className="btn btn-sm btn-primary" onClick={moreDataAB}>
+                                        Lihat Lainnya
+                                    </buton>
+                                </div>
+                            </div>
+                    }
 
                     <div className="row mb-4">
                         <div className="col-12 col-md-12">
@@ -212,14 +220,16 @@ function EventBerita() {
                             <ListEvent data={sedangevent} warna={`info`} status={`Live Streaming`} vis={visibleSB} loadmore={moreDataSB}></ListEvent>
                         }
                     </div>
-                    <div className="row align-items-center mb-7">
-                        <div className="mx-auto">
-                            <button className="btn btn-sm btn-primary" onClick={moreDataSB}>
-                                Lihat Lainnya
+                    {visibleSB >= lenSB ? <></>
+                        :
+                        <div className="row align-items-center mb-7">
+                            <div className="mx-auto">
+                                <button className="btn btn-sm btn-primary" onClick={moreDataSB}>
+                                    Lihat Lainnya
                         </button>
+                            </div>
                         </div>
-                    </div>
-
+                    }
 
                     <div className="row mb-4">
                         <div className="col-12 col-md-12">
@@ -235,13 +245,16 @@ function EventBerita() {
                             <ListEvent data={sudahevent} warna={`primary`} status={`Success`} vis={visibleSUB} loadmore={moreDataSUB}></ListEvent>
                         }
                     </div>
-                    <div className="row align-items-center mb-7">
-                        <div className="mx-auto">
-                            <button className="btn btn-sm btn-primary" onClick={moreDataSUB}>
-                                Lihat Lainnya
+                    {visibleSUB >= lenSUB ? <></>
+                        :
+                        <div className="row align-items-center mb-7">
+                            <div className="mx-auto">
+                                <button className="btn btn-sm btn-primary" onClick={moreDataSUB}>
+                                    Lihat Lainnya
                         </button>
+                            </div>
                         </div>
-                    </div>
+                    }
                 </div>
             </section>
             <FooterGK></FooterGK>

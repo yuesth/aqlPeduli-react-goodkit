@@ -54,7 +54,8 @@ function KK() {
             }
         ))).then(
             items => {
-                setKk(items)
+                const itemss = items.sort((a, b) => { return new Date(b.tanggalKk) - new Date(a.tanggalKk) })
+                setKk(itemss)
                 setIsLoading(false)
             }
         ).then(() => {

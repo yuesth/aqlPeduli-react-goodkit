@@ -51,7 +51,9 @@ function SkeletonKKList() {
 function LayoutKK() {
     const urlKk = "http://167.99.72.148/kepeduliankitas"
     const [kk, setKk] = useState([])
-    const [isLoadingkk, setIsLoadingkk] = useState(true);
+    const [visibleKK, setVisibleKK] = useState(3)
+    const [len, setLen] = useState(0)
+    const [isLoadingkk, setIsLoadingkk] = useState(false);
     useEffect(() => {
         fetch(urlKk).then(res => res.json()).then(parsedJson => parsedJson.map(data => (
             {
@@ -63,14 +65,19 @@ function LayoutKK() {
             }
         ))).then(
             items => {
-                setKk(items)
+                const itemss = items.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
+                setKk(itemss)
+                setLen(itemss.length)
                 setIsLoadingkk(false)
             }
         )
     })
-    const listkk = kk.map((doc, idx) => {
+    const moreDataKK = (val) => {
+        setVisibleKK(prev => prev + 3)
+    }
+    const listkk = kk.slice(0, visibleKK).map((doc, idx) => {
         return (
-            <div className="row align-items-center mb-7">
+            <div className="row align-items-center mb-7 fade-in">
                 <div className="col-md-6">
                     <img className="img-fluid mb-6 mb-md-0" src={doc.gambar} alt="..." />
                 </div>
@@ -95,7 +102,7 @@ function LayoutKK() {
             <div className="container">
                 <div className="row align-items-center justify-content-center mb-9">
                     <div className="col-md-6" style={{ textAlign: `center` }}>
-                        <h2 className="mb-4 mb-md-0" style={{fontSize:`1.75rem`}}>
+                        <h2 className="mb-4 mb-md-0" style={{ fontSize: `1.75rem` }}>
                             Kepedulian Kita <br />
                         </h2>
                     </div>
@@ -108,9 +115,20 @@ function LayoutKK() {
                         </p>
                         {isLoadingkk ? <SkeletonKKList></SkeletonKKList>
                             :
-                            listkk}
+                            listkk
+                        }
                     </div>
                 </div>
+                {visibleKK >= len ? <></>
+                    :
+                    <div className="row align-items-center mb-7">
+                        <div className="mx-auto">
+                            <buton className="btn btn-sm btn-primary" onClick={moreDataKK}>
+                                Lihat Lainnya
+                        </buton>
+                        </div>
+                    </div>
+                }
             </div>
         </section>
     )
