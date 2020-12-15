@@ -11,3 +11,7 @@
     top: 100px;
     left: 200px;
 }
+
+.form-group{
+    border: 1px solid rgb(47, 57, 144);
+}

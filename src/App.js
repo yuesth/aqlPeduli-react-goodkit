@@ -5,6 +5,7 @@ import Landing from "./pages/landing"
 import Program from "./pages/program"
 import Profil from "./pages/profil"
 import Relawan from "./pages/relawan"
+import RelawanSukses from "./pages/relawan-sukses"
 import DetailProgram from "./pages/detail-program"
 import Kepeduliankita from "./pages/kepeduliankita"
 import DetailKepeduliankita from "./pages/detail-kepeduliankita"
@@ -30,6 +31,7 @@ function App() {
             <Route path="/program" exact component={Program}></Route>
             <Route path="/profil" exact component={Profil}></Route>
             <Route path="/relawan" exact component={Relawan}></Route>
+            <Route path="/relawan-sukses" exact component={RelawanSukses}></Route>
             <Route path="/program/:id" exact component={DetailProgram}></Route>
             <Route path="/kk" exact component={Kepeduliankita}></Route>
             <Route path="/kk/:id" exact component={DetailKepeduliankita}></Route>
@@ -50,7 +52,6 @@ function App() {
       <a href="https://api.whatsapp.com/send?phone=6282239193515&text=" className="float float-wapp" target="_blank">
         <i className="fa fa-whatsapp my-float"/>
       </a>
-
     </>
   );
 }

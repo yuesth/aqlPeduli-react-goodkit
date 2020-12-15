@@ -3,13 +3,10 @@ import NavbarGK from "../components/navbar"
 import FooterGK from "../components/footer"
 import { Container, Row, Col, Form } from "react-bootstrap"
 import $ from 'jquery'
+import Swal from 'sweetalert2'
 import "./relawan.css"
 
-function Relawan() {
-    const SPREADSHEET_ID = "1zdfe0OkZe7llFTztwXC97G45UxPQfJNQbNukLGLq0ls"
-    const CLIENT_ID = "187026482676-bvntnst8anbfnpdhac9mmnc9avpempuv.apps.googleusercontent.com"
-    const API_KEY = "AIzaSyBAW2iZvzQ3aATi9nHWUes0yXJMLlyjAD0"
-    const SCOPE = "https://www.googleapis.com/auth/spreadsheets"
+function RelawanSukses() {
     const [data, setData] = useState({
         NIK: '',
         namaLengkap: '',
@@ -34,30 +31,6 @@ function Relawan() {
         komitmen: '',
         created: 'x-sheetmonkey-current-date-time'
     })
-    // const [nik, setNik] = useState("")
-    // const [namalengkap, setNamalengkap] = useState("")
-    // const [tempatlahir, setTempatlahir] = useState("")
-    // const [umur, setUmur] = useState("")
-    // const [status, setStatus] = useState("")
-    // const [nik, setNik] = useState("")
-    // const [nik, setNik] = useState("")
-    // const [nik, setNik] = useState("")
-    // const [nik, setNik] = useState("")
-    // const [nik, setNik] = useState("")
-    // const [nik, setNik] = useState("")
-    const submitRelawan = (event)=> {
-        event.preventDefault()
-        fetch('https://script.google.com/macros/s/AKfycbxI8rjPgqZyjuR_boZeDO2CN75HevpEG_hNkGuzORLoTtBFZtI/exec', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        }).then((resp)=>{
-            console.log("success")
-            return resp.json()
-        })
-    }
     const updateField = (e) => {
         setData(
             {
@@ -66,6 +39,13 @@ function Relawan() {
             }
         )
     }
+    useEffect(()=>{
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: 'Selamat Anda berhasil mendaftar sebagai relawan AQL Peduli. Tim kami akan segeri menghubungi anda',
+          })
+    },[])
     return (
         <>
             <NavbarGK></NavbarGK>
@@ -81,12 +61,10 @@ function Relawan() {
                     </div>
                     <div className="row align-items-center justify-content-center mb-7 no-gutters" style={{ textAlign: `justify` }}>
                         <div className="col-md-10 col-lg-9">
-                            {/* <p className="text-justify" style={{whiteSpace:`pre-wrap`}}>{detailkk.konten}</p> */}
-                            {/* <p className="text-justify" style={{whiteSpace:`pre-wrap`}} dangerouslySetInnerHTML={markup}></p> */}
                             <p>
                                 Alhamdulillah, sejak berdirinya AQL Peduli telah melakukan kegiatan kemanusiaan dengan program-program yang diantaranya di bidang Pendidikan, Religi, Kesehatan, Pangan dan saat bencana.
-                                <br/>
-                                <br/>
+                                <br />
+                                <br />
                                 Semua kesuksesan dari kegiatan-kegiatan tersebut tidak terlepas dari peran penting para relawan yang telah ikut berkontribusi dalam kegiatan AQL Peduli.
                                 <br />
                                 <br />
@@ -279,6 +257,4 @@ function Relawan() {
     )
 }
 
-export default Relawan
-
-// action="https://api.sheetmonkey.io/form/rtCNxiEBTmxguKWYnDYBjU" method="POST"
+export default RelawanSukses
