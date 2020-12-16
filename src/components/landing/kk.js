@@ -80,26 +80,20 @@ function KK() {
     })
     const gambarkk = kk.map((doc, idx) => {
         return (
-            <div className="w-100" style={{ backgroundImage: `url(${doc.gambarKk})` }}>
-                <img src={`${doc.gambarKk}`} alt="..." className="img-fluid" />
-            </div>
+            <Link to={`/kk/${doc.idKk}`}>
+                <div className="w-100" style={{ backgroundImage: `url(${doc.gambarKk})` }}>
+                    <img src={`${doc.gambarKk}`} alt="..." className="img-fluid" />
+                </div>
+            </Link>
         )
     })
     const tulisankk = kk.map((doc, idx) => {
         return (
-            // <div className="col-12 text-center">
-            //     <blockquote>
-            //         <h2>{doc.judulKk}</h2>
-            //         <DariTanggal tanggal={doc.tanggalKk}></DariTanggal>
-            //         <p className="lead mb-5 mb-md-8 tulisan-kk">
-            //             {doc.kontenKk}
-            //         </p>
-            //     </blockquote>
-            // </div>
             <div className="col-12 text-center">
                 <Link to={`/kk/${doc.idKk}`}>
                     <blockquote>
                         <h3 className="text-left" style={{ fontSize: `20px`, color: `black` }}>{doc.judulKk}</h3>
+
                         <p className="tulisan-kk text-left">
                             {doc.kontenKk}
                         </p>

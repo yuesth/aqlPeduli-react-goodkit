@@ -474,7 +474,7 @@ function DetailProg(props) {
                                         </div>
                                         <div className="row button-donasi-atas">
                                             <div className="col-12 col-sm-10 col-md-10">
-                                                <Button variant="default" className="btn-donasi-sekarang w-100" onClick={handleShow}>DONASI SEKARANG</Button>
+                                                <button className="btn btn-donasi-sekarang w-100" onClick={handleShow}>DONASI SEKARANG</button>
                                             </div>
                                             <div className="col-12 col-sm-2 col-md-2 btn-bagika-det-prog pl-0">
                                                 <Button variant="default" className="btn-bagikan" onClick={handleShowShare}>
