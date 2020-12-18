@@ -58,7 +58,7 @@ function Khazanah() {
         )
     }
 
-    const urlKhazanah = "http://167.99.72.148/khazanahs"
+    const urlKhazanah = "https://peaceful-meadow-45867.herokuapp.com/khazanahs"
     const [khazanah, setKhazanah] = useState([])
     const [isLoadingkhazanah, setIsLoadingkhazanah] = useState(true);
     useEffect(() => {

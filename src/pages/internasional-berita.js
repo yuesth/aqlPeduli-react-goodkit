@@ -157,7 +157,7 @@ function BeritaListInter(props) {
 }
 
 function BeritaInternasional() {
-    const urlBerita = "http://167.99.72.148/beritas"
+    const urlBerita = "https://peaceful-meadow-45867.herokuapp.com/beritas"
     const [beritanas, setBeritanas] = useState([])
     const [isLoadingberheadernas, setIsLoadingberheadernas] = useState(true);
     useEffect(() => {

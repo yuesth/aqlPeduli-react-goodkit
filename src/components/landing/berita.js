@@ -66,7 +66,7 @@ function Berita() {
             <>{string}</>
         )
     }
-    const urlBerita = "http://167.99.72.148/beritas"
+    const urlBerita = "https://peaceful-meadow-45867.herokuapp.com/beritas"
     const [berita, setBerita] = useState([])
     const [isLoadingber, setIsLoadingber] = useState(true);
     useEffect(() => {

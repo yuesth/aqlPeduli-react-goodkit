@@ -53,7 +53,7 @@ function DariTanggal(props) {
 function DetailBerita(props) {
     const [kontenfix, setKontenfix] = useState("")
     const id = props.match.params.id
-    const urlDetailberita = `http://167.99.72.148/beritas/${id}`
+    const urlDetailberita = `https://peaceful-meadow-45867.herokuapp.com/beritas/${id}`
     const [detailberita, setDetailberita] = useState([])
     const [isLoadingdetberita, setIsLoadingdetberita] = useState(true)
     useEffect(() => {

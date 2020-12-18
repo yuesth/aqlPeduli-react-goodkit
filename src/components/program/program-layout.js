@@ -95,8 +95,8 @@ function ProgramLayout(props) {
     var initKategbtn = ""
     props.namakateg !== "" ? init = nama2 : init = "*"
     props.namakateg !== "" ? initKategbtn = nama2 : initKategbtn = "Semua"
-    const urlListProgram = "http://167.99.72.148/programs"
-    const urlKateg = "http://167.99.72.148/kategoris"
+    const urlListProgram = "https://peaceful-meadow-45867.herokuapp.com/programs"
+    const urlKateg = "https://peaceful-meadow-45867.herokuapp.com/kategoris"
     const [program, setProgram] = useState([])
     const [kateg, setKateg] = useState([])
     const [isLoadingprog, setIsLoadingprog] = useState(true);

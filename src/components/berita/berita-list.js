@@ -120,7 +120,7 @@ function BeritaList() {
         element.className = arr1.join(" ");
     }
 
-    const urlBerita = "http://167.99.72.148/beritas"
+    const urlBerita = "https://peaceful-meadow-45867.herokuapp.com/beritas"
     const [beritalist, setBeritalist] = useState([])
     const [isLoadingberlist, setIsLoadingberlist] = useState(true);
     const [isLoadingberkateg, setIsLoadingberkateg] = useState(true);

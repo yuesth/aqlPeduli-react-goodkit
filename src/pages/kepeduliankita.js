@@ -49,7 +49,7 @@ function SkeletonKKList() {
 }
 
 function LayoutKK() {
-    const urlKk = "http://167.99.72.148/kepeduliankitas"
+    const urlKk = "https://peaceful-meadow-45867.herokuapp.com/kepeduliankitas"
     const [kk, setKk] = useState([])
     const [visibleKK, setVisibleKK] = useState(3)
     const [len, setLen] = useState(0)

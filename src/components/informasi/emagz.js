@@ -49,7 +49,7 @@ function SkeletonEmagz() {
 }
 
 function Emagz() {
-    const urlEmagz = "http://167.99.72.148/emagzs"
+    const urlEmagz = "https://peaceful-meadow-45867.herokuapp.com/emagzs"
     const [emagz, setEmagz] = useState([])
     const [isLoadingemagz, setIsLoadingemagz] = useState(true)
     useEffect(() => {

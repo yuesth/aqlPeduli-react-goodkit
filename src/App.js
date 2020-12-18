@@ -14,6 +14,7 @@ import DetailBerita from "./pages/detail-berita"
 import BeritaNasional from "./pages/nasional-berita"
 import BeritaInternasional from "./pages/internasional-berita"
 import EventBerita from "./pages/event-berita"
+import DetailEvents from "./pages/detail-events"
 import Khazanah from "./pages/khazanah"
 import DetailKhazanah from "./pages/detail-khazanah"
 import Informasi from "./pages/informasi"
@@ -40,6 +41,7 @@ function App() {
             <Route path="/beritanasional" exact component={BeritaNasional}></Route>
             <Route path="/beritainter" exact component={BeritaInternasional}></Route>
             <Route path="/events" exact component={EventBerita}></Route>
+            <Route path="/events/:id" exact component={DetailEvents}></Route>
             <Route path="/khazanah" exact component={Khazanah}></Route>
             <Route path="/khazanah/:id" exact component={DetailKhazanah}></Route>
             <Route path="/informasi" exact component={Informasi}></Route>

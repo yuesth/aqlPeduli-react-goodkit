@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { Col, Container, Row } from "react-bootstrap"
-import Carousel from "react-elastic-carousel"
 import Flickity from "flickity"
 import "./kk.css"
 import ButtonBacaLagi from "../button-bacalagi"
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
+import ReactMarkdown from 'react-markdown'
 import "flickity-as-nav-for"
 
 function Skeleton2Layout() {
@@ -38,7 +37,7 @@ function KK() {
             <>{string}</>
         )
     }
-    const urlKepeduliankita = "http://167.99.72.148/kepeduliankitas?_limit=3"
+    const urlKepeduliankita = "https://peaceful-meadow-45867.herokuapp.com/kepeduliankitas?_limit=3"
     const [kk, setKk] = useState([])
     const [flickkk1, setFlickkk1] = useState([])
     const [flickkk2, setFlickkk2] = useState([])
@@ -88,15 +87,33 @@ function KK() {
         )
     })
     const tulisankk = kk.map((doc, idx) => {
+        // const myImg = (props) => {
+        //     return (
+        //         <a href={props.src} className="d-block mb-3 mb-md-0" data-fancybox>
+        //             <img src={props.src} className="img-fluid" />
+        //         </a>
+    
+        //     )
+        // }
+        // const myParagraph = (props) => {
+        //     return (
+        //         <p className="">{props.children}</p>
+        //     )
+        // }
+        // const renderMyImg = {
+        //     image: myImg,
+        //     paragraph: myParagraph,
+        // }
         return (
             <div className="col-12 text-center">
                 <Link to={`/kk/${doc.idKk}`}>
-                    <blockquote>
                         <h3 className="text-left" style={{ fontSize: `20px`, color: `black` }}>{doc.judulKk}</h3>
-
+                        <blockquote>
                         <p className="tulisan-kk text-left">
                             {doc.kontenKk}
+                            {/* <ReactMarkdown children={doc.kontenKk} renderers={renderMyImg}></ReactMarkdown> */}
                         </p>
+                        </blockquote>
                         <footer className="d-flex align-items-center">
                             <div className="text-left">
                                 <p className="small text-muted mt-n1 mb-0">
@@ -104,7 +121,6 @@ function KK() {
                                 </p>
                             </div>
                         </footer>
-                    </blockquote>
                 </Link>
             </div>
         )

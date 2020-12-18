@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import "./footer.css"
 
 function Footer() {
-    const urlBerita = "http://167.99.72.148/beritas"
+    const urlBerita = "https://peaceful-meadow-45867.herokuapp.com/beritas"
     const [berita, setBerita] = useState([])
 
     useEffect(() => {

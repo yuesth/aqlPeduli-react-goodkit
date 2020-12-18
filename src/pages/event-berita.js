@@ -58,9 +58,25 @@ function SkeletonEvent() {
 function EventBerita() {
     function DariTanggal(props) {
         var dariTanggal = new Date(props.tanggal)
-        var string = dariTanggal.getDate().toString() + " " + dariTanggal.toLocaleString('default', { month: 'long' }) + " " + dariTanggal.getFullYear()
+        var string = dariTanggal.getDate().toString() + " " + dariTanggal.toLocaleString('id-ID', { month: 'short' }) + " " + dariTanggal.getFullYear()
         return (
             <>{string}</>
+        )
+    }
+    function DariTanggalSamping(props) {
+        var dariTanggal = new Date(props.tanggal)
+        var tanggal = dariTanggal.getDate().toString()
+        var bulan = dariTanggal.toLocaleString('id-ID', { month: 'short' })
+        var tahun = dariTanggal.getFullYear()
+        return (
+            <>
+                <p style={{ fontWeight: `600`, fontSize: `24px` }} className="m-0">
+                    {tanggal}
+                </p>
+                <p style={{ fontWeight: `500`, fontSize: `14px` }} className="m-0">
+                    {bulan}
+                </p>
+            </>
         )
     }
 
@@ -80,13 +96,19 @@ function EventBerita() {
             return (
                 <div className={`col-md-4 col-lg-4 col-sm-6 mt-0 mb-3 mt-2 fade-in`}>
                     <div className={`card card-sm rounded-top-left rounded-bottom-right lift lift-lg`}>
-                        <div>
-                            <img className="card-img-top rounded-top-left img-fluid img-berita" src={doc.gambar} alt="imageEvent" />
-                        </div>
-                        <div className="position-relative">
-                            <div className="shape shape-fluid-x shape-top text-white">
-                                <div className="shape-img pb-5">
-                                    <svg viewBox="0 0 100 50" preserveAspectRatio="none"><path d="M0 25h25L75 0h25v50H0z" fill="currentColor" /></svg>
+                        <div className="row no-gutters">
+                            <div className="col-3">
+                                <div className="text-white text-center rounded-top-left h-100 py-2" style={{ backgroundColor: `rgb(47, 57, 144)` }}>
+                                    <DariTanggalSamping tanggal={doc.mulai}></DariTanggalSamping>
+                                <span style={{fontSize:`12px`}}>
+                                    s/d
+                                </span>
+                                    <DariTanggalSamping tanggal={doc.selesai}></DariTanggalSamping>
+                                </div>
+                            </div>
+                            <div className="col-9">
+                                <div>
+                                    <img className="card-img-top img-fluid img-berita" src={doc.gambar} alt="imageEvent" />
                                 </div>
                             </div>
                         </div>
@@ -100,7 +122,7 @@ function EventBerita() {
                             <span className="small text-muted mt-n1 mb-0">
                                 <DariTanggal tanggal={doc.mulai}></DariTanggal> - <DariTanggal tanggal={doc.selesai}></DariTanggal>
                             </span>
-                            <Link to={`/berita/${doc.id}`}>
+                            <Link to={`/events/${doc.id}`}>
                                 <a className="stretched-link" href="" />
                             </Link>
                         </div>
@@ -242,7 +264,7 @@ function EventBerita() {
                     <div className="row mb-4">
                         {isLoadingevent ? <SkeletonEvent></SkeletonEvent>
                             :
-                            <ListEvent data={sudahevent} warna={`primary`} status={`Success`} vis={visibleSUB} loadmore={moreDataSUB}></ListEvent>
+                            <ListEvent data={sudahevent} warna={`primary`} status={`Sukses`} vis={visibleSUB} loadmore={moreDataSUB}></ListEvent>
                         }
                     </div>
                     {visibleSUB >= lenSUB ? <></>

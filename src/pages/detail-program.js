@@ -11,8 +11,8 @@ function DetailProgram(props) {
     if(props.location.state){
         fromUpdateLanding = props.location.state.fromUpdateLanding
     }
-    const urlDetailProgram = `http://167.99.72.148/programs/${id}`
-    const urlUpdate = `http://167.99.72.148/update-programs`
+    const urlDetailProgram = `https://peaceful-meadow-45867.herokuapp.com/programs/${id}`
+    const urlUpdate = `https://peaceful-meadow-45867.herokuapp.com/update-programs`
     const [detailprog, setDetailprog] = useState([])
     const [detailup, setDetailup] = useState([])
     const [isLoadingdetprog, setIsLoadingdetprog] = useState(true);

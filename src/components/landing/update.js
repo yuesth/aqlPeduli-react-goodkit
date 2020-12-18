@@ -53,7 +53,7 @@ function Update() {
         )
     }
 
-    const urlUpdate = "http://167.99.72.148/update-programs"
+    const urlUpdate = "https://peaceful-meadow-45867.herokuapp.com/update-programs"
     const [update, setUpdate] = useState([])
     const [flickup, setFlickup] = useState([])
     const [isLoadingup, setIsLoadingup] = useState(true);

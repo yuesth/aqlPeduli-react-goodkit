@@ -44,7 +44,7 @@ function Skeleton2Layout() {
 }
 
 function KepedulianLanding() {
-    const urlKepedulian = "http://167.99.72.148/kategoris"
+    const urlKepedulian = "https://peaceful-meadow-45867.herokuapp.com/kategoris"
     const [kateg, setKateg] = useState([])
     const [flickk, setFlickk] = useState([])
     const [isLoading, setIsLoading] = useState(true);

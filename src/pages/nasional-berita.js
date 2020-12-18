@@ -185,8 +185,8 @@ function BeritaListNas(props) {
 }
 
 function BeritaNasional() {
-    const urlBerita = "http://167.99.72.148/beritas"
-    const urlBerita2 = "http://167.99.72.148/beritas?_where[kategoriberita.namaKategori]=Berita%20Nasional&_start=0&_limit=5"
+    const urlBerita = "https://peaceful-meadow-45867.herokuapp.com/beritas"
+    const urlBerita2 = "https://peaceful-meadow-45867.herokuapp.com/beritas?_where[kategoriberita.namaKategori]=Berita%20Nasional&_start=0&_limit=5"
     const [beritanas, setBeritanas] = useState([])
     const [beritanasinf, setBeritanasinf] = useState([])
     const [banyakberita, setBanyakberita] = useState(0)
@@ -223,7 +223,7 @@ function BeritaNasional() {
 
     const generateDataBernas = () => {
         setTimeout(() => {
-            fetch(`http://167.99.72.148/beritas?_where[kategoriberita.namaKategori]=Berita%20Nasional&_start=${start}&_limit=4`)
+            fetch(`https://peaceful-meadow-45867.herokuapp.com/beritas?_where[kategoriberita.namaKategori]=Berita%20Nasional&_start=${start}&_limit=4`)
                 .then((res) => res.json()).then((res) =>
                     res.map((doc) => ({
                         id: `${doc.id}`,
