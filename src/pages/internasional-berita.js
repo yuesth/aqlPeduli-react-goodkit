@@ -6,6 +6,8 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
 import { Col, Breadcrumb } from 'react-bootstrap'
 import Sticky from 'wil-react-sticky'
 import "./inter-berita.css"
+import { LinkContainer } from 'react-router-bootstrap'
+
 
 function SkeletonBeritaHeader() {
     return (
@@ -74,20 +76,22 @@ function BeritaHeaderInter(props) {
         <>
             <div className="row align-items-center justify-content-center mb-7">
                 <div className="col-md-6" style={{ textAlign: `center` }}>
-                    <h2 className="mb-4 mb-md-0" style={{fontSize:`1.75rem`}}>
+                    <h2 className="mb-4 mb-md-0" style={{ fontSize: `1.75rem` }}>
                         Berita Internasional<br />
                     </h2>
                 </div>
             </div>
             {/* <Sticky containerSelectorFocus="#wadahStickyBerInter" offsetTop={70} stickyEnableRange={[768, Infinity]}> */}
-                <div className="row mb-2">
-                    <Col md={12} lg={12} className="px-auto">
-                        <Breadcrumb>
-                            <Breadcrumb.Item href="/berita" style={{ textDecoration: `none`, color: `#E92998` }}>Berita</Breadcrumb.Item>
-                            <Breadcrumb.Item active>Berita Internasional</Breadcrumb.Item>
-                        </Breadcrumb>
-                    </Col>
-                </div>
+            <div className="row mb-2">
+                <Col md={12} lg={12} className="px-auto">
+                    <Breadcrumb>
+                        <LinkContainer to="/berita">
+                            <Breadcrumb.Item style={{ textDecoration: `none`, color: `#E92998` }}>Berita</Breadcrumb.Item>
+                        </LinkContainer>
+                        <Breadcrumb.Item active>Berita Internasional</Breadcrumb.Item>
+                    </Breadcrumb>
+                </Col>
+            </div>
             {/* </Sticky> */}
             {props.isloadingberheadernas ? <SkeletonBeritaHeader></SkeletonBeritaHeader>
                 :
@@ -122,8 +126,8 @@ function BeritaListInter(props) {
                     <div className="col-12 col-md-12 mb-5 mt-5">
                         <div className={`card rounded-top-left rounded-bottom-right ${namaClass}`}>
                             <div className="row">
-                                <div className="col-6 col-md-6 rounded-top-left " style={{maxWidth:`20rem`}}>
-                                    <img className="img-fluid w-100" src={`${doc.gambar}`} alt="..." style={{maxHeight:`15rem`, maxWidth:`20rem`}} />
+                                <div className="col-6 col-md-6 rounded-top-left " style={{ maxWidth: `20rem` }}>
+                                    <img className="img-fluid w-100" src={`${doc.gambar}`} alt="..." style={{ maxHeight: `15rem`, maxWidth: `20rem` }} />
                                 </div>
                                 <div className="col-6 col-md-6">
                                     <div className="card-body">

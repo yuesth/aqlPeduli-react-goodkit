@@ -4,6 +4,7 @@ import FooterGK from "../components/footer"
 import { Col, Container, Breadcrumb } from 'react-bootstrap'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import ReactMarkdown from 'react-markdown'
+import { LinkContainer } from 'react-router-bootstrap'
 
 function SkeletonDetailKhazanah() {
     return (
@@ -87,7 +88,7 @@ function DetailKhazanah(props) {
     const myImg = (props) => {
         return (
             // <img src={props.src} className="img-fluid"/>
-            <a href={props.src} className="d-block mb-3 mb-md-0" style={{textAlign:`center`}} data-fancybox>
+            <a href={props.src} className="d-block mb-3 mb-md-0" style={{ textAlign: `center` }} data-fancybox>
                 <img src={props.src} className="img-fluid" />
             </a>
 
@@ -110,7 +111,7 @@ function DetailKhazanah(props) {
                     <div className="container-xl">
                         <div className="row align-items-center justify-content-center mb-7">
                             <div className="col-md-8" style={{ textAlign: `center` }}>
-                                <h2 className="mb-4 mb-md-0" style={{fontSize:`1.75rem`}}>
+                                <h2 className="mb-4 mb-md-0" style={{ fontSize: `1.75rem` }}>
                                     {detailkha.judul} <br />
                                 </h2>
                             </div>
@@ -118,7 +119,9 @@ function DetailKhazanah(props) {
                         <div className="row align-items-center justify-content-center mb-2">
                             <Col md={10} lg={9} className="px-auto">
                                 <Breadcrumb>
-                                    <Breadcrumb.Item href="/khazanah" style={{ textDecoration: `none`, color: `#E92998` }}>Khazanah</Breadcrumb.Item>
+                                    <LinkContainer to="/khazanah">
+                                        <Breadcrumb.Item style={{ textDecoration: `none`, color: `#E92998` }}>Khazanah</Breadcrumb.Item>
+                                    </LinkContainer>
                                     <Breadcrumb.Item active>{detailkha.judul}</Breadcrumb.Item>
                                 </Breadcrumb>
                             </Col>

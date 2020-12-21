@@ -41,24 +41,24 @@ function NavbarGK() {
                         <h3 className="mt-1">Kepedulian</h3>
                     </Link>
                     {/* <li className="nav-item"> */}
-                    <a className="nav-link px-3" id="landingsDropdown" href="/profil" role="button" aria-haspopup="true" aria-expanded="false">
+                    <Link className="nav-link px-3" id="landingsDropdown" to={`/profil`} role="button" aria-haspopup="true" aria-expanded="false">
                         <h3 className="mt-1">Profil</h3>
-                    </a>
+                    </Link>
                     {/* </li> */}
                     {/* <li className="nav-item"> */}
-                    <a className="nav-link px-3" id="pagesDropdown" href="/berita" role="button" aria-haspopup="true" aria-expanded="false">
+                    <Link className="nav-link px-3" id="pagesDropdown" to={`/berita`} role="button" aria-haspopup="true" aria-expanded="false">
                         <h3 className="mt-1">Berita</h3>
-                    </a>
+                    </Link>
                     {/* </li> */}
                     {/* <li className="nav-item dropdown lift"> */}
-                    <a className="nav-link px-3" id="accountDropdown" href="/informasi" role="button" aria-haspopup="true" aria-expanded="false">
+                    <Link className="nav-link px-3" id="accountDropdown" to={`/informasi`} role="button" aria-haspopup="true" aria-expanded="false">
                         <h3 className="mt-1">Informasi</h3>
-                    </a>
+                    </Link>
                     {/* </li> */}
                     {/* <li className="nav-item dropdown lift"> */}
-                    <a className="nav-link px-3" id="docsDropdown" href="/khazanah" role="button" aria-haspopup="true" aria-expanded="false">
+                    <Link className="nav-link px-3" id="docsDropdown" to={`/khazanah`} role="button" aria-haspopup="true" aria-expanded="false">
                         <h3 className="mt-1">Khazanah</h3>
-                    </a>
+                    </Link>
                     {/* </li> */}
                     <Link to={`/program`}><button className="navbar-donasi lift mt-1">DONASI</button></Link>
                     <Link to={`/relawan`}><button className="navbar-relawan lift mt-1">RELAWAN</button></Link>

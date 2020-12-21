@@ -7,6 +7,8 @@ import BeritaList from "../components/berita/berita-list"
 import "./event-berita.css"
 import { Col, Breadcrumb } from "react-bootstrap"
 import { Link } from 'react-router-dom'
+import { LinkContainer } from 'react-router-bootstrap'
+
 
 function SkeletonEvent() {
     return (
@@ -100,8 +102,8 @@ function EventBerita() {
                             <div className="col-3">
                                 <div className="text-white text-center rounded-top-left h-100 py-2" style={{ backgroundColor: `rgb(47, 57, 144)` }}>
                                     <DariTanggalSamping tanggal={doc.mulai}></DariTanggalSamping>
-                                <span style={{fontSize:`12px`}}>
-                                    s/d
+                                    <span style={{ fontSize: `12px` }}>
+                                        s/d
                                 </span>
                                     <DariTanggalSamping tanggal={doc.selesai}></DariTanggalSamping>
                                 </div>
@@ -195,7 +197,9 @@ function EventBerita() {
                     <div className="row mb-4">
                         <Col md={12} lg={12} className="px-auto">
                             <Breadcrumb>
-                                <Breadcrumb.Item href="/berita" style={{ textDecoration: `none`, color: `#E92998` }}>Berita</Breadcrumb.Item>
+                                <LinkContainer to="/berita">
+                                    <Breadcrumb.Item style={{ textDecoration: `none`, color: `#E92998` }}>Berita</Breadcrumb.Item>
+                                </LinkContainer>
                                 <Breadcrumb.Item active>Events</Breadcrumb.Item>
                             </Breadcrumb>
                         </Col>

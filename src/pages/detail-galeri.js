@@ -9,6 +9,7 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import ReactMarkdown from 'react-markdown'
 import "./detail-galeri.css"
 import "flickity-as-nav-for"
+import { LinkContainer } from 'react-router-bootstrap'
 
 function SkeletonDetailGaleri() {
     return (
@@ -144,7 +145,9 @@ function DetailGaleri(props) {
                         <div className="row align-items-center justify-content-center mb-2">
                             <Col md={10} lg={9} className="px-auto">
                                 <Breadcrumb>
-                                    <Breadcrumb.Item href="/informasi" style={{ textDecoration: `none`, color: `#E92998` }}>Galeri</Breadcrumb.Item>
+                                    <LinkContainer to="/informasi">
+                                        <Breadcrumb.Item style={{ textDecoration: `none`, color: `#E92998` }}>Galeri</Breadcrumb.Item>
+                                    </LinkContainer>
                                     <Breadcrumb.Item active>{detailgaleri.judulGaleri}</Breadcrumb.Item>
                                 </Breadcrumb>
                             </Col>

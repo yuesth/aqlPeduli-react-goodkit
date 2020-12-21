@@ -6,6 +6,8 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
 import { Col, Breadcrumb } from 'react-bootstrap'
 import InfiniteScroll from 'react-infinite-scroller'
 import "./nasional-berita.css"
+import { LinkContainer } from 'react-router-bootstrap'
+
 
 function SkeletonBeritaHeader() {
     return (
@@ -105,7 +107,9 @@ function BeritaHeaderNas(props) {
             <div className="row mb-2">
                 <Col md={12} lg={12} className="px-auto">
                     <Breadcrumb>
-                        <Breadcrumb.Item href="/berita" style={{ textDecoration: `none`, color: `#E92998` }}>Berita</Breadcrumb.Item>
+                        <LinkContainer to="/berita">
+                        <Breadcrumb.Item style={{ textDecoration: `none`, color: `#E92998` }}>Berita</Breadcrumb.Item>
+                        </LinkContainer>
                         <Breadcrumb.Item active>Berita Nasional</Breadcrumb.Item>
                     </Breadcrumb>
                 </Col>

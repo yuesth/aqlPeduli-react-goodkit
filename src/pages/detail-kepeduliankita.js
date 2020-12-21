@@ -6,6 +6,7 @@ import { Col, Container, Breadcrumb } from 'react-bootstrap'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import "./detail-kepeduliankita.css"
 import ReactMarkdown from 'react-markdown'
+import { LinkContainer } from 'react-router-bootstrap'
 
 function SkeletonDetailKK() {
     return (
@@ -70,20 +71,20 @@ function DetailKK(props) {
             items => {
                 setDetailkk(items)
                 setIsLoadingdetkk(false)
-                return(items.konten)
+                return (items.konten)
             }
         ).then((ret) => {
             var str2 = ret.match(/http:\/\/167.99.72.148\/uploads\/([A-z])\w+\.(png|jpg|jpeg)/g)
-            if(str2 !== null){
+            if (str2 !== null) {
                 var res = ret.replace(/!\[[A-z]\w+\.(png|jpg|jpeg)\]\(http:\/\/167.99.72.148\/uploads\/([A-z])\w+\.(png|jpg|jpeg)\)/g, `<img className='img-fluid' src="${str2[0]}"></img>`)
                 setKontenfix(res)
             }
-            else{
+            else {
                 setKontenfix(ret)
             }
         })
     })
-    const markup = {__html: kontenfix}
+    const markup = { __html: kontenfix }
     const myImg = (props) => {
         return (
             // <img src={props.src} className="img-fluid"/>
@@ -110,7 +111,7 @@ function DetailKK(props) {
                     <div className="container-xl">
                         <div className="row align-items-center justify-content-center mb-7">
                             <div className="col-md-8" style={{ textAlign: `center` }}>
-                                <h2 className="mb-4 mb-md-0" style={{fontSize:`1.75rem`}}>
+                                <h2 className="mb-4 mb-md-0" style={{ fontSize: `1.75rem` }}>
                                     {detailkk.judul} <br />
                                 </h2>
                             </div>
@@ -118,7 +119,9 @@ function DetailKK(props) {
                         <div className="row align-items-center justify-content-center mb-2">
                             <Col md={10} lg={9} className="px-auto">
                                 <Breadcrumb>
-                                    <Breadcrumb.Item href="/kk" style={{ textDecoration: `none`, color: `#E92998` }}>Kepedulian Kita</Breadcrumb.Item>
+                                    <LinkContainer to="/kk">
+                                        <Breadcrumb.Item style={{ textDecoration: `none`, color: `#E92998` }}>Kepedulian Kita</Breadcrumb.Item>
+                                    </LinkContainer>
                                     <Breadcrumb.Item active>{detailkk.judul}</Breadcrumb.Item>
                                 </Breadcrumb>
                             </Col>

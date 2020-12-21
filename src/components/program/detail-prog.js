@@ -6,6 +6,7 @@ import "./detail-prog.css"
 import ReactMarkdown from 'react-markdown'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import $ from 'jquery'
+import { LinkContainer } from 'react-router-bootstrap'
 
 
 function SkeletonDetProg() {
@@ -68,7 +69,7 @@ function SisaHari(props) {
     var hariTerakhir = new Date(new Date(props.tanggal).getTime() + (props.durasi * 24 * 60 * 60 * 1000));
     var sisaHari = Math.floor((hariTerakhir.getTime() - new Date().getTime()) / (1000 * 3600 * 24))
     return (
-        <span style={{fontSize:`1rem`}}>{sisaHari.toString()} hari lagi</span>
+        <span style={{ fontSize: `1rem` }}>{sisaHari.toString()} hari lagi</span>
     )
 }
 
@@ -381,7 +382,7 @@ function DetailProg(props) {
         return (
             <li className="timeline-item active text-left">
                 <DariTanggal tanggal={doc.tanggalUp}></DariTanggal>
-                <h3 style={{fontSize:`1.25rem`}}>
+                <h3 style={{ fontSize: `1.25rem` }}>
                     {doc.namaUp}
                 </h3>
                 <p className="text-muted mb-4">
@@ -431,14 +432,15 @@ function DetailProg(props) {
         image: myImg,
         paragraph: myParagraph,
     }
-    console.log(props.itemprog.idKateg)
     return (
         <section className="pt-10 pt-md-11">
             <div className="container-xl" id="wadahSticky">
                 <div className="row align-items-center justify-content-center">
                     <Col>
                         <Breadcrumb>
-                            <Breadcrumb.Item href="/program" style={{ textDecoration: `none`, color: `#E92998` }}>Program Kepedulian</Breadcrumb.Item>
+                            <LinkContainer to="/program">
+                                <Breadcrumb.Item style={{ textDecoration: `none`, color: `#E92998` }}>Program Kepedulian</Breadcrumb.Item>
+                            </LinkContainer>
                             <Breadcrumb.Item active>{props.itemprog.judul}</Breadcrumb.Item>
                         </Breadcrumb>
                     </Col>

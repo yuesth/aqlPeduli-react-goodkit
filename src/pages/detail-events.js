@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import { Col, Container, Breadcrumb } from 'react-bootstrap'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import ReactMarkdown from 'react-markdown'
+import { LinkContainer } from 'react-router-bootstrap'
 
 function SkeletonDetailBerita() {
     return (
@@ -111,7 +112,9 @@ function DetailEvent(props) {
                         <div className="row align-items-center justify-content-center mb-2">
                             <Col md={10} lg={9} className="px-auto">
                                 <Breadcrumb>
-                                    <Breadcrumb.Item href="/events" style={{ textDecoration: `none`, color: `#E92998` }}>Events</Breadcrumb.Item>
+                                    <LinkContainer to="/events">
+                                        <Breadcrumb.Item style={{ textDecoration: `none`, color: `#E92998` }}>Events</Breadcrumb.Item>
+                                    </LinkContainer>
                                     <Breadcrumb.Item active>{detailberita.judul}</Breadcrumb.Item>
                                 </Breadcrumb>
                             </Col>
