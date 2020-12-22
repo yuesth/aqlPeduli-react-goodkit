@@ -84,8 +84,10 @@ function DariTanggal(props) {
 }
 
 function ModalDonasi(props) {
-    const urlNorek = `http://167.99.72.148/nomor-rekening-kategoris?_where[kategori.id]=${props.idkateggg}`
+    const urlNorek = `https://peaceful-meadow-45867.herokuapp.com/nomor-rekening-kategoris?_where[kategori.id]=${props.idkateggg}`
+    const urlQr = `https://peaceful-meadow-45867.herokuapp.com/kategoris?_where[id]=${props.idkateggg}`
     const [norek, setNorek] = useState([])
+    const [qrcode, setQrcode] = useState([])
     const [mandiricopied, setMandiricopied] = useState(false)
     const handleMandiri = () => setMandiricopied(true)
     const [mandiriscopied, setMandiriscopied] = useState(false)
@@ -130,7 +132,14 @@ function ModalDonasi(props) {
         })).then(items => {
             setNorek(items)
         })
-    }, [norek])
+        fetch(urlQr).then(res => res.json()).then(parsedJson => parsedJson.map(doc => {
+            return ({
+                qrcode: `${doc.qrcodeKategori.url}`,
+            })
+        })).then(items => {
+            setQrcode(items)
+        })
+    }, [norek, qrcode])
     return (
         <>
             <Modal show={props.status} onHide={props.handleclose} backdrop="static" keyboard={false} className="modal-donasi">
@@ -271,7 +280,14 @@ function ModalDonasi(props) {
                     }
                     <div className="row align-items-center justify-content-center mb-5">
                         <div className="col-md-10 col-lg-10">
-                            <img className="img-fluid w-100" src={`${process.env.PUBLIC_URL}/images/donasi/qrcode2.jpeg`} alt="QR Code 1" />
+                            {
+                                qrcode.map((doc, idx) => {
+                                    return (
+                                        <img className="img-fluid w-100" src={doc.qrcode} alt="QR Code" />
+                                    )
+                                })
+                            }
+                            {/* <img className="img-fluid w-100" src={`${process.env.PUBLIC_URL}/images/donasi/qrcode2.jpeg`} alt="QR Code 1" /> */}
                         </div>
                     </div>
                     <div className="row align-items-center justify-content-center mb-3">
@@ -311,7 +327,7 @@ function ModalShare(props) {
                                 </a>
                             </div>
                             <div className="smd">
-                                <a href="">
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//aqlpeduli.or.id/program/1">
                                     <i className="img-thumbnail fab fa-facebook fa fa-2x" style={{ color: '#3b5998', backgroundColor: '#eceff5' }} />
                                     <p>Facebook</p>
                                 </a>
@@ -331,8 +347,8 @@ function ModalShare(props) {
                         </div>
                         <div>
                             <label style={{ fontWeight: 400 }}>Page Link <span className="message" /></label><br />
-                            <div className="row"> <input className="col-10 ur" type="url" id="myInput" aria-describedby="inputGroup-sizing-default" style={{ height: 40 }} value={`http://206.189.94.211/program/${props.id}`} disabled />
-                                <CopyToClipboard onCopy={props.handlecopied} text={`http://206.189.94.211/program/${props.id}`}>
+                            <div className="row"> <input className="col-10 ur" type="url" id="myInput" aria-describedby="inputGroup-sizing-default" style={{ height: 40 }} value={`https://aqlpeduli.or.id/program/${props.id}`} disabled />
+                                <CopyToClipboard onCopy={props.handlecopied} text={`https://aqlpeduli.or.id/program/${props.id}`}>
                                     <button className="cpy" onClick={props.messagecopied}><i className="far fa-clone fa" /></button>
                                 </CopyToClipboard>
                             </div>
