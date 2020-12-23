@@ -35,7 +35,6 @@ function CarouselLanding() {
                 return ({
                     id: `${data.id}`,
                     gambar: `${data.banner.url}`,
-                    idProg: `${data.program.id}`,
                     link: `${data.linkBanner}`
                 })
             }
