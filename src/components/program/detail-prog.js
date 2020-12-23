@@ -485,8 +485,9 @@ function DetailProg(props) {
                                             </p>
                                         </div>
                                         <div style={{ height: `5rem` }} className="mb-3">
-                                            <span style={{ fontSize: `1rem` }}>Rp.{props.itemprog.terkumpul !== null && idrterkumpul} dari Rp.<strong>{props.itemprog.total !== null && idrtotal}</strong></span>
-                                            <ProgressBar now={persenTerkumpul} label={`${persenTerkumpul.toFixed(2)} %`} />
+                                            <span style={{ fontSize: `1rem` }}>Rp.{props.itemprog.terkumpul !== null ? idrterkumpul : 'Rp.0.00'} dari Rp.<strong>{props.itemprog.total !== null && idrtotal}</strong></span>
+                                            <ProgressBar now={persenTerkumpul} />
+                                            {/* label={`${persenTerkumpul.toFixed(2)} %`} */}
                                             {props.itemprog.durasi !== null && <SisaHari tanggal={props.itemprog.tanggal} durasi={props.itemprog.durasi} />
                                             }
                                         </div>

@@ -25,7 +25,10 @@
       -webkit-box-orient: vertical;
       color: black;
   }
-  
+
+  .card-kkita .flickity-prev-next-button{
+    background-color: rgb(47,57,144);
+  }
 
   
   .wadah-card{

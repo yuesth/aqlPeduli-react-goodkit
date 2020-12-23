@@ -76,7 +76,7 @@ function KepedulianLanding() {
     //         )
     //     }, 5000)
     // })
-    const arrGbr = ['natural-disaster', 'healthcare', 'jama-masjid', 'beverages', 'give-love', 'peduli-dunia-islam']
+    const arrGbr = ['natural-disaster', 'healthcare', 'jama-masjid','peduli-dunia-islam', 'give-love', 'beverages']
     const listkateg = kateg.map((doc, idx) => {
         var pathGbr = `${process.env.PUBLIC_URL}/images/kepedulian/${arrGbr[idx]}.png`
         return (

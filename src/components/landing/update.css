@@ -5,3 +5,14 @@
     -webkit-line-clamp: 2; /* number of lines to show */
     -webkit-box-orient: vertical;
 }
+
+.carousel-main-up-landing .flickity-prev-next-button{
+    background-color: rgb(47,57,144);
+}
+
+@media only screen and (max-width:590px){
+    .carousel-main-up-landing .flickity-prev-next-button{
+        display: none;
+        visibility: hidden;
+    }
+}

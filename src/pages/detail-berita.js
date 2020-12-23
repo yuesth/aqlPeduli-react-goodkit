@@ -62,6 +62,7 @@ function DetailBerita(props) {
             {
                 id: `${parsedJson.id}`,
                 judul: `${parsedJson.judulBerita}`,
+                penulis: `${parsedJson.penulisBerita}`,
                 isi: `${parsedJson.isiBerita}`,
                 tanggal: `${parsedJson.tanggalBerita}`,
                 gambar: `${parsedJson.gambarBerita.url}`,
@@ -126,7 +127,7 @@ function DetailBerita(props) {
                         <div className="row align-items-center justify-content-center mb-7">
                             <div className="col-md-10 col-lg-9">
                                 <span className="small text-muted mb-0">
-                                    <DariTanggal tanggal={detailberita.tanggal}></DariTanggal>
+                                    <DariTanggal tanggal={detailberita.tanggal}></DariTanggal> | {detailberita.penulis}
                                 </span>
                             </div>
                         </div>

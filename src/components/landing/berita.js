@@ -217,7 +217,7 @@ function Berita() {
                 </div>
                 <div className="row align-items-center mb-7">
                     <div className="mx-auto">
-                        <Link className="btn btn-sm btn-primary" to={`/berita`}>
+                        <Link className="btn btn-sm btn-primary" to={`/berita`} style={{backgroundColor:`rgb(47,57,144)`}}>
                             Lihat Semua
                         </Link>
                     </div>

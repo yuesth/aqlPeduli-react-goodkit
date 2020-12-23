@@ -228,7 +228,7 @@ function KK() {
                                                 {gambarkk}
                                             </div>
                                         </div>
-                                        <div className="col-md-6 position-static">
+                                        <div className="col-md-6 position-static card-kkita">
                                             <div className="card-body">
                                                 <div className="flickity-soft-edges flickity-buttons-adjacent flickity-buttons-rounded flickity-buttons-bottom-left position-static mx-n4 kk-main">
                                                     {tulisankk}
@@ -242,7 +242,7 @@ function KK() {
                     </div>
                     <div className="row align-items-center mb-7 mt-3">
                         <div className="mx-auto" style={{ zIndex: `10` }}>
-                            <a className="btn btn-sm btn-primary" href="/kk">
+                            <a className="btn btn-sm btn-primary btn-kkita" href="/kk" style={{backgroundColor:`rgb(47,57,144)`}}>
                                 Lihat Lainnya
                             </a>
                         </div>

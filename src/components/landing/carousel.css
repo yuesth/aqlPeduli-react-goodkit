@@ -7,6 +7,10 @@
     bottom: 120px;
 }
 
+.carousel-main-car-landing .flickity-prev-next-button{
+    background-color: rgb(47,57,144);
+}
+
 @media only screen and (max-width:590px){
     .carousel-main-car-landing .flickity-prev-next-button{
         display: none;
