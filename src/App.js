@@ -19,8 +19,6 @@ import Khazanah from "./pages/khazanah"
 import DetailKhazanah from "./pages/detail-khazanah"
 import Informasi from "./pages/informasi"
 import DetailGaleri from "./pages/detail-galeri"
-import Coba from "./pages/coba"
-import Coba2 from "./pages/coba2"
 
 function App() {
   return (
@@ -46,8 +44,6 @@ function App() {
             <Route path="/khazanah/:id" exact component={DetailKhazanah}></Route>
             <Route path="/informasi" exact component={Informasi}></Route>
             <Route path="/galeri/:id" exact component={DetailGaleri}></Route>
-            <Route path="/coba" exact component={Coba}></Route>
-            <Route path="/coba2" exact component={Coba2}></Route>
           </Switch>
         </ScrollToTop>
       </BrowserRouter>

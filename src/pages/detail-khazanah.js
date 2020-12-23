@@ -83,7 +83,7 @@ function DetailKhazanah(props) {
                 setKontenfix(ret)
             }
         })
-    })
+    },[])
     const markup = { __html: kontenfix }
     const myImg = (props) => {
         return (

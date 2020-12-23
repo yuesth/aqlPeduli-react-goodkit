@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { Col, Container, Row } from "react-bootstrap"
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
-import { usePromiseTracker, trackPromise } from 'react-promise-tracker'
-import Carousel from "react-elastic-carousel"
 import "./berita.css"
 
 function SkeletonBerutLayout() {
@@ -70,45 +67,66 @@ function Berita() {
     const [berita, setBerita] = useState([])
     const [isLoadingber, setIsLoadingber] = useState(true);
     useEffect(() => {
-        // trackPromise(
-        fetch(urlBerita).then(res => res.json()).then(parsedJson => {
-            setBerita(parsedJson)
-            setTimeout(() => {
-                setIsLoadingber(false)
-            }, 5000)
+        fetch(urlBerita).then(res => res.json()).then(parsed => parsed.map(data => {
+            if (data.gambarBerita !== null) {
+                return ({
+                    id: `${data.id}`,
+                    penulis: `${data.penulisBerita}`,
+                    tanggal: `${data.tanggalBerita}`,
+                    judul: `${data.judulBerita}`,
+                    isi: `${data.isiBerita}`,
+                    tag: `${data.tagBerita}`,
+                    gambar: `${data.gambarBerita.url}`,
+                    kategori: `${data.kategoriberita.namaKategori}`
+                })
+            }
+            else {
+                return ({
+                    id: `${data.id}`,
+                    penulis: `${data.penulisBerita}`,
+                    tanggal: `${data.tanggalBerita}`,
+                    judul: `${data.judulBerita}`,
+                    isi: `${data.isiBerita}`,
+                    tag: `${data.tagBerita}`,
+                    kategori: `${data.kategoriberita.namaKategori}`
+                })
+            }
+        })).then(parsedJson => {
+            const sortedItemBerita = parsedJson.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
+            setBerita(sortedItemBerita)
+            setIsLoadingber(false)
         })
-        // )
-    })
-    const itemBerita = []
-    berita.map(data => {
-        if (data.gambarBerita !== null) {
-            var item1 = {
-                id:`${data.id}`,
-                penulis: `${data.penulisBerita}`,
-                tanggal: `${data.tanggalBerita}`,
-                judul: `${data.judulBerita}`,
-                isi: `${data.isiBerita}`,
-                tag: `${data.tagBerita}`,
-                gambar: `${data.gambarBerita.url}`,
-                kategori: `${data.kategoriberita.namaKategori}`
-            }
-            itemBerita.push(item1)
-        }
-        else {
-            var item2 = {
-                id:`${data.id}`,
-                penulis: `${data.penulisBerita}`,
-                tanggal: `${data.tanggalBerita}`,
-                judul: `${data.judulBerita}`,
-                isi: `${data.isiBerita}`,
-                tag: `${data.tagBerita}`,
-                kategori: `${data.kategoriberita.namaKategori}`
-            }
-            itemBerita.push(item2)
-        }
-    })
-    const sortedItemBerita = itemBerita.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
-    const beritaUtama = sortedItemBerita.map((doc, idx) => {
+    }, [])
+    // const itemBerita = []
+    // berita.map(data => {
+    //     if (data.gambarBerita !== null) {
+    //         var item1 = {
+    //             id:`${data.id}`,
+    //             penulis: `${data.penulisBerita}`,
+    //             tanggal: `${data.tanggalBerita}`,
+    //             judul: `${data.judulBerita}`,
+    //             isi: `${data.isiBerita}`,
+    //             tag: `${data.tagBerita}`,
+    //             gambar: `${data.gambarBerita.url}`,
+    //             kategori: `${data.kategoriberita.namaKategori}`
+    //         }
+    //         itemBerita.push(item1)
+    //     }
+    //     else {
+    //         var item2 = {
+    //             id:`${data.id}`,
+    //             penulis: `${data.penulisBerita}`,
+    //             tanggal: `${data.tanggalBerita}`,
+    //             judul: `${data.judulBerita}`,
+    //             isi: `${data.isiBerita}`,
+    //             tag: `${data.tagBerita}`,
+    //             kategori: `${data.kategoriberita.namaKategori}`
+    //         }
+    //         itemBerita.push(item2)
+    //     }
+    // })
+    // const sortedItemBerita = berita.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
+    const beritaUtama = berita.map((doc, idx) => {
         if (idx == 0) {
             return (
                 <div className="card card-lg rounded-top-left rounded-bottom-right lift lift-lg mb-7">
@@ -148,7 +166,7 @@ function Berita() {
             )
         }
     })
-    const beritalain = sortedItemBerita.map((doc, idx) => {
+    const beritalain = berita.map((doc, idx) => {
         if (idx !== 0 && idx < 4) {
             return (
                 <div className="col-md-4">
@@ -193,8 +211,8 @@ function Berita() {
             <div className="container-xl">
                 <div className="row">
                     <div className="col-12">
-                        <div style={{ textAlign: `center`, zIndex:`10` }} className="mb-7">
-                            <h2 style={{fontSize:`2rem`}}>
+                        <div style={{ textAlign: `center`, zIndex: `10` }} className="mb-7">
+                            <h2 style={{ fontSize: `2rem` }}>
                                 Berita
                             </h2>
                         </div>
@@ -217,7 +235,7 @@ function Berita() {
                 </div>
                 <div className="row align-items-center mb-7">
                     <div className="mx-auto">
-                        <Link className="btn btn-sm btn-primary" to={`/berita`} style={{backgroundColor:`rgb(47,57,144)`}}>
+                        <Link className="btn btn-sm btn-primary" to={`/berita`} style={{ backgroundColor: `rgb(47,57,144)` }}>
                             Lihat Semua
                         </Link>
                     </div>

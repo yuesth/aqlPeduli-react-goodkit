@@ -83,7 +83,7 @@ function DetailKK(props) {
                 setKontenfix(ret)
             }
         })
-    })
+    },[])
     const markup = { __html: kontenfix }
     const myImg = (props) => {
         return (

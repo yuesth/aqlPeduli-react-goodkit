@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { Col, Container, Row } from "react-bootstrap"
-import Carousel from "react-elastic-carousel"
 import Flickity from 'flickity'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import "./kepedulian.css"
@@ -63,19 +61,6 @@ function KepedulianLanding() {
             }
         )
     }, [])
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         setFlickk(
-    //             new Flickity('.main-kepedulian', {
-    //                 imagesLoaded: true,
-    //                 pageDots: false,
-    //                 contain: true,
-    //                 wrapAround: false,
-    //                 prevNextButtons: true,
-    //             })
-    //         )
-    //     }, 5000)
-    // })
     const arrGbr = ['natural-disaster', 'healthcare', 'jama-masjid','peduli-dunia-islam', 'give-love', 'beverages']
     const listkateg = kateg.map((doc, idx) => {
         var pathGbr = `${process.env.PUBLIC_URL}/images/kepedulian/${arrGbr[idx]}.png`

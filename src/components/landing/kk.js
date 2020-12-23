@@ -76,7 +76,7 @@ function KK() {
                 })
             )
         })
-    })
+    },[])
     const gambarkk = kk.map((doc, idx) => {
         return (
             <Link to={`/kk/${doc.idKk}`}>
@@ -321,24 +321,5 @@ export default KK
 
 
 
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         setFlickkk1(
-    //             new Flickity('.carousel-nav', {
-    //                 fade: true,
-    //                 imagesLoaded: true,
-    //                 pageDots: false,
-    //                 prevNextButtons: false,
-    //                 asNavFor: '.carousel-main',
-    //                 draggable: false
-    //             })
-    //         )
-    //         setFlickkk2(
-    //             new Flickity('.carousel-main', {
-    //                 imagesLoaded: true,
-    //                 pageDots: false,
-    //                 wrapAround: true,
-    //             })
-    //         )
-    //     }, 10000)
-    // })
+
+                                        

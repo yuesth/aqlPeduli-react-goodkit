@@ -62,7 +62,7 @@ function CarouselLanding() {
                     })
                 )
             })
-    })
+    },[])
     const listcarousel = programcar.map((doc, idx) => {
         return (
             <div style={{ width: `calc(100% - 5rem)`, maxWidth: `780px` }}>

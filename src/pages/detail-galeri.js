@@ -90,7 +90,7 @@ function DetailGaleri(props) {
                 )
                 // }, 3000)
             })
-    })
+    },[])
     const galeribesar = detailgalerigbr.map((doc, idx) => {
         return (
             <div style={{ width: `calc(100% - 10rem)` }} className="car-cell-besar">

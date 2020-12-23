@@ -66,7 +66,7 @@ function Khazanah() {
             setKhazanah(parsedJson)
             setIsLoadingkhazanah(false)
         })
-    })
+    },[])
     const itemKhazanah = []
     khazanah.map(data => {
         if (data.gambarKhazanah !== null) {

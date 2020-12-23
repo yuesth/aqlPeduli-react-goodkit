@@ -130,7 +130,7 @@ function BeritaList() {
             setBeritalist(parsedJson)
             setIsLoadingberlist(false)
         })
-    })
+    },[])
     const itemBerita = []
     beritalist.map(data => {
         if (data.gambarBerita !== null) {

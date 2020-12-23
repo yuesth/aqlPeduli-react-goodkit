@@ -58,7 +58,7 @@ function Emagz() {
             setIsLoadingemagz(false)
         })
 
-    })
+    },[])
     const itemEmagz = []
     emagz.map(data => {
         var item1 = {

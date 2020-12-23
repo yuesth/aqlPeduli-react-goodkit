@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import Carousel from "react-elastic-carousel"
 import Flickity from "flickity"
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import "./update.css"
@@ -72,7 +71,7 @@ function Update() {
                 })
             )
         })
-    })
+    },[])
     const itemUpdate = []
     update.map(doc => {
         if (doc.gambarUpdate !== null) {
@@ -97,19 +96,6 @@ function Update() {
             itemUpdate.push(item2)
         }
     })
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         setFlickup(
-    //             new Flickity('.carousel-main-up-landing', {
-    //                 cellAlign: 'left',
-    //                 imagesLoaded: true,
-    //                 pageDots: false,
-    //                 prevNextButtons: true,
-    //                 contain: true
-    //             })
-    //         )
-    //     }, 10000)
-    // })
     const breakPoints = [
         { width: 1, itemsToShow: 1 },
         { width: 550, itemsToShow: 2, itemsToScroll: 2 },

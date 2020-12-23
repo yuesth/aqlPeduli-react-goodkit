@@ -34,7 +34,7 @@ function BeritaHeader() {
             setBerita(parsedJson)
             setIsLoadingberheader(false)
         })
-    })
+    },[])
     const itemBerita = []
     berita.map(data => {
         if (data.gambarBerita !== null) {
@@ -62,7 +62,7 @@ function BeritaHeader() {
             }
             itemBerita.push(item2)
         }
-    })
+    },[])
     const sortedItemBerita = itemBerita.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
     const listberitaheader = sortedItemBerita.map((doc, idx) => {
         if (idx === 0) {

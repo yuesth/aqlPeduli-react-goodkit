@@ -71,7 +71,7 @@ function LayoutKK() {
                 setIsLoadingkk(false)
             }
         )
-    })
+    },[])
     const moreDataKK = (val) => {
         setVisibleKK(prev => prev + 3)
     }

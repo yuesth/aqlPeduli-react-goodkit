@@ -77,7 +77,7 @@ function DetailBerita(props) {
             const isi = ret
             setKontenfix(isi.replace(/\n/g, `<br/>`))
         })
-    })
+    },[])
     const myImg = (props) => {
         return (
             // <img src={props.src} className="img-fluid"/>

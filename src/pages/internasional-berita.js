@@ -169,7 +169,7 @@ function BeritaInternasional() {
             setBeritanas(parsedJson)
             setIsLoadingberheadernas(false)
         })
-    })
+    },[])
     const itemBerita = []
     beritanas.map(data => {
         if (data.kategoriberita.namaKategori === "Berita Internasional") {

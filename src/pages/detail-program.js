@@ -30,7 +30,7 @@ function DetailProgram(props) {
                 terkumpul: `${parsedJson.totalterkumpulProgram}`,
                 durasi: `${parsedJson.durasiProgram}`,
                 des: `${parsedJson.deskripsiProgram}`,
-                linkbb: `${parsedJson.linkBerkahberjamaah}`,
+                linkbb: `${parsedJson.linkBerkahBerjamaah}`,
                 gambar: `${parsedJson.gambarProgram.url}`,
                 cerita: `${parsedJson.cerita}`,
                 idKateg: `${parsedJson.kategori.id}`,
@@ -72,7 +72,7 @@ function DetailProgram(props) {
                 setIsLoadingdetup(false)
             }
         )
-    })
+    },[])
     const itemup = []
     detailup.map((doc, idx) => {
         if (doc.idProg === id) {

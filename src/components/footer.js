@@ -8,7 +8,7 @@ function Footer() {
 
     useEffect(() => {
         fetch(urlBerita).then(res => res.json()).then(parsedJson => setBerita(parsedJson))
-    })
+    },[])
     const itemBerita = []
     berita.map(data => {
         if (data.gambarBerita !== null) {

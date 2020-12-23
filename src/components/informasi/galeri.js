@@ -84,7 +84,7 @@ function Galeri() {
             })
             setGambar(itemGaleri)
         })
-    })
+    },[])
     // console.log(gambar[0])
     // alert(JSON.stringify(gambar[0].gambar))
     const itemgaleri = gambar.map((doc, idx) => {
