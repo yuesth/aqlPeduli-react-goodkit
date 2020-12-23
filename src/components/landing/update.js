@@ -121,7 +121,7 @@ function Update() {
         return (
             <div className="col-12 mb-7" style={{ maxWidth: 320, height: `30rem` }} data-aos="fade-up">
                 <Link to={{
-                    pathname:`/program/${doc.idProg}`,
+                    pathname:`/program/${doc.idProg}/${doc.judulProg}`,
                     state:{
                         fromUpdateLanding: true,
                     },

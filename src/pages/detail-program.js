@@ -7,6 +7,7 @@ import DetailProg from "../components/program/detail-prog"
 
 function DetailProgram(props) {
     const id = props.match.params.id
+    const namaprog = props.match.params.program
     var fromUpdateLanding = false
     if(props.location.state){
         fromUpdateLanding = props.location.state.fromUpdateLanding

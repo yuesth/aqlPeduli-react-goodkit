@@ -311,6 +311,7 @@ function ModalDonasi(props) {
 }
 
 function ModalShare(props) {
+    const phone = '6282239193515'
     return (
         <>
             <Modal show={props.status} onHide={props.handlecloseshare} keyboard={false} className="modal-bagikan">
@@ -321,13 +322,13 @@ function ModalShare(props) {
                     <div>
                         <div className="icon-container1 d-flex">
                             <div className="smd">
-                                <a href="">
+                                <a href={`https://twitter.com/intent/tweet?text=Mari berdonasi untuk ${props.judulprog} melalui https://aqlpeduli.or.id/program/${props.id}/${props.judulprog}`} target="_blank">
                                     <i className=" img-thumbnail fab fa-twitter fa fa-2x" style={{ color: '#4c6ef5', backgroundColor: 'aliceblue' }} />
                                     <p>Twitter</p>
                                 </a>
                             </div>
                             <div className="smd">
-                                <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//aqlpeduli.or.id/program/1">
+                                <a href={`https://www.facebook.com/sharer/sharer.php?u=https%3A//aqlpeduli.or.id/program/${props.id}/${props.judulprog}`} target="_blank">
                                     <i className="img-thumbnail fab fa-facebook fa fa-2x" style={{ color: '#3b5998', backgroundColor: '#eceff5' }} />
                                     <p>Facebook</p>
                                 </a>
@@ -339,7 +340,7 @@ function ModalShare(props) {
                                 </a>
                             </div>
                             <div className="smd">
-                                <a href="">
+                                <a href={`https://api.whatsapp.com/send?phone=+${phone}*&text=%20https://aqlpeduli.or.id/program/${props.id}/${props.judulprog}`} target="_blank">
                                     <i className="img-thumbnail fab fa-whatsapp fa fa-2x" style={{ color: '#25D366', backgroundColor: '#cef5dc' }} />
                                     <p>Whatsapp</p>
                                 </a>
@@ -347,8 +348,8 @@ function ModalShare(props) {
                         </div>
                         <div>
                             <label style={{ fontWeight: 400 }}>Page Link <span className="message" /></label><br />
-                            <div className="row"> <input className="col-10 ur" type="url" id="myInput" aria-describedby="inputGroup-sizing-default" style={{ height: 40 }} value={`https://aqlpeduli.or.id/program/${props.id}`} disabled />
-                                <CopyToClipboard onCopy={props.handlecopied} text={`https://aqlpeduli.or.id/program/${props.id}`}>
+                            <div className="row"> <input className="col-10 ur" type="url" id="myInput" aria-describedby="inputGroup-sizing-default" style={{ height: 40 }} value={`https://aqlpeduli.or.id/program/${props.id}/${props.judulprog}`} disabled />
+                                <CopyToClipboard onCopy={props.handlecopied} text={`https://aqlpeduli.or.id/program/${props.id}/${props.judulprog}`}>
                                     <button className="cpy" onClick={props.messagecopied}><i className="far fa-clone fa" /></button>
                                 </CopyToClipboard>
                             </div>
@@ -501,7 +502,7 @@ function DetailProg(props) {
                                                 </Button>
                                             </div>
                                             <ModalDonasi status={showmodal} handleclose={handleClose} linkbb={props.itemprog.linkbb} judulprog={props.itemprog.judul} idkateggg={idkategg}></ModalDonasi>
-                                            <ModalShare status={showshare} handlecloseshare={handleCloseShare} id={props.itemprog.id} handlecopied={handlecopied} messagecopied={messagecopied}></ModalShare>
+                                            <ModalShare status={showshare} handlecloseshare={handleCloseShare} id={props.itemprog.id} judulprog={props.itemprog.judul} handlecopied={handlecopied} messagecopied={messagecopied}></ModalShare>
                                         </div>
                                     </div>
                                 </Sticky>

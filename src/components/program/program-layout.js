@@ -325,7 +325,7 @@ function ProgramLayout(props) {
                             <PersenTerkumpul total={doc.total} terkumpul={doc.terkumpul}></PersenTerkumpul>
                         </div>
                         <Link to={{
-                            pathname: `/program/${doc.id}`,
+                            pathname: `/program/${doc.id}/${doc.judul}`,
                             state: {
                                 fromUpdateLanding: false,
                             }

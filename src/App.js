@@ -33,7 +33,7 @@ function App() {
             <Route path="/profil" exact component={Profil}></Route>
             <Route path="/relawan" exact component={Relawan}></Route>
             <Route path="/relawan-sukses" exact component={RelawanSukses}></Route>
-            <Route path="/program/:id" exact component={DetailProgram}></Route>
+            <Route path="/program/:id/:program" exact component={DetailProgram}></Route>
             <Route path="/kk" exact component={Kepeduliankita}></Route>
             <Route path="/kk/:id" exact component={DetailKepeduliankita}></Route>
             <Route path="/berita" exact component={Berita}></Route>
