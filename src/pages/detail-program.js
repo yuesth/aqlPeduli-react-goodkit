@@ -72,7 +72,7 @@ function DetailProgram(props) {
                 setIsLoadingdetup(false)
             }
         )
-    },[detailup])
+    },[detailprog, detailup])
     const itemup = []
     detailup.map((doc, idx) => {
         if (doc.idProg === id) {
