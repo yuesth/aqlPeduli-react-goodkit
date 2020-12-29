@@ -139,7 +139,7 @@ function ModalDonasi(props) {
         })).then(items => {
             setQrcode(items)
         })
-    }, [norek, qrcode])
+    }, [])
     return (
         <>
             <Modal show={props.status} onHide={props.handleclose} backdrop="static" keyboard={false} className="modal-donasi">
@@ -328,27 +328,27 @@ function ModalShare(props) {
                     <div>
                         <div className="icon-container1 d-flex">
                             <div className="smd">
-                                <a href={`https://twitter.com/intent/tweet?text=Mari berdonasi untuk ${props.judulprog} melalui https://aqlpeduli.or.id/program/${props.id}/${props.judulprog}`} target="_blank">
+                                <a href={`https://twitter.com/intent/tweet?text=Mari%20berdonasi%20untuk%20${props.judulprog}%20melalui%20https://aqlpeduli.or.id/program/${props.id}/${props.judulprog}`} target="_blank">
                                     <i className=" img-thumbnail fab fa-twitter fa fa-2x" style={{ color: '#4c6ef5', backgroundColor: 'aliceblue' }} />
-                                    <p>Twitter</p>
+                                    <p style={{color:`black`}}>Twitter</p>
                                 </a>
                             </div>
                             <div className="smd">
                                 <a href={`https://www.facebook.com/sharer/sharer.php?u=https%3A//aqlpeduli.or.id/program/${props.id}/${props.judulprog}`} target="_blank">
                                     <i className="img-thumbnail fab fa-facebook fa fa-2x" style={{ color: '#3b5998', backgroundColor: '#eceff5' }} />
-                                    <p>Facebook</p>
+                                    <p style={{color:`black`}}>Facebook</p>
                                 </a>
                             </div>
                             <div className="smd">
                                 <a href="">
                                     <i className="img-thumbnail fab fa-2x fa-telegram fa" style={{ color: '#4c6ef5', backgroundColor: 'aliceblue' }} />
-                                    <p>Telegram</p>
+                                    <p style={{color:`black`}}>Telegram</p>
                                 </a>
                             </div>
                             <div className="smd">
-                                <a href={`https://api.whatsapp.com/send?phone=+${phone}*&text=%20https://aqlpeduli.or.id/program/${props.id}/${props.judulprog}`} target="_blank">
+                                <a href={`https://api.whatsapp.com/send?text=%20Mari%20membantu%20donasi%20${props.judulprog}%20melalui%20https://aqlpeduli.or.id/program/${props.id}/${props.judulprog}`} target="_blank">
                                     <i className="img-thumbnail fab fa-whatsapp fa fa-2x" style={{ color: '#25D366', backgroundColor: '#cef5dc' }} />
-                                    <p>Whatsapp</p>
+                                    <p style={{color:`black`}}>Whatsapp</p>
                                 </a>
                             </div>
                         </div>

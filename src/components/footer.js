@@ -8,7 +8,7 @@ function Footer() {
 
     useEffect(() => {
         fetch(urlBerita).then(res => res.json()).then(parsedJson => setBerita(parsedJson))
-    },[])
+    }, [])
     const itemBerita = []
     berita.map(data => {
         if (data.gambarBerita !== null) {
@@ -33,7 +33,7 @@ function Footer() {
         if (idx === 0) {
             return (
                 <li className="mb-3">
-                    <Link className="text-gray-600" to={`/berita/${doc.id}`} style={{ fontSize: `1.125rem` }}>{doc.judul}</Link>
+                    <Link className="text-gray-600" to={`/berita/${doc.id}`} style={{ fontSize: `1rem` }}>{doc.judul}</Link>
                 </li>
             )
         }
@@ -43,45 +43,54 @@ function Footer() {
         <footer className="footer py-7 py-md-7" style={{ backgroundColor: `#f5f5f5` }}>
             <div className="container-lg">
                 <div className="row">
-                    <div className="col-md-4 pr-5 mb-5">
-                        <img src={`${process.env.PUBLIC_URL}/images/logo-aql.png`} alt="logo-aql" width="200px" height="130px" className="logo-footer" />
+                    <div className="col-md-7 pr-5">
+                        <img src={`${process.env.PUBLIC_URL}/images/logo-aql2.png`} alt="logo-aql" width="160px" height="100px" className="logo-footer mb-5" />
+                        <p className="text-muted mb-4">
+                            AQL Peduli adalah sebuah lembaga nirlaba yang bergerak di bidang sosial yang bersemangat untuk mengedukasi masyarakat dalam hal kemanusiaan mulai pra-bencana, saat bencana dan pasca bencana , dimana dalam kegiatannya terus berusaha memberikan yang terbaik kepada masyarakat yang terkena dampak bencana secara universal, tanpa diskrimanasi dan tidak berafiliasi dengan partai politik manapun.
+                        </p>
+                        <p className="text-muted mb-4">
+                            <strong>Kantor Pusat :</strong> <br/>
+                            <span className="text-muted">Jl. Tebet Raya No.16B, RT.1/RW.2, Tebet Bar., Kec. Tebet, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12810 </span><br/>
+                            <strong>Call Center :</strong> <span className="text-muted">0822-3919-3515</span> <br/>
+                            <strong>SMS/WA Center :</strong> <span className="text-muted">0822-3919-3515</span>
+                        </p>
                         {/* <h2 className="font-family-serif text-white mb-1">
                             AQL Peduli
                         </h2> */}
                     </div>
-                    <div className="col-6 col-md">
-                        <h6 className="text-uppercase text-black mb-3 mb-md-5" style={{ fontSize: `1.125rem` }}>
+                    <div className="col-6 col-md mt-5">
+                        <h6 className="text-uppercase text-black mb-3 mb-md-5" style={{ fontSize: `1rem` }}>
                             AQL Peduli
                         </h6>
                         <ul className="list-unstyled">
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/`} style={{ fontSize: `1.125rem` }}>Beranda</Link>
+                                <Link className="text-gray-600" to={`/`} style={{ fontSize: `1rem` }}>Beranda</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/profil`} style={{ fontSize: `1.125rem` }}>Profil</Link>
+                                <Link className="text-gray-600" to={`/profil`} style={{ fontSize: `1rem` }}>Profil</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/berita`} style={{ fontSize: `1.125rem` }}>Berita</Link>
+                                <Link className="text-gray-600" to={`/berita`} style={{ fontSize: `1rem` }}>Berita</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/program`} style={{ fontSize: `1.125rem` }}>Kepedulian</Link>
+                                <Link className="text-gray-600" to={`/program`} style={{ fontSize: `1rem` }}>Kepedulian</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/informasi`} style={{ fontSize: `1.125rem` }}>Informasi</Link>
+                                <Link className="text-gray-600" to={`/informasi`} style={{ fontSize: `1rem` }}>Informasi</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/khazanah`} style={{ fontSize: `1.125rem` }}>Khazanah</Link>
+                                <Link className="text-gray-600" to={`/khazanah`} style={{ fontSize: `1rem` }}>Khazanah</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/program`} style={{ fontSize: `1.125rem` }}>Donasi</Link>
+                                <Link className="text-gray-600" to={`/program`} style={{ fontSize: `1rem` }}>Donasi</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/relawan`} style={{ fontSize: `1.125rem` }}>Relawan</Link>
+                                <Link className="text-gray-600" to={`/relawan`} style={{ fontSize: `1rem` }}>Relawan</Link>
                             </li>
                         </ul>
                     </div>
-                    <div className="col-6 col-md">
-                        <h6 className="text-uppercase text-black mb-3 mb-md-5" style={{ fontSize: `1.125rem` }}>
+                    <div className="col-6 col-md mt-5">
+                        <h6 className="text-uppercase text-black mb-3 mb-md-5" style={{ fontSize: `1rem` }}>
                             Kepedulian
                         </h6>
                         <ul className="list-unstyled">
@@ -91,7 +100,7 @@ function Footer() {
                                     state: {
                                         namaKateg: 'Peduli Bencana'
                                     }
-                                }} style={{ fontSize: `1.125rem` }}>Peduli Bencana</Link>
+                                }} style={{ fontSize: `1rem` }}>Peduli Bencana</Link>
                             </li>
                             <li className="mb-3">
                                 <Link className="text-gray-600" to={{
@@ -99,7 +108,7 @@ function Footer() {
                                     state: {
                                         namaKateg: 'Peduli Masjid'
                                     }
-                                }} style={{ fontSize: `1.125rem` }}>Peduli Masjid</Link>
+                                }} style={{ fontSize: `1rem` }}>Peduli Masjid</Link>
                             </li>
                             <li className="mb-3">
                                 <Link className="text-gray-600" to={{
@@ -107,7 +116,7 @@ function Footer() {
                                     state: {
                                         namaKateg: 'Peduli Pangan'
                                     }
-                                }} style={{ fontSize: `1.125rem` }}>Peduli Pangan</Link>
+                                }} style={{ fontSize: `1rem` }}>Peduli Pangan</Link>
                             </li>
                             <li className="mb-3">
                                 <Link className="text-gray-600" to={{
@@ -115,7 +124,7 @@ function Footer() {
                                     state: {
                                         namaKateg: 'Peduli Kesehatan'
                                     }
-                                }} style={{ fontSize: `1.125rem` }}>Peduli Kesehatan</Link>
+                                }} style={{ fontSize: `1rem` }}>Peduli Kesehatan</Link>
                             </li>
                             <li className="mb-3">
                                 <Link className="text-gray-600" to={{
@@ -123,7 +132,7 @@ function Footer() {
                                     state: {
                                         namaKateg: 'Dapur Sedekah'
                                     }
-                                }} style={{ fontSize: `1.125rem` }}>Dapur Sedekah</Link>
+                                }} style={{ fontSize: `1rem` }}>Dapur Sedekah</Link>
                             </li>
                             <li className="mb-3">
                                 <Link className="text-gray-600" to={{
@@ -131,12 +140,12 @@ function Footer() {
                                     state: {
                                         namaKateg: 'Peduli Dunia Islam'
                                     }
-                                }} style={{ fontSize: `1.125rem` }}>Peduli Dunia Islam</Link>
+                                }} style={{ fontSize: `1rem` }}>Peduli Dunia Islam</Link>
                             </li>
                         </ul>
                     </div>
-                    <div className="col-6 col-md">
-                        <h6 className="text-uppercase text-black mb-3 mb-md-5" style={{ fontSize: `1.125rem` }}>
+                    <div className="col-6 col-md mt-5">
+                        <h6 className="text-uppercase text-black mb-3 mb-md-5" style={{ fontSize: `1rem` }}>
                             Berita Terbaru
                         </h6>
                         <ul className="list-unstyled">

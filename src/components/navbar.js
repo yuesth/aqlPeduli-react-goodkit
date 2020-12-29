@@ -9,7 +9,7 @@ function NavbarGK() {
             {/* <div className="container-lg"> */}
             <a className="navbar-brand d-lg-none" href="/">
                 <img
-                    src={`${process.env.PUBLIC_URL}/images/logo-aql.png`}
+                    src={`${process.env.PUBLIC_URL}/images/logo-aql2.png`}
                     width="90"
                     height="60"
                     className="d-inline-block align-top"
@@ -22,7 +22,7 @@ function NavbarGK() {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <a className="navbar-brand d-none d-lg-block pl-lg-6 pr-lg-2" href="/">
                     <img
-                        src={`${process.env.PUBLIC_URL}/images/logo-aql.png`}
+                        src={`${process.env.PUBLIC_URL}/images/logo-aql2.png`}
                         width="100"
                         height="60"
                         className="d-inline-block align-top"

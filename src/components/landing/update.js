@@ -131,7 +131,7 @@ function Update() {
                                 </a>
                             </div>
                             <DariTanggal tanggal={doc.tanggalUp}></DariTanggal>
-                            <div style={{ height: `60px` }}>
+                            <div style={{ height: `5rem` }}>
                                 <p style={{ color: `#E92998` }}>
                                     {doc.judulProg}
                                 </p>
