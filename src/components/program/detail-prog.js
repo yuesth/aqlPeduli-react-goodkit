@@ -340,7 +340,7 @@ function ModalShare(props) {
                                 </a>
                             </div>
                             <div className="smd">
-                                <a href="">
+                                <a href={`https://t.me/share/url?url=${props.judulprog}&text=%20Mari%20membantu%20donasi%20${props.judulprog}%20melalui%20https://aqlpeduli.or.id/program/${props.id}/${props.judulprog}`} target="_blank">
                                     <i className="img-thumbnail fab fa-2x fa-telegram fa" style={{ color: '#4c6ef5', backgroundColor: 'aliceblue' }} />
                                     <p style={{color:`black`}}>Telegram</p>
                                 </a>
