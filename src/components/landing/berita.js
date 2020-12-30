@@ -129,7 +129,7 @@ function Berita() {
     const beritaUtama = berita.map((doc, idx) => {
         if (idx == 0) {
             return (
-                <div className="card card-lg rounded-top-left rounded-bottom-right lift lift-lg mb-7">
+                <div className="card card-lg rounded-top-left rounded-bottom-right lift lift-lg mb-7" key={idx}>
                     <div className="row no-gutters">
                         <div className="col-md-6 bg-cover rounded-top-left" style={{ backgroundImage: `url(${doc.gambar})`, backgroundPosition: 'center right', maxHeight: `340px` }}>
                             <img className="img-fluid invisible" src={`${doc.gambar}`} alt="..." />
@@ -169,7 +169,7 @@ function Berita() {
     const beritalain = berita.map((doc, idx) => {
         if (idx !== 0 && idx < 4) {
             return (
-                <div className="col-md-4">
+                <div className="col-md-4" key={idx}>
                     <div className="card card-sm rounded-top-left rounded-bottom-right lift lift-lg card-berita-landing mb-7">
                         <img className="card-img-top rounded-top-left" src={doc.gambar} alt="..." height="235" />
                         <div className="position-relative">

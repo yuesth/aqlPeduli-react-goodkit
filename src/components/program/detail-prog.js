@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Col, Row, Container, Button, ProgressBar, Breadcrumb, Modal } from 'react-bootstrap'
+import Modal from 'react-bootstrap/Modal'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import Sticky from 'wil-react-sticky'
 import "./detail-prog.css"
 import ReactMarkdown from 'react-markdown'
 import CopyToClipboard from 'react-copy-to-clipboard'
-import $ from 'jquery'
-import { LinkContainer } from 'react-router-bootstrap'
+// import $ from 'jquery'
+import {Link} from 'react-router-dom'
+const $ = window.jQuery
+
 
 
 function SkeletonDetProg() {
@@ -330,25 +332,25 @@ function ModalShare(props) {
                             <div className="smd">
                                 <a href={`https://twitter.com/intent/tweet?text=Mari%20berdonasi%20untuk%20${props.judulprog}%20melalui%20https://aqlpeduli.or.id/program/${props.id}/${props.judulprog}`} target="_blank">
                                     <i className=" img-thumbnail fab fa-twitter fa fa-2x" style={{ color: '#4c6ef5', backgroundColor: 'aliceblue' }} />
-                                    <p style={{color:`black`}}>Twitter</p>
+                                    <p style={{ color: `black` }}>Twitter</p>
                                 </a>
                             </div>
                             <div className="smd">
                                 <a href={`https://www.facebook.com/sharer/sharer.php?u=https%3A//aqlpeduli.or.id/program/${props.id}/${props.judulprog}`} target="_blank">
                                     <i className="img-thumbnail fab fa-facebook fa fa-2x" style={{ color: '#3b5998', backgroundColor: '#eceff5' }} />
-                                    <p style={{color:`black`}}>Facebook</p>
+                                    <p style={{ color: `black` }}>Facebook</p>
                                 </a>
                             </div>
                             <div className="smd">
                                 <a href={`https://t.me/share/url?url=${props.judulprog}&text=%20Mari%20membantu%20donasi%20${props.judulprog}%20melalui%20https://aqlpeduli.or.id/program/${props.id}/${props.judulprog}`} target="_blank">
                                     <i className="img-thumbnail fab fa-2x fa-telegram fa" style={{ color: '#4c6ef5', backgroundColor: 'aliceblue' }} />
-                                    <p style={{color:`black`}}>Telegram</p>
+                                    <p style={{ color: `black` }}>Telegram</p>
                                 </a>
                             </div>
                             <div className="smd">
                                 <a href={`https://api.whatsapp.com/send?text=%20Mari%20membantu%20donasi%20${props.judulprog}%20melalui%20https://aqlpeduli.or.id/program/${props.id}/${props.judulprog}`} target="_blank">
                                     <i className="img-thumbnail fab fa-whatsapp fa fa-2x" style={{ color: '#25D366', backgroundColor: '#cef5dc' }} />
-                                    <p style={{color:`black`}}>Whatsapp</p>
+                                    <p style={{ color: `black` }}>Whatsapp</p>
                                 </a>
                             </div>
                         </div>
@@ -459,27 +461,37 @@ function DetailProg(props) {
         <section className="pt-10 pt-md-11">
             <div className="container-xl" id="wadahSticky">
                 <div className="row align-items-center justify-content-center">
-                    <Col>
-                        <Breadcrumb>
+                    <div className="col">
+                        <nav aria-label="breadcrumb">
+                            <ol className="breadcrumb">
+                                <li className="breadcrumb-item">
+                                    <Link to={`/program`}>
+                                        Program Kepedulian
+                                    </Link>
+                                </li>
+                                <li className="breadcrumb-item active" aria-current="page">{props.itemprog.judul}</li>
+                            </ol>
+                        </nav>
+                        {/* <Breadcrumb>
                             <LinkContainer to="/program">
                                 <Breadcrumb.Item style={{ textDecoration: `none`, color: `#E92998` }}>Program Kepedulian</Breadcrumb.Item>
                             </LinkContainer>
                             <Breadcrumb.Item active>{props.itemprog.judul}</Breadcrumb.Item>
-                        </Breadcrumb>
-                    </Col>
+                        </Breadcrumb> */}
+                    </div>
                 </div>
-                <Container>
+                <div className="container">
                     {props.loadingdetprog ? <SkeletonDetProg></SkeletonDetProg>
                         :
-                        <Row className="mb-5">
-                            <Col md={12} sm={12} lg={7} className="px-0">
+                        <div className="row mb-5">
+                            <div className="col-sm-12 col-md-12 col-lg-7 px-0">
                                 <div>
                                     {props.itemprog.gambar !== null && <img className="img-fluid w-100 h-100" src={props.itemprog.gambar}></img>
                                     }
                                 </div>
-                            </Col>
+                            </div>
                             <br />
-                            <Col md={12} sm={12} lg={5}>
+                            <div className="col-sm-12 col-md-12 col-lg-5">
                                 <Sticky containerSelectorFocus="#wadahSticky" offsetTop={70} stickyEnableRange={[900, Infinity]}>
                                     <div className="kop rounded-bottom-right rounded-top-left ml-3 wadah-info-det-prog">
                                         <p className="mb-1 text-info"><small>{props.itemprog.namaKateg}</small></p>
@@ -493,8 +505,11 @@ function DetailProg(props) {
                                         </div>
                                         <div style={{ height: `5rem` }} className="mb-3">
                                             <span style={{ fontSize: `1rem` }}>Rp.{props.itemprog.terkumpul !== null ? idrterkumpul : 'Rp.0.00'} dari Rp.<strong>{props.itemprog.total !== null && idrtotal}</strong></span>
-                                            <ProgressBar now={persenTerkumpul} />
-                                            {/* label={`${persenTerkumpul.toFixed(2)} %`} */}
+                                            {/* <ProgressBar now={persenTerkumpul} /> */}
+                                            <div className="progress">
+                                                <div className="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow={persenTerkumpul}>
+                                                </div>
+                                            </div>
                                             {props.itemprog.durasi !== null && <SisaHari tanggal={props.itemprog.tanggal} durasi={props.itemprog.durasi} />
                                             }
                                         </div>
@@ -503,19 +518,19 @@ function DetailProg(props) {
                                                 <button className="btn btn-donasi-sekarang w-100" onClick={handleShow}>DONASI SEKARANG</button>
                                             </div>
                                             <div className="col-12 col-sm-2 col-md-2 btn-bagika-det-prog pl-0">
-                                                <Button variant="default" className="btn-bagikan" onClick={handleShowShare}>
+                                                <button className="btn btn-bagikan" onClick={handleShowShare}>
                                                     <i className="fa fa-share-alt" />
-                                                </Button>
+                                                </button>
                                             </div>
                                             <ModalDonasi status={showmodal} handleclose={handleClose} linkbb={props.itemprog.linkbb} judulprog={props.itemprog.judul} idkateggg={idkategg}></ModalDonasi>
                                             <ModalShare status={showshare} handlecloseshare={handleCloseShare} id={props.itemprog.id} judulprog={props.itemprog.judul} handlecopied={handlecopied} messagecopied={messagecopied}></ModalShare>
                                         </div>
                                     </div>
                                 </Sticky>
-                            </Col>
-                        </Row>
+                            </div>
+                        </div>
                     }
-                </Container>
+                </div>
                 <div className="row align-items-center mb-5">
                     <div className="col-12 col-md-7 col-lg-7">
                         {props.fromupdate ?
@@ -582,10 +597,10 @@ function DetailProg(props) {
                 {/* <Sticky containerSelectorFocus="#wadahSticky" offsetTop={70} stickyEnableRange={[100, 540]}> */}
                 <div className="row no-gutters button-donasi-bawah d-flex bg-white" style={{ position: `fixed`, left: `0`, bottom: `0rem`, width: `100%`, height: `4rem`, zIndex: `99` }}>
                     <div className="col-9 col-sm-6 col-md-6 my-2 justify-content-center" style={{ textAlign: `center` }}>
-                        <Button className="btn-sm h-100 w-100" variant="default" onClick={handleShow} className="btn-donasi-kecil-sekarang">DONASI SEKARANG</Button>
+                        <button className="btn btn-sm h-100 w-100" variant="default" onClick={handleShow} className="btn-donasi-kecil-sekarang">DONASI SEKARANG</button>
                     </div>
                     <div className="col-3 col-sm-6 col-md-6 btn-bagika-det-prog my-2" style={{ textAlign: `center` }}>
-                        <Button className="btn-sm h-100" variant="default" onClick={handleShowShare} className="btn-bagikan"> <i className="fa fa-share-alt" /></Button>
+                        <button className="btn btn-sm h-100" variant="default" onClick={handleShowShare} className="btn-bagikan"> <i className="fa fa-share-alt" /></button>
                     </div>
                 </div>
                 {/* </Sticky> */}

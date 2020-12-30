@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import NavbarGK from "../components/navbar"
 import FooterGK from "../components/footer"
 import Galeri from "../components/informasi/galeri"
 import Emagz from "../components/informasi/emagz"
-import { Link } from "react-router-dom"
 import "./informasi.css"
 
 function Informasi() {

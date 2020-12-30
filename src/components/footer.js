@@ -32,7 +32,7 @@ function Footer() {
     const berut = sortedItemBerita.map((doc, idx) => {
         if (idx === 0) {
             return (
-                <li className="mb-3">
+                <li className="mb-3" key={idx}>
                     <Link className="text-gray-600" to={`/berita/${doc.id}`} style={{ fontSize: `1rem` }}>{doc.judul}</Link>
                 </li>
             )

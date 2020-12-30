@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import Flickity from 'flickity'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import "./carousel.css"
-import { Link } from "react-router-dom"
 
 function SkeletonCarouselLanding() {
     return (
@@ -65,7 +64,7 @@ function CarouselLanding() {
     },[])
     const listcarousel = programcar.map((doc, idx) => {
         return (
-            <div style={{ width: `calc(100% - 5rem)`, maxWidth: `780px` }}>
+            <div style={{ width: `calc(100% - 5rem)`, maxWidth: `780px` }} key={idx}>
                 <a href={doc.link}>
                     <img className="img-fluid" src={doc.gambar} alt="..." width="780" height="473" />
                 </a>

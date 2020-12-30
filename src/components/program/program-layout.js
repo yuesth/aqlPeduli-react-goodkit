@@ -1,39 +1,40 @@
 import React, { useState, useEffect } from 'react'
-import { Col, Row, Container, Button, ProgressBar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import Isotope from 'isotope-layout'
 import "./program-layout.css"
-import $ from 'jquery'
+// import $ from 'jquery'
+const $ = window.jQuery
+
 
 function SkeletonKateg() {
     return (
         <SkeletonTheme color="e3e3e3">
-            <Row>
-                <Col>
+            <div className="row">
+                <div className="col">
                     <Skeleton></Skeleton>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col">
                     <Skeleton></Skeleton>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col">
                     <Skeleton></Skeleton>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col">
                     <Skeleton></Skeleton>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col">
                     <Skeleton></Skeleton>
-                </Col>
-            </Row>
+                </div>
+            </div>
         </SkeletonTheme>
     )
 }
@@ -44,7 +45,6 @@ function SkeletonProg() {
             <div className="row">
                 <div className="col-4">
                     <div className="card mx-2 p-2 bg-transparent" style={{ width: `290px`, height: `480px` }}>
-                        {/* <SkeletonTheme color="#e3e3e3"> */}
                         <Skeleton reactangle={true} height={200} width={290} />
                         <br />
                         <h3><Skeleton /></h3>
@@ -53,12 +53,10 @@ function SkeletonProg() {
                         <br />
                         <Skeleton count={2} />
                         <small><Skeleton count={2} /></small>
-                        {/* </SkeletonTheme> */}
                     </div>
                 </div>
                 <div className="col-4">
                     <div className="card mx-2 p-2 bg-transparent" style={{ width: `290px`, height: `480px` }}>
-                        {/* <SkeletonTheme color="e3e3e3"> */}
                         <Skeleton reactangle={true} height={200} width={290} />
                         <h3><Skeleton /></h3>
                         <br />
@@ -66,12 +64,10 @@ function SkeletonProg() {
                         <br />
                         <Skeleton count={2} />
                         <small><Skeleton count={2} /></small>
-                        {/* </SkeletonTheme> */}
                     </div>
                 </div>
                 <div className="col-4">
                     <div className="card mx-2 p-2 bg-transparent" style={{ width: `290px`, height: `480px` }}>
-                        {/* <SkeletonTheme color="e3e3e3"> */}
                         <Skeleton reactangle={true} height={200} width={290} />
                         <h3><Skeleton /></h3>
                         <br />
@@ -79,7 +75,6 @@ function SkeletonProg() {
                         <br />
                         <Skeleton count={2} />
                         <small><Skeleton count={2} /></small>
-                        {/* </SkeletonTheme> */}
 
                     </div>
                 </div>
@@ -143,8 +138,6 @@ function ProgramLayout(props) {
     }, [])
 
     useEffect(() => {
-        // filterSelection('all')
-        // props.namakateg !== "" ? filterSelection(props.namakateg) : filterSelection("all")
         if (isotope) {
             filterKey === "*"
                 ? isotope.arrange({ filter: `*` })
@@ -152,6 +145,8 @@ function ProgramLayout(props) {
         }
         $(`.kateg-${kategbtn}`).addClass('is-checked')
         $(`.kateg-thin-${kategbtn}`).addClass('is-checked')
+        // document.getElementsByClassName(`kateg-${kategbtn}`).className += " is-checked"
+        // document.getElementsByClassName(`kateg-thin-${kategbtn}`).className += " is-checked"
         
         // $('.flex-kateg').each(function (i, buttonGroup) {
         //     var $buttonGroup = $(buttonGroup);
@@ -191,7 +186,10 @@ function ProgramLayout(props) {
     function PersenTerkumpul(props) {
         var persen = (props.terkumpul / props.total) * 100;
         return (
-            <ProgressBar now={persen} />
+            <div className="progress">
+                <div className="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow={persen}>
+                </div>
+            </div>
         )
     }
 
@@ -209,12 +207,21 @@ function ProgramLayout(props) {
     const filterSelection2 = (c, d) => {
         setFilterKey(c)
         setKategbtn(d)
-        // $('select option:selected').removeAttr('selected');
-        // c === "*" ? $(`select option[value=${'all'}]`).attr('selected', 'selected') : $(`select option[value=${c}]`).attr('selected', 'selected')
         $('.flex-kateg').find('.is-checked').removeClass('is-checked');
         c === "*" ? $(`.kateg-Semua`).addClass('is-checked') : $(`.kateg-${c}`).addClass('is-checked')
         $('.flex-kateg-thin').find('.is-checked').removeClass('is-checked')
         c === "*" ? $(`.kateg-thin-all`).addClass('is-checked') : $(`.kateg-thin-${c}`).addClass('is-checked')
+
+        // var ele = document.querySelector('.kategoriBtn')
+        // ele.classList.remove('is-checked')
+        // c === "*" ? document.querySelector(`.kateg-Semua`).classList.add("is-checked") : document.querySelector(`.kateg-${c}`).classList.add("is-checked")
+        // document.querySelector(`.flex-kateg .is-checked`).classList.remove('is-checked')
+        // c === "*" ? document.getElementsByClassName(`kateg-Semua`).className += " is-checked" : document.getElementsByClassName(`kateg-${c}`).className += "is-checked"
+        // var ele2 = document.querySelector('.dropdown-item')
+        // ele2.classList.remove('is-checked')
+        // c === "*" ? document.querySelector(`.kateg-thin-all`).classList.add("is-checked") : document.querySelector(`.kateg-thin-${c}`).classList.add("is-checked")
+        // document.querySelector(`.flex-kateg-thin .is-checked`).classList.remove('is-checked')
+        // c === "*" ? document.getElementsByClassName(`kateg-thin-all`).className += " is-checked" : document.getElementsByClassName(`kateg-thin-${c}`).className += "is-checked"
     }
 
     function AddClass(element, name) {
@@ -237,49 +244,6 @@ function ProgramLayout(props) {
         }
         element.className = arr1.join(" ");
     }
-    const listprogram = program.map((doc, idx) => {
-        var tostring = parseInt(doc.terkumpul)
-        var idr = tostring.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
-        var namaKategori = doc.namaKateg
-        var namaKategori2 = namaKategori.replace(/\s/g, "")
-        var namaClass = "card item-donasi " + namaKategori2
-        return (
-            <div className="m-3">
-                <Link to={{ pathname: `/program/${doc.id}` }}>
-                    <div class={namaClass} style={{ width: `14rem`, height: `470px`, borderRadius: `20px`, color: `black` }}>
-                        <div className="card-gambar p-2">
-                            {doc.gambar !== null && <img src={doc.gambar} style={{ borderRadius: `5px` }} height="180" width="220"></img>
-                            }
-                        </div>
-                        <div class="card-body" style={{ padding: `10px`, textAlign: `left` }}>
-                            <DariTanggal tanggal={doc.tanggal}></DariTanggal>
-                            <div style={{ width: `auto`, height: `60px` }}>
-                                <h5 class="card-title titleListProgram">{doc.judul}</h5>
-                            </div>
-                            <p class="card-text kontenListProgram">{doc.des}</p>
-                            <Container>
-                                <Row>
-                                    <Col md={5} xs={4} style={{ textAlign: `left`, fontSize: `10px` }}>
-                                        <p style={{ marginBottom: `5px` }}>Sisa Waktu</p>
-                                        {doc.durasi !== null && <SisaHari tanggal={doc.tanggal} durasi={doc.durasi} />
-                                        }
-                                    </Col>
-                                    <Col md={{ span: `7` }} xs={8} style={{ textAlign: `right`, fontSize: `10px` }}>
-                                        <p style={{ marginBottom: `5px` }}>Terkumpul</p>
-                                        <span>Rp.{idr}</span>
-                                    </Col>
-                                </Row>
-                            </Container>
-                            <br />
-                            <div>
-                                <PersenTerkumpul total={doc.total} terkumpul={doc.terkumpul}></PersenTerkumpul>
-                            </div>
-                        </div>
-                    </div>
-                </Link>
-            </div>
-        )
-    })
 
     const sortedItemProgram = program.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
 
@@ -304,22 +268,19 @@ function ProgramLayout(props) {
                                 {doc.judul}
                             </h3>
                         </div>
-                        {/* <p className="font-size-sm mb-4 des-prog">
-                            {doc.des}
-                        </p> */}
-                        <Container className="p-0">
-                            <Row>
-                                <Col md={5} xs={12} style={{ textAlign: `left`, fontSize: `0.875rem` }}>
+                        <div className="container p-0">
+                            <div className="row">
+                                <div className="col-md-5 col-12" style={{ textAlign: `left`, fontSize: `0.875rem` }}>
                                     <p style={{ marginBottom: `0.3rem` }}>Sisa Waktu</p>
                                     {doc.durasi !== null && <SisaHari tanggal={doc.tanggal} durasi={doc.durasi} />
                                     }
-                                </Col>
-                                <Col md={7} xs={12} style={{ textAlign: `left`, fontSize: `0.875rem` }}>
+                                </div>
+                                <div className="col-md-7 col-12" style={{ textAlign: `left`, fontSize: `0.875rem` }}>
                                     <p style={{ marginBottom: `0.3rem` }}>Terkumpul</p>
                                     <span style={{ color: `#6053db` }} className="span-terkumpul">Rp.{idr}</span>
-                                </Col>
-                            </Row>
-                        </Container>
+                                </div>
+                            </div>
+                        </div>
                         <br />
                         <div>
                             <PersenTerkumpul total={doc.total} terkumpul={doc.terkumpul}></PersenTerkumpul>
@@ -329,8 +290,7 @@ function ProgramLayout(props) {
                             state: {
                                 fromUpdateLanding: false,
                             }
-                        }}>
-                            <a className="stretched-link" />
+                        }} className="stretched-link">
                         </Link>
                     </div>
                 </div>
@@ -348,52 +308,34 @@ function ProgramLayout(props) {
                     </div>
                 </div>
                 <div className="row">
-                    <Col md={2} id="col-list" className="px-0 kateg-wide">
-                        <Row>
-                            <Col className="pl-6">
+                    <div id="col-list" className="col-md-2 px-0 kateg-wide">
+                        <div className="row">
+                            <div className="col pl-6">
                                 <h3 style={{fontSize:`1.25rem`}}>Kategori</h3>
-                            </Col>
-                        </Row>
+                            </div>
+                        </div>
                         <div className="row pl-n5 flex-kateg mb-md-7">
-                            <Button variant="default" onClick={() => filterSelection2('*', "Semua")} className={`kategoriBtn kateg-Semua`}>Semua</Button>
+                            <button onClick={() => filterSelection2('*', "Semua")} className={`btn kategoriBtn kateg-Semua`}>Semua</button>
                             {isLoadingkateg ? <SkeletonKateg></SkeletonKateg>
                                 :
                                 kateg.map((doc, idx) => {
                                     var nama1 = doc.namaKateg
                                     var nama2 = nama1.replace(/\s/g, "")
                                     return (
-                                        <Button variant="default" onClick={() => filterSelection2(nama2, nama2)} key={idx} className={`kategoriBtn kateg-${nama2}`}>{doc.namaKateg}</Button>
+                                        <button onClick={() => filterSelection2(nama2, nama2)} key={idx} className={`btn kategoriBtn kateg-${nama2}`}>{doc.namaKateg}</button>
                                     )
                                 })
                             }
                         </div>
-                    </Col>
+                    </div>
 
-                    <Col md={10}>
+                    <div className="col-md-10">
                         <div className="row justify-content-center mt-3 kateg-thin">
                             <div className="col-md-12 col-lg-12 text-center text-white">
-                                {/* <form>
-                                    <div className="mb-3">
-                                        <select className="custom-select">
-                                            <option selected className="kateg-all" value={'all'} onClick={() => filterSelection2('*')}>Semua</option>
-                                            {
-                                                kateg.map((doc, idx) => {
-                                                    var nama1 = doc.namaKateg
-                                                    var nama2 = nama1.replace(/\s/g, "")
-                                                    return (
-                                                        <>
-                                                            <option value={nama2} className={`kateg-${nama2}`} onClick={() => filterSelection2(nama2)} key={idx}>{doc.namaKateg}</option>
-                                                        </>
-                                                    )
-                                                })
-                                            }
-                                        </select>
-                                    </div>
-                                </form> */}
                                 <div className="dropdown mb-5 w-100">
                                     <button className="btn btn-default w-100 dropdown-toggle btn-kateg-thin" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         {kategbtn}
-                                        <i class="fe fe-chevron-down"></i>
+                                        <i className="fe fe-chevron-down"></i>
                                     </button>
                                     <div className="dropdown-menu w-100 flex-kateg-thin" aria-labelledby="dropdownMenuButtonTwo">
                                         <a className="dropdown-item w-100 kategoriBtn kateg-thin-Semua" onClick={() => filterSelection2("*", "Semua")} style={{cursor:`pointer`}}>Semua</a>
@@ -403,12 +345,11 @@ function ProgramLayout(props) {
                                                 var nama2 = nama1.replace(/\s/g, "")
                                                 return (
                                                     <>
-                                                        <a className={`dropdown-item kategoriBtn kateg-thin-${nama2}`} onClick={() => filterSelection2(nama2, nama2)} style={{cursor:`pointer`}}>{doc.namaKateg}</a>
+                                                        <a className={`dropdown-item kategoriBtn kateg-thin-${nama2}`} key={idx} onClick={() => filterSelection2(nama2, nama2)} style={{cursor:`pointer`}}>{doc.namaKateg}</a>
                                                     </>
                                                 )
                                             })
                                         }
-                                        {/* <a className="dropdown-item btn-dok" href="#!" onClick={() => filterLampiran()}>Dokumen</a> */}
                                     </div>
                                 </div>
                             </div>
@@ -421,7 +362,7 @@ function ProgramLayout(props) {
                                 }
                             </div>
                         </div>
-                    </Col>
+                    </div>
                 </div>
             </div>
         </section>

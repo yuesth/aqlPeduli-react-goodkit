@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
-import { Col, Row, Button } from 'react-bootstrap'
-import Sticky from 'wil-react-sticky'
 import "./berita-list.css"
 
 function SkeletonBeritaEvent() {
@@ -54,31 +52,31 @@ function SkeletonBeritaEvent() {
 function SkeletonBeritaKateg() {
     return (
         <SkeletonTheme color="e3e3e3">
-            <Row>
-                <Col>
+            <div className="row">
+                <div className="col">
                     <Skeleton></Skeleton>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col">
                     <Skeleton></Skeleton>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col">
                     <Skeleton></Skeleton>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col">
                     <Skeleton></Skeleton>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col">
                     <Skeleton></Skeleton>
-                </Col>
-            </Row>
+                </div>
+            </div>
         </SkeletonTheme>
     )
 }
@@ -373,7 +371,7 @@ function BeritaList() {
     })
     return (
         <div className="row no-gutters" id="wadahStickyBerita">
-            <Col md={12}>
+            <div className="col-md-12">
                 <div className="container-xl px-0">
                     {isShowevent ?
                         <div className="row border border-gray-300 rounded-top-left rounded-bottom-right mb-8">
@@ -447,7 +445,7 @@ function BeritaList() {
                         </div>
                     </div>
                 </div>
-            </Col>
+            </div>
         </div>
     )
 }

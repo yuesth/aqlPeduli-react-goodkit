@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import Flickity from 'flickity'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import "./kepedulian.css"
 
@@ -62,50 +61,12 @@ function KepedulianLanding() {
         )
     }, [])
     const arrGbr = ['natural-disaster', 'healthcare', 'jama-masjid','peduli-dunia-islam', 'give-love', 'beverages']
-    const listkateg = kateg.map((doc, idx) => {
-        var pathGbr = `${process.env.PUBLIC_URL}/images/kepedulian/${arrGbr[idx]}.png`
-        return (
-            <div className="col-12" style={{ maxWidth: 288 }}>
-                {/* Image */}
-                <img className="img-fluid rounded-top-left rounded-bottom-right" src={pathGbr} alt="..." />
-                {/* Footer */}
-                <div className="py-4 text-center">
-                    {/* Title */}
-                    <p className="font-weight-bold mb-0">
-                        {doc.namaKateg}
-                    </p>
-
-                </div>
-            </div>
-        )
-    })
-    const listKategori = kateg.map((doc, idx) => {
-        var pathGbr = `${process.env.PUBLIC_URL}/images/kepedulian/${arrGbr[idx]}.png`
-        return (
-            <Link to={{
-                pathname: `/program/darikepedulian/${doc.namaKateg}`,
-                state: {
-                    namaKateg: `${doc.namaKateg}`
-                }
-            }} style={{ margin: `auto auto`, textDecoration: `none` }} className="wadah-item-kecil">
-                <img src={pathGbr}  ></img>
-                <h4 style={{ fontSize: `20px`, fontWeight: `bold` }}>{doc.namaKateg}</h4>
-            </Link>
-        )
-    })
     const listKategori2 = kateg.map((doc, idx) => {
         var pathGbr2 = `${process.env.PUBLIC_URL}/images/kepedulian/${arrGbr[idx]}.png`
         var namaKategori = `${doc.namaKateg}`
         var namaKategori2 = namaKategori.replace(/\s/g, "")
         return (
-            // <div className="lift">
-            // <Link to={{
-            //     pathname: `/program`,
-            //     state: {
-            //         namaKateg: `${doc.namaKateg}`
-            //     }
-            // }} style={{ margin: `auto auto`, textDecoration: `none` }} className="wadah-item-kecil">
-                <div className="col-6 col-md-4 col-lg justify-content-center lift m-lg-1 pb-1 kartu-kep">
+                <div className="col-6 col-md-4 col-lg justify-content-center lift m-lg-1 pb-1 kartu-kep" key={idx}>
                     <div style={{ textAlign: `center`, height: `8rem` }} className="align-items-center justify-content-center">
                         <img className="img-fluid rounded-top-left rounded-bottom-right" src={pathGbr2} alt="..." width="110" height="120" />
                     </div>
@@ -121,8 +82,6 @@ function KepedulianLanding() {
                         }
                     }} className="stretched-link"></Link>
                 </div>
-            // </Link>
-            // </div>
         )
     })
     return (

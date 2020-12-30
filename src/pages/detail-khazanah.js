@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react"
 import NavbarGK from "../components/navbar"
 import FooterGK from "../components/footer"
-import { Col, Container, Breadcrumb } from 'react-bootstrap'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import ReactMarkdown from 'react-markdown'
-import { LinkContainer } from 'react-router-bootstrap'
+import { Link } from 'react-router-dom'
 
 function SkeletonDetailKhazanah() {
     return (
@@ -16,26 +15,26 @@ function SkeletonDetailKhazanah() {
                     </div>
                 </div>
                 <div className="row align-items-center justify-content-center mb-5">
-                    <Col md={10} lg={9} style={{ textAlign: `center` }}>
+                    <div className="col-md-10 col-lg-9" style={{ textAlign: `center` }}>
                         <Skeleton reactangle={true} height={22} width={360} />
-                    </Col>
+                    </div>
                 </div>
                 <div className="row align-items-center justify-content-center">
-                    <Col md={10} lg={9} style={{ textAlign: `center` }}>
+                    <div className="col-md-10 col-lg-9" style={{ textAlign: `center` }}>
                         <Skeleton reactangle={true} height={350} width={600} />
-                    </Col>
+                    </div>
                 </div>
                 <div className="row align-items-center justify-content-center">
-                    <Col md={10} lg={9} style={{ textAlign: `center` }}>
+                    <div className="col-md-10 col-lg-9" style={{ textAlign: `center` }}>
                         <p><Skeleton></Skeleton></p>
-                    </Col>
+                    </div>
                 </div>
                 <div className="row align-items-center justify-content-center">
-                    <Col md={10} lg={9} style={{ textAlign: `center` }}>
+                    <div className="col-md-10 col-lg-9" style={{ textAlign: `center` }}>
                         <p>
                             <Skeleton count={10}></Skeleton>
                         </p>
-                    </Col>
+                    </div>
                 </div>
             </div>
         </SkeletonTheme>
@@ -83,7 +82,7 @@ function DetailKhazanah(props) {
                 setKontenfix(ret)
             }
         })
-    },[])
+    }, [])
     const markup = { __html: kontenfix }
     const myImg = (props) => {
         return (
@@ -117,14 +116,24 @@ function DetailKhazanah(props) {
                             </div>
                         </div>
                         <div className="row align-items-center justify-content-center mb-2">
-                            <Col md={10} lg={9} className="px-auto">
-                                <Breadcrumb>
+                            <div md={10} lg={9} className="col-md-10 col-lg-9 px-auto">
+                                <nav aria-label="breadcrumb">
+                                    <ol className="breadcrumb">
+                                        <li className="breadcrumb-item">
+                                            <Link to={`/khazanah`}>
+                                                Khazanah
+                                            </Link>
+                                        </li>
+                                        <li className="breadcrumb-item active" aria-current="page">{detailkha.judul}</li>
+                                    </ol>
+                                </nav>
+                                {/* <Breadcrumb>
                                     <LinkContainer to="/khazanah">
                                         <Breadcrumb.Item style={{ textDecoration: `none`, color: `#E92998` }}>Khazanah</Breadcrumb.Item>
                                     </LinkContainer>
                                     <Breadcrumb.Item active>{detailkha.judul}</Breadcrumb.Item>
-                                </Breadcrumb>
-                            </Col>
+                                </Breadcrumb> */}
+                            </div>
                         </div>
                         <div className="row align-items-center justify-content-center mb-7">
                             <div className="col-md-10 col-lg-9">

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import NavbarGK from "../components/navbar"
 import FooterGK from "../components/footer"
-import { Container, Row, Col, Form } from "react-bootstrap"
-import $ from 'jquery'
 import "./relawan.css"
 
 function Relawan() {
@@ -45,7 +43,7 @@ function Relawan() {
     // const [nik, setNik] = useState("")
     // const [nik, setNik] = useState("")
     // const [nik, setNik] = useState("")
-    const submitRelawan = (event)=> {
+    const submitRelawan = (event) => {
         event.preventDefault()
         fetch('https://script.google.com/macros/s/AKfycbxI8rjPgqZyjuR_boZeDO2CN75HevpEG_hNkGuzORLoTtBFZtI/exec', {
             method: "POST",
@@ -53,7 +51,7 @@ function Relawan() {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
-        }).then((resp)=>{
+        }).then((resp) => {
             console.log("success")
             return resp.json()
         })
@@ -81,12 +79,10 @@ function Relawan() {
                     </div>
                     <div className="row align-items-center justify-content-center mb-7 no-gutters" style={{ textAlign: `justify` }}>
                         <div className="col-md-10 col-lg-9">
-                            {/* <p className="text-justify" style={{whiteSpace:`pre-wrap`}}>{detailkk.konten}</p> */}
-                            {/* <p className="text-justify" style={{whiteSpace:`pre-wrap`}} dangerouslySetInnerHTML={markup}></p> */}
                             <p>
                                 Alhamdulillah, sejak berdirinya AQL Peduli telah melakukan kegiatan kemanusiaan dengan program-program yang diantaranya di bidang Pendidikan, Religi, Kesehatan, Pangan dan saat bencana.
-                                <br/>
-                                <br/>
+                                <br />
+                                <br />
                                 Semua kesuksesan dari kegiatan-kegiatan tersebut tidak terlepas dari peran penting para relawan yang telah ikut berkontribusi dalam kegiatan AQL Peduli.
                                 <br />
                                 <br />
@@ -116,7 +112,7 @@ function Relawan() {
                             </h3>
                         </div>
                     </div>
-                    <Form action="https://api.sheetmonkey.io/form/4cJ1NBhrxnbVQVGUNpnpYX" method="POST">
+                    <form action="https://api.sheetmonkey.io/form/4cJ1NBhrxnbVQVGUNpnpYX" method="POST">
                         <div className="row data-pribadi mb-7">
                             <div className="col-12 col-md-12 w-100">
                                 <div className="row judul-dp mb-3">
@@ -140,10 +136,10 @@ function Relawan() {
                                         <div className="form-group">
                                             <input type="text" name="umur" className="form-control w-100" placeholder="Umur" value={data.umur} onChange={updateField} />
                                         </div>
-                                        <Form.Group>
-                                            <Form.Control
+                                        <div className="form-group">
+                                            <select
                                                 as="select"
-                                                className="mr-sm-2"
+                                                className="custom-select mr-sm-2"
                                                 id="inlineFormCustomSelect"
                                                 custom
                                                 name="status"
@@ -152,8 +148,8 @@ function Relawan() {
                                                 <option value="0">Status</option>
                                                 <option value="1">Kawin</option>
                                                 <option value="2">Belum Kawin</option>
-                                            </Form.Control>
-                                        </Form.Group>
+                                            </select>
+                                        </div>
                                         <div className="form-group">
                                             <input type="text" name="jumlahSaudara" className="form-control w-100" placeholder="Jumlah Saudara" value={data.jmlsaudara} onChange={updateField} />
                                         </div>
@@ -165,10 +161,10 @@ function Relawan() {
                                         <div className="form-group">
                                             <input type="date" name="tanggalLahir" className="form-control w-100" placeholder="Tanggal Lahir" value={data.dob} onChange={updateField} required />
                                         </div>
-                                        <Form.Group>
-                                            <Form.Control
+                                        <div className="form-group">
+                                            <select
                                                 as="select"
-                                                className="mr-sm-2"
+                                                className="custom-select mr-sm-2"
                                                 id="inlineFormCustomSelect"
                                                 custom
                                                 name="jenisKelamin"
@@ -177,16 +173,16 @@ function Relawan() {
                                                 <option value="0">Jenis Kelamin</option>
                                                 <option value="1">Laki-laki</option>
                                                 <option value="2">Perempuan</option>
-                                            </Form.Control>
-                                        </Form.Group>
+                                            </select>
+                                        </div>
                                         <div className="form-group">
                                             <input type="text" name="anakKe" className="form-control w-100" placeholder="Anak ke" value={data.anakke} onChange={updateField} />
                                         </div>
                                     </div>
                                     <div className="col-12">
-                                        <Form.Group controlId="exampleForm.ControlTextarea1">
-                                            <Form.Control name="alamat" as="textarea" placeholder="Alamat Lengkap" rows={3} value={data.alamat} onChange={updateField} />
-                                        </Form.Group>
+                                        <div className="form-group" controlId="exampleForm.ControlTextarea1">
+                                            <textarea className="form-control" name="alamat" as="textarea" placeholder="Alamat Lengkap" rows={3} value={data.alamat} onChange={updateField} />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -243,24 +239,24 @@ function Relawan() {
                                 </div>
                                 <div className="row form-dp">
                                     <div className="col-12">
-                                        <Form.Group controlId="exampleForm.ControlTextarea1">
-                                            <Form.Control as="textarea" name="tempatMengaji" placeholder="Tempat mengaji selain AQL?" rows={3} value={data.tempatngaji} onChange={updateField} />
-                                        </Form.Group>
+                                        <div className="form-group" controlId="exampleForm.ControlTextarea1">
+                                            <textarea className="form-control" as="textarea" name="tempatMengaji" placeholder="Tempat mengaji selain AQL?" rows={3} value={data.tempatngaji} onChange={updateField} />
+                                        </div>
                                     </div>
                                     <div className="col-12">
-                                        <Form.Group controlId="exampleForm.ControlTextarea1">
-                                            <Form.Control as="textarea" name="motivasi" placeholder="Apa motivasi anda untuk menjadi tim relawan AQL?" rows={3} value={data.motivasi} onChange={updateField} />
-                                        </Form.Group>
+                                        <div className="form-group" controlId="exampleForm.ControlTextarea1">
+                                            <textarea className="form-control" as="textarea" name="motivasi" placeholder="Apa motivasi anda untuk menjadi tim relawan AQL?" rows={3} value={data.motivasi} onChange={updateField} />
+                                        </div>
                                     </div>
                                     <div className="col-12">
-                                        <Form.Group controlId="exampleForm.ControlTextarea1">
-                                            <Form.Control as="textarea" name="harapan" placeholder="Apa harapan anda untuk menjadi tim relawan AQL?" rows={3} value={data.harapan} onChange={updateField} />
-                                        </Form.Group>
+                                        <div className="form-group" controlId="exampleForm.ControlTextarea1">
+                                            <textarea className="form-control" as="textarea" name="harapan" placeholder="Apa harapan anda untuk menjadi tim relawan AQL?" rows={3} value={data.harapan} onChange={updateField} />
+                                        </div>
                                     </div>
                                     <div className="col-12">
-                                        <Form.Group controlId="exampleForm.ControlTextarea1">
-                                            <Form.Control as="textarea" name="komitmen" placeholder="Komitmen apa yang dapat anda berikan sebagai tim relawan AQL?" rows={3} value={data.komitmen} onChange={updateField} />
-                                        </Form.Group>
+                                        <div className="form-group" controlId="exampleForm.ControlTextarea1">
+                                            <textarea className="form-control" as="textarea" name="komitmen" placeholder="Komitmen apa yang dapat anda berikan sebagai tim relawan AQL?" rows={3} value={data.komitmen} onChange={updateField} />
+                                        </div>
                                     </div>
                                     <input type="hidden" name="Created" defaultValue="x-sheetmonkey-current-date-time" />
                                 </div>
@@ -271,7 +267,7 @@ function Relawan() {
                                 <button className="btn btn-primary btn-daftar" type="submit">Daftar</button>
                             </div>
                         </div>
-                    </Form>
+                    </form>
                 </div>
             </section>
             <FooterGK></FooterGK>

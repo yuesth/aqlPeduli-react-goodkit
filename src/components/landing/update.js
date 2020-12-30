@@ -105,7 +105,7 @@ function Update() {
     const sortedItemUpdate = itemUpdate.sort((a, b) => { return new Date(b.tanggalUp) - new Date(a.tanggalUp) })
     const listup = sortedItemUpdate.map((doc, idx) => {
         return (
-            <div className="col-12 mb-7" style={{ maxWidth: 320, height: `30rem` }} data-aos="fade-up">
+            <div className="col-12 mb-7" style={{ maxWidth: 320, height: `30rem` }} data-aos="fade-up" key={idx}>
                 <Link to={{
                     pathname:`/program/${doc.idProg}/${doc.judulProg}`,
                     state:{
@@ -126,9 +126,9 @@ function Update() {
                         <div className="card-body">
                             <div className="d-flex align-items-center mb-3">
                                 <h3 style={{ color: `black` }}>{doc.namaUp}</h3>
-                                <a className="ml-auto text-decoration-none text-stripe stretched-link" href="#!">
+                                {/* <a className="ml-auto text-decoration-none text-stripe stretched-link"> */}
                                     <i className="fe fe-arrow-right" />
-                                </a>
+                                {/* </a> */}
                             </div>
                             <DariTanggal tanggal={doc.tanggalUp}></DariTanggal>
                             <div style={{ height: `5rem` }}>

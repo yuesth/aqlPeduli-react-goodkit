@@ -52,6 +52,12 @@
     width: auto;
   }
 
+  .is-checked{
+    color: #E92998;
+    height: auto;
+    width: auto;
+  }
+
   .btn-kateg-thin{
     background-color: rgb(56, 68, 172);
     color: white;

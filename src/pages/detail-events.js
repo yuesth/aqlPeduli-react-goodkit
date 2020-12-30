@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react"
 import NavbarGK from "../components/navbar"
 import FooterGK from "../components/footer"
 import { Link } from "react-router-dom"
-import { Col, Container, Breadcrumb } from 'react-bootstrap'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import ReactMarkdown from 'react-markdown'
-import { LinkContainer } from 'react-router-bootstrap'
 
 function SkeletonDetailBerita() {
     return (
@@ -17,26 +15,26 @@ function SkeletonDetailBerita() {
                     </div>
                 </div>
                 <div className="row align-items-center justify-content-center mb-5">
-                    <Col md={10} lg={9} style={{ textAlign: `center` }}>
+                    <div className="col-md-10 col-lg-9" style={{ textAlign: `center` }}>
                         <Skeleton reactangle={true} height={22} width={360} />
-                    </Col>
+                    </div>
                 </div>
                 <div className="row align-items-center justify-content-center">
-                    <Col md={10} lg={9} style={{ textAlign: `center` }}>
+                    <div className="col-md-10 col-lg-9" style={{ textAlign: `center` }}>
                         <Skeleton reactangle={true} height={350} width={600} />
-                    </Col>
+                    </div>
                 </div>
                 <div className="row align-items-center justify-content-center">
-                    <Col md={10} lg={9} style={{ textAlign: `center` }}>
+                    <div className="col-md-10 col-lg-9" style={{ textAlign: `center` }}>
                         <p><Skeleton></Skeleton></p>
-                    </Col>
+                    </div>
                 </div>
                 <div className="row align-items-center justify-content-center">
-                    <Col md={10} lg={9}>
+                    <div className="col-md-10 col-lg-9">
                         <p>
                             <Skeleton count={10}></Skeleton>
                         </p>
-                    </Col>
+                    </div>
                 </div>
             </div>
         </SkeletonTheme>
@@ -77,7 +75,7 @@ function DetailEvent(props) {
             const isi = ret
             setKontenfix(isi.replace(/\n/g, `<br/>`))
         })
-    },[])
+    }, [])
     const myImg = (props) => {
         return (
             // <img src={props.src} className="img-fluid"/>
@@ -110,14 +108,24 @@ function DetailEvent(props) {
                             </div>
                         </div>
                         <div className="row align-items-center justify-content-center mb-2">
-                            <Col md={10} lg={9} className="px-auto">
-                                <Breadcrumb>
+                            <div className="col-md-10 col-lg-9 px-auto">
+                                <nav aria-label="breadcrumb">
+                                    <ol className="breadcrumb">
+                                        <li className="breadcrumb-item">
+                                            <Link to={`/berita`}>
+                                                Events
+                                            </Link>
+                                        </li>
+                                        <li className="breadcrumb-item active" aria-current="page">{detailberita.judul}</li>
+                                    </ol>
+                                </nav>
+                                {/* <Breadcrumb>
                                     <LinkContainer to="/events">
                                         <Breadcrumb.Item style={{ textDecoration: `none`, color: `#E92998` }}>Events</Breadcrumb.Item>
                                     </LinkContainer>
                                     <Breadcrumb.Item active>{detailberita.judul}</Breadcrumb.Item>
-                                </Breadcrumb>
-                            </Col>
+                                </Breadcrumb> */}
+                            </div>
                         </div>
                         <div className="row align-items-center justify-content-center mb-7">
                             <div className="col-md-10 col-lg-9">

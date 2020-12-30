@@ -85,8 +85,6 @@ function Galeri() {
             setGambar(itemGaleri)
         })
     },[])
-    // console.log(gambar[0])
-    // alert(JSON.stringify(gambar[0].gambar))
     const itemgaleri = gambar.map((doc, idx) => {
         return (
             <div className="col-6 col-sm-6 col-md-4 col-lg-3 column-item-galeri">
@@ -104,9 +102,6 @@ function Galeri() {
                                     {doc.judul}
                                 </h4>
                             </div>
-                            {/* <Link to={`/galeri/${doc.id}`}>
-                                <a className="stretched-link" href="" />
-                            </Link> */}
                         </div>
                     </div>
                 </Link>

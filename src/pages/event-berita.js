@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react"
 import NavbarGK from "../components/navbar"
 import FooterGK from "../components/footer"
-import BeritaHeader from "../components/berita/berita-header"
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
-import BeritaList from "../components/berita/berita-list"
 import "./event-berita.css"
-import { Col, Breadcrumb } from "react-bootstrap"
 import { Link } from 'react-router-dom'
-import { LinkContainer } from 'react-router-bootstrap'
 
 
 function SkeletonEvent() {
@@ -195,14 +191,24 @@ function EventBerita() {
                         </div>
                     </div>
                     <div className="row mb-4">
-                        <Col md={12} lg={12} className="px-auto">
-                            <Breadcrumb>
+                        <div className="col-md-10 col-lg-9 px-auto">
+                            <nav aria-label="breadcrumb">
+                                <ol className="breadcrumb">
+                                    <li className="breadcrumb-item">
+                                        <Link to={`/berita`}>
+                                            Berita
+                                        </Link>
+                                    </li>
+                                    <li className="breadcrumb-item active" aria-current="page">Events</li>
+                                </ol>
+                            </nav>
+                            {/* <Breadcrumb>
                                 <LinkContainer to="/berita">
                                     <Breadcrumb.Item style={{ textDecoration: `none`, color: `#E92998` }}>Berita</Breadcrumb.Item>
                                 </LinkContainer>
                                 <Breadcrumb.Item active>Events</Breadcrumb.Item>
-                            </Breadcrumb>
-                        </Col>
+                            </Breadcrumb> */}
+                        </div>
                     </div>
 
 

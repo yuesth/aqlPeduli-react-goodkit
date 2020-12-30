@@ -3,10 +3,7 @@ import NavbarGK from "../components/navbar"
 import FooterGK from "../components/footer"
 import { Link } from "react-router-dom"
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
-import { Col, Breadcrumb } from 'react-bootstrap'
-import Sticky from 'wil-react-sticky'
 import "./inter-berita.css"
-import { LinkContainer } from 'react-router-bootstrap'
 
 
 function SkeletonBeritaHeader() {
@@ -83,14 +80,24 @@ function BeritaHeaderInter(props) {
             </div>
             {/* <Sticky containerSelectorFocus="#wadahStickyBerInter" offsetTop={70} stickyEnableRange={[768, Infinity]}> */}
             <div className="row mb-2">
-                <Col md={12} lg={12} className="px-auto">
-                    <Breadcrumb>
+                <div md={12} lg={12} className="col-md-12 col-lg-12 px-auto">
+                    <nav aria-label="breadcrumb">
+                        <ol className="breadcrumb">
+                            <li className="breadcrumb-item">
+                                <Link to={`/berita`}>
+                                    Berita
+                                </Link>
+                            </li>
+                            <li className="breadcrumb-item active" aria-current="page">Berita Internasional</li>
+                        </ol>
+                    </nav>
+                    {/* <Breadcrumb>
                         <LinkContainer to="/berita">
                             <Breadcrumb.Item style={{ textDecoration: `none`, color: `#E92998` }}>Berita</Breadcrumb.Item>
                         </LinkContainer>
                         <Breadcrumb.Item active>Berita Internasional</Breadcrumb.Item>
-                    </Breadcrumb>
-                </Col>
+                    </Breadcrumb> */}
+                </div>
             </div>
             {/* </Sticky> */}
             {props.isloadingberheadernas ? <SkeletonBeritaHeader></SkeletonBeritaHeader>
@@ -169,7 +176,7 @@ function BeritaInternasional() {
             setBeritanas(parsedJson)
             setIsLoadingberheadernas(false)
         })
-    },[])
+    }, [])
     const itemBerita = []
     beritanas.map(data => {
         if (data.kategoriberita.namaKategori === "Berita Internasional") {

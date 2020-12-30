@@ -1,27 +1,26 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import NavbarGK from "../components/navbar"
 import FooterGK from "../components/footer"
-import { Row, Col } from "react-bootstrap"
 import "./profil.css"
 
 function ProfilLayout(props) {
     return (
         <section className="pt-10 pt-md-12">
             <div className="container-lg p-10">
-                <Row style={{ textAlign: `center` }}>
-                    <Col md={7}>
+                <div className="row" style={{ textAlign: `center` }}>
+                    <div className="col-md-7">
                         <h2>Tentang AQL Peduli</h2>
                         <p className="text-muted paragraf1" style={{ textAlign: `justify` }}>
                         AQL Peduli adalah sebuah lembaga nirlaba di bawah naungan AQL Islamic Center yang bergerak di bidang sosial yang bersemangat untuk mengedukasi masyarakat dalam hal kemanusiaan mulai pra-bencana, saat bencana dan pasca bencana , dimana dalam kegiatannya terus berusaha memberikan yang terbaik kepada masyarakat yang terkena dampak bencana secara universal, tanpa diskrimanasi dan tidak berafiliasi dengan partai politik manapun.
                         </p>
-                    </Col>
-                    <Col md={5}>
+                    </div>
+                    <div className="col-md-5">
                         <img className="img-fluid" src={`${process.env.PUBLIC_URL}/images/profil/logo-aql.png`}></img>
-                    </Col>
-                </Row>
+                    </div>
+                </div>
                 <br/>
-                <Row className="row-lb">
-                    <Col>
+                <div className="row row-lb">
+                    <div className="col">
                         <div className="wadah-lb">
                             <img className="img-fluid" src={`${process.env.PUBLIC_URL}/images/profil/latarbelakang2.png`}></img>
                             <h3>
@@ -33,26 +32,26 @@ function ProfilLayout(props) {
                             Dalam bidang pendidikan membangun madrasah salah satunya di Halmahera, Maluku Utara. Dalam bidang religi membangun masjid, di antaranya di Bogor, Palu, Lombok Utara dan Halmahera Tengah. Dalam bidang kesehatan membangun MCK, pengobatan gratis dan pengadaan ambulance gratis. Dalam bidang pangan, AQL Peduli setiap pekan berbagi makanan kepada dhuafa dalam program dapur sedekah, beras untuk pedalaman, iftar dan sembako dhuafa.
                             </p>
                         </div>
-                    </Col>
-                </Row>
+                    </div>
+                </div>
                 <br/>
                 <br/>
-                <Row>
-                    <Col md={6}>
+                <div className="row">
+                    <div className="col-md-6">
                         <img className="img-fluid" src={`${process.env.PUBLIC_URL}/images/profil/visi.png`}></img>
-                    </Col>
-                    <Col md={6} style={{ textAlign: `right`, margin: `auto` }}>
+                    </div>
+                    <div className="col-md-6" style={{ textAlign: `right`, margin: `auto` }}>
                         <h3>
                             <strong>Visi</strong>
                         </h3>
                         <p>
                             Menjadi lembaga kemanusiaan yang profesional bertaraf internasional
                         </p>
-                    </Col>
-                </Row>
+                    </div>
+                </div>
                 <br />
-                <Row>
-                    <Col md={6} style={{ textAlign: `left`, margin: `auto` }}>
+                <div className="row">
+                    <div className="col-md-6" style={{ textAlign: `left`, margin: `auto` }}>
                         <h3>
                             <strong>Misi</strong>
                         </h3>
@@ -62,11 +61,11 @@ function ProfilLayout(props) {
                         <p>
                             Memiliki kinerja yang dapat dipercaya, transparan, terukur, responsif dan sesuai dengan aturan yang berlaku
                         </p>
-                    </Col>
-                    <Col md={6}>
+                    </div>
+                    <div className="col-md-6">
                         <img className="img-fluid" src={`${process.env.PUBLIC_URL}/images/profil/misi.png`} style={{ marginLeft: `30px` }}></img>
-                    </Col>
-                </Row>
+                    </div>
+                </div>
                 <br />
                 <br />
                 {/* <div className="row align-items-center justify-content-center mb-9">
