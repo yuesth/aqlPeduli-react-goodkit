@@ -68,18 +68,24 @@ function DetailProgram(props) {
             }
         })).then(
             (items2) => {
-                setDetailup(items2)
+                var itemup2 = []
+                items2.map((doc)=>{
+                    if(doc.idProg === id){
+                        itemup2.push(doc)
+                    }
+                })
+                setDetailup(itemup2)
                 setIsLoadingdetup(false)
             }
         )
-    },[detailprog, detailup])
-    const itemup = []
-    detailup.map((doc, idx) => {
-        if (doc.idProg === id) {
-            itemup.push(doc)
-        }
-    })
-    const sortedItemUp = itemup.sort((a, b) => { return new Date(b.tanggalUp) - new Date(a.tanggalUp) })
+    },[detailup])
+    // const itemup = []
+    // detailup.map((doc, idx) => {
+    //     if (doc.idProg === id) {
+    //         itemup.push(doc)
+    //     }
+    // })
+    const sortedItemUp = detailup.sort((a, b) => { return new Date(b.tanggalUp) - new Date(a.tanggalUp) })
     return (
         <>
             <NavbarGK></NavbarGK>

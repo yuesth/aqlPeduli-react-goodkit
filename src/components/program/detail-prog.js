@@ -6,7 +6,7 @@ import "./detail-prog.css"
 import ReactMarkdown from 'react-markdown'
 import CopyToClipboard from 'react-copy-to-clipboard'
 // import $ from 'jquery'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 const $ = window.jQuery
 
 
@@ -414,7 +414,6 @@ function DetailProg(props) {
                     {doc.desUp}
                 </p>
                 <div className="dropdown">
-                    {/* <div> */}
                     <button className="btn btn-primary" type="button" aria-haspopup="true" aria-expanded="false" onClick={() => filterLampiran(idx)}>
                         Lampirkan
                             {isShowGbr[idx] ? <i class="fe fe-chevron-up"></i>
@@ -422,11 +421,9 @@ function DetailProg(props) {
                             <i class="fe fe-chevron-down"></i>
                         }
                     </button>
-                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButtonTwo">
+                    {/* <div className="dropdown-menu" aria-labelledby="dropdownMenuButtonTwo">
                         <a className="dropdown-item btn-gambar" onClick={() => filterLampiran(idx)}>Gambar</a>
-                        {/* <a className="dropdown-item btn-dok" href="#!" onClick={() => filterLampiran()}>Dokumen</a> */}
-                    </div>
-                    {/* </div> */}
+                    </div> */}
                 </div>
                 {isShowGbr[idx] ?
                     <div className="m-3 img-gambar" data-aos="fade-up">
@@ -594,16 +591,14 @@ function DetailProg(props) {
                         }
                     </div>
                 </div>
-                {/* <Sticky containerSelectorFocus="#wadahSticky" offsetTop={70} stickyEnableRange={[100, 540]}> */}
                 <div className="row no-gutters button-donasi-bawah d-flex bg-white" style={{ position: `fixed`, left: `0`, bottom: `0rem`, width: `100%`, height: `4rem`, zIndex: `99` }}>
                     <div className="col-9 col-sm-6 col-md-6 my-2 justify-content-center" style={{ textAlign: `center` }}>
-                        <button className="btn btn-sm h-100 w-100" variant="default" onClick={handleShow} className="btn-donasi-kecil-sekarang">DONASI SEKARANG</button>
+                        <button className="btn h-100 w-100 btn-donasi-kecil-sekarang" onClick={handleShow}>DONASI SEKARANG</button>
                     </div>
                     <div className="col-3 col-sm-6 col-md-6 btn-bagika-det-prog my-2" style={{ textAlign: `center` }}>
-                        <button className="btn btn-sm h-100" variant="default" onClick={handleShowShare} className="btn-bagikan"> <i className="fa fa-share-alt" /></button>
+                        <button className="btn h-100 w-100 btn-bagikan" onClick={handleShowShare}> <i className="fa fa-share-alt" /></button>
                     </div>
                 </div>
-                {/* </Sticky> */}
             </div>
         </section>
     )

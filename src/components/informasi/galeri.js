@@ -49,7 +49,7 @@ function SkeletonGaleri() {
 }
 
 function Galeri() {
-    const urlGaleri = "https://peaceful-meadow-45867.herokuapp.com/informasis"
+    const urlGaleri = "https://peaceful-meadow-45867.herokuapp.com/galeris"
     const [galeri, setGaleri] = useState([])
     const [gambar, setGambar] = useState([])
     const [isLoadinggaleri, setIsLoadinggaleri] = useState(true)
