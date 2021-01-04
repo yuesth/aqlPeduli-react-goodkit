@@ -7,7 +7,8 @@ import Helmet from 'react-helmet'
 
 
 function DetailProgram(props) {
-    const id = props.match.params.id
+    // const id = props.match.params.id
+    const id = props.location.state.idprogram
     const namaprog = props.match.params.program
     var fromUpdateLanding = false
     if (props.location.state) {

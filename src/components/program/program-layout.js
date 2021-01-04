@@ -286,9 +286,10 @@ function ProgramLayout(props) {
                             <PersenTerkumpul total={doc.total} terkumpul={doc.terkumpul}></PersenTerkumpul>
                         </div>
                         <Link to={{
-                            pathname: `/program/${doc.id}/${doc.judul}`,
+                            pathname: `/program/${doc.judul}`,
                             state: {
                                 fromUpdateLanding: false,
+                                idprogram: doc.id
                             }
                         }} className="stretched-link">
                         </Link>

@@ -232,7 +232,7 @@ function App() {
               <Route path="/profil" exact component={LazyProfil}></Route>
               <Route path="/relawan" exact component={LazyRelawan}></Route>
               <Route path="/relawan-sukses" exact component={LazyRelawanSukses}></Route>
-              <Route path="/program/:id/:program" exact component={LazyDetailProgram}></Route>
+              <Route path="/program/:program" exact component={LazyDetailProgram}></Route>
               <Route path="/kk" exact component={LazyKepeduliankita}></Route>
               <Route path="/kk/:id" exact component={LazyDetailKepeduliankita}></Route>
               <Route path="/berita" exact component={LazyBerita}></Route>
