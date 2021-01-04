@@ -52,7 +52,7 @@ function DetailKhazanah(props) {
     }
     const id = props.match.params.id
     const [kontenfix, setKontenfix] = useState("")
-    const urlDetailKha = `http://167.99.72.148/khazanahs/${id}`
+    const urlDetailKha = `https://peaceful-meadow-45867.herokuapp.com/khazanahs/${id}`
     const [detailkha, setDetailkha] = useState([])
     const [isLoadingdetkha, setIsLoadingdetkha] = useState(true)
     useEffect(() => {

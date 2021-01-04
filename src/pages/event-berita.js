@@ -135,7 +135,7 @@ function EventBerita() {
             </>
         )
     }
-    const urlBerita = "http://167.99.72.148/events"
+    const urlBerita = "https://peaceful-meadow-45867.herokuapp.com/events"
     const [event, setEvent] = useState([])
     const [visibleAB, setVisibleAB] = useState(3)
     const [visibleSB, setVisibleSB] = useState(3)
