@@ -64,6 +64,7 @@ function DetailKK(props) {
                 konten: `${parsedJson.kontenKepedulianKita}`,
                 tanggal: `${parsedJson.tanggalKepedulianKita}`,
                 gambar: `${parsedJson.gambarKepedulianKita.url}`,
+                caption: `${parsedJson.captionGambarKepedulianKita}`
             }
         )).then(
             items => {
@@ -135,8 +136,13 @@ function DetailKK(props) {
                             </div>
                         </div>
                         <div className="row align-items-center justify-content-center mb-7">
-                            <div className="col-md-10 col-lg-9">
-                                <img className="img-fluid w-100" src={detailkk.gambar} alt="..." />
+                            <div className="col-md-10 col-lg-9 justify-content-center">
+                                <img className="img-fluid w-100 mb-md-2" src={detailkk.gambar} alt="..." />
+                                {detailkk.caption !== null &&
+                                    <p style={{ fontSize: `0.875rem`, textAlign: `center` }} className="text-muted">
+                                        {detailkk.caption}
+                                    </p>
+                                }
                             </div>
                         </div>
                         <div className="row align-items-center justify-content-center mb-7">

@@ -79,9 +79,10 @@ function Update() {
                 namaUp: doc.namaUpdate,
                 judulProg: doc.program.judulProgram,
                 idProg: doc.program.id,
+                linkshareProg: doc.program.linkShareProgram,
                 tanggalUp: doc.tanggalpelaksanaanUpdate,
                 deskripsiUp: doc.deskripsiUpdate,
-                gambarUp: `${doc.gambarUpdate.url}`
+                gambarUp: doc.gambarUpdate.url
             }
             itemUpdate.push(item1)
         }
@@ -90,26 +91,22 @@ function Update() {
                 namaUp: doc.namaUpdate,
                 judulProg: doc.program.judulProgram,
                 idProg: doc.program.id,
+                linkshareProg: doc.program.linkShareProgram,
                 tanggalUp: doc.tanggalpelaksanaanUpdate,
                 deskripsiUp: doc.deskripsiUpdate,
             }
             itemUpdate.push(item2)
         }
     })
-    const breakPoints = [
-        { width: 1, itemsToShow: 1 },
-        { width: 550, itemsToShow: 2, itemsToScroll: 2 },
-        { width: 768, itemsToShow: 3 },
-        { width: 1200, itemsToShow: 3 }
-    ];
     const sortedItemUpdate = itemUpdate.sort((a, b) => { return new Date(b.tanggalUp) - new Date(a.tanggalUp) })
     const listup = sortedItemUpdate.map((doc, idx) => {
         return (
             <div className="col-12 mb-7" style={{ maxWidth: 320, height: `30rem` }} data-aos="fade-up" key={idx}>
                 <Link to={{
-                    pathname:`/program/${doc.idProg}/${doc.judulProg}`,
+                    pathname:`/kepedulian/${doc.linkshareProg}`,
                     state:{
                         fromUpdateLanding: true,
+                        idprogram: doc.idProg
                     },
                     }}>
                     <div className="card card-sm rounded-top-left rounded-bottom-right lift" style={{ height: `30rem` }}>

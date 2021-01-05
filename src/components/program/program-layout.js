@@ -110,6 +110,7 @@ function ProgramLayout(props) {
                 terkumpul: `${data.totalterkumpulProgram}`,
                 durasi: `${data.durasiProgram}`,
                 des: `${data.deskripsiProgram}`,
+                linkshare: `${data.linkShareProgram}`,
                 namaKateg: `${data.kategori.namaKategori}`
             }
         ))).then(
@@ -286,7 +287,7 @@ function ProgramLayout(props) {
                             <PersenTerkumpul total={doc.total} terkumpul={doc.terkumpul}></PersenTerkumpul>
                         </div>
                         <Link to={{
-                            pathname: `/program/${doc.judul}`,
+                            pathname: `/kepedulian/${doc.linkshare}`,
                             state: {
                                 fromUpdateLanding: false,
                                 idprogram: doc.id

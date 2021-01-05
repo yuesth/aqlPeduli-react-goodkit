@@ -76,7 +76,7 @@ function KepedulianLanding() {
                         </h4>
                     </div>
                     <Link to={{
-                        pathname: `/program`,
+                        pathname: `/kepedulian`,
                         state: {
                             namaKateg: namaKategori
                         }

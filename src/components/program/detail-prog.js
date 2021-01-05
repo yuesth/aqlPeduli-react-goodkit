@@ -462,19 +462,13 @@ function DetailProg(props) {
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb">
                                 <li className="breadcrumb-item">
-                                    <Link to={`/program`}>
+                                    <Link to={`/kepedulian`}>
                                         Program Kepedulian
                                     </Link>
                                 </li>
                                 <li className="breadcrumb-item active" aria-current="page">{props.itemprog.judul}</li>
                             </ol>
                         </nav>
-                        {/* <Breadcrumb>
-                            <LinkContainer to="/program">
-                                <Breadcrumb.Item style={{ textDecoration: `none`, color: `#E92998` }}>Program Kepedulian</Breadcrumb.Item>
-                            </LinkContainer>
-                            <Breadcrumb.Item active>{props.itemprog.judul}</Breadcrumb.Item>
-                        </Breadcrumb> */}
                     </div>
                 </div>
                 <div className="container">

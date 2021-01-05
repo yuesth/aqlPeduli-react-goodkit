@@ -76,6 +76,7 @@ function Berita() {
                     judul: `${data.judulBerita}`,
                     isi: `${data.isiBerita}`,
                     tag: `${data.tagBerita}`,
+                    linkshare: `${data.linkShareBerita}`,
                     gambar: `${data.gambarBerita.url}`,
                     kategori: `${data.kategoriberita.namaKategori}`
                 })
@@ -88,6 +89,7 @@ function Berita() {
                     judul: `${data.judulBerita}`,
                     isi: `${data.isiBerita}`,
                     tag: `${data.tagBerita}`,
+                    linkshare: `${data.linkShareBerita}`,
                     kategori: `${data.kategoriberita.namaKategori}`
                 })
             }
@@ -97,35 +99,6 @@ function Berita() {
             setIsLoadingber(false)
         })
     }, [])
-    // const itemBerita = []
-    // berita.map(data => {
-    //     if (data.gambarBerita !== null) {
-    //         var item1 = {
-    //             id:`${data.id}`,
-    //             penulis: `${data.penulisBerita}`,
-    //             tanggal: `${data.tanggalBerita}`,
-    //             judul: `${data.judulBerita}`,
-    //             isi: `${data.isiBerita}`,
-    //             tag: `${data.tagBerita}`,
-    //             gambar: `${data.gambarBerita.url}`,
-    //             kategori: `${data.kategoriberita.namaKategori}`
-    //         }
-    //         itemBerita.push(item1)
-    //     }
-    //     else {
-    //         var item2 = {
-    //             id:`${data.id}`,
-    //             penulis: `${data.penulisBerita}`,
-    //             tanggal: `${data.tanggalBerita}`,
-    //             judul: `${data.judulBerita}`,
-    //             isi: `${data.isiBerita}`,
-    //             tag: `${data.tagBerita}`,
-    //             kategori: `${data.kategoriberita.namaKategori}`
-    //         }
-    //         itemBerita.push(item2)
-    //     }
-    // })
-    // const sortedItemBerita = berita.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
     const beritaUtama = berita.map((doc, idx) => {
         if (idx == 0) {
             return (
@@ -158,7 +131,7 @@ function Berita() {
                                         </p>
                                     </div>
                                 </div>
-                                <Link className="stretched-link" to={`/berita/${doc.id}`} />
+                                <Link className="stretched-link" to={`/berita/${doc.linkshare}`} />
                             </div>
                         </div>
                     </div>
@@ -199,7 +172,7 @@ function Berita() {
                                     </p>
                                 </div>
                             </div>
-                            <Link className="stretched-link" to={`/berita/${doc.id}`} />
+                            <Link className="stretched-link" to={`/berita/${doc.linkshare}`} />
                         </div>
                     </div>
                 </div>

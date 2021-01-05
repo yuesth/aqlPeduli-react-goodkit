@@ -14,6 +14,7 @@ function Footer() {
         if (data.gambarBerita !== null) {
             var item1 = {
                 id: `${data.id}`,
+                linkshare: `${data.linkShareBerita}`,
                 judul: `${data.judulBerita}`,
                 tanggal: `${data.tanggalBerita}`
             }
@@ -22,6 +23,7 @@ function Footer() {
         else {
             var item2 = {
                 id: `${data.id}`,
+                linkshare: `${data.linkShareBerita}`,
                 judul: `${data.judulBerita}`,
                 tanggal: `${data.tanggalBerita}`
             }
@@ -33,7 +35,7 @@ function Footer() {
         if (idx === 0) {
             return (
                 <li className="mb-3" key={idx}>
-                    <Link className="text-gray-600" to={`/berita/${doc.id}`} style={{ fontSize: `1rem` }}>{doc.judul}</Link>
+                    <Link className="text-gray-600" to={`/berita/${doc.linkshare}`} style={{ fontSize: `1rem` }}>{doc.judul}</Link>
                 </li>
             )
         }
@@ -73,7 +75,7 @@ function Footer() {
                                 <Link className="text-gray-600" to={`/berita`} style={{ fontSize: `1rem` }}>Berita</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/program`} style={{ fontSize: `1rem` }}>Kepedulian</Link>
+                                <Link className="text-gray-600" to={`/kepedulian`} style={{ fontSize: `1rem` }}>Kepedulian</Link>
                             </li>
                             <li className="mb-3">
                                 <Link className="text-gray-600" to={`/informasi`} style={{ fontSize: `1rem` }}>Informasi</Link>
@@ -82,7 +84,7 @@ function Footer() {
                                 <Link className="text-gray-600" to={`/khazanah`} style={{ fontSize: `1rem` }}>Khazanah</Link>
                             </li>
                             <li className="mb-3">
-                                <Link className="text-gray-600" to={`/program`} style={{ fontSize: `1rem` }}>Donasi</Link>
+                                <Link className="text-gray-600" to={`/kepedulian`} style={{ fontSize: `1rem` }}>Donasi</Link>
                             </li>
                             <li className="mb-3">
                                 <Link className="text-gray-600" to={`/relawan`} style={{ fontSize: `1rem` }}>Relawan</Link>
@@ -96,7 +98,7 @@ function Footer() {
                         <ul className="list-unstyled">
                             <li className="mb-3">
                                 <Link className="text-gray-600" to={{
-                                    pathname: `/program`,
+                                    pathname: `/kepedulian`,
                                     state: {
                                         namaKateg: 'Peduli Bencana'
                                     }
@@ -104,7 +106,7 @@ function Footer() {
                             </li>
                             <li className="mb-3">
                                 <Link className="text-gray-600" to={{
-                                    pathname: `/program`,
+                                    pathname: `/kepedulian`,
                                     state: {
                                         namaKateg: 'Peduli Masjid'
                                     }
@@ -112,7 +114,7 @@ function Footer() {
                             </li>
                             <li className="mb-3">
                                 <Link className="text-gray-600" to={{
-                                    pathname: `/program`,
+                                    pathname: `/kepedulian`,
                                     state: {
                                         namaKateg: 'Peduli Pangan'
                                     }
@@ -120,7 +122,7 @@ function Footer() {
                             </li>
                             <li className="mb-3">
                                 <Link className="text-gray-600" to={{
-                                    pathname: `/program`,
+                                    pathname: `/kepedulian`,
                                     state: {
                                         namaKateg: 'Peduli Kesehatan'
                                     }
@@ -128,7 +130,7 @@ function Footer() {
                             </li>
                             <li className="mb-3">
                                 <Link className="text-gray-600" to={{
-                                    pathname: `/program`,
+                                    pathname: `/kepedulian`,
                                     state: {
                                         namaKateg: 'Dapur Sedekah'
                                     }
@@ -136,7 +138,7 @@ function Footer() {
                             </li>
                             <li className="mb-3">
                                 <Link className="text-gray-600" to={{
-                                    pathname: `/program`,
+                                    pathname: `/kepedulian`,
                                     state: {
                                         namaKateg: 'Peduli Dunia Islam'
                                     }

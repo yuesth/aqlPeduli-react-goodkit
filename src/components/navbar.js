@@ -33,7 +33,7 @@ function NavbarGK() {
                 </ul> */}
                 <ul className="navbar-nav justify-content-end w-100 pr-lg-6">
                     <Link className="nav-link px-3" id="landingsDropdown" to={{
-                        pathname: `/program`,
+                        pathname: `/kepedulian`,
                         state:{
                             namaKateg: ""
                         }

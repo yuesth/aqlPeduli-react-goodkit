@@ -33,7 +33,7 @@ function BeritaHeaderInter(props) {
     const listberitaheaderinter = props.data.map((doc, idx) => {
         if (idx === 0) {
             return (
-                <Link to={`/berita/${doc.id}`}>
+                <Link to={`/berita/${doc.linkshare}`}>
                     <div className="berita-header-img">
                         <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
                         {/* <div className="shadow-header"></div> */}
@@ -53,7 +53,7 @@ function BeritaHeaderInter(props) {
             if (doc.kategori === "Berita Internasional") {
                 return (
                     <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 px-1">
-                        <Link to={`/berita/${doc.id}`}>
+                        <Link to={`/berita/${doc.linkshare}`}>
                             <div className="berita-headerlain-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
                                 {/* <div className="shadow-header"></div> */}
@@ -75,7 +75,7 @@ function BeritaHeaderInter(props) {
             if (doc.kategori === "Berita Internasional") {
                 return (
                     <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 px-1">
-                        <Link to={`/berita/${doc.id}`}>
+                        <Link to={`/berita/${doc.linkshare}`}>
                             <div className="berita-headerlain-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
                                 {/* <div className="shadow-header"></div> */}
@@ -223,6 +223,7 @@ function BeritaInternasional() {
             judul: `${doc.judulBerita}`,
             isi: `${doc.isiBerita}`,
             tag: `${doc.tagBerita}`,
+            linkshare: `${doc.linkShareBerita}`,
             gambar: `${doc.gambarBerita.url}`,
             kategori: `${doc.kategoriberita.namaKategori}`
         }))).then(items => {
@@ -258,6 +259,7 @@ function BeritaInternasional() {
                         judul: `${doc.judulBerita}`,
                         isi: `${doc.isiBerita}`,
                         tag: `${doc.tagBerita}`,
+                        linkshare: `${doc.linkShareBerita}`,
                         gambar: `${doc.gambarBerita.url}`,
                         kategori: `${doc.kategoriberita.namaKategori}`
                     }))
@@ -298,7 +300,7 @@ function BeritaInternasional() {
                                 <h2 className="display-6 judul-ber-list-nas">
                                     {doc.judul}
                                 </h2>
-                                <Link to={`/berita/${doc.id}`} className="stretched-link"></Link>
+                                <Link to={`/berita/${doc.linkshare}`} className="stretched-link"></Link>
                             </div>
                         </div>
                     </div>

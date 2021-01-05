@@ -77,7 +77,8 @@ function Khazanah() {
                 judul: `${data.judulKhazanah}`,
                 isi: `${data.isiKhazanah}`,
                 gambar: `${data.gambarKhazanah.url}`,
-                urlvideo: `${data.urlvideoKhazanah}`
+                urlvideo: `${data.urlvideoKhazanah}`,
+                linkshare: `${data.linkShareKhazanah}`
             }
             itemKhazanah.push(item1)
         }
@@ -88,7 +89,8 @@ function Khazanah() {
                 tanggal: `${data.tanggalKhazanah}`,
                 judul: `${data.judulKhazanah}`,
                 isi: `${data.isiKhazanah}`,
-                urlvideo: `${data.urlvideoKhazanah}`
+                urlvideo: `${data.urlvideoKhazanah}`,
+                linkshare: `${data.linkShareKhazanah}`
             }
             itemKhazanah.push(item2)
         }
@@ -110,7 +112,7 @@ function Khazanah() {
                             <p className="font-size-sm text-gray-600 mb-0">
                                 {doc.pemateri}
                             </p>
-                            <Link to={`/khazanah/${doc.id}`} className="stretched-link"></Link>
+                            <Link to={`/khazanah/${doc.linkshare}`} className="stretched-link"></Link>
                         </div>
                     </div>
                 </div>

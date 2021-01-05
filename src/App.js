@@ -2,18 +2,19 @@ import './App.css';
 import React, { Suspense, lazy } from 'react'
 import ScrollToTop from './scrollToTop'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import DetailProgram from "./pages/detail-program"
+import Program from "./pages/program"
+
 // import Landing from "./pages/landing"
 const LazyLanding = lazy(() => import('./pages/landing'))
-// import Program from "./pages/program"
-const LazyProgram = lazy(() => import('./pages/program'))
+// const LazyProgram = lazy(() => import('./pages/program'))
 // import Profil from "./pages/profil"
 const LazyProfil = lazy(() => import('./pages/profil'))
 // import Relawan from "./pages/relawan"
 const LazyRelawan = lazy(() => import('./pages/relawan'))
 // import RelawanSukses from "./pages/relawan-sukses"
 const LazyRelawanSukses = lazy(() => import('./pages/relawan-sukses'))
-// import DetailProgram from "./pages/detail-program"
-const LazyDetailProgram = lazy(() => import('./pages/detail-program'))
+// const LazyDetailProgram = lazy(() => import('./pages/detail-program'))
 // import Kepeduliankita from "./pages/kepeduliankita"
 const LazyKepeduliankita = lazy(() => import('./pages/kepeduliankita'))
 // import DetailKepeduliankita from "./pages/detail-kepeduliankita"
@@ -228,21 +229,21 @@ function App() {
           <Suspense fallback={<></>}>
             <Switch>
               <Route path="/" exact component={LazyLanding}></Route>
-              <Route path="/program" exact component={LazyProgram}></Route>
+              <Route path="/kepedulian" exact component={Program}></Route>
+              <Route path="/kepedulian/:paramKepedulian" exact component={DetailProgram}></Route>
               <Route path="/profil" exact component={LazyProfil}></Route>
               <Route path="/relawan" exact component={LazyRelawan}></Route>
               <Route path="/relawan-sukses" exact component={LazyRelawanSukses}></Route>
-              <Route path="/program/:program" exact component={LazyDetailProgram}></Route>
               <Route path="/kk" exact component={LazyKepeduliankita}></Route>
               <Route path="/kk/:id" exact component={LazyDetailKepeduliankita}></Route>
               <Route path="/berita" exact component={LazyBerita}></Route>
-              <Route path="/berita/:id" exact component={LazyDetailBerita}></Route>
+              <Route path="/berita/:paramBerita" exact component={LazyDetailBerita}></Route>
               <Route path="/beritanasional" exact component={LazyNasionalBerita}></Route>
               <Route path="/beritainter" exact component={LazyInternasionalBerita}></Route>
               <Route path="/events" exact component={LazyEventBerita}></Route>
-              <Route path="/events/:id" exact component={LazyDetailEventBerita}></Route>
+              <Route path="/events/:paramEvents" exact component={LazyDetailEventBerita}></Route>
               <Route path="/khazanah" exact component={LazyKhazanah}></Route>
-              <Route path="/khazanah/:id" exact component={LazyDetailKhazanah}></Route>
+              <Route path="/khazanah/:paramKhazanah" exact component={LazyDetailKhazanah}></Route>
               <Route path="/informasi" exact component={LazyInformasi}></Route>
               <Route path="/galeri/:id" exact component={LazyDetailGaleri}></Route>
             </Switch>

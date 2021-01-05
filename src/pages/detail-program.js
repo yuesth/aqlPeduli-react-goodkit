@@ -8,13 +8,18 @@ import Helmet from 'react-helmet'
 
 function DetailProgram(props) {
     // const id = props.match.params.id
-    const id = props.location.state.idprogram
-    const namaprog = props.match.params.program
+    // const id = props.location.state.idprogram
+    // const namaprog = props.match.params.program
+    // var custparam = null
     var fromUpdateLanding = false
+    var id = ""
+    var urlDetailProgram = ""
     if (props.location.state) {
         fromUpdateLanding = props.location.state.fromUpdateLanding
+        id = props.location.state.idprogram
     }
-    const urlDetailProgram = `https://peaceful-meadow-45867.herokuapp.com/programs/${id}`
+    const custparam = props.match.params.paramKepedulian
+    urlDetailProgram = `https://peaceful-meadow-45867.herokuapp.com/programs?_where[linkShareProgram]=${custparam}`
     const urlUpdate = `https://peaceful-meadow-45867.herokuapp.com/update-programs`
     const [detailprog, setDetailprog] = useState([])
     const [detailup, setDetailup] = useState([])
@@ -24,7 +29,7 @@ function DetailProgram(props) {
     const [kontenfix, setKontenfix] = useState("")
     const [fromupdate, setFromupdate] = useState(fromUpdateLanding)
     useEffect(() => {
-        fetch(urlDetailProgram).then(res => res.json()).then(parsedJson => (
+        fetch(urlDetailProgram).then(res => res.json()).then(parseJson => parseJson.map((parsedJson)=>(
             {
                 id: `${parsedJson.id}`,
                 judul: `${parsedJson.judulProgram}`,
@@ -34,20 +39,21 @@ function DetailProgram(props) {
                 durasi: `${parsedJson.durasiProgram}`,
                 des: `${parsedJson.deskripsiProgram}`,
                 linkbb: `${parsedJson.linkBerkahBerjamaah}`,
-                gambar: `${parsedJson.gambarProgram.url}`,
+                gambar: parsedJson.gambarProgram.url,
                 cerita: `${parsedJson.cerita}`,
                 idKateg: `${parsedJson.kategori.id}`,
                 namaKateg: `${parsedJson.kategori.namaKategori}`,
                 updateProg: `${parsedJson.update_programs}`
             }
-        )).then(
+        ))).then(
             items => {
-                setDetailprog(items)
+                const detprog = items[0]
+                setDetailprog(detprog)
                 setIsLoadingdetprog(false)
                 setMetadata({
-                    title: `AQL | ${items.judul}`,
-                    desc: items.des,
-                    img: items.gambar,
+                    title: `AQL | ${items[0].judul}`,
+                    desc: items[0].des,
+                    img: items[0].gambar,
                 })
                 return (items.cerita)
             }
@@ -86,7 +92,7 @@ function DetailProgram(props) {
                 setIsLoadingdetup(false)
             }
         )
-    }, [detailup])
+    }, [detailup, detailprog])
     // const itemup = []
     // detailup.map((doc, idx) => {
     //     if (doc.idProg === id) {

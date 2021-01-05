@@ -119,7 +119,9 @@ function BeritaList() {
     }
 
     const urlBerita = "https://peaceful-meadow-45867.herokuapp.com/beritas"
+    const urlEvent = "https://peaceful-meadow-45867.herokuapp.com/events"
     const [beritalist, setBeritalist] = useState([])
+    const [eventlist, setEventlist] = useState([])
     const [isLoadingberlist, setIsLoadingberlist] = useState(true);
     const [isLoadingberkateg, setIsLoadingberkateg] = useState(true);
     const [isShowevent, setIsShowevent] = useState(true)
@@ -128,7 +130,10 @@ function BeritaList() {
             setBeritalist(parsedJson)
             setIsLoadingberlist(false)
         })
-    },[])
+        fetch(urlEvent).then(res => res.json()).then(parsedJson => {
+            setEventlist(parsedJson)
+        })
+    }, [])
     const itemBerita = []
     beritalist.map(data => {
         if (data.gambarBerita !== null) {
@@ -139,6 +144,7 @@ function BeritaList() {
                 judul: `${data.judulBerita}`,
                 isi: `${data.isiBerita}`,
                 tag: `${data.tagBerita}`,
+                linkshare: `${data.linkShareBerita}`,
                 gambar: `${data.gambarBerita.url}`,
                 kategori: `${data.kategoriberita.namaKategori}`
             }
@@ -152,30 +158,51 @@ function BeritaList() {
                 judul: `${data.judulBerita}`,
                 isi: `${data.isiBerita}`,
                 tag: `${data.tagBerita}`,
+                linkshare: `${data.linkShareBerita}`,
                 kategori: `${data.kategoriberita.namaKategori}`
             }
             itemBerita.push(item2)
         }
     })
+    const itemEvent = []
+    eventlist.map(data => {
+        if (data.gambarEvent !== null) {
+            var item1 = {
+                id: `${data.id}`,
+                judul: `${data.judulEvent}`,
+                isi: `${data.isiEvent}`,
+                mulai: `${data.tanggalmulaiEvent}`,
+                selesai: `${data.tanggalselesaiEvent}`,
+                gambar: data.gambarEvent[0].url,
+                linkshare:`${data.linkShareEvent}`
+            }
+            itemEvent.push(item1)
+        }
+        else {
+            var item2 = {
+                id: `${data.id}`,
+                judul: `${data.judulEvent}`,
+                isi: `${data.isiEvent}`,
+                mulai: `${data.tanggalmulaiEvent}`,
+                selesai: `${data.tanggalselesaiEvent}`,
+                linkshare:`${data.linkShareEvent}`
+            }
+            itemEvent.push(item2)
+        }
+    })
     const sortedItemBerita = itemBerita.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
+    const sortedItemEvent = itemEvent.sort((a, b) => { return new Date(b.mulai) - new Date(a.mulai) })
     var it = 1
-    const listevent = sortedItemBerita.map((doc, idx) => {
-        var kategBerita = doc.kategori
-        var namaKategoriBerita = kategBerita.replace(/\s/g, "")
-        if (namaKategoriBerita == "Event" && it <= 3) {
-            it += 1
+    const listevent = sortedItemEvent.map((doc, idx) => {
+        // var kategBerita = doc.kategori
+        // var namaKategoriBerita = kategBerita.replace(/\s/g, "")
+        if (idx < 3) {
+            // it += 1
             return (
-                <div className={`col-md-4 col-lg-4 col-sm-6 mt-0 mb-3 mt-2`}>
+                <div className={`col-md-4 col-lg-4 col-sm-6 col-6 mt-0 mb-3 mt-2`}>
                     <div className={`card card-sm rounded-top-left rounded-bottom-right lift lift-lg`}>
                         <div>
-                            <img className="card-img-top rounded-top-left img-fluid img-berita" src={doc.gambar} alt="..." />
-                        </div>
-                        <div className="position-relative">
-                            <div className="shape shape-fluid-x shape-top text-white">
-                                <div className="shape-img pb-5">
-                                    <svg viewBox="0 0 100 50" preserveAspectRatio="none"><path d="M0 25h25L75 0h25v50H0z" fill="currentColor" /></svg>
-                                </div>
-                            </div>
+                            <img className="card-img-top rounded-top-left img-fluid img-berita h-md-100" src={doc.gambar} alt={doc.judul} />
                         </div>
                         <div className="card-body p-2 pb-3">
                             <span className="badge badge-success">Live Streaming</span>
@@ -185,9 +212,9 @@ function BeritaList() {
                                 </h3>
                             </div>
                             <span className="small text-muted mt-n1 mb-0">
-                                <DariTanggal tanggal={doc.tanggal}></DariTanggal>
+                                <DariTanggal tanggal={doc.mulai}></DariTanggal> - <DariTanggal tanggal={doc.selesai}></DariTanggal>
                             </span>
-                            <Link to={`/berita/${doc.id}`}>
+                            <Link to={`/events/${doc.linkshare}`}>
                                 <a className="stretched-link" href="" />
                             </Link>
                         </div>
@@ -258,7 +285,7 @@ function BeritaList() {
                 if (itBerNasUt === 1) {
                     itBerNasUt = itBerNasUt + 1
                     return (
-                        <Link to={`/berita/${doc.id}`}>
+                        <Link to={`/berita/${doc.linkshare}`}>
                             <div className="berita-header-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
                                 {/* <div className="shadow-header"></div> */}
@@ -284,7 +311,7 @@ function BeritaList() {
                 if (itBerInterUt === 1) {
                     itBerInterUt = itBerInterUt + 1
                     return (
-                        <Link to={`/berita/${doc.id}`} style={{ boxShadow: `0 -100px 20px black inset` }}>
+                        <Link to={`/berita/${doc.linkshare}`} style={{ boxShadow: `0 -100px 20px black inset` }}>
                             <div className="berita-header-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
                                 {/* <div className="shadow-header"></div> */}
@@ -322,7 +349,7 @@ function BeritaList() {
                                         <span className="small text-muted mt-n1 mb-0 ml-2" style={{ fontSize: `0.8rem` }}>
                                             <DariTanggal tanggal={doc.tanggal}></DariTanggal>
                                         </span>
-                                        <Link to={`/berita/${doc.id}`} className="stretched-link"></Link>
+                                        <Link to={`/berita/${doc.linkshare}`} className="stretched-link"></Link>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-6 rounded-top-left">
@@ -356,7 +383,7 @@ function BeritaList() {
                                         <span className="small text-muted mt-n1 mb-0 ml-2" style={{ fontSize: `0.8rem` }}>
                                             <DariTanggal tanggal={doc.tanggal}></DariTanggal>
                                         </span>
-                                        <Link to={`/berita/${doc.id}`} className="stretched-link"></Link>
+                                        <Link to={`/berita/${doc.linkshare}`} className="stretched-link"></Link>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-6 rounded-top-left">
@@ -385,7 +412,7 @@ function BeritaList() {
                                     </Link>
                                 </div>
                             </div>
-                            <div className="row px-4 ">
+                            <div className="row px-4 w-100 ">
                                 {isLoadingberlist ? <SkeletonBeritaEvent></SkeletonBeritaEvent>
                                     :
                                     listevent
@@ -438,7 +465,7 @@ function BeritaList() {
                             <div className="col-12 col-sm-12 col-md-6 col-lg-6 my-4">
                                 <h3>Berita Internasional Terbaru</h3>
                                 <div className="border-event-akan"></div>
-                                <div className="overflow-auto mt-6 p-3 border border-gray-300" style={{height:`18.5rem`}}>
+                                <div className="overflow-auto mt-6 p-3 border border-gray-300" style={{ height: `18.5rem` }}>
                                     {beritainterlain}
                                 </div>
                             </div>
