@@ -84,7 +84,7 @@ function Galeri() {
             })
             setGambar(itemGaleri)
         })
-    },[])
+    },[gambar])
     const itemgaleri = gambar.map((doc, idx) => {
         return (
             <div className="col-6 col-sm-6 col-md-4 col-lg-3 column-item-galeri">

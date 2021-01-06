@@ -127,18 +127,12 @@ function DetailKK(props) {
                                         <li className="breadcrumb-item active" aria-current="page">{detailkk.judul}</li>
                                     </ol>
                                 </nav>
-                                {/* <Breadcrumb>
-                                    <LinkContainer to="/kk">
-                                        <Breadcrumb.Item style={{ textDecoration: `none`, color: `#E92998` }}>Kepedulian Kita</Breadcrumb.Item>
-                                    </LinkContainer>
-                                    <Breadcrumb.Item active>{detailkk.judul}</Breadcrumb.Item>
-                                </Breadcrumb> */}
                             </div>
                         </div>
                         <div className="row align-items-center justify-content-center mb-7">
                             <div className="col-md-10 col-lg-9 justify-content-center">
                                 <img className="img-fluid w-100 mb-md-2" src={detailkk.gambar} alt="..." />
-                                {detailkk.caption !== null &&
+                                {detailkk.caption !== "null" &&
                                     <p style={{ fontSize: `0.875rem`, textAlign: `center` }} className="text-muted">
                                         {detailkk.caption}
                                     </p>

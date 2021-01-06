@@ -143,7 +143,7 @@ function DetailEvent(props) {
                         <div className="row align-items-center justify-content-center mb-7">
                             <div className="col-md-10 col-lg-9 justify-content-center">
                                 <img className="img-fluid w-100 mb-md-2" src={detailberita.gambar} alt="..." />
-                                {detailberita.caption !== null &&
+                                {detailberita.caption !== "null" &&
                                     <p style={{ fontSize: `0.875rem`, textAlign: `center` }} className="text-muted">
                                         {detailberita.caption}
                                     </p>

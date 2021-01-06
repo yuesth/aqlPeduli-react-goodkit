@@ -65,6 +65,7 @@ function DetailKhazanah(props) {
             {
                 id: `${parsedJson.id}`,
                 pemateri: `${parsedJson.pemateriKhazanah}`,
+                penulis: `${parsedJson.penulisKhazanah}`,
                 tanggal: `${parsedJson.tanggalKhazanah}`,
                 judul: `${parsedJson.judulKhazanah}`,
                 isi: `${parsedJson.isiKhazanah}`,
@@ -145,7 +146,7 @@ function DetailKhazanah(props) {
                         <div className="row align-items-center justify-content-center mb-7">
                             <div className="col-md-10 col-lg-9 justify-content-center">
                                 <img className="img-fluid w-100 mb-md-2" src={detailkha.gambar} alt="..." />
-                                {detailkha.caption !== null &&
+                                {detailkha.caption !== "null" &&
                                     <p style={{ fontSize: `0.875rem`, textAlign: `center` }} className="text-muted">
                                         {detailkha.caption}
                                     </p>
@@ -155,12 +156,17 @@ function DetailKhazanah(props) {
                         <div className="row align-items-center justify-content-center mb-7">
                             <div className="col-md-10 col-lg-9">
                                 <div className="row no-gutters">
-                                    <div className="col-7">
-                                        <span className="small text-muted mb-0">
-                                            <DariTanggal tanggal={detailkha.tanggal}></DariTanggal> | {detailkha.pemateri}
-                                        </span>
+                                    <div className="col-md-7 col-12 mb-5 mb-md-0">
+                                        <p className="small text-muted mb-0">
+                                            <DariTanggal tanggal={detailkha.tanggal}></DariTanggal> | Oleh: {detailkha.pemateri}
+                                        </p>
+                                        {detailkha.penulis !== "null" &&
+                                            <p className="small text-muted mb-0">
+                                                Penulis: {detailkha.penulis}
+                                            </p>
+                                        }
                                     </div>
-                                    <div className="col justify-content-end text-right d-flex">
+                                    <div className="col-md col-12 text-right d-flex shareLinkDetail">
                                         <div className="smd">
                                             <a href={`https://twitter.com/intent/tweet?text=${detailkha.judul}%20melalui%20https%3A//aqlpeduli.or.id/khazanah/${detailkha.linkshare}`} target="_blank" className="d-flex flex-column mx-3">
                                                 <i className=" img-thumbnail fa-twitter fa" style={{ color: '#4c6ef5', backgroundColor: 'aliceblue' }} />

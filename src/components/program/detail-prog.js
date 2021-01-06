@@ -142,177 +142,261 @@ function ModalDonasi(props) {
             setQrcode(items)
         })
     }, [])
+    useEffect(() => {
+        // $('form > input').keyup(function () {
+        //     var empty = false;
+        //     $('form > input').each(function () {
+        //         if ($(this).val() == '') {
+        //             empty = true;
+        //         }
+        //     });
+        //     if (empty===true) {
+        //         $('#submitdata').attr('disabled', 'disabled');
+        //     } else {
+        //         $('#submitdata').removeAttr('disabled');
+        //     }
+        // });
+
+        $(document).on('change keyup', '.required', function (e) {
+            let Disabled = true;
+            $(".required").each(function () {
+                let value = this.value
+                if ((value) && (value.trim() != '')) {
+                    Disabled = false
+                } else {
+                    Disabled = true
+                    return false
+                }
+            });
+
+            if (Disabled) {
+                $('#submitdata').prop("disabled", true);
+            } else {
+                $('#submitdata').prop("disabled", false);
+            }
+        })
+
+        $(document).ready(function () {
+            $('.modal').each(() => {
+                var pages = $(this).find('.modal-split');
+                var pagetrack = 0
+                pages.hide();
+                pages.eq(0).show();
+                $('#submitdata').click(() => {
+                    if (pagetrack < pages.length - 1) {
+                        pagetrack++;
+                        pages.hide();
+                        pages.eq(pagetrack).show();
+                    }
+                })
+            })
+        })
+    })
     return (
         <>
             <Modal show={props.status} onHide={props.handleclose} backdrop="static" keyboard={false} className="modal-donasi">
                 <Modal.Header closeButton>
-                    {/* <Modal.Title className="align-items-center justify-content-center">Donasi Anda bisa disalurkan melalui</Modal.Title> */}
                 </Modal.Header>
-                <Modal.Body className="pt-0">
-                    <div className="row align-items-center justify-content-center mb-5">
-                        <div className="col-md-11 col-lg-10">
-                            <h3 className="mb-5 mb-md-0 text-center">
-                                Donasi Anda bisa disalurkan melalui
+                <div className="modal-body pt-0">
+                    <div className="modal-split">
+                        <div className="row align-items-center justify-content-center mb-5">
+                            <div className="col-md-11 col-lg-10">
+                                <h3 className="mb-5 mb-md-0 text-center">
+                                    Donasi untuk {props.judulprog}
+                                </h3>
+                            </div>
+                        </div>
+                        <form>
+                            <div className="form-group">
+                                <label htmlFor="recipient-nominal" className="col-form-label">Nominal:</label>
+                                <div className="input-group mb-3">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text">Rp.</span>
+                                    </div>
+                                    <input type="text" className="form-control required" aria-label="Amount (to the nearest rupiah)" name="nominal" />
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="recipient-nama" className="col-form-label">Nama:</label>
+                                <input type="text" className="form-control required" id="recipient-nama" name="nama" />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="recipient-email" className="col-form-label">Email:</label>
+                                <input type="email" className="form-control required" id="recipient-email" name="email" />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="recipient-nohp" className="col-form-label">No.Handphone:</label>
+                                <input type="text" className="form-control required" id="recipient-nohp" name="nohp" />
+                            </div>
+                            <button type="submit" className="btn btn-donasi-sekarang w-100" id="submitdata" disabled>Lanjut ke Metode Donasi</button>
+                        </form>
+                    </div>
+                    <div className="modal-split">
+                        <div className="row align-items-center justify-content-center mb-5">
+                            <div className="col-md-11 col-lg-10">
+                                <h3 className="mb-5 mb-md-0 text-center">
+                                    Donasi Anda bisa disalurkan melalui
                             </h3>
-                        </div>
-                    </div>
-                    {props.linkbb !== "null"
-                        ?
-                        <>
-                            <div className="row align-items-center justify-content-center mb-5">
-                                <div className="col-md-11 col-lg-11">
-                                    <button className="btn btn-light rounded-top-right rounded-bottom-left rounded-top-left rounded-bottom-right rounded-sm w-100 align-items-center justify-content-center btn-via-bb" onClick={() => window.open(`${props.linkbb}`, '_blank')}>
-                                        <img src={`${process.env.PUBLIC_URL}/images/donasi/berkahberjamaah.png`} className="img-fluid" height="35" width="35" />
-                                        <h3 className="mb-0 mt-1 ml-2">
-                                            <strong>Berkah Berjamaah</strong>
-                                        </h3>
-                                    </button>
-                                </div>
                             </div>
-                            <div className="row align-items-center justify-content-center mb-3">
-                                <div className="col-md-11 col-lg-11">
-                                    <h4 className="mb-5 mb-md-0 text-center">
-                                        Atau
+                        </div>
+                        {props.linkbb !== "null"
+                            ?
+                            <>
+                                <div className="row align-items-center justify-content-center mb-5">
+                                    <div className="col-md-11 col-lg-11">
+                                        <button className="btn btn-light rounded-top-right rounded-bottom-left rounded-top-left rounded-bottom-right rounded-sm w-100 align-items-center justify-content-center btn-via-bb" onClick={() => window.open(`${props.linkbb}`, '_blank')}>
+                                            <img src={`${process.env.PUBLIC_URL}/images/donasi/berkahberjamaah.png`} className="img-fluid" height="35" width="35" />
+                                            <h3 className="mb-0 mt-1 ml-2">
+                                                <strong>Berkah Berjamaah</strong>
+                                            </h3>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="row align-items-center justify-content-center mb-3">
+                                    <div className="col-md-11 col-lg-11">
+                                        <h4 className="mb-5 mb-md-0 text-center">
+                                            Atau
                             </h4>
+                                    </div>
                                 </div>
-                            </div>
-                        </>
-                        :
-                        <></>
-                    }
-                    {
-                        norek.map((doc, idx) => {
-                            if (doc.bank === "Mandiri") {
-                                return (
-                                    <div className="row rek-mandiri mb-5">
-                                        <div className="col-4 col-md-4">
-                                            <img src={`${process.env.PUBLIC_URL}/images/donasi/mandiri.png`} alt="bank mandiri" className="img-fluid" />
-                                        </div>
-                                        <div className="col-8 col-md-8">
-                                            <span className="text-muted" style={{ fontSize: `16px` }}>Bank Mandiri <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
-                                            <span className="text-muted" style={{ fontSize: `16px` }}>{doc.norek}</span>
-                                            <CopyToClipboard onCopy={handleMandiri} text={doc.norek}>
-                                                <button className="cpy" onClick={norekcopied}> <i className="far fa-clone fa" /></button>
-                                            </CopyToClipboard>
-                                            <span className="norekmessage" />
-                                        </div>
-                                    </div>
-                                )
-                            }
-                            else if (doc.bank === "BSM") {
-                                return (
-                                    <div className="row rek-bsm mb-5">
-                                        <div className="col-4 col-md-4">
-                                            <img src={`${process.env.PUBLIC_URL}/images/donasi/mandiris.png`} alt="bank mandiri syariah" className="img-fluid" />
-                                        </div>
-                                        <div className="col-8 col-md-8">
-                                            <span className="text-muted" style={{ fontSize: `16px` }}>Bank Mandiri Syariah<br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
-                                            <span className="text-muted" style={{ fontSize: `16px` }}>{doc.norek}</span>
-                                            <CopyToClipboard onCopy={handleMandiris} text={doc.norek}>
-                                                <button className="cpy" onClick={norekmandiriscopied}> <i className="far fa-clone fa" /></button>
-                                            </CopyToClipboard>
-                                            <span className="norekmandirismessage" />
-                                        </div>
-                                    </div>
-                                )
-                            }
-                            else if (doc.bank === "BNI") {
-                                return (
-                                    <div className="row rek-bsm mb-5">
-                                        <div className="col-4 col-md-4">
-                                            <img src={`${process.env.PUBLIC_URL}/images/donasi/bni.png`} alt="bank BNI" className="img-fluid" />
-                                        </div>
-                                        <div className="col-8 col-md-8">
-                                            <span className="text-muted" style={{ fontSize: `16px` }}>Bank BNI <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
-                                            <span className="text-muted" style={{ fontSize: `16px` }}>{doc.norek}</span>
-                                            <CopyToClipboard onCopy={handlebni} text={doc.norek}>
-                                                <button className="cpy" onClick={norekbnicopied}> <i className="far fa-clone fa" /></button>
-                                            </CopyToClipboard>
-                                            <span className="norekbnimessage" />
-                                        </div>
-                                    </div>
-                                )
-                            }
-                            else if (doc.bank === "BNISyariah") {
-                                return (
-                                    <div className="row rek-bsm mb-5">
-                                        <div className="col-4 col-md-4">
-                                            <img src={`${process.env.PUBLIC_URL}/images/donasi/bnis.png`} alt="bank BNI syariah" className="img-fluid" />
-                                        </div>
-                                        <div className="col-8 col-md-8">
-                                            <span className="text-muted" style={{ fontSize: `16px` }}>Bank BNI Syariah <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
-                                            <span className="text-muted" style={{ fontSize: `16px` }}>{doc.norek}</span>
-                                            <CopyToClipboard onCopy={handlebnis} text={doc.norek}>
-                                                <button className="cpy" onClick={norekbniscopied}> <i className="far fa-clone fa" /></button>
-                                            </CopyToClipboard>
-                                            <span className="norekbnismessage" />
-                                        </div>
-                                    </div>
-                                )
-                            }
-                            else if (doc.bank === "BRI") {
-                                return (
-                                    <div className="row rek-bri mb-5">
-                                        <div className="col-4 col-md-4">
-                                            <img src={`${process.env.PUBLIC_URL}/images/donasi/bri.png`} alt="bank BRI" className="img-fluid" />
-                                        </div>
-                                        <div className="col-8 col-md-8">
-                                            <span className="text-muted" style={{ fontSize: `16px` }}>Bank BRI <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
-                                            <span className="text-muted" style={{ fontSize: `16px` }}>{doc.norek}</span>
-                                            <CopyToClipboard onCopy={handlebri} text={doc.norek}>
-                                                <button className="cpy" onClick={norekbricopied}> <i className="far fa-clone fa" /></button>
-                                            </CopyToClipboard>
-                                            <span className="norekbrimessage" />
-                                        </div>
-                                    </div>
-                                )
-                            }
-                            else if (doc.bank === "BRISyariah") {
-                                return (
-                                    <div className="row rek-bsm mb-5">
-                                        <div className="col-4 col-md-4">
-                                            <img src={`${process.env.PUBLIC_URL}/images/donasi/bris.png`} alt="bank bri syariah" className="img-fluid" />
-                                        </div>
-                                        <div className="col-8 col-md-8">
-                                            <span className="text-muted" style={{ fontSize: `16px` }}>Bank BRI Syariah <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
-                                            <span className="text-muted" style={{ fontSize: `16px` }}>{doc.norek}</span>
-                                            <CopyToClipboard onCopy={handlebris} text={doc.norek}>
-                                                <button className="cpy" onClick={norekbriscopied}> <i className="far fa-clone fa" /></button>
-                                            </CopyToClipboard>
-                                            <span className="norekbrismessage" />
-                                        </div>
-                                    </div>
-                                )
-                            }
-                        })
-                    }
-                    <div className="row align-items-center justify-content-center mb-5">
-                        <div className="col-md-10 col-lg-10">
-                            {
-                                qrcode.map((doc, idx) => {
+                            </>
+                            :
+                            <></>
+                        }
+                        {
+                            norek.map((doc, idx) => {
+                                if (doc.bank === "Mandiri") {
                                     return (
-                                        <img className="img-fluid w-100" src={doc.qrcode} alt="QR Code" />
+                                        <div className="row rek-mandiri mb-5">
+                                            <div className="col-4 col-md-4">
+                                                <img src={`${process.env.PUBLIC_URL}/images/donasi/mandiri.png`} alt="bank mandiri" className="img-fluid" />
+                                            </div>
+                                            <div className="col-8 col-md-8">
+                                                <span className="text-muted" style={{ fontSize: `16px` }}>Bank Mandiri <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
+                                                <span className="text-muted" style={{ fontSize: `16px` }}>{doc.norek}</span>
+                                                <CopyToClipboard onCopy={handleMandiri} text={doc.norek}>
+                                                    <button className="cpy" onClick={norekcopied}> <i className="far fa-clone fa" /></button>
+                                                </CopyToClipboard>
+                                                <span className="norekmessage" />
+                                            </div>
+                                        </div>
                                     )
-                                })
-                            }
-                            {/* <img className="img-fluid w-100" src={`${process.env.PUBLIC_URL}/images/donasi/qrcode2.jpeg`} alt="QR Code 1" /> */}
+                                }
+                                else if (doc.bank === "BSM") {
+                                    return (
+                                        <div className="row rek-bsm mb-5">
+                                            <div className="col-4 col-md-4">
+                                                <img src={`${process.env.PUBLIC_URL}/images/donasi/mandiris.png`} alt="bank mandiri syariah" className="img-fluid" />
+                                            </div>
+                                            <div className="col-8 col-md-8">
+                                                <span className="text-muted" style={{ fontSize: `16px` }}>Bank Mandiri Syariah<br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
+                                                <span className="text-muted" style={{ fontSize: `16px` }}>{doc.norek}</span>
+                                                <CopyToClipboard onCopy={handleMandiris} text={doc.norek}>
+                                                    <button className="cpy" onClick={norekmandiriscopied}> <i className="far fa-clone fa" /></button>
+                                                </CopyToClipboard>
+                                                <span className="norekmandirismessage" />
+                                            </div>
+                                        </div>
+                                    )
+                                }
+                                else if (doc.bank === "BNI") {
+                                    return (
+                                        <div className="row rek-bsm mb-5">
+                                            <div className="col-4 col-md-4">
+                                                <img src={`${process.env.PUBLIC_URL}/images/donasi/bni.png`} alt="bank BNI" className="img-fluid" />
+                                            </div>
+                                            <div className="col-8 col-md-8">
+                                                <span className="text-muted" style={{ fontSize: `16px` }}>Bank BNI <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
+                                                <span className="text-muted" style={{ fontSize: `16px` }}>{doc.norek}</span>
+                                                <CopyToClipboard onCopy={handlebni} text={doc.norek}>
+                                                    <button className="cpy" onClick={norekbnicopied}> <i className="far fa-clone fa" /></button>
+                                                </CopyToClipboard>
+                                                <span className="norekbnimessage" />
+                                            </div>
+                                        </div>
+                                    )
+                                }
+                                else if (doc.bank === "BNISyariah") {
+                                    return (
+                                        <div className="row rek-bsm mb-5">
+                                            <div className="col-4 col-md-4">
+                                                <img src={`${process.env.PUBLIC_URL}/images/donasi/bnis.png`} alt="bank BNI syariah" className="img-fluid" />
+                                            </div>
+                                            <div className="col-8 col-md-8">
+                                                <span className="text-muted" style={{ fontSize: `16px` }}>Bank BNI Syariah <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
+                                                <span className="text-muted" style={{ fontSize: `16px` }}>{doc.norek}</span>
+                                                <CopyToClipboard onCopy={handlebnis} text={doc.norek}>
+                                                    <button className="cpy" onClick={norekbniscopied}> <i className="far fa-clone fa" /></button>
+                                                </CopyToClipboard>
+                                                <span className="norekbnismessage" />
+                                            </div>
+                                        </div>
+                                    )
+                                }
+                                else if (doc.bank === "BRI") {
+                                    return (
+                                        <div className="row rek-bri mb-5">
+                                            <div className="col-4 col-md-4">
+                                                <img src={`${process.env.PUBLIC_URL}/images/donasi/bri.png`} alt="bank BRI" className="img-fluid" />
+                                            </div>
+                                            <div className="col-8 col-md-8">
+                                                <span className="text-muted" style={{ fontSize: `16px` }}>Bank BRI <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
+                                                <span className="text-muted" style={{ fontSize: `16px` }}>{doc.norek}</span>
+                                                <CopyToClipboard onCopy={handlebri} text={doc.norek}>
+                                                    <button className="cpy" onClick={norekbricopied}> <i className="far fa-clone fa" /></button>
+                                                </CopyToClipboard>
+                                                <span className="norekbrimessage" />
+                                            </div>
+                                        </div>
+                                    )
+                                }
+                                else if (doc.bank === "BRISyariah") {
+                                    return (
+                                        <div className="row rek-bsm mb-5">
+                                            <div className="col-4 col-md-4">
+                                                <img src={`${process.env.PUBLIC_URL}/images/donasi/bris.png`} alt="bank bri syariah" className="img-fluid" />
+                                            </div>
+                                            <div className="col-8 col-md-8">
+                                                <span className="text-muted" style={{ fontSize: `16px` }}>Bank BRI Syariah <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
+                                                <span className="text-muted" style={{ fontSize: `16px` }}>{doc.norek}</span>
+                                                <CopyToClipboard onCopy={handlebris} text={doc.norek}>
+                                                    <button className="cpy" onClick={norekbriscopied}> <i className="far fa-clone fa" /></button>
+                                                </CopyToClipboard>
+                                                <span className="norekbrismessage" />
+                                            </div>
+                                        </div>
+                                    )
+                                }
+                            })
+                        }
+                        <div className="row align-items-center justify-content-center mb-5">
+                            <div className="col-md-10 col-lg-10">
+                                {
+                                    qrcode.map((doc, idx) => {
+                                        return (
+                                            <img className="img-fluid w-100" src={doc.qrcode} alt="QR Code" />
+                                        )
+                                    })
+                                }
+                                {/* <img className="img-fluid w-100" src={`${process.env.PUBLIC_URL}/images/donasi/qrcode2.jpeg`} alt="QR Code 1" /> */}
+                            </div>
                         </div>
-                    </div>
-                    <div className="row align-items-center justify-content-center mb-3">
-                        <div className="col-md-11 col-lg-11">
-                            <h5 className="mb-5 mb-md-0 text-center">
-                                Sudah berdonasi? Jangan lupa konfirmasi ya
+                        <div className="row align-items-center justify-content-center mb-3">
+                            <div className="col-md-11 col-lg-11">
+                                <h5 className="mb-5 mb-md-0 text-center">
+                                    Sudah berdonasi? Jangan lupa konfirmasi ya
                             </h5>
+                            </div>
                         </div>
-                    </div>
-                    <div className="row align-items-center justify-content-center mb-5">
-                        <div className="col-md-11 col-lg-11">
-                            <button className="btn btn-success rounded-top-right rounded-bottom-left rounded-top-left rounded-bottom-right rounded-sm w-100 btn-via-wa" onClick={() => window.open(`https://api.whatsapp.com/send?phone=+${phone}*&text=%20${text}`, `_blank`)}>
-                                <i className="fa fa-whatsapp" /> Via WhatsApp
+                        <div className="row align-items-center justify-content-center mb-5">
+                            <div className="col-md-11 col-lg-11">
+                                <button className="btn btn-success rounded-top-right rounded-bottom-left rounded-top-left rounded-bottom-right rounded-sm w-100 btn-via-wa" onClick={() => window.open(`https://api.whatsapp.com/send?phone=+${phone}*&text=%20${text}`, `_blank`)}>
+                                    <i className="fa fa-whatsapp" /> Via WhatsApp
                             </button>
+                            </div>
                         </div>
                     </div>
-                </Modal.Body>
+                </div>
             </Modal>
         </>
     )

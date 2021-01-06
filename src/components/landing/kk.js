@@ -78,7 +78,7 @@ function KK() {
     },[])
     const gambarkk = kk.map((doc, idx) => {
         return (
-            <Link to={`/kk/${doc.idKk}`} key={idx}>
+            <Link to={`/kepedulian-kita/${doc.idKk}`} key={idx}>
                 <div className="w-100" style={{ backgroundImage: `url(${doc.gambarKk})` }}>
                     <img src={`${doc.gambarKk}`} alt="..." className="img-fluid" />
                 </div>
@@ -88,7 +88,7 @@ function KK() {
     const tulisankk = kk.map((doc, idx) => {
         return (
             <div className="col-12 text-center" key={idx}>
-                <Link to={`/kk/${doc.idKk}`}>
+                <Link to={`/kepedulian-kita/${doc.idKk}`}>
                         <h3 className="text-left" style={{ fontSize: `20px`, color: `black` }}>{doc.judulKk}</h3>
                         <blockquote>
                         <p className="tulisan-kk text-left">
@@ -217,9 +217,9 @@ function KK() {
                     </div>
                     <div className="row align-items-center mb-7 mt-3">
                         <div className="mx-auto" style={{ zIndex: `10` }}>
-                            <a className="btn btn-sm btn-primary btn-kkita" href="/kk" style={{backgroundColor:`rgb(47,57,144)`}}>
+                            <Link className="btn btn-sm btn-primary btn-kkita" to="/kepedulian-kita" style={{backgroundColor:`rgb(47,57,144)`}}>
                                 Lihat Lainnya
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

@@ -41,7 +41,7 @@ function SkeletonDetailGaleri() {
 
 function DetailGaleri(props) {
     const id = props.match.params.id
-    const urlDetailgaleri = `https://peaceful-meadow-45867.herokuapp.com/informasis/${id}`
+    const urlDetailgaleri = `https://peaceful-meadow-45867.herokuapp.com/galeris/${id}`
     const [detailgaleri, setDetailgaleri] = useState([])
     const [detailgalerigbr, setDetailgalerigbr] = useState([])
     const [isLoadingdetgaleri, setIsLoadingdetgaleri] = useState(true)

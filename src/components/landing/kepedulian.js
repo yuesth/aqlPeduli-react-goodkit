@@ -67,8 +67,8 @@ function KepedulianLanding() {
         var namaKategori2 = namaKategori.replace(/\s/g, "")
         return (
                 <div className="col-6 col-md-4 col-lg justify-content-center lift m-lg-1 pb-1 kartu-kep" key={idx}>
-                    <div style={{ textAlign: `center`, height: `8rem` }} className="align-items-center justify-content-center">
-                        <img className="img-fluid rounded-top-left rounded-bottom-right" src={pathGbr2} alt="..." width="110" height="120" />
+                    <div style={{ textAlign: `center`, height: `7rem` }} className="align-items-center justify-content-center">
+                        <img className="img-fluid rounded-top-left rounded-bottom-right" src={pathGbr2} alt="..." width="80" height="85" />
                     </div>
                     <div className="text-center w-100" style={{height:`3rem`, textAlign:`center`}}>
                         <h4 style={{ color: `#000000` }}>

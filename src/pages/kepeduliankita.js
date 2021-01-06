@@ -77,7 +77,7 @@ function LayoutKK() {
     }
     const listkk = kk.slice(0, visibleKK).map((doc, idx) => {
         return (
-            <div className="row align-items-center mb-7 fade-in">
+            <div className="row align-items-center mb-10 fade-in">
                 <div className="col-md-6">
                     <img className="img-fluid mb-6 mb-md-0" src={doc.gambar} alt="..." />
                 </div>
@@ -88,7 +88,7 @@ function LayoutKK() {
                     <p className="text-muted mb-2 konten-kk-list">
                         {doc.konten}
                     </p>
-                    <Link to={`/kk/${doc.id}`}>
+                    <Link to={`/kepedulian-kita/${doc.id}`}>
                         <a className="h6 text-uppercase" href={`/kk/${doc.id}`}>
                             Baca Lanjut <i className="fe fe-arrow-right" />
                         </a>
@@ -109,7 +109,7 @@ function LayoutKK() {
                 </div>
                 <div className="row justify-content-center">
                     <div className="col-md-10 col-lg-8 text-center">
-                        <p className="mb-9">
+                        <p className="mb-10">
                             AQL Peduli setiap hari terus bergerak dan tiada henti berkiprah untuk umat, apa saja yang ada di sekitar kita dan seantero dunia.
                             Berikut ini beberapa contoh program kepedulian kita dari donasi teman-teman semua.
                         </p>

@@ -234,8 +234,8 @@ function App() {
               <Route path="/profil" exact component={LazyProfil}></Route>
               <Route path="/relawan" exact component={LazyRelawan}></Route>
               <Route path="/relawan-sukses" exact component={LazyRelawanSukses}></Route>
-              <Route path="/kk" exact component={LazyKepeduliankita}></Route>
-              <Route path="/kk/:id" exact component={LazyDetailKepeduliankita}></Route>
+              <Route path="/kepedulian-kita" exact component={LazyKepeduliankita}></Route>
+              <Route path="/kepedulian-kita/:id" exact component={LazyDetailKepeduliankita}></Route>
               <Route path="/berita" exact component={LazyBerita}></Route>
               <Route path="/berita/:paramBerita" exact component={LazyDetailBerita}></Route>
               <Route path="/beritanasional" exact component={LazyNasionalBerita}></Route>
