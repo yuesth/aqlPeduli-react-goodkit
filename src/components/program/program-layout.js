@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import ProgressBar from 'react-bootstrap/ProgressBar'
 import Isotope from 'isotope-layout'
 import "./program-layout.css"
 // import $ from 'jquery'
@@ -106,8 +107,8 @@ function ProgramLayout(props) {
                 judul: `${data.judulProgram}`,
                 tanggal: `${data.created_at}`,
                 gambar: `${data.gambarProgram.url}`,
-                total: `${data.totaldanaProgram}`,
-                terkumpul: `${data.totalterkumpulProgram}`,
+                total: data.totaldanaProgram,
+                terkumpul: data.totalterkumpulProgram,
                 durasi: `${data.durasiProgram}`,
                 des: `${data.deskripsiProgram}`,
                 linkshare: `${data.linkShareProgram}`,
@@ -186,11 +187,13 @@ function ProgramLayout(props) {
 
     function PersenTerkumpul(props) {
         var persen = (props.terkumpul / props.total) * 100;
+        console.log(persen)
         return (
-            <div className="progress">
-                <div className="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow={persen}>
-                </div>
-            </div>
+            // <div className="progress">
+            //     <div className="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow={persen}>
+            //     </div>
+            // </div>
+            <ProgressBar animated now={persen} srOnly></ProgressBar>
         )
     }
 

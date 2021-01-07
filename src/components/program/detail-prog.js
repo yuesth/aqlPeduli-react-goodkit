@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Modal from 'react-bootstrap/Modal'
+import ProgressBar from 'react-bootstrap/ProgressBar'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import Sticky from 'wil-react-sticky'
 import "./detail-prog.css"
@@ -598,11 +599,11 @@ function DetailProg(props) {
                                         </div>
                                         <div style={{ height: `5rem` }} className="mb-3">
                                             <span style={{ fontSize: `1rem` }}>Rp.{props.itemprog.terkumpul !== null ? idrterkumpul : 'Rp.0.00'} dari Rp.<strong>{props.itemprog.total !== null && idrtotal}</strong></span>
-                                            {/* <ProgressBar now={persenTerkumpul} /> */}
-                                            <div className="progress">
+                                            {/* <div className="progress">
                                                 <div className="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow={persenTerkumpul}>
                                                 </div>
-                                            </div>
+                                            </div> */}
+                                            <ProgressBar animated now={persenTerkumpul} srOnly></ProgressBar>
                                             {props.itemprog.durasi !== null && <SisaHari tanggal={props.itemprog.tanggal} durasi={props.itemprog.durasi} />
                                             }
                                         </div>

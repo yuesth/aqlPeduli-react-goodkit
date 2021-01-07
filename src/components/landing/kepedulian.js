@@ -71,7 +71,7 @@ function KepedulianLanding() {
                     <div style={{ textAlign: `center`, height: `auto` }} className="align-items-center justify-content-center">
                         <img className="img-fluid" src={pathGbr2} alt="..." width="65" height="70" />
                     </div>
-                    <div className="text-center px-md-3 d-flex flex-column" style={{ height: `3rem`, textAlign: `center`, justifyContent: `center` }}>
+                    <div className="text-center px-md-3 px-2 d-flex flex-column" style={{ height: `3rem`, textAlign: `center`, justifyContent: `center` }}>
                         <h4 style={{ color: `#000000` }} className="my-auto label-kep">
                             {doc.namaKateg}
                         </h4>
