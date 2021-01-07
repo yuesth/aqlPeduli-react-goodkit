@@ -1,12 +1,8 @@
 .img-thumbnail {
-    border-radius: 33px;
     width: 30px;
-    height: 30px
-}
-
-.fab:before {
-    position: relative;
-    top: 13px
+    height: 30px;
+    background-color: transparent;
+    border: none;
 }
 
 .smd {
@@ -26,4 +22,14 @@
 .message {
     font-size: 11px;
     color: #ee5535
+}
+
+.shareLinkDetail{
+    justify-content: end;
+}
+
+@media only screen and (max-width:590px){
+    .shareLinkDetail{
+        justify-content: center;
+    }
 }

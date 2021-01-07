@@ -1,20 +1,20 @@
 import './App.css';
 import React, { Suspense, lazy } from 'react'
 import ScrollToTop from './scrollToTop'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import DetailProgram from "./pages/detail-program"
-import Program from "./pages/program"
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 
 // import Landing from "./pages/landing"
 const LazyLanding = lazy(() => import('./pages/landing'))
-// const LazyProgram = lazy(() => import('./pages/program'))
+// import Program from "./pages/program"
+const LazyProgram = lazy(() => import('./pages/program'))
 // import Profil from "./pages/profil"
 const LazyProfil = lazy(() => import('./pages/profil'))
 // import Relawan from "./pages/relawan"
 const LazyRelawan = lazy(() => import('./pages/relawan'))
 // import RelawanSukses from "./pages/relawan-sukses"
 const LazyRelawanSukses = lazy(() => import('./pages/relawan-sukses'))
-// const LazyDetailProgram = lazy(() => import('./pages/detail-program'))
+// import DetailProgram from "./pages/detail-program"
+const LazyDetailProgram = lazy(() => import('./pages/detail-program'))
 // import Kepeduliankita from "./pages/kepeduliankita"
 const LazyKepeduliankita = lazy(() => import('./pages/kepeduliankita'))
 // import DetailKepeduliankita from "./pages/detail-kepeduliankita"
@@ -39,6 +39,8 @@ const LazyDetailKhazanah = lazy(() => import('./pages/detail-khazanah'))
 const LazyInformasi = lazy(() => import('./pages/informasi'))
 // import DetailGaleri from "./pages/detail-galeri"
 const LazyDetailGaleri = lazy(() => import('./pages/detail-galeri'))
+const LazyPage404 = lazy(() => import('./pages/page404'))
+
 
 
 // function AsLanding() {
@@ -229,8 +231,8 @@ function App() {
           <Suspense fallback={<></>}>
             <Switch>
               <Route path="/" exact component={LazyLanding}></Route>
-              <Route path="/kepedulian" exact component={Program}></Route>
-              <Route path="/kepedulian/:paramKepedulian" exact component={DetailProgram}></Route>
+              <Route path="/kepedulian" exact component={LazyProgram}></Route>
+              <Route path="/kepedulian/:paramKepedulian" exact component={LazyDetailProgram}></Route>
               <Route path="/profil" exact component={LazyProfil}></Route>
               <Route path="/relawan" exact component={LazyRelawan}></Route>
               <Route path="/relawan-sukses" exact component={LazyRelawanSukses}></Route>
@@ -246,6 +248,8 @@ function App() {
               <Route path="/khazanah/:paramKhazanah" exact component={LazyDetailKhazanah}></Route>
               <Route path="/informasi" exact component={LazyInformasi}></Route>
               <Route path="/galeri/:id" exact component={LazyDetailGaleri}></Route>
+              <Route path="/404" component={LazyPage404}></Route>
+              <Redirect to="/404"></Redirect>
             </Switch>
           </Suspense>
         </ScrollToTop>

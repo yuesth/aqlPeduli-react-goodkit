@@ -60,18 +60,19 @@ function KepedulianLanding() {
             }
         )
     }, [])
-    const arrGbr = ['natural-disaster', 'healthcare', 'jama-masjid','peduli-dunia-islam', 'give-love', 'beverages']
+    const arrGbr = ['natural-disaster', 'healthcare', 'jama-masjid', 'peduli-dunia-islam', 'give-love', 'beverages']
     const listKategori2 = kateg.map((doc, idx) => {
         var pathGbr2 = `${process.env.PUBLIC_URL}/images/kepedulian/${arrGbr[idx]}.png`
         var namaKategori = `${doc.namaKateg}`
         var namaKategori2 = namaKategori.replace(/\s/g, "")
         return (
-                <div className="col-6 col-md-4 col-lg justify-content-center lift m-lg-1 pb-1 kartu-kep" key={idx}>
-                    <div style={{ textAlign: `center`, height: `7rem` }} className="align-items-center justify-content-center">
-                        <img className="img-fluid rounded-top-left rounded-bottom-right" src={pathGbr2} alt="..." width="80" height="85" />
+            <div className="col-6 col-md-4 py-3" key={idx}>
+                <div className="py-md-4 py-2 px-md-4 px-2 lift kartu-kep d-flex align-items-center">
+                    <div style={{ textAlign: `center`, height: `auto` }} className="align-items-center justify-content-center">
+                        <img className="img-fluid" src={pathGbr2} alt="..." width="65" height="70" />
                     </div>
-                    <div className="text-center w-100" style={{height:`3rem`, textAlign:`center`}}>
-                        <h4 style={{ color: `#000000` }}>
+                    <div className="text-center px-md-3 d-flex flex-column" style={{ height: `3rem`, textAlign: `center`, justifyContent: `center` }}>
+                        <h4 style={{ color: `#000000` }} className="my-auto label-kep">
                             {doc.namaKateg}
                         </h4>
                     </div>
@@ -82,32 +83,26 @@ function KepedulianLanding() {
                         }
                     }} className="stretched-link"></Link>
                 </div>
+            </div>
         )
     })
     return (
         < section className="mt-7 mt-md-7 pt-7 pt-md-7 mb-7 mb-md-7 pb-7 pb-md-7" >
             <div className="container-xl">
                 <div className="row align-items-center justify-content-center mb-7">
-                    <div className="col-md-6" style={{ textAlign: `center`, zIndex:`999` }}>
-                        <h2 style={{fontSize:`2rem`}}>
+                    <div className="col-md-6" style={{ textAlign: `center`, zIndex: `999` }}>
+                        <h2 style={{ fontSize: `2rem` }}>
                             Kepedulian <br />
                         </h2>
                     </div>
                 </div>
-                <div className="row car-kep align-items-center justify-content-center">
-                    {/* <div className=""> */}
-                        {isLoading ?
-                            <Skeleton2Layout></Skeleton2Layout>
-                            :
-                            // <Carousel breakPoints={breakPoints}>
-                            listKategori2
-                            // </Carousel>
-                        }
-                        {/* <div className="main-kepedulian">
-                            {listKategori2}
-                        </div> */}
-                    </div>
-                {/* </div> */}
+                <div className="row car-kep">
+                    {isLoading ?
+                        <Skeleton2Layout></Skeleton2Layout>
+                        :
+                        listKategori2
+                    }
+                </div>
             </div>
         </section >
 
@@ -115,78 +110,3 @@ function KepedulianLanding() {
 }
 
 export default KepedulianLanding
-
-// < section className = "pt-10 pt-md-11 bg-light" >
-//     <div className="container-lg">
-//         <div className="row align-items-center justify-content-center mb-9">
-//             <div className="col-md-6" style={{ textAlign: `center` }}>
-//                 {/* Heading */}
-//                 <h2 className="display-4 mb-4 mb-md-0">
-//                     Kepedulian <br />
-//                 </h2>
-//             </div>
-//         </div>
-//         <div className="row">
-//             <div className="col-12">
-//                 {/* <Carousel breakPoints={breakPoints}>
-//                         {listKategori}
-//                     </Carousel> */}
-//             </div>
-//         </div>
-//     </div>
-//     </section >
-
-{/* <div className="col-12 justify-content-center" style={{ maxWidth: 288 }}>
-                                <div style={{ textAlign: `center`, minHeight: `151px` }}>
-                                    <img className="img-fluid rounded-top-left rounded-bottom-right mx-auto" src={`${process.env.PUBLIC_URL}/images/kepedulian/natural-disaster.png`} alt="..." />
-                                </div>
-                                <div className="py-4 text-center">
-                                    <p className="font-weight-bold mb-0">
-                                        Peduli Bencana
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="col-12" style={{ maxWidth: 288 }}>
-                                <div style={{ textAlign: `center`, minHeight: `151px` }}>
-                                    <img className="img-fluid rounded-top-left rounded-bottom-right" src={`${process.env.PUBLIC_URL}/images/kepedulian/healthcare.png`} alt="..." />
-                                </div>
-                                <div className="py-4 text-center">
-                                    <p className="font-weight-bold mb-0">
-                                        Peduli Kesehatan
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="col-12" style={{ maxWidth: 288 }}>
-                                <div style={{ textAlign: `center`, minHeight: `151px` }}>
-                                    <img className="img-fluid rounded-top-left rounded-bottom-right" src={`${process.env.PUBLIC_URL}/images/kepedulian/beverages.png`} alt="..." />
-                                </div>
-                                <div className="py-4 text-center">
-                                    <p className="font-weight-bold mb-0">
-                                        Peduli Masjid
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="col-12" style={{ maxWidth: 288 }}>
-                                <div style={{ textAlign: `center`, minHeight: `151px` }}>
-                                    <img className="img-fluid rounded-top-left rounded-bottom-right" src={`${process.env.PUBLIC_URL}/images/kepedulian/give-love.png`} alt="..." />
-                                </div>
-                                <div className="py-4 text-center">
-                                    <p className="font-weight-bold mb-0">
-                                        Peduli Pangan
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="col-12" style={{ maxWidth: 288 }}>
-                                <div style={{ textAlign: `center`, minHeight: `151px` }}>
-                                    <img className="img-fluid rounded-top-left rounded-bottom-right" src={`${process.env.PUBLIC_URL}/images/kepedulian/jama-masjid.png`} alt="..." />
-                                </div>
-                                <div className="py-4 text-center">
-                                    <p className="font-weight-bold mb-0">
-                                        Dapur Sedekah
-                                    </p>
-                                </div>
-                            </div> */}
-
-{/* <div className="flickity-viewport-visible mx-n4" data-flickity="{&quot;cellAlign&quot;: &quot;left&quot;, &quot;imagesLoaded&quot;: true, &quot;pageDots&quot;: false, &quot;prevNextButtons&quot;: false, &quot;contain&quot;: true}">
-    {listKategori2}
-</div> */}

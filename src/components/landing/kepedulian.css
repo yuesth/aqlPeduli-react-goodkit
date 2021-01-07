@@ -18,16 +18,14 @@ button.rec-dot_active{
   border-radius: 0%;
 }
 
-/* button.bTybGL:hover:enabled{
-  background-color: #3c2be4;
+.kartu-kep{
+  border: solid 1px #dfdddd;
+  border-radius: 5px;
 }
 
-button.kyJvRZ:hover:enabled{
-  background-color: #3c2be4;
-} */
-
-.kartu-kep{
-  margin-top: 2rem;
+.label-kep{
+  font-size: x-small;
+  text-transform: uppercase;
 }
 
 @media only screen and (min-width:590px){
@@ -47,4 +45,7 @@ button.kyJvRZ:hover:enabled{
     margin-top: 0;
   }
 
+  .label-kep{
+    font-size: medium;
+  }
 }

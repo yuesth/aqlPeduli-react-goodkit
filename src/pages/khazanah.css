@@ -1,0 +1,24 @@
+.judulKha{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    font-size: 1.25rem;
+    min-height: 4rem;
+}
+
+.tanggalKha, .pemateriKha{
+    font-size: 0.875rem;
+}
+
+@media only screen and (max-width:590px){
+    .judulKha{
+        font-size: small;
+        min-height: 3rem;
+    }
+
+    .tanggalKha, .pemateriKha{
+        font-size: x-small;
+    }
+}

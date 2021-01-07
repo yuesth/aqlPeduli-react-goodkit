@@ -7,10 +7,6 @@ import Helmet from 'react-helmet'
 
 
 function DetailProgram(props) {
-    // const id = props.match.params.id
-    // const id = props.location.state.idprogram
-    // const namaprog = props.match.params.program
-    // var custparam = null
     var fromUpdateLanding = false
     var id = ""
     var urlDetailProgram = ""
@@ -29,7 +25,7 @@ function DetailProgram(props) {
     const [kontenfix, setKontenfix] = useState("")
     const [fromupdate, setFromupdate] = useState(fromUpdateLanding)
     useEffect(() => {
-        fetch(urlDetailProgram).then(res => res.json()).then(parseJson => parseJson.map((parsedJson)=>(
+        fetch(urlDetailProgram).then(res => res.json()).then(parseJson => parseJson.map((parsedJson) => (
             {
                 id: `${parsedJson.id}`,
                 judul: `${parsedJson.judulProgram}`,
@@ -80,26 +76,19 @@ function DetailProgram(props) {
                     }
                 )
             }
-        })).then(
-            (items2) => {
-                var itemup2 = []
-                items2.map((doc) => {
-                    if (doc.idProg === id) {
-                        itemup2.push(doc)
-                    }
-                })
-                setDetailup(itemup2)
-                setIsLoadingdetup(false)
-            }
+        })).then((items2) => {
+            var itemup2 = []
+            items2.map((doc) => {
+                if (doc.idProg === detailprog.id) {
+                    itemup2.push(doc)
+                }
+            })
+            const itemup2sort = itemup2.sort((a, b) => { return new Date(b.tanggalUp) - new Date(a.tanggalUp) })
+            setDetailup(itemup2sort)
+            setIsLoadingdetup(false)
+        }
         )
     }, [])
-    // const itemup = []
-    // detailup.map((doc, idx) => {
-    //     if (doc.idProg === id) {
-    //         itemup.push(doc)
-    //     }
-    // })
-    const sortedItemUp = detailup.sort((a, b) => { return new Date(b.tanggalUp) - new Date(a.tanggalUp) })
     return (
         <>
             <Helmet>
@@ -122,7 +111,7 @@ function DetailProgram(props) {
                 <meta name="twitter:image" content={metadata.img} />
             </Helmet>
             <NavbarGK></NavbarGK>
-            <DetailProg itemprog={detailprog} itemup={sortedItemUp} loadingdetprog={isLoadingdetprog} loadingdetup={isLoadingdetup} fromupdate={fromupdate} kontenfix={kontenfix}></DetailProg>
+            <DetailProg itemprog={detailprog} itemup={detailup} loadingdetprog={isLoadingdetprog} loadingdetup={isLoadingdetup} fromupdate={fromupdate} kontenfix={kontenfix}></DetailProg>
             <FooterGK></FooterGK>
         </>
     )

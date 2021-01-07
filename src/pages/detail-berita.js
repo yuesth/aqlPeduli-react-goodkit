@@ -150,33 +150,33 @@ function DetailBerita(props) {
                                     <DariTanggal tanggal={detailberita.tanggal}></DariTanggal> | {detailberita.penulis}
                                 </span> */}
                                 <div className="row no-gutters">
-                                    <div className="col-7">
+                                    <div className="col-md-7 col-12 mb-5 mb-md-0">
                                         <span className="small text-muted mb-0">
-                                          <i className="fa fa-calendar-o"></i>  <DariTanggal tanggal={detailberita.tanggal}></DariTanggal> | <i className="fa fa-pencil"/> {detailberita.penulis} | <i className="fa fa-tag"/> {detailberita.tag}
+                                            <i className="fa fa-calendar-o"></i>  <DariTanggal tanggal={detailberita.tanggal}></DariTanggal> | <i className="fa fa-pencil" /> {detailberita.penulis} | <i className="fa fa-tag" /> {detailberita.tag}
                                         </span>
                                     </div>
-                                    <div className="col justify-content-end text-right d-flex">
+                                    <div className="col-md col-12 text-right d-flex shareLinkDetail">
                                         <div className="smd">
                                             <a href={`https://twitter.com/intent/tweet?text=${detailberita.judul}%20melalui%20https%3A//aqlpeduli.or.id/berita/${detailberita.linkshare}`} target="_blank" className="d-flex flex-column mx-3">
-                                                <i className=" img-thumbnail fa-twitter fa" style={{ color: '#4c6ef5', backgroundColor: 'aliceblue' }} />
+                                                <i className=" img-thumbnail fa-twitter fa" style={{ color: '#4c6ef5' }} />
                                                 {/* <span style={{ color: `black`, fontSize:`0.8rem` }}>Twitter</span> */}
                                             </a>
                                         </div>
                                         <div className="smd">
                                             <a href={`https://www.facebook.com/sharer/sharer.php?u=https%3A//aqlpeduli.or.id/berita/${detailberita.linkshare}`} target="_blank" className="d-flex flex-column mx-3">
-                                                <i className="img-thumbnail fa-facebook fa" style={{ color: '#3b5998', backgroundColor: '#eceff5' }} />
+                                                <i className="img-thumbnail fa-facebook fa" style={{ color: '#3b5998' }} />
                                                 {/* <span style={{ color: `black`, fontSize:`0.8rem` }}>Facebook</span> */}
                                             </a>
                                         </div>
                                         <div className="smd">
                                             <a href={`https://t.me/share/url?url=https%3A//aqlpeduli.or.id/berita/${detailberita.linkshare}&text=${detailberita.judul}`} target="_blank" className="d-flex flex-column mx-3">
-                                                <i className="img-thumbnail fa-telegram fa" style={{ color: '#4c6ef5', backgroundColor: 'aliceblue' }} />
+                                                <i className="img-thumbnail fa-telegram fa" style={{ color: '#4c6ef5' }} />
                                                 {/* <span style={{ color: `black`, fontSize:`0.8rem` }}>Telegram</span> */}
                                             </a>
                                         </div>
                                         <div className="smd">
                                             <a href={`https://api.whatsapp.com/send?text=${detailberita.judul}%20melalui%20https%3A//aqlpeduli.or.id/berita/${detailberita.linkshare}`} target="_blank" className="d-flex flex-column mx-3">
-                                                <i className="img-thumbnail fa-whatsapp fa" style={{ color: '#25D366', backgroundColor: '#cef5dc' }} />
+                                                <i className="img-thumbnail fa-whatsapp fa" style={{ color: '#25D366' }} />
                                                 {/* <span style={{ color: `black`, fontSize:`0.8rem` }}>Whatsapp</span> */}
                                             </a>
                                         </div>

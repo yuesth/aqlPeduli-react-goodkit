@@ -90,6 +90,12 @@ function ModalDonasi(props) {
     const urlQr = `https://peaceful-meadow-45867.herokuapp.com/kategoris?_where[id]=${props.idkateggg}`
     const [norek, setNorek] = useState([])
     const [qrcode, setQrcode] = useState([])
+    const [form, setForm] = useState({
+        nama: '',
+        email: '',
+        nohp: '',
+        nominal: 0
+    })
     const [mandiricopied, setMandiricopied] = useState(false)
     const handleMandiri = () => setMandiricopied(true)
     const [mandiriscopied, setMandiriscopied] = useState(false)
@@ -143,20 +149,6 @@ function ModalDonasi(props) {
         })
     }, [])
     useEffect(() => {
-        // $('form > input').keyup(function () {
-        //     var empty = false;
-        //     $('form > input').each(function () {
-        //         if ($(this).val() == '') {
-        //             empty = true;
-        //         }
-        //     });
-        //     if (empty===true) {
-        //         $('#submitdata').attr('disabled', 'disabled');
-        //     } else {
-        //         $('#submitdata').removeAttr('disabled');
-        //     }
-        // });
-
         $(document).on('change keyup', '.required', function (e) {
             let Disabled = true;
             $(".required").each(function () {
@@ -168,7 +160,6 @@ function ModalDonasi(props) {
                     return false
                 }
             });
-
             if (Disabled) {
                 $('#submitdata').prop("disabled", true);
             } else {
@@ -192,6 +183,26 @@ function ModalDonasi(props) {
             })
         })
     })
+    const onchangeform = (e)=>{
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value
+        })
+    }
+    const onsubmitform = (event)=>{
+        fetch('http://localhost:1337/form-donasis',{
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(form)
+        }).then(res=>{
+            return res.json()
+        }).then(resjson=>(
+            console.log(resjson)
+        ))
+        event.preventDefault()
+    }
     return (
         <>
             <Modal show={props.status} onHide={props.handleclose} backdrop="static" keyboard={false} className="modal-donasi">
@@ -206,27 +217,27 @@ function ModalDonasi(props) {
                                 </h3>
                             </div>
                         </div>
-                        <form>
+                        <form onSubmit={onsubmitform}>
                             <div className="form-group">
                                 <label htmlFor="recipient-nominal" className="col-form-label">Nominal:</label>
                                 <div className="input-group mb-3">
                                     <div className="input-group-prepend">
                                         <span className="input-group-text">Rp.</span>
                                     </div>
-                                    <input type="text" className="form-control required" aria-label="Amount (to the nearest rupiah)" name="nominal" />
+                                    <input type="text" className="form-control required" aria-label="Amount (to the nearest rupiah)" name="nominal" onChange={onchangeform} />
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="recipient-nama" className="col-form-label">Nama:</label>
-                                <input type="text" className="form-control required" id="recipient-nama" name="nama" />
+                                <input type="text" className="form-control required" id="recipient-nama" name="nama" onChange={onchangeform} />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="recipient-email" className="col-form-label">Email:</label>
-                                <input type="email" className="form-control required" id="recipient-email" name="email" />
+                                <input type="email" className="form-control required" id="recipient-email" name="email" onChange={onchangeform} />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="recipient-nohp" className="col-form-label">No.Handphone:</label>
-                                <input type="text" className="form-control required" id="recipient-nohp" name="nohp" />
+                                <input type="tel" className="form-control required" id="recipient-nohp" name="nohp" onChange={onchangeform} placeholder="0821-2918-9102" />
                             </div>
                             <button type="submit" className="btn btn-donasi-sekarang w-100" id="submitdata" disabled>Lanjut ke Metode Donasi</button>
                         </form>
@@ -538,6 +549,13 @@ function DetailProg(props) {
         image: myImg,
         paragraph: myParagraph,
     }
+    // useEffect((event)=>{
+    //     event.preventDefault()
+    //     fetch(`localhost:1337/form-donasis`, {
+    //         method: 'POST',
+    //         body: JSON.stringify()
+    //     })
+    // })
     return (
         <section className="pt-10 pt-md-11">
             <div className="container-xl" id="wadahSticky">

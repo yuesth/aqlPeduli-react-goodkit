@@ -78,7 +78,7 @@ function Update() {
             var item1 = {
                 namaUp: doc.namaUpdate,
                 judulProg: doc.program.judulProgram,
-                idProg: doc.program.id,
+                idProg: `${doc.program.id}`,
                 linkshareProg: doc.program.linkShareProgram,
                 tanggalUp: doc.tanggalpelaksanaanUpdate,
                 deskripsiUp: doc.deskripsiUpdate,
@@ -90,7 +90,7 @@ function Update() {
             var item2 = {
                 namaUp: doc.namaUpdate,
                 judulProg: doc.program.judulProgram,
-                idProg: doc.program.id,
+                idProg: `${doc.program.id}`,
                 linkshareProg: doc.program.linkShareProgram,
                 tanggalUp: doc.tanggalpelaksanaanUpdate,
                 deskripsiUp: doc.deskripsiUpdate,
@@ -101,7 +101,7 @@ function Update() {
     const sortedItemUpdate = itemUpdate.sort((a, b) => { return new Date(b.tanggalUp) - new Date(a.tanggalUp) })
     const listup = sortedItemUpdate.map((doc, idx) => {
         return (
-            <div className="col-12 mb-7" style={{ maxWidth: 320, height: `30rem` }} data-aos="fade-up" key={idx}>
+            <div className="col-12 mb-7" style={{ maxWidth: 320, height: `30rem` }} key={idx}>
                 <Link to={{
                     pathname:`/kepedulian/${doc.linkshareProg}`,
                     state:{

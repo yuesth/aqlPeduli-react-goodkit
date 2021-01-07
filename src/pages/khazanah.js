@@ -3,6 +3,7 @@ import NavbarGK from "../components/navbar"
 import FooterGK from "../components/footer"
 import { Link } from "react-router-dom"
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import "./khazanah.css"
 
 function SkeletonKhazanah() {
     return (
@@ -62,93 +63,77 @@ function Khazanah() {
     const [khazanah, setKhazanah] = useState([])
     const [isLoadingkhazanah, setIsLoadingkhazanah] = useState(true);
     useEffect(() => {
-        fetch(urlKhazanah).then(res => res.json()).then(parsedJson => {
-            setKhazanah(parsedJson)
-            setIsLoadingkhazanah(false)
-        })
-    },[])
-    const itemKhazanah = []
-    khazanah.map(data => {
-        if (data.gambarKhazanah !== null) {
-            var item1 = {
-                id: `${data.id}`,
-                pemateri: `${data.pemateriKhazanah}`,
-                tanggal: `${data.tanggalKhazanah}`,
-                judul: `${data.judulKhazanah}`,
-                isi: `${data.isiKhazanah}`,
-                gambar: `${data.gambarKhazanah.url}`,
-                urlvideo: `${data.urlvideoKhazanah}`,
-                linkshare: `${data.linkShareKhazanah}`
+        fetch(urlKhazanah).then(res => res.json()).then(json => json.map((data) => {
+            if (data.gambarKhazanah !== null) {
+                return ({
+                    id: `${data.id}`,
+                    pemateri: `${data.pemateriKhazanah}`,
+                    tanggal: `${data.tanggalKhazanah}`,
+                    judul: `${data.judulKhazanah}`,
+                    isi: `${data.isiKhazanah}`,
+                    gambar: `${data.gambarKhazanah.url}`,
+                    urlvideo: `${data.urlvideoKhazanah}`,
+                    linkshare: `${data.linkShareKhazanah}`
+                })
             }
-            itemKhazanah.push(item1)
-        }
-        else {
-            var item2 = {
-                id: `${data.id}`,
-                pemateri: `${data.pemateriKhazanah}`,
-                tanggal: `${data.tanggalKhazanah}`,
-                judul: `${data.judulKhazanah}`,
-                isi: `${data.isiKhazanah}`,
-                urlvideo: `${data.urlvideoKhazanah}`,
-                linkshare: `${data.linkShareKhazanah}`
+            else {
+                return ({
+                    id: `${data.id}`,
+                    pemateri: `${data.pemateriKhazanah}`,
+                    tanggal: `${data.tanggalKhazanah}`,
+                    judul: `${data.judulKhazanah}`,
+                    isi: `${data.isiKhazanah}`,
+                    urlvideo: `${data.urlvideoKhazanah}`,
+                    linkshare: `${data.linkShareKhazanah}`
+                })
             }
-            itemKhazanah.push(item2)
-        }
-    })
-    const sortedItemKhazanah = itemKhazanah.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
-    const itemkhazanahlayout = sortedItemKhazanah.map((doc, idx) => {
-        return (
-            <div className="col-6 col-md-4 col-lg-3">
-                <div className={`card rounded-top-left rounded-bottom-right lift`}>
-                    <div className="row">
-                        <div className="card-body">
-                            <h3 style={{fontSize:`1.25rem`}}>
-                                {doc.judul}
-                            </h3>
-                            <span className="text-muted mb-7" style={{ fontSize: `0.875rem` }}>
-                                <DariTanggal tanggal={doc.tanggal}></DariTanggal>
-                            </span>
-                            <br />
-                            <p className="font-size-sm text-gray-600 mb-0">
-                                {doc.pemateri}
-                            </p>
-                            <Link to={`/khazanah/${doc.linkshare}`} className="stretched-link"></Link>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        )
-    })
+        }))
+            .then((items) => {
+                const khaza = items.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
+                setKhazanah(khaza)
+                setIsLoadingkhazanah(false)
+            })
+    }, [])
     return (
         <>
             <NavbarGK></NavbarGK>
             <section className="pt-10 pt-md-12">
                 <div className="container-xl">
-                    <div className="row align-items-center justify-content-center mb-9">
+                    <div className="row align-items-center justify-content-center mb-md-9 mb-4">
                         <div className="col-md-6" style={{ textAlign: `center` }}>
-                            <h2 className="mb-4 mb-md-0" style={{fontSize:`1.75rem`}}>
+                            <h2 className="mb-4 mb-md-0" style={{ fontSize: `1.75rem` }}>
                                 Khazanah <br />
                             </h2>
                         </div>
                     </div>
                     <div className="row mb-9">
-                        {/* <div className="col-6 col-md-4 col-lg-3"> */}
-                        {isLoadingkhazanah? <SkeletonKhazanah></SkeletonKhazanah>
-                        :
-                        itemkhazanahlayout
+                        {isLoadingkhazanah ? <SkeletonKhazanah></SkeletonKhazanah>
+                            :
+                            // itemkhazanahlayout
+                            khazanah.map((doc, idx) => {
+                                return (
+                                    <div className="col-6 col-md-4 col-lg-3 my-md-5 my-2" key={idx}>
+                                        <div className={`card rounded-top-left rounded-bottom-right lift`}>
+                                            <div className="row">
+                                                <div className="card-body">
+                                                    <h3 className="judulKha">
+                                                        {doc.judul}
+                                                    </h3>
+                                                    <span className="text-muted mb-7 tanggalKha">
+                                                        <DariTanggal tanggal={doc.tanggal}></DariTanggal>
+                                                    </span>
+                                                    <br />
+                                                    <p className="text-gray-600 mb-0 pemateriKha">
+                                                        {doc.pemateri}
+                                                    </p>
+                                                    <Link to={`/khazanah/${doc.linkshare}`} className="stretched-link"></Link>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })
                         }
-                        {/* {itemkhazanahlayout}
-                        {itemkhazanahlayout}
-                        {itemkhazanahlayout}
-                        {itemkhazanahlayout}
-                        {itemkhazanahlayout}
-                        {itemkhazanahlayout}
-                        {itemkhazanahlayout}
-                        {itemkhazanahlayout}
-                        {itemkhazanahlayout}
-                        {itemkhazanahlayout}
-                        {itemkhazanahlayout} */}
-                        {/* </div> */}
                     </div>
                 </div>
             </section>
