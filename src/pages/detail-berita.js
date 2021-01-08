@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import NavbarGK from "../components/navbar"
 import FooterGK from "../components/footer"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import ReactMarkdown from 'react-markdown'
@@ -59,6 +59,7 @@ function DetailBerita(props) {
     const urlDetailberita = `https://peaceful-meadow-45867.herokuapp.com/beritas?_where[linkShareBerita]=${param}`
     const [detailberita, setDetailberita] = useState([])
     const [isLoadingdetberita, setIsLoadingdetberita] = useState(true)
+    const hist = useHistory()
     useEffect(() => {
         fetch(urlDetailberita).then(res => res.json()).then(parseJson => parseJson.map((parsedJson) => (
             {
@@ -74,15 +75,16 @@ function DetailBerita(props) {
             }
         ))).then(
             items => {
-                const ber = items[0]
-                setDetailberita(ber)
-                setIsLoadingdetberita(false)
-                return (ber.isi)
+                if (items.length > 0) {
+                    const ber = items[0]
+                    setDetailberita(ber)
+                    setIsLoadingdetberita(false)
+                }
+                else {
+                    hist.push('/404')
+                }
             }
-        ).then((ret) => {
-            const isi = ret
-            setKontenfix(isi.replace(/\n/g, `<br/>`))
-        })
+        )
     }, [])
     const myImg = (props) => {
         return (

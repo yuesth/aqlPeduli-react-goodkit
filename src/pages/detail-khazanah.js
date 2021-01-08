@@ -3,7 +3,7 @@ import NavbarGK from "../components/navbar"
 import FooterGK from "../components/footer"
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import ReactMarkdown from 'react-markdown'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import './detail-khazanah.css'
 const $ = window.jQuery
@@ -60,6 +60,7 @@ function DetailKhazanah(props) {
     const urlDetailKha = `https://peaceful-meadow-45867.herokuapp.com/khazanahs?_where[linkShareKhazanah]=${param}`
     const [detailkha, setDetailkha] = useState([])
     const [isLoadingdetkha, setIsLoadingdetkha] = useState(true)
+    const hist = useHistory()
     useEffect(() => {
         fetch(urlDetailKha).then(res => res.json()).then(parseJson => parseJson.map((parsedJson) => (
             {
@@ -76,23 +77,28 @@ function DetailKhazanah(props) {
             }
         ))).then(
             items => {
-                const khaz = items[0]
-                setDetailkha(khaz)
-                setIsLoadingdetkha(false)
-                return (khaz.isi)
+                if(items.length > 0){
+                    const khaz = items[0]
+                    setDetailkha(khaz)
+                    setIsLoadingdetkha(false)
+                    // return (khaz.isi)
+                }
+                else{
+                    hist.push('/404')
+                }
             }
-        ).then((ret) => {
-            var str2 = ret.match(/http:\/\/167.99.72.148\/uploads\/([A-z])\w+\.(png|jpg|jpeg)/g)
-            if (str2 !== null) {
-                var res = ret.replace(/!\[[A-z]\w+\.(png|jpg|jpeg)\]\(http:\/\/167.99.72.148\/uploads\/([A-z])\w+\.(png|jpg|jpeg)\)/g, `<img className='img-fluid' src="${str2[0]}"></img>`)
-                setKontenfix(res)
-            }
-            else {
-                setKontenfix(ret)
-            }
-        })
+        )
+        // .then((ret) => {
+        //     var str2 = ret.match(/http:\/\/167.99.72.148\/uploads\/([A-z])\w+\.(png|jpg|jpeg)/g)
+        //     if (str2 !== null) {
+        //         var res = ret.replace(/!\[[A-z]\w+\.(png|jpg|jpeg)\]\(http:\/\/167.99.72.148\/uploads\/([A-z])\w+\.(png|jpg|jpeg)\)/g, `<img className='img-fluid' src="${str2[0]}"></img>`)
+        //         setKontenfix(res)
+        //     }
+        //     else {
+        //         setKontenfix(ret)
+        //     }
+        // })
     }, [])
-    const markup = { __html: kontenfix }
     const myImg = (props) => {
         return (
             // <img src={props.src} className="img-fluid"/>

@@ -60,7 +60,7 @@ function NavbarGK() {
                         <h3 className="mt-1">Khazanah</h3>
                     </Link>
                     {/* </li> */}
-                    <Link to={`/program`}><button className="navbar-donasi lift mt-1">DONASI</button></Link>
+                    <Link to={`/kepedulian`}><button className="navbar-donasi lift mt-1">DONASI</button></Link>
                     <Link to={`/relawan`}><button className="navbar-relawan lift mt-1">RELAWAN</button></Link>
                 </ul>
             </div>

@@ -187,7 +187,6 @@ function ProgramLayout(props) {
 
     function PersenTerkumpul(props) {
         var persen = (props.terkumpul / props.total) * 100;
-        console.log(persen)
         return (
             // <div className="progress">
             //     <div className="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow={persen}>

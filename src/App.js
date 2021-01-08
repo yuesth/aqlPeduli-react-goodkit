@@ -40,6 +40,8 @@ const LazyInformasi = lazy(() => import('./pages/informasi'))
 // import DetailGaleri from "./pages/detail-galeri"
 const LazyDetailGaleri = lazy(() => import('./pages/detail-galeri'))
 const LazyPage404 = lazy(() => import('./pages/page404'))
+const LazyPage500 = lazy(() => import('./pages/page500'))
+
 
 
 
@@ -249,6 +251,7 @@ function App() {
               <Route path="/informasi" exact component={LazyInformasi}></Route>
               <Route path="/galeri/:id" exact component={LazyDetailGaleri}></Route>
               <Route path="/404" component={LazyPage404}></Route>
+              <Route path="/500" component={LazyPage500}></Route>
               <Redirect to="/404"></Redirect>
             </Switch>
           </Suspense>

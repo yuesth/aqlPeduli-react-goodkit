@@ -225,20 +225,20 @@ function ModalDonasi(props) {
                                     <div className="input-group-prepend">
                                         <span className="input-group-text">Rp.</span>
                                     </div>
-                                    <input type="text" className="form-control required" aria-label="Amount (to the nearest rupiah)" name="nominal" onChange={onchangeform} />
+                                    <input type="text" placeholder="Isi nominal donasi" className="form-control required" aria-label="Amount (to the nearest rupiah)" name="nominal" onChange={onchangeform} />
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="recipient-nama" className="col-form-label">Nama:</label>
-                                <input type="text" className="form-control required" id="recipient-nama" name="nama" onChange={onchangeform} />
+                                <input type="text" className="form-control required" id="recipient-nama" name="nama" onChange={onchangeform} placeholder="Nama" />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="recipient-email" className="col-form-label">Email:</label>
-                                <input type="email" className="form-control required" id="recipient-email" name="email" onChange={onchangeform} />
+                                <input type="email" className="form-control required" id="recipient-email" name="email" onChange={onchangeform} placeholder="Email" />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="recipient-nohp" className="col-form-label">No.Handphone:</label>
-                                <input type="tel" className="form-control required" id="recipient-nohp" name="nohp" onChange={onchangeform} placeholder="0821-2918-9102" />
+                                <input type="tel" className="form-control required" id="recipient-nohp" name="nohp" onChange={onchangeform} placeholder="Nomor telepon" />
                             </div>
                             <button type="submit" className="btn btn-donasi-sekarang w-100" id="submitdata" disabled>Lanjut ke Metode Donasi</button>
                         </form>

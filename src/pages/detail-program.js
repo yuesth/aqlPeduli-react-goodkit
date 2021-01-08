@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import NavbarGK from "../components/navbar"
 import FooterGK from "../components/footer"
 import DetailProg from "../components/program/detail-prog"
 import Helmet from 'react-helmet'
-
+import { Redirect, useHistory } from "react-router-dom"
 
 
 function DetailProgram(props) {
@@ -24,6 +24,7 @@ function DetailProgram(props) {
     const [isLoadingdetup, setIsLoadingdetup] = useState(true);
     const [kontenfix, setKontenfix] = useState("")
     const [fromupdate, setFromupdate] = useState(fromUpdateLanding)
+    const hist = useHistory()
     useEffect(() => {
         fetch(urlDetailProgram).then(res => res.json()).then(parseJson => parseJson.map((parsedJson) => (
             {
@@ -43,17 +44,24 @@ function DetailProgram(props) {
             }
         ))).then(
             items => {
-                const detprog = items[0]
-                setDetailprog(detprog)
-                setIsLoadingdetprog(false)
-                setMetadata({
-                    title: `AQL | ${items[0].judul}`,
-                    desc: items[0].des,
-                    img: items[0].gambar,
-                })
-                return (items.cerita)
+                if (items.length > 0) {
+                    const detprog = items[0]
+                    setDetailprog(detprog)
+                    setIsLoadingdetprog(false)
+                    setMetadata({
+                        title: `AQL | ${items[0].judul}`,
+                        desc: items[0].des,
+                        img: items[0].gambar,
+                    })
+                }
+                else{
+                    hist.push('/404')
+                }
             }
         )
+    }, [detailprog])
+
+    useEffect(() => {
         fetch(urlUpdate).then(res => res.json()).then(parsedJsonUp => parsedJsonUp.map(data => {
             if (data.gambarUpdate !== null) {
                 return ({
@@ -88,33 +96,45 @@ function DetailProgram(props) {
             setIsLoadingdetup(false)
         }
         )
-    }, [])
+    }, [detailup])
     return (
         <>
-            <Helmet>
-                <title>{metadata.title}</title>
-                <meta name="description" content={metadata.desc} />
+            {detailprog ?
+                <>
+                    <Helmet>
+                        <title>{metadata.title}</title>
+                        <meta name="description" content={metadata.desc} />
 
-                <meta itemProp="name" content={metadata.title} />
-                <meta itemProp="description" content={metadata.desc} />
-                <meta itemProp="image" content={metadata.img} />
+                        <meta itemProp="name" content={metadata.title} />
+                        <meta itemProp="description" content={metadata.desc} />
+                        <meta itemProp="image" content={metadata.img} />
 
-                <meta property="og:url" content="https://aqlpeduli.or.id" />
-                <meta property="og:type" content="website" />
-                <meta property="og:title" content={metadata.title} />
-                <meta property="og:description" content={metadata.desc} />
-                <meta property="og:image" content={metadata.img} />
+                        <meta property="og:url" content="https://aqlpeduli.or.id" />
+                        <meta property="og:type" content="website" />
+                        <meta property="og:title" content={metadata.title} />
+                        <meta property="og:description" content={metadata.desc} />
+                        <meta property="og:image" content={metadata.img} />
 
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content={metadata.title} />
-                <meta name="twitter:description" content={metadata.desc} />
-                <meta name="twitter:image" content={metadata.img} />
-            </Helmet>
-            <NavbarGK></NavbarGK>
-            <DetailProg itemprog={detailprog} itemup={detailup} loadingdetprog={isLoadingdetprog} loadingdetup={isLoadingdetup} fromupdate={fromupdate} kontenfix={kontenfix}></DetailProg>
-            <FooterGK></FooterGK>
+                        <meta name="twitter:card" content="summary_large_image" />
+                        <meta name="twitter:title" content={metadata.title} />
+                        <meta name="twitter:description" content={metadata.desc} />
+                        <meta name="twitter:image" content={metadata.img} />
+                    </Helmet>
+                    <NavbarGK></NavbarGK>
+                    <DetailProg itemprog={detailprog} itemup={detailup} loadingdetprog={isLoadingdetprog} loadingdetup={isLoadingdetup} fromupdate={fromupdate} kontenfix={kontenfix}></DetailProg>
+                    <FooterGK></FooterGK>
+                </>
+                :
+                <Redirect to="/404"></Redirect>
+            }
         </>
     )
+    // }
+    // else {
+    //     return (
+    //         <Redirect to="/404"></Redirect>
+    //     )
+    // }
 }
 
 export default DetailProgram
