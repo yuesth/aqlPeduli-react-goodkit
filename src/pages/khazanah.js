@@ -61,6 +61,8 @@ function Khazanah() {
 
     const urlKhazanah = "https://peaceful-meadow-45867.herokuapp.com/khazanahs"
     const [khazanah, setKhazanah] = useState([])
+    const [khazanahdef, setKhazanahdef] = useState([])
+    const [key, setKey] = useState("")
     const [isLoadingkhazanah, setIsLoadingkhazanah] = useState(true);
     useEffect(() => {
         fetch(urlKhazanah).then(res => res.json()).then(json => json.map((data) => {
@@ -91,9 +93,17 @@ function Khazanah() {
             .then((items) => {
                 const khaza = items.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
                 setKhazanah(khaza)
+                setKhazanahdef(khaza)
                 setIsLoadingkhazanah(false)
             })
     }, [])
+    const searchkey = async (e) => {
+        const filtered = khazanahdef.filter(kh => {
+            return kh.judul.toLowerCase().includes(e.target.value.toLowerCase())
+        })
+        setKey(e.target.value)
+        setKhazanah(filtered)
+    }
     return (
         <>
             <NavbarGK></NavbarGK>
@@ -104,6 +114,11 @@ function Khazanah() {
                             <h2 className="mb-4 mb-md-0" style={{ fontSize: `1.75rem` }}>
                                 Khazanah <br />
                             </h2>
+                        </div>
+                    </div>
+                    <div className="row align-items-center justify-content-center mb-md-6 mb-4">
+                        <div className="col-8" style={{ textAlign: `center` }}>
+                            <input type="text" className="form-control" placeholder="Masukkan judul khazanah" aria-label="Search" aria-describedby="search" value={key} onChange={searchkey} />
                         </div>
                     </div>
                     <div className="row mb-9">

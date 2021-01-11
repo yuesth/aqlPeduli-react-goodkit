@@ -225,7 +225,7 @@ function ModalDonasi(props) {
                                     <div className="input-group-prepend">
                                         <span className="input-group-text">Rp.</span>
                                     </div>
-                                    <input type="text" placeholder="Isi nominal donasi" className="form-control required" aria-label="Amount (to the nearest rupiah)" name="nominal" onChange={onchangeform} />
+                                    <input type="text" className="form-control required" aria-label="Amount (to the nearest rupiah)" name="nominal" onChange={onchangeform} placeholder="Isi nominal donasi" />
                                 </div>
                             </div>
                             <div className="form-group">
