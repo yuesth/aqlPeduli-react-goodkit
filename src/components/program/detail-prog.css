@@ -161,6 +161,9 @@ ol.timeline{
     z-index: 9999;
 }
 
+.modal-split2{
+    display: none;
+}
 /* .gambar-up-det-prog{
     display: none;
 } */

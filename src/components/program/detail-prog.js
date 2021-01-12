@@ -167,42 +167,53 @@ function ModalDonasi(props) {
                 $('#submitdata').prop("disabled", false);
             }
         })
-
-        $(document).ready(function () {
-            $('.modal').each(() => {
-                var pages = $(this).find('.modal-split');
-                var pagetrack = 0
-                pages.hide();
-                pages.eq(0).show();
-                $('#submitdata').click(() => {
-                    if (pagetrack < pages.length - 1) {
-                        pagetrack++;
-                        pages.hide();
-                        pages.eq(pagetrack).show();
-                    }
-                })
-            })
+        var pages = $('.modal').find('.modal-split');
+        $('#submitdata').click(() => {
+            pages.eq(0).hide();
+            pages.eq(1).show();
         })
+        // $(document).ready(function () {
+        //     $('.modal').each(() => {
+        //         var pages = $(this).find('.modal-split');
+        //         var pagetrack = 0
+        //         pages.hide();
+        //         pages.eq(0).show();
+        //         $('#submitdata').click(() => {
+        //             if (pagetrack < pages.length - 1) {
+        //                 pagetrack++;
+        //                 pages.hide();
+        //                 pages.eq(pagetrack).show();
+        //             }
+        //         })
+        //     })
+        // })
     })
-    const onchangeform = (e)=>{
+    const onchangeform = (e) => {
         setForm({
             ...form,
             [e.target.name]: e.target.value
         })
     }
-    const onsubmitform = (event)=>{
-        fetch('http://localhost:1337/form-donasis',{
-            method:'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(form)
-        }).then(res=>{
-            return res.json()
-        }).then(resjson=>(
-            console.log(resjson)
-        ))
-        event.preventDefault()
+
+    // const onclickform = (e) => {
+    //     var pages = $('.modal').find('.modal-split');
+    //     pages.eq(0).hide()
+    //     pages.eq(1).show()
+    // }
+
+    const onsubmitform = (event) => {
+        // fetch('http://localhost:1337/form-donasis',{
+        //     method:'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify(form)
+        // }).then(res=>{
+        //     return res.json()
+        // }).then(resjson=>(
+        //     console.log(resjson)
+        // ))
+        // event.preventDefault()
     }
     return (
         <>
@@ -218,32 +229,32 @@ function ModalDonasi(props) {
                                 </h3>
                             </div>
                         </div>
-                        <form onSubmit={onsubmitform}>
-                            <div className="form-group">
-                                <label htmlFor="recipient-nominal" className="col-form-label">Nominal:</label>
-                                <div className="input-group mb-3">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text">Rp.</span>
-                                    </div>
-                                    <input type="text" className="form-control required" aria-label="Amount (to the nearest rupiah)" name="nominal" onChange={onchangeform} placeholder="Isi nominal donasi" />
+                        {/* <form onSubmit={onsubmitform}> */}
+                        <div className="form-group">
+                            <label htmlFor="recipient-nominal" className="col-form-label">Nominal:</label>
+                            <div className="input-group mb-3">
+                                <div className="input-group-prepend">
+                                    <span className="input-group-text">Rp.</span>
                                 </div>
+                                <input type="text" placeholder="Isi nominal donasi" className="form-control required" aria-label="Amount (to the nearest rupiah)" name="nominal" onChange={onchangeform} />
                             </div>
-                            <div className="form-group">
-                                <label htmlFor="recipient-nama" className="col-form-label">Nama:</label>
-                                <input type="text" className="form-control required" id="recipient-nama" name="nama" onChange={onchangeform} placeholder="Nama" />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="recipient-email" className="col-form-label">Email:</label>
-                                <input type="email" className="form-control required" id="recipient-email" name="email" onChange={onchangeform} placeholder="Email" />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="recipient-nohp" className="col-form-label">No.Handphone:</label>
-                                <input type="tel" className="form-control required" id="recipient-nohp" name="nohp" onChange={onchangeform} placeholder="Nomor telepon" />
-                            </div>
-                            <button type="submit" className="btn btn-donasi-sekarang w-100" id="submitdata" disabled>Lanjut ke Metode Donasi</button>
-                        </form>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="recipient-nama" className="col-form-label">Nama:</label>
+                            <input type="text" className="form-control required" id="recipient-nama" name="nama" onChange={onchangeform} placeholder="Nama" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="recipient-email" className="col-form-label">Email:</label>
+                            <input type="email" className="form-control required" id="recipient-email" name="email" onChange={onchangeform} placeholder="Email" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="recipient-nohp" className="col-form-label">No.Handphone:</label>
+                            <input type="tel" className="form-control required" id="recipient-nohp" name="nohp" onChange={onchangeform} placeholder="Nomor telepon" />
+                        </div>
+                        <button type="button" className="btn btn-donasi-sekarang w-100" id="submitdata" disabled>Lanjut ke Metode Donasi</button>
+                        {/* </form> */}
                     </div>
-                    <div className="modal-split">
+                    <div className="modal-split modal-split2">
                         <div className="row align-items-center justify-content-center mb-5">
                             <div className="col-md-11 col-lg-10">
                                 <h3 className="mb-5 mb-md-0 text-center">
