@@ -167,10 +167,12 @@ function ModalDonasi(props) {
                 $('#submitdata').prop("disabled", false);
             }
         })
-        var pages = $('.modal').find('.modal-split');
+        // var pages = $('.modal').find('.modal-split');
         $('#submitdata').click(() => {
-            pages.eq(0).hide();
-            pages.eq(1).show();
+            var pages1 = document.getElementById("modal-split1")
+            var pages2 = document.getElementById("modal-split2")
+            pages1.style.display = "none"
+            pages2.style.display = "block"
         })
         // $(document).ready(function () {
         //     $('.modal').each(() => {
@@ -195,12 +197,6 @@ function ModalDonasi(props) {
         })
     }
 
-    // const onclickform = (e) => {
-    //     var pages = $('.modal').find('.modal-split');
-    //     pages.eq(0).hide()
-    //     pages.eq(1).show()
-    // }
-
     const onsubmitform = (event) => {
         // fetch('http://localhost:1337/form-donasis',{
         //     method:'POST',
@@ -221,7 +217,7 @@ function ModalDonasi(props) {
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <div className="modal-body pt-0">
-                    <div className="modal-split">
+                    <div className="modal-split" id="modal-split1">
                         <div className="row align-items-center justify-content-center mb-5">
                             <div className="col-md-11 col-lg-10">
                                 <h3 className="mb-5 mb-md-0 text-center">
@@ -254,7 +250,7 @@ function ModalDonasi(props) {
                         <button type="button" className="btn btn-donasi-sekarang w-100" id="submitdata" disabled>Lanjut ke Metode Donasi</button>
                         {/* </form> */}
                     </div>
-                    <div className="modal-split modal-split2">
+                    <div className="modal-split" id="modal-split2">
                         <div className="row align-items-center justify-content-center mb-5">
                             <div className="col-md-11 col-lg-10">
                                 <h3 className="mb-5 mb-md-0 text-center">
