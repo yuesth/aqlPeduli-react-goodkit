@@ -52,6 +52,10 @@
   z-index:100;
 }
 
+.float:hover{
+  color: rgb(47, 57, 144);
+}
+
 .my-float{
 	margin-top:16px;
 }

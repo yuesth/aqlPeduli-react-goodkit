@@ -40,7 +40,8 @@ function DetailProgram(props) {
                 cerita: `${parsedJson.cerita}`,
                 idKateg: `${parsedJson.kategori.id}`,
                 namaKateg: `${parsedJson.kategori.namaKategori}`,
-                updateProg: `${parsedJson.update_programs}`
+                updateProg: `${parsedJson.update_programs}`,
+                linkshare: `${parsedJson.linkShareProgram}`
             }
         ))).then(
             items => {
@@ -96,7 +97,7 @@ function DetailProgram(props) {
             setIsLoadingdetup(false)
         }
         )
-    }, [detailup])
+    },[detailup])
     return (
         <>
             {detailprog ?

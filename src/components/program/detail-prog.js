@@ -92,10 +92,11 @@ function ModalDonasi(props) {
     const [norek, setNorek] = useState([])
     const [qrcode, setQrcode] = useState([])
     const [form, setForm] = useState({
-        nama: '',
+        id_campaign: 0,
+        name: '',
         email: '',
-        nohp: '',
-        nominal: 0
+        amount: 0,
+        phone_number: '',
     })
     const [mandiricopied, setMandiricopied] = useState(false)
     const handleMandiri = () => setMandiricopied(true)
@@ -167,7 +168,6 @@ function ModalDonasi(props) {
                 $('#submitdata').prop("disabled", false);
             }
         })
-        // var pages = $('.modal').find('.modal-split');
         $('#submitdata').click(() => {
             var pages1 = document.getElementById("modal-split1")
             var pages2 = document.getElementById("modal-split2")
@@ -198,18 +198,19 @@ function ModalDonasi(props) {
     }
 
     const onsubmitform = (event) => {
-        // fetch('http://localhost:1337/form-donasis',{
-        //     method:'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(form)
-        // }).then(res=>{
-        //     return res.json()
-        // }).then(resjson=>(
-        //     console.log(resjson)
-        // ))
-        // event.preventDefault()
+        const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvbG9naW4iLCJpYXQiOjE2MTA0MjgzNzgsImV4cCI6MTYxMDQzMTk3OCwibmJmIjoxNjEwNDI4Mzc4LCJqdGkiOiJWSTFEZkVORjZWc3luNHB2Iiwic3ViIjoxMDAxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.awgkdKJarKGTxP_0HIldNI7CnG_xtJoxnzhALuFGIPc"
+        fetch(`http://134.209.96.19/addDonation?token=${token}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(form)
+        }).then(res => {
+            return res.json()
+        }).then(resjson => (
+            console.log(resjson)
+        ))
+        event.preventDefault()
     }
     return (
         <>
@@ -225,30 +226,34 @@ function ModalDonasi(props) {
                                 </h3>
                             </div>
                         </div>
-                        {/* <form onSubmit={onsubmitform}> */}
-                        <div className="form-group">
-                            <label htmlFor="recipient-nominal" className="col-form-label">Nominal:</label>
-                            <div className="input-group mb-3">
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text">Rp.</span>
+                        <form onSubmit={onsubmitform}>
+                            <input type="number" name="id" className="d-none" value={props.idkateggg} />
+                            <div className="form-group">
+                                <label htmlFor="recipient-nominal" className="col-form-label">Nominal:</label>
+                                <div className="input-group mb-3">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text">Rp.</span>
+                                    </div>
+                                    <input type="text" placeholder="Isi nominal donasi" className="form-control required" aria-label="Amount (to the nearest rupiah)" name="amount" onChange={onchangeform} />
                                 </div>
-                                <input type="text" placeholder="Isi nominal donasi" className="form-control required" aria-label="Amount (to the nearest rupiah)" name="nominal" onChange={onchangeform} />
                             </div>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="recipient-nama" className="col-form-label">Nama:</label>
-                            <input type="text" className="form-control required" id="recipient-nama" name="nama" onChange={onchangeform} placeholder="Nama" />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="recipient-email" className="col-form-label">Email:</label>
-                            <input type="email" className="form-control required" id="recipient-email" name="email" onChange={onchangeform} placeholder="Email" />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="recipient-nohp" className="col-form-label">No.Handphone:</label>
-                            <input type="tel" className="form-control required" id="recipient-nohp" name="nohp" onChange={onchangeform} placeholder="Nomor telepon" />
-                        </div>
-                        <button type="button" className="btn btn-donasi-sekarang w-100" id="submitdata" disabled>Lanjut ke Metode Donasi</button>
-                        {/* </form> */}
+                            <div className="form-group">
+                                <label htmlFor="recipient-nama" className="col-form-label">Nama:</label>
+                                <input type="text" className="form-control required" id="recipient-nama" name="name" onChange={onchangeform} placeholder="Nama" />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="recipient-email" className="col-form-label">Email:</label>
+                                <input type="email" className="form-control required" id="recipient-email" name="email" onChange={onchangeform} placeholder="Email" />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="recipient-nohp" className="col-form-label">No.Handphone:</label>
+                                <input type="tel" className="form-control required" id="recipient-nohp" name="phone_number" onChange={onchangeform} placeholder="Nomor telepon" />
+                            </div>
+                            <button type="submit" className="btn btn-donasi-sekarang w-100" id="submitdata" disabled>Lanjut ke Metode Donasi</button>
+                            <div className="spinner-border text-dark d-none" id="spinner-form" role="status">
+                                <span className="sr-only">Loading...</span>
+                            </div>
+                        </form>
                     </div>
                     <div className="modal-split" id="modal-split2">
                         <div className="row align-items-center justify-content-center mb-5">
@@ -433,25 +438,25 @@ function ModalShare(props) {
                     <div>
                         <div className="icon-container1 d-flex">
                             <div className="smd">
-                                <a href={`https://twitter.com/intent/tweet?text=Mari%20berdonasi%20untuk%20${props.judulprog}%20melalui%20https://aqlpeduli.or.id/program/${props.id}/${props.judulprog}`} target="_blank">
+                                <a href={`https://twitter.com/intent/tweet?text=Mari%20berdonasi%20untuk%20${props.judulprog}%20melalui%20https://aqlpeduli.or.id/kepedulian/${props.linkshare}`} target="_blank">
                                     <i className=" img-thumbnail fab fa-twitter fa fa-2x" style={{ color: '#4c6ef5', backgroundColor: 'aliceblue' }} />
                                     <p style={{ color: `black` }}>Twitter</p>
                                 </a>
                             </div>
                             <div className="smd">
-                                <a href={`https://www.facebook.com/sharer/sharer.php?u=https%3A//aqlpeduli.or.id/program/${props.id}/${props.judulprog}`} target="_blank">
+                                <a href={`https://www.facebook.com/sharer/sharer.php?u=https%3A//aqlpeduli.or.id/kepedulian/${props.linkshare}`} target="_blank">
                                     <i className="img-thumbnail fab fa-facebook fa fa-2x" style={{ color: '#3b5998', backgroundColor: '#eceff5' }} />
                                     <p style={{ color: `black` }}>Facebook</p>
                                 </a>
                             </div>
                             <div className="smd">
-                                <a href={`https://t.me/share/url?url=${props.judulprog}&text=%20Mari%20membantu%20donasi%20${props.judulprog}%20melalui%20https://aqlpeduli.or.id/program/${props.id}/${props.judulprog}`} target="_blank">
+                                <a href={`https://t.me/share/url?url=${props.judulprog}&text=%20Mari%20membantu%20donasi%20${props.judulprog}%20melalui%20https://aqlpeduli.or.id/kepedulian/${props.linkshare}`} target="_blank">
                                     <i className="img-thumbnail fab fa-2x fa-telegram fa" style={{ color: '#4c6ef5', backgroundColor: 'aliceblue' }} />
                                     <p style={{ color: `black` }}>Telegram</p>
                                 </a>
                             </div>
                             <div className="smd">
-                                <a href={`https://api.whatsapp.com/send?text=%20Mari%20membantu%20donasi%20${props.judulprog}%20melalui%20https://aqlpeduli.or.id/program/${props.id}/${props.judulprog}`} target="_blank">
+                                <a href={`https://api.whatsapp.com/send?text=%20Mari%20membantu%20donasi%20${props.judulprog}%20melalui%20https://aqlpeduli.or.id/kepedulian/${props.linkshare}`} target="_blank">
                                     <i className="img-thumbnail fab fa-whatsapp fa fa-2x" style={{ color: '#25D366', backgroundColor: '#cef5dc' }} />
                                     <p style={{ color: `black` }}>Whatsapp</p>
                                 </a>
@@ -459,8 +464,8 @@ function ModalShare(props) {
                         </div>
                         <div>
                             <label style={{ fontWeight: 400 }}>Page Link <span className="message" /></label><br />
-                            <div className="row"> <input className="col-10 ur" type="url" id="myInput" aria-describedby="inputGroup-sizing-default" style={{ height: 40 }} value={`https://aqlpeduli.or.id/program/${props.id}/${props.judulprog}`} disabled />
-                                <CopyToClipboard onCopy={props.handlecopied} text={`https://aqlpeduli.or.id/program/${props.id}/${props.judulprog}`}>
+                            <div className="row"> <input className="col-10 ur" type="url" id="myInput" aria-describedby="inputGroup-sizing-default" style={{ height: 40 }} value={`https://aqlpeduli.or.id/kepedulian/${props.linkshare}`} disabled />
+                                <CopyToClipboard onCopy={props.handlecopied} text={`https://aqlpeduli.or.id/kepedulian/${props.linkshare}`}>
                                     <button className="cpy" onClick={props.messagecopied}><i className="far fa-clone fa" /></button>
                                 </CopyToClipboard>
                             </div>
@@ -624,7 +629,7 @@ function DetailProg(props) {
                                                 </button>
                                             </div>
                                             <ModalDonasi status={showmodal} handleclose={handleClose} linkbb={props.itemprog.linkbb} judulprog={props.itemprog.judul} idkateggg={idkategg}></ModalDonasi>
-                                            <ModalShare status={showshare} handlecloseshare={handleCloseShare} id={props.itemprog.id} judulprog={props.itemprog.judul} handlecopied={handlecopied} messagecopied={messagecopied}></ModalShare>
+                                            <ModalShare status={showshare} handlecloseshare={handleCloseShare} id={props.itemprog.id} judulprog={props.itemprog.judul} handlecopied={handlecopied} messagecopied={messagecopied} linkshare={props.itemprog.linkshare}></ModalShare>
                                         </div>
                                     </div>
                                 </Sticky>
