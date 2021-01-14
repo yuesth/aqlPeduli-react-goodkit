@@ -199,7 +199,7 @@ function ModalDonasi(props) {
 
     const onsubmitform = (event) => {
         const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvbG9naW4iLCJpYXQiOjE2MTA0MjgzNzgsImV4cCI6MTYxMDQzMTk3OCwibmJmIjoxNjEwNDI4Mzc4LCJqdGkiOiJWSTFEZkVORjZWc3luNHB2Iiwic3ViIjoxMDAxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.awgkdKJarKGTxP_0HIldNI7CnG_xtJoxnzhALuFGIPc"
-        fetch(`http://134.209.96.19/addDonation?token=${token}`, {
+        fetch(`https://donasi.aqlpeduli.or.id/addDonation?token=${token}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
