@@ -172,7 +172,7 @@ function DetailBerita(props) {
                                         </div>
                                         <div className="smd">
                                             <a href={`https://t.me/share/url?url=https%3A//aqlpeduli.or.id/berita/${detailberita.linkshare}&text=${detailberita.judul}`} target="_blank" className="d-flex flex-column mx-3">
-                                                <i className="img-thumbnail fa-telegram fa" style={{ color: '#4c6ef5' }} />
+                                                <i className="img-thumbnail fa fa-telegram" style={{ color: '#4c6ef5' }} />
                                                 {/* <span style={{ color: `black`, fontSize:`0.8rem` }}>Telegram</span> */}
                                             </a>
                                         </div>
