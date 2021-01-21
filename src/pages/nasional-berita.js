@@ -189,7 +189,7 @@ function SkeletonBeritaHeader() {
 
 function BeritaNasional() {
     const urlBerita = "https://peaceful-meadow-45867.herokuapp.com/beritas"
-    const urlBerita2 = "https://peaceful-meadow-45867.herokuapp.com/beritas?_where[kategoriberita.namaKategori]=Berita%20Nasional&_sort=tanggalBerita:DESC&_start=0&_limit=4"
+    const urlBerita2 = "https://peaceful-meadow-45867.herokuapp.com/beritas?_where[kategoriberita.namaKategori]=Berita%20Nasional&_sort=tanggalBerita:DESC&_start=0&_limit=5"
     const [beritanas, setBeritanas] = useState([])
     const [beritanasinf, setBeritanasinf] = useState([])
     const [banyakberita, setBanyakberita] = useState(0)

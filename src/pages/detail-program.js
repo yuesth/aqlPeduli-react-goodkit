@@ -110,9 +110,9 @@ function DetailProgram(props) {
                         <meta itemProp="description" content={metadata.desc} />
                         <meta itemProp="image" content={metadata.img} />
 
-                        <meta property="og:url" content="https://aqlpeduli.or.id" />
+                        <meta property="og:url" content={`https://aqlpeduli.or.id/kepedulian/${detailprog.linkshare}`} />
                         <meta property="og:type" content="website" />
-                        <meta property="og:title" content={metadata.title} />
+                        <meta property="og:title" content={`AQL | Kepedulian dan Kemanusiaan`} />
                         <meta property="og:description" content={metadata.desc} />
                         <meta property="og:image" content={metadata.img} />
 
