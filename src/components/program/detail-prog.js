@@ -210,7 +210,7 @@ function ModalDonasi(props) {
         }).then(resjson => (
             console.log(resjson)
         ))
-        fetch(`http://admin-donasi.aqlpeduli.or.id:8001/send-meesage/${form.name}/${form.phone_number}/${props.judulprog}`).then(res=> res.text()).then(restext=>{
+        fetch(`https://admin-donasi.aqlpeduli.or.id/wa-blast/send-meesage/${form.name}/${form.phone_number}/${props.judulprog}`).then(res=> res.text()).then(restext=>{
             console.log(restext)
         })
         event.preventDefault()
