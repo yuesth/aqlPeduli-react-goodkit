@@ -120,7 +120,7 @@ function DetailKK(props) {
                                 <nav aria-label="breadcrumb">
                                     <ol className="breadcrumb">
                                         <li className="breadcrumb-item">
-                                            <Link to={`/kk`}>
+                                            <Link to={`/kepedulian-kita`}>
                                                 Kepedulian Kita
                                             </Link>
                                         </li>
