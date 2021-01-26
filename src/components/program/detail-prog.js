@@ -6,8 +6,8 @@ import Sticky from 'wil-react-sticky'
 import "./detail-prog.css"
 import ReactMarkdown from 'react-markdown'
 import CopyToClipboard from 'react-copy-to-clipboard'
-// import $ from 'jquery'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+import Helmet from 'react-helmet'
 const $ = window.jQuery
 
 
@@ -32,14 +32,6 @@ function SkeletonDetProg() {
                 </div>
             </div>
         </SkeletonTheme>
-    )
-}
-
-function SkeletonImgDetProg() {
-    return (
-        <div className="mb-5">
-            <Skeleton reactangle={true} height={350} width={600} />
-        </div>
     )
 }
 
@@ -92,7 +84,7 @@ function ModalDonasi(props) {
     const [norek, setNorek] = useState([])
     const [qrcode, setQrcode] = useState([])
     const [form, setForm] = useState({
-        id_campaign: 0,
+        id_campaign: props.idkateggg,
         name: '',
         email: '',
         amount: 0,
@@ -136,7 +128,8 @@ function ModalDonasi(props) {
             return ({
                 id: `${doc.id}`,
                 bank: `${doc.jenisBank}`,
-                norek: `${doc.nomorRekening}`
+                norek: `${doc.nomorRekening}`,
+                an: `${doc.atasNama}`
             })
             // }
         })).then(items => {
@@ -174,21 +167,6 @@ function ModalDonasi(props) {
             pages1.style.display = "none"
             pages2.style.display = "block"
         })
-        // $(document).ready(function () {
-        //     $('.modal').each(() => {
-        //         var pages = $(this).find('.modal-split');
-        //         var pagetrack = 0
-        //         pages.hide();
-        //         pages.eq(0).show();
-        //         $('#submitdata').click(() => {
-        //             if (pagetrack < pages.length - 1) {
-        //                 pagetrack++;
-        //                 pages.hide();
-        //                 pages.eq(pagetrack).show();
-        //             }
-        //         })
-        //     })
-        // })
     })
     const onchangeform = (e) => {
         setForm({
@@ -199,18 +177,39 @@ function ModalDonasi(props) {
 
     const onsubmitform = (event) => {
         const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvbG9naW4iLCJpYXQiOjE2MTA0MjgzNzgsImV4cCI6MTYxMDQzMTk3OCwibmJmIjoxNjEwNDI4Mzc4LCJqdGkiOiJWSTFEZkVORjZWc3luNHB2Iiwic3ViIjoxMDAxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.awgkdKJarKGTxP_0HIldNI7CnG_xtJoxnzhALuFGIPc"
+        const data = {
+            ...form,
+            qrcode_url: qrcode[0],
+            account_number: norek,
+        }
+        const dataMsg = {
+            donatur: form.name,
+            nohp: form.phone_number,
+            namakepedulian: props.judulprog,
+            jumlah: form.amount,
+            norek: norek
+        }
+        console.log(data)
         fetch(`https://donasi.aqlpeduli.or.id/addDonation?token=${token}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(form)
-        }).then(res => {
-            return res.json()
-        }).then(resjson => (
-            console.log(resjson)
-        ))
-        fetch(`https://admin-donasi.aqlpeduli.or.id/wa-blast/send-meesage/${form.name}/${form.phone_number}/${props.judulprog}`).then(res=> res.text()).then(restext=>{
+            body: JSON.stringify(data)
+        })
+            .then(res => {
+                return res.json()
+            })
+            .then(resjson => (
+                console.log(resjson)
+            ))
+        fetch(`https://admin-donasi.aqlpeduli.or.id/wa-blast/send-message`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dataMsg)
+        }).then(res => res.json()).then(restext => {
             console.log(restext)
         })
         event.preventDefault()
@@ -230,7 +229,7 @@ function ModalDonasi(props) {
                             </div>
                         </div>
                         <form onSubmit={onsubmitform}>
-                            <input type="number" name="id" className="d-none" value={props.idkateggg} />
+                            <input type="number" name="id_campaign" className="d-none" defaultValue={props.idkateggg} onChange={onchangeform} />
                             <div className="form-group">
                                 <label htmlFor="recipient-nominal" className="col-form-label">Nominal:</label>
                                 <div className="input-group mb-3">
@@ -272,7 +271,7 @@ function ModalDonasi(props) {
                                 <div className="row align-items-center justify-content-center mb-5">
                                     <div className="col-md-11 col-lg-11">
                                         <button className="btn btn-light rounded-top-right rounded-bottom-left rounded-top-left rounded-bottom-right rounded-sm w-100 align-items-center justify-content-center btn-via-bb" onClick={() => window.open(`${props.linkbb}`, '_blank')}>
-                                            <img src={`${process.env.PUBLIC_URL}/images/donasi/berkahberjamaah.png`} className="img-fluid" height="35" width="35" />
+                                            <img src={`${process.env.PUBLIC_URL}/images/donasi/berkahberjamaah.png`} className="img-fluid" height="35" width="35" alt="berkahBerjamaah" />
                                             <h3 className="mb-0 mt-1 ml-2">
                                                 <strong>Berkah Berjamaah</strong>
                                             </h3>
@@ -294,12 +293,12 @@ function ModalDonasi(props) {
                             norek.map((doc, idx) => {
                                 if (doc.bank === "Mandiri") {
                                     return (
-                                        <div className="row rek-mandiri mb-5">
+                                        <div className="row rek-mandiri mb-5" key={idx}>
                                             <div className="col-4 col-md-4">
-                                                <img src={`${process.env.PUBLIC_URL}/images/donasi/mandiri.png`} alt="bank mandiri" className="img-fluid" />
+                                                <img src={`${process.env.PUBLIC_URL}/images/donasi/mandiri.png`} alt="bank mandiri" className="img-fluid" alt="bankMandiri" />
                                             </div>
                                             <div className="col-8 col-md-8">
-                                                <span className="text-muted" style={{ fontSize: `16px` }}>Bank Mandiri <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
+                                                <span className="text-muted" style={{ fontSize: `16px` }}>Bank Mandiri <br /> a.n {doc.an} <br /></span>
                                                 <span className="text-muted" style={{ fontSize: `16px` }}>{doc.norek}</span>
                                                 <CopyToClipboard onCopy={handleMandiri} text={doc.norek}>
                                                     <button className="cpy" onClick={norekcopied}> <i className="far fa-clone fa" /></button>
@@ -311,12 +310,12 @@ function ModalDonasi(props) {
                                 }
                                 else if (doc.bank === "BSM") {
                                     return (
-                                        <div className="row rek-bsm mb-5">
+                                        <div className="row rek-bsm mb-5" key={idx}>
                                             <div className="col-4 col-md-4">
-                                                <img src={`${process.env.PUBLIC_URL}/images/donasi/mandiris.png`} alt="bank mandiri syariah" className="img-fluid" />
+                                                <img src={`${process.env.PUBLIC_URL}/images/donasi/mandiris.png`} alt="bank mandiri syariah" className="img-fluid" alt="MandiriSyariah" />
                                             </div>
                                             <div className="col-8 col-md-8">
-                                                <span className="text-muted" style={{ fontSize: `16px` }}>Bank Mandiri Syariah<br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
+                                                <span className="text-muted" style={{ fontSize: `16px` }}>Bank Mandiri Syariah<br /> a.n {doc.an} <br /></span>
                                                 <span className="text-muted" style={{ fontSize: `16px` }}>{doc.norek}</span>
                                                 <CopyToClipboard onCopy={handleMandiris} text={doc.norek}>
                                                     <button className="cpy" onClick={norekmandiriscopied}> <i className="far fa-clone fa" /></button>
@@ -328,12 +327,12 @@ function ModalDonasi(props) {
                                 }
                                 else if (doc.bank === "BNI") {
                                     return (
-                                        <div className="row rek-bsm mb-5">
+                                        <div className="row rek-bsm mb-5" key={idx}>
                                             <div className="col-4 col-md-4">
-                                                <img src={`${process.env.PUBLIC_URL}/images/donasi/bni.png`} alt="bank BNI" className="img-fluid" />
+                                                <img src={`${process.env.PUBLIC_URL}/images/donasi/bni.png`} alt="bank BNI" className="img-fluid" alt="BankBNI" />
                                             </div>
                                             <div className="col-8 col-md-8">
-                                                <span className="text-muted" style={{ fontSize: `16px` }}>Bank BNI <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
+                                                <span className="text-muted" style={{ fontSize: `16px` }}>Bank BNI <br /> a.n {doc.an} <br /></span>
                                                 <span className="text-muted" style={{ fontSize: `16px` }}>{doc.norek}</span>
                                                 <CopyToClipboard onCopy={handlebni} text={doc.norek}>
                                                     <button className="cpy" onClick={norekbnicopied}> <i className="far fa-clone fa" /></button>
@@ -345,12 +344,12 @@ function ModalDonasi(props) {
                                 }
                                 else if (doc.bank === "BNISyariah") {
                                     return (
-                                        <div className="row rek-bsm mb-5">
+                                        <div className="row rek-bsm mb-5" key={idx}>
                                             <div className="col-4 col-md-4">
-                                                <img src={`${process.env.PUBLIC_URL}/images/donasi/bnis.png`} alt="bank BNI syariah" className="img-fluid" />
+                                                <img src={`${process.env.PUBLIC_URL}/images/donasi/bnis.png`} alt="bank BNI syariah" className="img-fluid" alt="BNISyariah" />
                                             </div>
                                             <div className="col-8 col-md-8">
-                                                <span className="text-muted" style={{ fontSize: `16px` }}>Bank BNI Syariah <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
+                                                <span className="text-muted" style={{ fontSize: `16px` }}>Bank BNI Syariah <br /> a.n {doc.an} <br /></span>
                                                 <span className="text-muted" style={{ fontSize: `16px` }}>{doc.norek}</span>
                                                 <CopyToClipboard onCopy={handlebnis} text={doc.norek}>
                                                     <button className="cpy" onClick={norekbniscopied}> <i className="far fa-clone fa" /></button>
@@ -362,12 +361,12 @@ function ModalDonasi(props) {
                                 }
                                 else if (doc.bank === "BRI") {
                                     return (
-                                        <div className="row rek-bri mb-5">
+                                        <div className="row rek-bri mb-5" key={idx}>
                                             <div className="col-4 col-md-4">
-                                                <img src={`${process.env.PUBLIC_URL}/images/donasi/bri.png`} alt="bank BRI" className="img-fluid" />
+                                                <img src={`${process.env.PUBLIC_URL}/images/donasi/bri.png`} alt="bank BRI" className="img-fluid" alt="BRI" />
                                             </div>
                                             <div className="col-8 col-md-8">
-                                                <span className="text-muted" style={{ fontSize: `16px` }}>Bank BRI <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
+                                                <span className="text-muted" style={{ fontSize: `16px` }}>Bank BRI <br /> a.n {doc.an} <br /></span>
                                                 <span className="text-muted" style={{ fontSize: `16px` }}>{doc.norek}</span>
                                                 <CopyToClipboard onCopy={handlebri} text={doc.norek}>
                                                     <button className="cpy" onClick={norekbricopied}> <i className="far fa-clone fa" /></button>
@@ -379,12 +378,12 @@ function ModalDonasi(props) {
                                 }
                                 else if (doc.bank === "BRISyariah") {
                                     return (
-                                        <div className="row rek-bsm mb-5">
+                                        <div className="row rek-bsm mb-5" key={idx}>
                                             <div className="col-4 col-md-4">
-                                                <img src={`${process.env.PUBLIC_URL}/images/donasi/bris.png`} alt="bank bri syariah" className="img-fluid" />
+                                                <img src={`${process.env.PUBLIC_URL}/images/donasi/bris.png`} alt="bank bri syariah" className="img-fluid" alt="BRISyariah" />
                                             </div>
                                             <div className="col-8 col-md-8">
-                                                <span className="text-muted" style={{ fontSize: `16px` }}>Bank BRI Syariah <br /> a.n Yayasan Pusat Peradaban Islam <br /></span>
+                                                <span className="text-muted" style={{ fontSize: `16px` }}>Bank BRI Syariah <br /> a.n {doc.an} <br /></span>
                                                 <span className="text-muted" style={{ fontSize: `16px` }}>{doc.norek}</span>
                                                 <CopyToClipboard onCopy={handlebris} text={doc.norek}>
                                                     <button className="cpy" onClick={norekbriscopied}> <i className="far fa-clone fa" /></button>
@@ -401,7 +400,7 @@ function ModalDonasi(props) {
                                 {
                                     qrcode.map((doc, idx) => {
                                         return (
-                                            <img className="img-fluid w-100" src={doc.qrcode} alt="QR Code" />
+                                            <img className="img-fluid w-100" src={doc.qrcode} alt="QR Code"  key={idx}/>
                                         )
                                     })
                                 }
@@ -430,7 +429,6 @@ function ModalDonasi(props) {
 }
 
 function ModalShare(props) {
-    const phone = '6282239193515'
     return (
         <>
             <Modal show={props.status} onHide={props.handlecloseshare} keyboard={false} className="modal-bagikan">
@@ -441,25 +439,25 @@ function ModalShare(props) {
                     <div>
                         <div className="icon-container1 d-flex">
                             <div className="smd">
-                                <a href={`https://twitter.com/intent/tweet?text=Mari%20berdonasi%20untuk%20${props.judulprog}%20melalui%20https://aqlpeduli.or.id/kepedulian/${props.linkshare}`} target="_blank">
+                                <a href={`https://twitter.com/intent/tweet?text=Mari%20berdonasi%20untuk%20${props.judulprog}%20melalui%20https://aqlpeduli.or.id/kepedulian/${props.linkshare}`} rel="noreferrer" target="_blank">
                                     <i className=" img-thumbnail fab fa-twitter fa fa-2x" style={{ color: '#4c6ef5', backgroundColor: 'aliceblue' }} />
                                     <p style={{ color: `black` }}>Twitter</p>
                                 </a>
                             </div>
                             <div className="smd">
-                                <a href={`https://www.facebook.com/sharer/sharer.php?u=https%3A//aqlpeduli.or.id/kepedulian/${props.linkshare}`} target="_blank">
+                                <a href={`https://www.facebook.com/sharer/sharer.php?u=https%3A//aqlpeduli.or.id/kepedulian/${props.linkshare}`} rel="noreferrer" target="_blank">
                                     <i className="img-thumbnail fab fa-facebook fa fa-2x" style={{ color: '#3b5998', backgroundColor: '#eceff5' }} />
                                     <p style={{ color: `black` }}>Facebook</p>
                                 </a>
                             </div>
                             <div className="smd">
-                                <a href={`https://t.me/share/url?url=${props.judulprog}&text=%20Mari%20membantu%20donasi%20${props.judulprog}%20melalui%20https://aqlpeduli.or.id/kepedulian/${props.linkshare}`} target="_blank">
+                                <a href={`https://t.me/share/url?url=${props.judulprog}&text=%20Mari%20membantu%20donasi%20${props.judulprog}%20melalui%20https://aqlpeduli.or.id/kepedulian/${props.linkshare}`} rel="noreferrer" target="_blank">
                                     <i className="img-thumbnail fab fa-2x fa-telegram fa" style={{ color: '#4c6ef5', backgroundColor: 'aliceblue' }} />
                                     <p style={{ color: `black` }}>Telegram</p>
                                 </a>
                             </div>
                             <div className="smd">
-                                <a href={`https://api.whatsapp.com/send?text=%20Mari%20membantu%20donasi%20${props.judulprog}%20melalui%20https://aqlpeduli.or.id/kepedulian/${props.linkshare}`} target="_blank">
+                                <a href={`https://api.whatsapp.com/send?text=%20Mari%20membantu%20donasi%20${props.judulprog}%20melalui%20https://aqlpeduli.or.id/kepedulian/${props.linkshare}`} rel="noreferrer" target="_blank">
                                     <i className="img-thumbnail fab fa-whatsapp fa fa-2x" style={{ color: '#25D366', backgroundColor: '#cef5dc' }} />
                                     <p style={{ color: `black` }}>Whatsapp</p>
                                 </a>
@@ -481,15 +479,16 @@ function ModalShare(props) {
 }
 
 function DetailProg(props) {
-    const bnykitemup = props.itemup.length
-    const idkategg = props.itemprog.idKateg
-    const arritemup = []
-    const arriconup = []
-    for (var i = 0; i < bnykitemup; i++) {
-        arritemup.push(false)
-        arriconup.push(false)
-    }
-    const [isShowGbr, setIsShowGbr] = useState(arritemup)
+    var bnykitemup = 0
+    const custparam = props.custparam
+    const [isShowGbr, setIsShowGbr] = useState([])
+    const [detailup, setDetailup] = useState([])
+    const [isLoadingdetup, setIsLoadingdetup] = useState(true);
+    const [detailprog, setDetailprog] = useState([])
+    const [metadata, setMetadata] = useState({})
+    const [toggleup, setToggleup] = useState(false)
+    const [isLoadingdetprog, setIsLoadingdetprog] = useState(true);
+    const hist = useHistory()
     function filterLampiran(index) {
         var arrShowGbr = isShowGbr
         arrShowGbr[index] = !arrShowGbr[index]
@@ -510,40 +509,139 @@ function DetailProg(props) {
     const messagecopied = () => {
         $(".message").text("link copied");
     }
+    // const urlUpdate = `https://peaceful-meadow-45867.herokuapp.com/update-programs?_where[program.id]=${detailprog.id}`
+    const urlDetailProgram = `https://peaceful-meadow-45867.herokuapp.com/programs?_where[linkShareProgram]=${custparam}`
 
-    const persenTerkumpul = (props.itemprog.terkumpul / props.itemprog.total) * 100
-    var idrterkumpul = parseInt(props.itemprog.terkumpul).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
-    var idrtotal = parseInt(props.itemprog.total).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
-    const listup = props.itemup.map((doc, idx) => {
+    useEffect(() => {
+        fetch(urlDetailProgram).then(res => res.json()).then(parseJson => parseJson.map((parsedJson) => (
+            {
+                id: `${parsedJson.id}`,
+                judul: `${parsedJson.judulProgram}`,
+                tanggal: `${parsedJson.created_at}`,
+                total: parsedJson.totaldanaProgram,
+                terkumpul: parsedJson.totalterkumpulProgram,
+                durasi: `${parsedJson.durasiProgram}`,
+                des: `${parsedJson.deskripsiProgram}`,
+                linkbb: `${parsedJson.linkBerkahBerjamaah}`,
+                gambar: parsedJson.gambarProgram.url,
+                cerita: `${parsedJson.cerita}`,
+                idKateg: `${parsedJson.kategori.id}`,
+                namaKateg: `${parsedJson.kategori.namaKategori}`,
+                updateProg: parsedJson.update_programs,
+                linkshare: `${parsedJson.linkShareProgram}`
+            }
+        ))).then(
+            items => {
+                if (items.length > 0) {
+                    const detprog = items[0]
+                    setDetailprog(detprog)
+                    setIsLoadingdetprog(false)
+                    console.log(detprog.updateProg)
+                    setDetailup(detprog.updateProg)
+                    setIsLoadingdetup(false)
+                    setMetadata({
+                        title: `AQL | ${items[0].judul}`,
+                        desc: items[0].des,
+                        img: items[0].gambar,
+                    })
+                    bnykitemup = detprog.updateProg.length
+                    const arritemup = []
+                    const arriconup = []
+                    for (var i = 0; i < bnykitemup; i++) {
+                        arritemup.push(false)
+                        arriconup.push(false)
+                    }
+                    setIsShowGbr(arritemup)
+                }
+                else {
+                    hist.push('/404')
+                }
+            }
+        )
+    }, [])
+    // useEffect(() => {
+    //     fetch(urlUpdate).then(res => res.json()).then(parsedJsonUp => {
+    //         if (parsedJsonUp.length == undefined || parsedJsonUp == undefined || parsedJsonUp == null) {
+    //             setDetailup(0)
+    //             return 0
+    //         }
+    //         else {
+    //             return parsedJsonUp.map(data => {
+    //                 if (data.gambarUpdate !== null) {
+    //                     return ({
+    //                         idUp: `${data.id}`,
+    //                         namaUp: `${data.namaUpdate}`,
+    //                         desUp: `${data.deskripsiUpdate}`,
+    //                         tanggalUp: `${data.tanggalpelaksanaanUpdate}`,
+    //                         gambarUp: `${data.gambarUpdate.url}`,
+    //                         idProg: `${data.program.id}`
+    //                     })
+    //                 }
+    //                 else {
+    //                     return (
+    //                         {
+    //                             idUp: `${data.id}`,
+    //                             namaUp: `${data.namaUpdate}`,
+    //                             desUp: `${data.deskripsiUpdate}`,
+    //                             tanggalUp: `${data.tanggalpelaksanaanUpdate}`,
+    //                             idProg: `${data.program.id}`
+    //                         }
+    //                     )
+    //                 }
+    //             })
+    //         }
+    //     }).then((items2) => {
+    //         var itemup2 = []
+    //         // items2.map((doc) => {
+    //         //     console.log(doc.idProg+", "+detailprog.id)
+    //         //     if (doc.idProg == detailprog.id) {
+    //         //         itemup2.push(doc)
+    //         //     }
+    //         // })
+    //         console.log("ini length itemup2: " + itemup2.length)
+
+    //         if (items2 == 0) {
+    //             return 0
+    //         }
+    //         else {
+    //             const itemup2sort = itemup2.sort((a, b) => { return new Date(b.tanggalUp) - new Date(a.tanggalUp) })
+    //             setDetailup(itemup2sort)
+    //         }
+    //     }
+    //     )
+    // }, [])
+    const persenTerkumpul = (detailprog.terkumpul / detailprog.total) * 100
+    var idrterkumpul = parseInt(detailprog.terkumpul).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+    var idrtotal = parseInt(detailprog.total).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+    const toggleUp = ()=> setToggleup(prev=> !prev)
+    const toggleClass = `m-3 img-gambar dropdown-menu${toggleup ? " show" : ""}`
+    const listup = detailup.map((doc, idx) => {
         return (
-            <li className="timeline-item active text-left">
-                <DariTanggal tanggal={doc.tanggalUp}></DariTanggal>
+            <li className="timeline-item active text-left" key={idx}>
+                <DariTanggal tanggal={doc.tanggalpelaksanaanUpdate}></DariTanggal>
                 <h3 style={{ fontSize: `1.25rem` }}>
-                    {doc.namaUp}
+                    {doc.namaUpdate}
                 </h3>
                 <p className="text-muted mb-4">
-                    {doc.desUp}
+                    {doc.deskripsiUpdate}
                 </p>
-                <div className="dropdown">
+                <div className="dropdown" onClick={toggleUp}>
                     <button className="btn btn-primary" type="button" aria-haspopup="true" aria-expanded="false" onClick={() => filterLampiran(idx)}>
                         Lampirkan
-                            {isShowGbr[idx] ? <i class="fe fe-chevron-up"></i>
+                                {isShowGbr[idx] ? <i class="fe fe-chevron-up"></i>
                             :
                             <i class="fe fe-chevron-down"></i>
                         }
                     </button>
-                    {/* <div className="dropdown-menu" aria-labelledby="dropdownMenuButtonTwo">
-                        <a className="dropdown-item btn-gambar" onClick={() => filterLampiran(idx)}>Gambar</a>
-                    </div> */}
+                    {isShowGbr[idx] ?
+                        <div className={toggleClass} data-aos="fade-up">
+                            <a href={doc.gambarUpdate.url} class="d-block mb-3 mb-md-0" data-fancybox>
+                                <img className="img-fluid w-100 gambar-up-det-prog" src={doc.gambarUpdate.url} alt="Gambar update kepedulian" />
+                            </a>
+                        </div>
+                        : null
+                    }
                 </div>
-                {isShowGbr[idx] ?
-                    <div className="m-3 img-gambar" data-aos="fade-up">
-                        <a href={doc.gambarUp} class="d-block mb-3 mb-md-0" data-fancybox>
-                            <img className="img-fluid w-100 gambar-up-det-prog" src={doc.gambarUp} alt="" />
-                        </a>
-                    </div>
-                    : null
-                }
             </li>
         )
     })
@@ -551,7 +649,7 @@ function DetailProg(props) {
     const myImg = (props) => {
         return (
             <a href={props.src} className="d-block mb-3 mb-md-0" data-fancybox>
-                <img src={props.src} className="img-fluid" />
+                <img src={props.src} className="img-fluid" alt="image Konten"/>
             </a>
 
         )
@@ -573,146 +671,165 @@ function DetailProg(props) {
     //     })
     // })
     return (
-        <section className="pt-10 pt-md-11">
-            <div className="container-xl" id="wadahSticky">
-                <div className="row align-items-center justify-content-center">
-                    <div className="col">
-                        <nav aria-label="breadcrumb">
-                            <ol className="breadcrumb">
-                                <li className="breadcrumb-item">
-                                    <Link to={`/kepedulian`}>
-                                        Program Kepedulian
+        <>
+            <Helmet>
+                <title>{metadata.title}</title>
+                <meta name="description" content={metadata.desc} />
+
+                <meta itemProp="name" content={metadata.title} />
+                <meta itemProp="description" content={metadata.desc} />
+                <meta itemProp="image" content={metadata.img} />
+
+                <meta property="og:url" content={`https://aqlpeduli.or.id/kepedulian/${detailprog.linkshare}`} />
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content={`AQL | Kepedulian dan Kemanusiaan`} />
+                <meta property="og:description" content={metadata.desc} />
+                <meta property="og:image" content={metadata.img} />
+
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={metadata.title} />
+                <meta name="twitter:description" content={metadata.desc} />
+                <meta name="twitter:image" content={metadata.img} />
+            </Helmet>
+            <section className="pt-10 pt-md-11">
+                <div className="container-xl" id="wadahSticky">
+                    <div className="row align-items-center justify-content-center">
+                        <div className="col">
+                            <nav aria-label="breadcrumb">
+                                <ol className="breadcrumb">
+                                    <li className="breadcrumb-item">
+                                        <Link to={`/kepedulian`}>
+                                            Program Kepedulian
                                     </Link>
-                                </li>
-                                <li className="breadcrumb-item active" aria-current="page">{props.itemprog.judul}</li>
-                            </ol>
-                        </nav>
+                                    </li>
+                                    <li className="breadcrumb-item active" aria-current="page">{detailprog.judul}</li>
+                                </ol>
+                            </nav>
+                        </div>
                     </div>
-                </div>
-                <div className="container">
-                    {props.loadingdetprog ? <SkeletonDetProg></SkeletonDetProg>
-                        :
-                        <div className="row mb-5">
-                            <div className="col-sm-12 col-md-12 col-lg-7 px-0">
-                                <div>
-                                    {props.itemprog.gambar !== null && <img className="img-fluid w-100 h-100" src={props.itemprog.gambar}></img>
-                                    }
+                    <div className="container">
+                        {isLoadingdetprog ? <SkeletonDetProg></SkeletonDetProg>
+                            :
+                            <div className="row mb-5">
+                                <div className="col-sm-12 col-md-12 col-lg-7 px-0">
+                                    <div>
+                                        {detailprog.gambar !== null && <img className="img-fluid w-100 h-100" src={detailprog.gambar} alt="gambar kepedulian"></img>
+                                        }
+                                    </div>
                                 </div>
-                            </div>
-                            <br />
-                            <div className="col-sm-12 col-md-12 col-lg-5">
-                                <Sticky containerSelectorFocus="#wadahSticky" offsetTop={70} stickyEnableRange={[900, Infinity]}>
-                                    <div className="kop rounded-bottom-right rounded-top-left ml-3 wadah-info-det-prog">
-                                        <p className="mb-1 text-info"><small>{props.itemprog.namaKateg}</small></p>
-                                        <div style={{ height: `5rem` }}>
-                                            <h2 className="judul-det-prog mb-3">{props.itemprog.judul}</h2>
-                                        </div>
-                                        <div style={{ height: `6rem` }} className="mb-3">
-                                            <p style={{ fontSize: `1rem` }} className="des-det-prog">
-                                                {props.itemprog.des}
-                                            </p>
-                                        </div>
-                                        <div style={{ height: `5rem` }} className="mb-3">
-                                            <span style={{ fontSize: `1rem` }}>Rp.{props.itemprog.terkumpul !== null ? idrterkumpul : 'Rp.0.00'} dari Rp.<strong>{props.itemprog.total !== null && idrtotal}</strong></span>
-                                            {/* <div className="progress">
+                                <br />
+                                <div className="col-sm-12 col-md-12 col-lg-5">
+                                    <Sticky containerSelectorFocus="#wadahSticky" offsetTop={70} stickyEnableRange={[900, Infinity]}>
+                                        <div className="kop rounded-bottom-right rounded-top-left ml-3 wadah-info-det-prog">
+                                            <p className="mb-1 text-info"><small>{detailprog.namaKateg}</small></p>
+                                            <div style={{ height: `5rem` }}>
+                                                <h2 className="judul-det-prog mb-3">{detailprog.judul}</h2>
+                                            </div>
+                                            <div style={{ height: `6rem` }} className="mb-3">
+                                                <p style={{ fontSize: `1rem` }} className="des-det-prog">
+                                                    {detailprog.des}
+                                                </p>
+                                            </div>
+                                            <div style={{ height: `5rem` }} className="mb-3">
+                                                <span style={{ fontSize: `1rem` }}>Rp.{detailprog.terkumpul !== null ? idrterkumpul : 'Rp.0.00'} dari Rp.<strong>{detailprog.total !== null && idrtotal}</strong></span>
+                                                {/* <div className="progress">
                                                 <div className="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow={persenTerkumpul}>
                                                 </div>
                                             </div> */}
-                                            <ProgressBar animated now={persenTerkumpul} srOnly></ProgressBar>
-                                            {props.itemprog.durasi !== null && <SisaHari tanggal={props.itemprog.tanggal} durasi={props.itemprog.durasi} />
-                                            }
-                                        </div>
-                                        <div className="row button-donasi-atas">
-                                            <div className="col-12 col-sm-10 col-md-10">
-                                                <button className="btn btn-donasi-sekarang w-100" onClick={handleShow}>DONASI SEKARANG</button>
+                                                <ProgressBar animated now={persenTerkumpul} srOnly></ProgressBar>
+                                                {detailprog.durasi !== null && <SisaHari tanggal={detailprog.tanggal} durasi={detailprog.durasi} />
+                                                }
                                             </div>
-                                            <div className="col-12 col-sm-2 col-md-2 btn-bagika-det-prog pl-0">
-                                                <button className="btn btn-bagikan" onClick={handleShowShare}>
-                                                    <i className="fa fa-share-alt" />
-                                                </button>
+                                            <div className="row button-donasi-atas">
+                                                <div className="col-12 col-sm-10 col-md-10">
+                                                    <button className="btn btn-donasi-sekarang w-100" onClick={handleShow}>DONASI SEKARANG</button>
+                                                </div>
+                                                <div className="col-12 col-sm-2 col-md-2 btn-bagika-det-prog pl-0">
+                                                    <button className="btn btn-bagikan" onClick={handleShowShare}>
+                                                        <i className="fa fa-share-alt" />
+                                                    </button>
+                                                </div>
+                                                <ModalDonasi status={showmodal} handleclose={handleClose} linkbb={detailprog.linkbb} judulprog={detailprog.judul} idkateggg={detailprog.idKateg}></ModalDonasi>
+                                                <ModalShare status={showshare} handlecloseshare={handleCloseShare} id={detailprog.id} judulprog={detailprog.judul} handlecopied={handlecopied} messagecopied={messagecopied} linkshare={detailprog.linkshare}></ModalShare>
                                             </div>
-                                            <ModalDonasi status={showmodal} handleclose={handleClose} linkbb={props.itemprog.linkbb} judulprog={props.itemprog.judul} idkateggg={idkategg}></ModalDonasi>
-                                            <ModalShare status={showshare} handlecloseshare={handleCloseShare} id={props.itemprog.id} judulprog={props.itemprog.judul} handlecopied={handlecopied} messagecopied={messagecopied} linkshare={props.itemprog.linkshare}></ModalShare>
                                         </div>
-                                    </div>
-                                </Sticky>
-                            </div>
-                        </div>
-                    }
-                </div>
-                <div className="row align-items-center mb-5">
-                    <div className="col-12 col-md-7 col-lg-7">
-                        {props.fromupdate ?
-                            <div>
-                                <nav>
-                                    <div className="nav nav-tabs" id="nav-tab" role="tablist">
-                                        <a className="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Cerita</a>
-                                        <a className="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Update</a>
-                                    </div>
-                                </nav>
-                                <div className="tab-content" id="nav-tabContent">
-                                    <div className="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                        {props.loadingdetprog ? <SkeletonCerita></SkeletonCerita> :
-                                            // <p className="text-muted" style={{ whiteSpace: `pre-wrap`, textAlign: `justify` }} dangerouslySetInnerHTML={markup}>
-                                            // </p>
-                                            <ReactMarkdown children={props.itemprog.cerita} renderers={renderMyImg}></ReactMarkdown>
-                                        }
-                                    </div>
-                                    <div className="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                        <ol className="timeline timeline-success m-5">
-                                            {props.loadingdetup ? <SKeletonUpdate></SKeletonUpdate>
-                                                :
-                                                listup
-                                            }
-                                        </ol>
-                                    </div>
-                                </div>
-                            </div>
-                            :
-                            <div>
-                                <nav>
-                                    <div className="nav nav-tabs" id="nav-tab" role="tablist">
-                                        <a className="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Cerita</a>
-                                        <a className="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Update</a>
-                                    </div>
-                                </nav>
-                                <div className="tab-content" id="nav-tabContent">
-                                    <div className="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                        {/* <p className="text-muted" style={{ whiteSpace: `pre-wrap`, textAlign: `justify` }}>
-                                            {props.loadingdetprog ? <SkeletonCerita></SkeletonCerita>
-                                                :
-                                                props.itemprog.cerita
-                                            }
-                                        </p> */}
-                                        {props.loadingdetprog ? <SkeletonCerita></SkeletonCerita> :
-                                            // <p className="text-muted" style={{ whiteSpace: `pre-wrap`, textAlign: `justify` }} dangerouslySetInnerHTML={markup}>
-                                            // </p>
-                                            <ReactMarkdown children={props.itemprog.cerita} renderers={renderMyImg}></ReactMarkdown>
-                                        }
-                                    </div>
-                                    <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                        <ol className="timeline timeline-success m-5">
-                                            {props.loadingdetup ? <SKeletonUpdate></SKeletonUpdate>
-                                                :
-                                                listup
-                                            }
-                                        </ol>
-                                    </div>
+                                    </Sticky>
                                 </div>
                             </div>
                         }
                     </div>
-                </div>
-                <div className="row no-gutters button-donasi-bawah d-flex bg-white" style={{ position: `fixed`, left: `0`, bottom: `0rem`, width: `100%`, height: `4rem`, zIndex: `99` }}>
-                    <div className="col-9 col-sm-6 col-md-6 my-2 justify-content-center" style={{ textAlign: `center` }}>
-                        <button className="btn h-100 w-100 btn-donasi-kecil-sekarang" onClick={handleShow}>DONASI SEKARANG</button>
+                    <div className="row align-items-center mb-5">
+                        <div className="col-12 col-md-7 col-lg-7">
+                            {props.fromupdate ?
+                                <div>
+                                    <nav>
+                                        <div className="nav nav-tabs" id="nav-tab" role="tablist">
+                                            <a className="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Cerita</a>
+                                            <a className="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Update</a>
+                                        </div>
+                                    </nav>
+                                    <div className="tab-content" id="nav-tabContent">
+                                        <div className="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                            {isLoadingdetprog ? <SkeletonCerita></SkeletonCerita> :
+                                                <ReactMarkdown children={detailprog.cerita} renderers={renderMyImg}></ReactMarkdown>
+                                            }
+                                        </div>
+                                        <div className="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                            <ol className="timeline timeline-success m-5">
+                                                {isLoadingdetup ? <SKeletonUpdate></SKeletonUpdate>
+                                                    :
+                                                    listup
+                                                }
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                :
+                                <div>
+                                    <nav>
+                                        <div className="nav nav-tabs" id="nav-tab" role="tablist">
+                                            <a className="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Cerita</a>
+                                            <a className="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Update</a>
+                                        </div>
+                                    </nav>
+                                    <div className="tab-content" id="nav-tabContent">
+                                        <div className="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                            {/* <p className="text-muted" style={{ whiteSpace: `pre-wrap`, textAlign: `justify` }}>
+                                            {props.loadingdetprog ? <SkeletonCerita></SkeletonCerita>
+                                                :
+                                                detailprog.cerita
+                                            }
+                                        </p> */}
+                                            {props.loadingdetprog ? <SkeletonCerita></SkeletonCerita> :
+                                                // <p className="text-muted" style={{ whiteSpace: `pre-wrap`, textAlign: `justify` }} dangerouslySetInnerHTML={markup}>
+                                                // </p>
+                                                <ReactMarkdown children={detailprog.cerita} renderers={renderMyImg}></ReactMarkdown>
+                                            }
+                                        </div>
+                                        <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                            <ol className="timeline timeline-success m-5">
+                                                {isLoadingdetup ? <SKeletonUpdate></SKeletonUpdate>
+                                                    :
+                                                    listup
+                                                }
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
                     </div>
-                    <div className="col-3 col-sm-6 col-md-6 btn-bagika-det-prog my-2" style={{ textAlign: `center` }}>
-                        <button className="btn h-100 w-100 btn-bagikan" onClick={handleShowShare}> <i className="fa fa-share-alt" /></button>
+                    <div className="row no-gutters button-donasi-bawah d-flex bg-white" style={{ position: `fixed`, left: `0`, bottom: `0rem`, width: `100%`, height: `4rem`, zIndex: `99` }}>
+                        <div className="col-9 col-sm-6 col-md-6 my-2 justify-content-center" style={{ textAlign: `center` }}>
+                            <button className="btn h-100 w-100 btn-donasi-kecil-sekarang" onClick={handleShow}>DONASI SEKARANG</button>
+                        </div>
+                        <div className="col-3 col-sm-6 col-md-6 btn-bagika-det-prog my-2" style={{ textAlign: `center` }}>
+                            <button className="btn h-100 w-100 btn-bagikan" onClick={handleShowShare}> <i className="fa fa-share-alt" /></button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </>
     )
 }
 
