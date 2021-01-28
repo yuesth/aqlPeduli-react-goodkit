@@ -40,6 +40,18 @@ ol.timeline{
     visibility: hidden;
 }
 
+.img-gambar{
+    display: none;
+}
+
+.upIcon{
+    display: none;
+}
+
+/* .downIcon{
+    display: block;
+} */
+
 .btn-via-bb{
     /* background-image: url(%PUBLIC_URL%/images/donasi/wa.png); */
     display: flex;

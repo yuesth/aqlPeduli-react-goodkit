@@ -132,7 +132,7 @@ function DetailEvent(props) {
                                 <nav aria-label="breadcrumb">
                                     <ol className="breadcrumb">
                                         <li className="breadcrumb-item">
-                                            <Link to={`/events`}>
+                                            <Link to={`/events`} style={{color:`rgb(47, 57, 144)`}}>
                                                 Events
                                             </Link>
                                         </li>

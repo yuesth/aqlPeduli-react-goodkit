@@ -196,7 +196,7 @@ function EventBerita() {
                             <nav aria-label="breadcrumb">
                                 <ol className="breadcrumb">
                                     <li className="breadcrumb-item">
-                                        <Link to={`/berita`}>
+                                        <Link to={`/berita`} style={{color:`rgb(47, 57, 144)`}}>
                                             Berita
                                         </Link>
                                     </li>

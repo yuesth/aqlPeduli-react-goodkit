@@ -400,7 +400,7 @@ function ModalDonasi(props) {
                                 {
                                     qrcode.map((doc, idx) => {
                                         return (
-                                            <img className="img-fluid w-100" src={doc.qrcode} alt="QR Code"  key={idx}/>
+                                            <img className="img-fluid w-100" src={doc.qrcode} alt="QR Code" key={idx} />
                                         )
                                     })
                                 }
@@ -478,22 +478,82 @@ function ModalShare(props) {
     )
 }
 
-function DetailProg(props) {
-    var bnykitemup = 0
-    const custparam = props.custparam
-    const [isShowGbr, setIsShowGbr] = useState([])
-    const [detailup, setDetailup] = useState([])
-    const [isLoadingdetup, setIsLoadingdetup] = useState(true);
-    const [detailprog, setDetailprog] = useState([])
-    const [metadata, setMetadata] = useState({})
+function ListUpdate(props) {
     const [toggleup, setToggleup] = useState(false)
-    const [isLoadingdetprog, setIsLoadingdetprog] = useState(true);
-    const hist = useHistory()
+    const toggleUp = () => setToggleup(prev => !prev)
+    const toggleClass = `m-3 img-gambar dropdown-menu${toggleup ? " show" : ""}`
+    var bnykitemup = 0
+    bnykitemup = props.data.length
+    const arritemup = []
+    const arriconup = []
+    for (var i = 0; i < bnykitemup; i++) {
+        arritemup.push(false)
+        arriconup.push(false)
+    }
+    const [isShowGbr, setIsShowGbr] = useState(arritemup)
     function filterLampiran(index) {
         var arrShowGbr = isShowGbr
         arrShowGbr[index] = !arrShowGbr[index]
         setIsShowGbr(arrShowGbr)
+        var img = document.getElementsByClassName(`${index}`)
+        for (var i = 0; i < img.length; i++) {
+            if (img[i].style.display == "none") {
+                img[i].style.display = "block"
+            }
+            else {
+                img[i].style.display = "none"
+            }
+        }
     }
+    const listup = props.data.map((doc, idx) => {
+        console.log("url: " + doc.gambarUpdate.url)
+        return (
+            <li className="timeline-item active text-left" key={idx}>
+                <DariTanggal tanggal={doc.tanggalpelaksanaanUpdate}></DariTanggal>
+                <h3 style={{ fontSize: `1.25rem` }}>
+                    {doc.namaUpdate}
+                </h3>
+                <p className="text-muted mb-4">
+                    {doc.deskripsiUpdate}
+                </p>
+                {/* <div className="dropdown" onClick={toggleUp}> */}
+                <div className="w-100">
+                    <button className="btn btn-primary" id="btnImgUp" type="button" aria-haspopup="true" aria-expanded="false" onClick={() => filterLampiran(idx)}>
+                        {/* <i class={`fe fe-chevron-up upIcon ${idx}`}></i> */}
+                        Lampirkan
+                                {/* {isShowGbr[idx] ? */}
+                        {/* : */}
+                        {/* <i class={`fe fe-chevron-down ${idx}`}></i> */}
+                        {/* } */}
+                    </button>
+                </div>
+                {/* {isShowGbr[idx] ? */}
+                <div className={`m-3 img-gambar ${idx}`} data-aos="fade-up">
+                    <a href={doc.gambarUpdate.url} class="d-block mb-3 mb-md-0" data-fancybox>
+                        <img className="img-fluid w-100 gambar-up-det-prog" src={doc.gambarUpdate.url} alt="Gambar update kepedulian" />
+                    </a>
+                </div>
+                {/* : null */}
+                {/* } */}
+                {/* </div> */}
+            </li>
+        )
+    })
+    return (
+        <>
+            {listup}
+        </>
+    )
+}
+
+function DetailProg(props) {
+    const custparam = props.custparam
+    const [detailup, setDetailup] = useState([])
+    const [isLoadingdetup, setIsLoadingdetup] = useState(true);
+    const [detailprog, setDetailprog] = useState([])
+    const [metadata, setMetadata] = useState({})
+    const [isLoadingdetprog, setIsLoadingdetprog] = useState(true);
+    const hist = useHistory()
 
     const [showmodal, setShowmodal] = useState(false)
     const handleClose = () => setShowmodal(false);
@@ -544,14 +604,6 @@ function DetailProg(props) {
                         desc: items[0].des,
                         img: items[0].gambar,
                     })
-                    bnykitemup = detprog.updateProg.length
-                    const arritemup = []
-                    const arriconup = []
-                    for (var i = 0; i < bnykitemup; i++) {
-                        arritemup.push(false)
-                        arriconup.push(false)
-                    }
-                    setIsShowGbr(arritemup)
                 }
                 else {
                     hist.push('/404')
@@ -613,43 +665,11 @@ function DetailProg(props) {
     const persenTerkumpul = (detailprog.terkumpul / detailprog.total) * 100
     var idrterkumpul = parseInt(detailprog.terkumpul).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
     var idrtotal = parseInt(detailprog.total).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
-    const toggleUp = ()=> setToggleup(prev=> !prev)
-    const toggleClass = `m-3 img-gambar dropdown-menu${toggleup ? " show" : ""}`
-    const listup = detailup.map((doc, idx) => {
-        return (
-            <li className="timeline-item active text-left" key={idx}>
-                <DariTanggal tanggal={doc.tanggalpelaksanaanUpdate}></DariTanggal>
-                <h3 style={{ fontSize: `1.25rem` }}>
-                    {doc.namaUpdate}
-                </h3>
-                <p className="text-muted mb-4">
-                    {doc.deskripsiUpdate}
-                </p>
-                <div className="dropdown" onClick={toggleUp}>
-                    <button className="btn btn-primary" type="button" aria-haspopup="true" aria-expanded="false" onClick={() => filterLampiran(idx)}>
-                        Lampirkan
-                                {isShowGbr[idx] ? <i class="fe fe-chevron-up"></i>
-                            :
-                            <i class="fe fe-chevron-down"></i>
-                        }
-                    </button>
-                    {isShowGbr[idx] ?
-                        <div className={toggleClass} data-aos="fade-up">
-                            <a href={doc.gambarUpdate.url} class="d-block mb-3 mb-md-0" data-fancybox>
-                                <img className="img-fluid w-100 gambar-up-det-prog" src={doc.gambarUpdate.url} alt="Gambar update kepedulian" />
-                            </a>
-                        </div>
-                        : null
-                    }
-                </div>
-            </li>
-        )
-    })
     // const markup = { __html: props.kontenfix }
     const myImg = (props) => {
         return (
             <a href={props.src} className="d-block mb-3 mb-md-0" data-fancybox>
-                <img src={props.src} className="img-fluid" alt="image Konten"/>
+                <img src={props.src} className="img-fluid" alt="image Konten" />
             </a>
 
         )
@@ -696,9 +716,9 @@ function DetailProg(props) {
                     <div className="row align-items-center justify-content-center">
                         <div className="col">
                             <nav aria-label="breadcrumb">
-                                <ol className="breadcrumb">
-                                    <li className="breadcrumb-item">
-                                        <Link to={`/kepedulian`}>
+                                <ol className="breadcrumb px-0">
+                                    <li className="breadcrumb-item pl-0">
+                                        <Link to={`/kepedulian`} style={{color:`rgb(47, 57, 144)`, fontWeight:`bold`}}>
                                             Program Kepedulian
                                     </Link>
                                     </li>
@@ -778,7 +798,8 @@ function DetailProg(props) {
                                             <ol className="timeline timeline-success m-5">
                                                 {isLoadingdetup ? <SKeletonUpdate></SKeletonUpdate>
                                                     :
-                                                    listup
+                                                    // listup
+                                                    <ListUpdate data={detailup}></ListUpdate>
                                                 }
                                             </ol>
                                         </div>
@@ -810,7 +831,8 @@ function DetailProg(props) {
                                             <ol className="timeline timeline-success m-5">
                                                 {isLoadingdetup ? <SKeletonUpdate></SKeletonUpdate>
                                                     :
-                                                    listup
+                                                    // listup
+                                                    <ListUpdate data={detailup}></ListUpdate>
                                                 }
                                             </ol>
                                         </div>

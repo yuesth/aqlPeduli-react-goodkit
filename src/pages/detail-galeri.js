@@ -144,7 +144,7 @@ function DetailGaleri(props) {
                                 <nav aria-label="breadcrumb">
                                     <ol className="breadcrumb">
                                         <li className="breadcrumb-item">
-                                            <Link to={`/informasi`}>
+                                            <Link to={`/informasi`} style={{color:`rgb(47, 57, 144)`}}>
                                                 Galeri
                                             </Link>
                                         </li>
