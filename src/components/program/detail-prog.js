@@ -84,7 +84,7 @@ function ModalDonasi(props) {
     const [norek, setNorek] = useState([])
     const [qrcode, setQrcode] = useState([])
     const [form, setForm] = useState({
-        id_campaign: props.idkateggg,
+        id_campaign: props.idprog,
         name: '',
         email: '',
         amount: 0,
@@ -229,7 +229,7 @@ function ModalDonasi(props) {
                             </div>
                         </div>
                         <form onSubmit={onsubmitform}>
-                            <input type="number" name="id_campaign" className="d-none" defaultValue={props.idkateggg} onChange={onchangeform} />
+                            <input type="number" name="id_campaign" className="d-none" defaultValue={props.idprog} onChange={onchangeform} />
                             <div className="form-group">
                                 <label htmlFor="recipient-nominal" className="col-form-label">Nominal:</label>
                                 <div className="input-group mb-3">
@@ -769,7 +769,7 @@ function DetailProg(props) {
                                                         <i className="fa fa-share-alt" />
                                                     </button>
                                                 </div>
-                                                <ModalDonasi status={showmodal} handleclose={handleClose} linkbb={detailprog.linkbb} judulprog={detailprog.judul} idkateggg={detailprog.idKateg}></ModalDonasi>
+                                                <ModalDonasi status={showmodal} handleclose={handleClose} linkbb={detailprog.linkbb} judulprog={detailprog.judul} idkateggg={detailprog.idKateg} idprog={detailprog.id}></ModalDonasi>
                                                 <ModalShare status={showshare} handlecloseshare={handleCloseShare} id={detailprog.id} judulprog={detailprog.judul} handlecopied={handlecopied} messagecopied={messagecopied} linkshare={detailprog.linkshare}></ModalShare>
                                             </div>
                                         </div>
