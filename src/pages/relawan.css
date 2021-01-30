@@ -15,3 +15,42 @@
 .form-group{
     border: 1px solid rgb(47, 57, 144);
 }
+
+.wajib::-webkit-input-placeholder::after{
+    content: "*";
+    color: red;
+}
+
+.wajib::placeholder::after{
+    content: "*";
+    color: red;
+}
+
+.grupForm{
+    position: relative;
+}
+
+.grupForm .palceholder{
+    position: absolute;
+   top: 0.7rem;
+   left: 1.2rem;
+    color: rgb(107, 110, 140);
+    display: none;
+}
+
+.grupForm label{
+    font-weight: normal;
+    font-size: medium;
+    color: rgb(107, 110, 140);
+}
+
+.grupForm .star{
+    color: red;
+}
+
+input[type=date]:required:invalid::-webkit-datetime-edit {
+    color: transparent;
+}
+input[type=date]:focus::-webkit-datetime-edit {
+    color: black !important;
+}

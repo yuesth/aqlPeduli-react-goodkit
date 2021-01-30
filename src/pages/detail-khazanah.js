@@ -77,13 +77,13 @@ function DetailKhazanah(props) {
             }
         ))).then(
             items => {
-                if(items.length > 0){
+                if (items.length > 0) {
                     const khaz = items[0]
                     setDetailkha(khaz)
                     setIsLoadingdetkha(false)
                     // return (khaz.isi)
                 }
-                else{
+                else {
                     hist.push('/404')
                 }
             }
@@ -140,7 +140,7 @@ function DetailKhazanah(props) {
                                 <nav aria-label="breadcrumb">
                                     <ol className="breadcrumb">
                                         <li className="breadcrumb-item">
-                                            <Link to={`/khazanah`} style={{color:`rgb(47, 57, 144)`}}>
+                                            <Link to={`/khazanah`} style={{ color: `rgb(47, 57, 144)` }}>
                                                 Khazanah
                                             </Link>
                                         </li>
@@ -164,7 +164,7 @@ function DetailKhazanah(props) {
                                 <div className="row no-gutters">
                                     <div className="col-md-7 col-12 mb-5 mb-md-0">
                                         <p className="small text-muted mb-0">
-                                            <DariTanggal tanggal={detailkha.tanggal}></DariTanggal> | Oleh: {detailkha.pemateri}
+                                            <DariTanggal tanggal={detailkha.tanggal}></DariTanggal> {detailkha.pemateri !== "null" &&  <> |Oleh: {detailkha.pemateri} </>}
                                         </p>
                                         {detailkha.penulis !== "null" &&
                                             <p className="small text-muted mb-0">
@@ -216,13 +216,16 @@ function DetailKhazanah(props) {
                                 <ReactMarkdown children={detailkha.isi} renderers={renderMyImg}></ReactMarkdown>
                             </div>
                         </div>
-                        <div className="row align-items-center justify-content-center mb-7 no-gutters" style={{ textAlign: `center` }}>
-                            <div className="col-md-10 col-lg-9">
-                                <div className="embed-responsive embed-responsive-16by9">
-                                    <iframe className="embed-responsive-item" src={detailkha.urlvideo} allowFullScreen />
+                        {
+                            detailkha.urlvideo !== "null" &&
+                            <div className="row align-items-center justify-content-center mb-7 no-gutters" style={{ textAlign: `center` }}>
+                                <div className="col-md-10 col-lg-9">
+                                    <div className="embed-responsive embed-responsive-16by9">
+                                        <iframe className="embed-responsive-item" src={detailkha.urlvideo} allowFullScreen />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        }
                     </div>
                 }
             </section>

@@ -245,7 +245,7 @@ function ModalDonasi(props) {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="recipient-email" className="col-form-label">Email:</label>
-                                <input type="email" className="form-control required" id="recipient-email" name="email" onChange={onchangeform} placeholder="Email" />
+                                <input type="email" className="form-control" id="recipient-email" name="email" onChange={onchangeform} placeholder="Email" />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="recipient-nohp" className="col-form-label">No.Handphone:</label>

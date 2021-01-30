@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import NavbarGK from "../components/navbar"
 import FooterGK from "../components/footer"
 import "./relawan.css"
+const $ = window.jQuery
+
 
 function Relawan() {
     const SPREADSHEET_ID = "1zdfe0OkZe7llFTztwXC97G45UxPQfJNQbNukLGLq0ls"
@@ -9,7 +11,7 @@ function Relawan() {
     const API_KEY = "AIzaSyBAW2iZvzQ3aATi9nHWUes0yXJMLlyjAD0"
     const SCOPE = "https://www.googleapis.com/auth/spreadsheets"
     const [data, setData] = useState({
-        NIK: '',
+        nik: '',
         namaLengkap: '',
         tempatLahir: '',
         umur: '',
@@ -30,7 +32,7 @@ function Relawan() {
         motivasi: '',
         harapan: '',
         komitmen: '',
-        created: 'x-sheetmonkey-current-date-time'
+        // created: 'x-sheetmonkey-current-date-time'
     })
     // const [nik, setNik] = useState("")
     // const [namalengkap, setNamalengkap] = useState("")
@@ -64,6 +66,20 @@ function Relawan() {
             }
         )
     }
+    useEffect(() => {
+        $('.palceholder').click(function () {
+            $(this).siblings('input').focus();
+        });
+        $('.form-control').focus(function () {
+            $(this).siblings('.palceholder').hide();
+        });
+        $('.form-control').blur(function () {
+            var $this = $(this);
+            if ($this.val().length == 0)
+                $(this).siblings('.palceholder').show();
+        });
+        $('.form-control').blur();
+    }, [])
     return (
         <>
             <NavbarGK></NavbarGK>
@@ -124,17 +140,33 @@ function Relawan() {
                                 </div>
                                 <div className="row form-dp">
                                     <div className="col-12 col-md-6">
-                                        <div className="form-group">
-                                            <input type="text" name="NIK" className="form-control w-100" placeholder="Nomor Induk Kependudukan" value={data.nik} onChange={updateField} required />
+                                        <div className="form-group grupForm">
+                                            <div className="palceholder">
+                                                <label htmlFor="name">NIK KTP</label>
+                                                <span className="star">*</span>
+                                            </div>
+                                            <input type="text" name="nik" className="form-control w-100 wajib" value={data.nik} onChange={updateField} required />
                                         </div>
-                                        <div className="form-group">
-                                            <input type="text" name="namaLengkap" className="form-control w-100" placeholder="Nama Lengkap" value={data.fullname} onChange={updateField} required />
+                                        <div className="form-group grupForm">
+                                            <div className="palceholder">
+                                                <label htmlFor="name">Nama Lengkap</label>
+                                                <span className="star">*</span>
+                                            </div>
+                                            <input type="text" name="namaLengkap" className="form-control w-100 wajib" value={data.fullname} onChange={updateField} required />
                                         </div>
-                                        <div className="form-group">
-                                            <input type="text" name="tempatLahir" className="form-control w-100" placeholder="Tempat Lahir" value={data.pob} onChange={updateField} required />
+                                        <div className="form-group grupForm">
+                                            <div className="palceholder">
+                                                <label htmlFor="name">Tempat Lahir</label>
+                                                <span className="star">*</span>
+                                            </div>
+                                            <input type="text" name="tempatLahir" className="form-control w-100 wajib" value={data.pob} onChange={updateField} required />
                                         </div>
-                                        <div className="form-group">
-                                            <input type="text" name="umur" className="form-control w-100" placeholder="Umur" value={data.umur} onChange={updateField} />
+                                        <div className="form-group grupForm">
+                                            <div className="palceholder">
+                                                <label htmlFor="name">Umur</label>
+                                                <span className="star">*</span>
+                                            </div>
+                                            <input type="text" name="umur" className="form-control w-100 wajib" value={data.umur} onChange={updateField} />
                                         </div>
                                         <div className="form-group">
                                             <select
@@ -145,9 +177,9 @@ function Relawan() {
                                                 name="status"
                                                 value={data.status} onChange={updateField}
                                             >
-                                                <option value="0">Status</option>
-                                                <option value="1">Kawin</option>
-                                                <option value="2">Belum Kawin</option>
+                                                <option selected>Status</option>
+                                                <option value="Kawin">Kawin</option>
+                                                <option value="Belum kawin">Belum Kawin</option>
                                             </select>
                                         </div>
                                         <div className="form-group">
@@ -155,16 +187,25 @@ function Relawan() {
                                         </div>
                                     </div>
                                     <div className="col-12 col-md-6">
-                                        <div className="form-group">
-                                            <input type="text" name="namaPanggilan" className="form-control w-100" placeholder="Nama Panggilan" value={data.nickname} onChange={updateField} required />
+                                        <div className="form-group grupForm">
+                                            <div className="palceholder">
+                                                <label htmlFor="name">Nama Panggilan</label>
+                                                <span className="star">*</span>
+                                            </div>
+                                            <input type="text" name="namaPanggilan" className="form-control w-100 wajib" value={data.nickname} onChange={updateField} required />
                                         </div>
+                                        <label htmlFor="name">Tanggal Lahir</label>
                                         <div className="form-group">
-                                            <input type="date" name="tanggalLahir" className="form-control w-100" placeholder="Tanggal Lahir" value={data.dob} onChange={updateField} required />
+                                            <input type="date" name="tanggalLahir" className="form-control w-100 wajib" placeholder="Tanggal Lahir" value={data.dob} onChange={updateField} />
                                         </div>
-                                        <div className="form-group">
+                                        <div className="form-group grupForm">
+                                            <div className="palceholder">
+                                                <label htmlFor="name">Jenis Kelamin</label>
+                                                <span className="star">*</span>
+                                            </div>
                                             <select
                                                 as="select"
-                                                className="custom-select mr-sm-2"
+                                                className="custom-select mr-sm-2 wajib"
                                                 id="inlineFormCustomSelect"
                                                 custom
                                                 name="jenisKelamin"
@@ -207,8 +248,12 @@ function Relawan() {
                                         <div className="form-group">
                                             <input type="text" name="instagram" className="form-control w-100" placeholder="Instagram" value={data.ig} onChange={updateField} />
                                         </div>
-                                        <div className="form-group">
-                                            <input type="text" name="noHp" className="form-control w-100" placeholder="Nomor handphone" value={data.nohp} onChange={updateField} required />
+                                        <div className="form-group grupForm">
+                                            <div className="palceholder">
+                                                <label htmlFor="name">No. Handphone</label>
+                                                <span className="star">*</span>
+                                            </div>
+                                            <input type="text" name="noHp" className="form-control w-100 wajib" value={data.nohp} onChange={updateField} required />
                                         </div>
                                     </div>
                                     <div className="col-12 col-md-6">
@@ -218,8 +263,12 @@ function Relawan() {
                                         <div className="form-group">
                                             <input type="text" name="whatsapp" className="form-control w-100" placeholder="Nomor Whatsapp" value={data.wa} onChange={updateField} />
                                         </div>
-                                        <div className="form-group">
-                                            <input type="email" name="email" className="form-control w-100" placeholder="Email" value={data.email} onChange={updateField} required />
+                                        <div className="form-group grupForm">
+                                            <div className="palceholder">
+                                                <label htmlFor="name">Email</label>
+                                                <span className="star">*</span>
+                                            </div>
+                                            <input type="email" name="email" className="form-control w-100 wajib" value={data.email} onChange={updateField} required />
                                         </div>
                                     </div>
                                 </div>
@@ -258,7 +307,7 @@ function Relawan() {
                                             <textarea className="form-control" as="textarea" name="komitmen" placeholder="Komitmen apa yang dapat anda berikan sebagai tim relawan AQL?" rows={3} value={data.komitmen} onChange={updateField} />
                                         </div>
                                     </div>
-                                    <input type="hidden" name="Created" defaultValue="x-sheetmonkey-current-date-time" />
+                                    {/* <input type="hidden" name="Created" defaultValue="x-sheetmonkey-current-date-time" /> */}
                                 </div>
                             </div>
                         </div>

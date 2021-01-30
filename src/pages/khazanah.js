@@ -138,9 +138,11 @@ function Khazanah() {
                                                         <DariTanggal tanggal={doc.tanggal}></DariTanggal>
                                                     </span>
                                                     <br />
-                                                    <p className="text-gray-600 mb-0 pemateriKha">
-                                                        {doc.pemateri}
-                                                    </p>
+                                                    {doc.pemateri !== "null" &&
+                                                        <p className="text-gray-600 mb-0 pemateriKha">
+                                                            {doc.pemateri}
+                                                        </p>
+                                                    }
                                                     <Link to={`/khazanah/${doc.linkshare}`} className="stretched-link"></Link>
                                                 </div>
                                             </div>
