@@ -3,6 +3,7 @@ import NavbarGK from "../components/navbar"
 import FooterGK from "../components/footer"
 import "./relawan.css"
 const $ = window.jQuery
+const Swal = window.swal
 
 
 function Relawan() {
@@ -10,8 +11,9 @@ function Relawan() {
     const CLIENT_ID = "187026482676-bvntnst8anbfnpdhac9mmnc9avpempuv.apps.googleusercontent.com"
     const API_KEY = "AIzaSyBAW2iZvzQ3aATi9nHWUes0yXJMLlyjAD0"
     const SCOPE = "https://www.googleapis.com/auth/spreadsheets"
+    const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvbG9naW4iLCJpYXQiOjE2MTA0MjgzNzgsImV4cCI6MTYxMDQzMTk3OCwibmJmIjoxNjEwNDI4Mzc4LCJqdGkiOiJWSTFEZkVORjZWc3luNHB2Iiwic3ViIjoxMDAxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.awgkdKJarKGTxP_0HIldNI7CnG_xtJoxnzhALuFGIPc'
     const [data, setData] = useState({
-        nik: '',
+        NIK: '',
         namaLengkap: '',
         tempatLahir: '',
         umur: '',
@@ -47,16 +49,37 @@ function Relawan() {
     // const [nik, setNik] = useState("")
     const submitRelawan = (event) => {
         event.preventDefault()
-        fetch('https://script.google.com/macros/s/AKfycbxI8rjPgqZyjuR_boZeDO2CN75HevpEG_hNkGuzORLoTtBFZtI/exec', {
-            method: "POST",
+        fetch(`https://donasi.aqlpeduli.or.id/addVolunteer?token=${token}`, {
+            method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data),
-        }).then((resp) => {
-            console.log("success")
-            return resp.json()
+            body: JSON.stringify(data)
+        }).then(res => {
+            return res.json()
+        }).then(resjson => {
+            if (resjson.success) {
+                Swal('Berhasil', 'Selamat Anda berhasil mendaftar sebagai relawan AQL Peduli. Tim kami akan segeri menghubungi anda', 'success')
+            }
+            else {
+                Swal('Gagal', 'Pastikan data wajib diisi', 'error')
+            }
+            console.log("berhasil dengan: " + resjson.success)
         })
+            .catch(err => {
+                console.log(err.message)
+            })
+        // event.preventDefault()
+        // fetch('https://script.google.com/macros/s/AKfycbxI8rjPgqZyjuR_boZeDO2CN75HevpEG_hNkGuzORLoTtBFZtI/exec', {
+        //     method: "POST",
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify(data),
+        // }).then((resp) => {
+        //     console.log("success")
+        //     return resp.json()
+        // })
     }
     const updateField = (e) => {
         setData(
@@ -128,7 +151,8 @@ function Relawan() {
                             </h3>
                         </div>
                     </div>
-                    <form action="https://api.sheetmonkey.io/form/4cJ1NBhrxnbVQVGUNpnpYX" method="POST">
+                    {/* <form action="https://api.sheetmonkey.io/form/4cJ1NBhrxnbVQVGUNpnpYX" method="POST"> */}
+                    <form onSubmit={submitRelawan}>
                         <div className="row data-pribadi mb-7">
                             <div className="col-12 col-md-12 w-100">
                                 <div className="row judul-dp mb-3">
@@ -145,7 +169,7 @@ function Relawan() {
                                                 <label htmlFor="name">NIK KTP</label>
                                                 <span className="star">*</span>
                                             </div>
-                                            <input type="text" name="nik" className="form-control w-100 wajib" value={data.nik} onChange={updateField} required />
+                                            <input type="text" name="NIK" className="form-control w-100 wajib" value={data.nik} onChange={updateField} required />
                                         </div>
                                         <div className="form-group grupForm">
                                             <div className="palceholder">
@@ -166,7 +190,7 @@ function Relawan() {
                                                 <label htmlFor="name">Umur</label>
                                                 <span className="star">*</span>
                                             </div>
-                                            <input type="text" name="umur" className="form-control w-100 wajib" value={data.umur} onChange={updateField} />
+                                            <input type="text" name="umur" className="form-control w-100 wajib" value={data.umur} onChange={updateField} required />
                                         </div>
                                         <div className="form-group">
                                             <select
@@ -178,12 +202,16 @@ function Relawan() {
                                                 value={data.status} onChange={updateField}
                                             >
                                                 <option selected>Status</option>
-                                                <option value="Kawin">Kawin</option>
-                                                <option value="Belum kawin">Belum Kawin</option>
+                                                <option value="Nikah">Nikah</option>
+                                                <option value="Belum Nikah">Belum Nikah</option>
                                             </select>
                                         </div>
-                                        <div className="form-group">
-                                            <input type="text" name="jumlahSaudara" className="form-control w-100" placeholder="Jumlah Saudara" value={data.jmlsaudara} onChange={updateField} />
+                                        <div className="form-group grupForm">
+                                            <div className="palceholder">
+                                                <label htmlFor="name">Jumlah Saudara</label>
+                                                <span className="star">*</span>
+                                            </div>
+                                            <input type="text" name="jumlahSaudara" className="form-control w-100" value={data.jmlsaudara} onChange={updateField} required />
                                         </div>
                                     </div>
                                     <div className="col-12 col-md-6">
@@ -194,9 +222,9 @@ function Relawan() {
                                             </div>
                                             <input type="text" name="namaPanggilan" className="form-control w-100 wajib" value={data.nickname} onChange={updateField} required />
                                         </div>
-                                        <label htmlFor="name">Tanggal Lahir</label>
+                                        <label htmlFor="name" className="tgllahirLabel">Tanggal Lahir</label>
                                         <div className="form-group">
-                                            <input type="date" name="tanggalLahir" className="form-control w-100 wajib" placeholder="Tanggal Lahir" value={data.dob} onChange={updateField} />
+                                            <input type="date" name="tanggalLahir" className="form-control w-100" placeholder="Tanggal Lahir" value={data.dob} onChange={updateField} />
                                         </div>
                                         <div className="form-group grupForm">
                                             <div className="palceholder">
@@ -209,15 +237,19 @@ function Relawan() {
                                                 id="inlineFormCustomSelect"
                                                 custom
                                                 name="jenisKelamin"
-                                                value={data.jk} onChange={updateField} required
+                                                value={data.jk} onChange={updateField}
                                             >
                                                 <option value="0">Jenis Kelamin</option>
-                                                <option value="1">Laki-laki</option>
-                                                <option value="2">Perempuan</option>
+                                                <option value="Laki-laki">Laki-laki</option>
+                                                <option value="Perempuan">Perempuan</option>
                                             </select>
                                         </div>
-                                        <div className="form-group">
-                                            <input type="text" name="anakKe" className="form-control w-100" placeholder="Anak ke" value={data.anakke} onChange={updateField} />
+                                        <div className="form-group grupForm">
+                                            <div className="palceholder">
+                                                <label htmlFor="name">Anak ke-</label>
+                                                <span className="star">*</span>
+                                            </div>
+                                            <input type="text" name="anakKe" className="form-control w-100" value={data.anakke} onChange={updateField} required />
                                         </div>
                                     </div>
                                     <div className="col-12">
