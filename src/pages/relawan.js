@@ -202,8 +202,8 @@ function Relawan() {
                                                 value={data.status} onChange={updateField}
                                             >
                                                 <option selected>Status</option>
+                                                <option value="Lajang">Lajang</option>
                                                 <option value="Nikah">Nikah</option>
-                                                <option value="Belum Nikah">Belum Nikah</option>
                                             </select>
                                         </div>
                                         <div className="form-group grupForm">
