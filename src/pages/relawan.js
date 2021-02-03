@@ -195,11 +195,12 @@ function Relawan() {
                                         <div className="form-group">
                                             <select
                                                 as="select"
-                                                className="custom-select mr-sm-2"
+                                                className="custom-select mr-sm-2 selectStatus"
                                                 id="inlineFormCustomSelect"
                                                 custom
                                                 name="status"
                                                 value={data.status} onChange={updateField}
+                                                style={{color:`rgb(107, 110, 140)`, fontSize:`medium`, paddingLeft:`1rem`}}
                                             >
                                                 <option selected>Status</option>
                                                 <option value="Lajang">Lajang</option>
@@ -224,7 +225,7 @@ function Relawan() {
                                         </div>
                                         <label htmlFor="name" className="tgllahirLabel">Tanggal Lahir</label>
                                         <div className="form-group">
-                                            <input type="date" name="tanggalLahir" className="form-control w-100" placeholder="Tanggal Lahir" value={data.dob} onChange={updateField} />
+                                            <input type="date" name="tanggalLahir" className="form-control w-100" placeholder="Tanggal Lahir" value={data.dob} onChange={updateField} style={{color:`rgb(107, 110, 140)`, fontSize:`medium`, paddingLeft:`1rem`}} />
                                         </div>
                                         <div className="form-group grupForm">
                                             <div className="palceholder">
@@ -233,11 +234,12 @@ function Relawan() {
                                             </div>
                                             <select
                                                 as="select"
-                                                className="custom-select mr-sm-2 wajib"
+                                                className="custom-select mr-sm-2 wajib selectJK"
                                                 id="inlineFormCustomSelect"
                                                 custom
                                                 name="jenisKelamin"
                                                 value={data.jk} onChange={updateField}
+                                                style={{color:`rgb(107, 110, 140)`, fontSize:`medium`, paddingLeft:`1rem`}}
                                             >
                                                 <option value="0">Jenis Kelamin</option>
                                                 <option value="Laki-laki">Laki-laki</option>
@@ -292,8 +294,12 @@ function Relawan() {
                                         <div className="form-group">
                                             <input type="text" name="twitter" className="form-control w-100" placeholder="Twitter" value={data.twitter} onChange={updateField} />
                                         </div>
-                                        <div className="form-group">
-                                            <input type="text" name="whatsapp" className="form-control w-100" placeholder="Nomor Whatsapp" value={data.wa} onChange={updateField} />
+                                        <div className="form-group grupForm">
+                                            <div className="palceholder">
+                                                <label htmlFor="name">Nomor Whatsapp</label>
+                                                <span className="star">*</span>
+                                            </div>
+                                            <input type="text" name="whatsapp" className="form-control w-100" value={data.wa} onChange={updateField} required/>
                                         </div>
                                         <div className="form-group grupForm">
                                             <div className="palceholder">
