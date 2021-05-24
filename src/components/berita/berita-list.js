@@ -174,7 +174,7 @@ function BeritaList() {
                 mulai: `${data.tanggalmulaiEvent}`,
                 selesai: `${data.tanggalselesaiEvent}`,
                 gambar: data.gambarEvent[0].url,
-                linkshare:`${data.linkShareEvent}`
+                linkshare: `${data.linkShareEvent}`
             }
             itemEvent.push(item1)
         }
@@ -185,7 +185,7 @@ function BeritaList() {
                 isi: `${data.isiEvent}`,
                 mulai: `${data.tanggalmulaiEvent}`,
                 selesai: `${data.tanggalselesaiEvent}`,
-                linkshare:`${data.linkShareEvent}`
+                linkshare: `${data.linkShareEvent}`
             }
             itemEvent.push(item2)
         }
@@ -287,7 +287,7 @@ function BeritaList() {
                     return (
                         <Link to={`/berita/${doc.linkshare}`}>
                             <div className="berita-header-img h-100">
-                                <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
+                                <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." style={{ maxHeight: `360px` }} />
                                 {/* <div className="shadow-header"></div> */}
                                 <div className="carousel-caption text-left capt-berita-header">
                                     <span className="badge badge-berlin badge-danger">{doc.kategori}</span>
@@ -313,7 +313,7 @@ function BeritaList() {
                     return (
                         <Link to={`/berita/${doc.linkshare}`} style={{ boxShadow: `0 -100px 20px black inset` }}>
                             <div className="berita-header-img h-100">
-                                <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
+                                <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." style={{ maxHeight: `360px` }} />
                                 {/* <div className="shadow-header"></div> */}
                                 <div className="carousel-caption text-left capt-berita-header">
                                     <span className="badge badge-berlin badge-primary">{doc.kategori}</span>
@@ -353,7 +353,7 @@ function BeritaList() {
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-6 rounded-top-left">
-                                    <img className="img-fluid w-100 h-75" src={`${doc.gambar}`} alt="..." style={{ marginTop: `1.5rem`, marginBottom: `1rem` }} />
+                                    <img className="img-fluid w-100 h-auto" src={`${doc.gambar}`} alt="..." style={{ marginTop: `1.5rem`, marginBottom: `1rem`, maxHeight:`300px` }} />
                                 </div>
                             </div>
                         </div>
