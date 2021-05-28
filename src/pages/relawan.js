@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import NavbarGK from "../components/navbar"
 import FooterGK from "../components/footer"
+import ReactGA from 'react-ga'
 import "./relawan.css"
 const $ = window.jQuery
 const Swal = window.swal
 
 
 function Relawan() {
+    useEffect(() => {
+        ReactGA.set({ page: window.location.pathname });
+        ReactGA.pageview(window.location.pathname);
+    },[])
     const SPREADSHEET_ID = "1zdfe0OkZe7llFTztwXC97G45UxPQfJNQbNukLGLq0ls"
     const CLIENT_ID = "187026482676-bvntnst8anbfnpdhac9mmnc9avpempuv.apps.googleusercontent.com"
     const API_KEY = "AIzaSyBAW2iZvzQ3aATi9nHWUes0yXJMLlyjAD0"

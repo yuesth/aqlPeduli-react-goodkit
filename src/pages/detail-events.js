@@ -5,6 +5,7 @@ import { Link, useHistory } from "react-router-dom"
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import ReactMarkdown from 'react-markdown'
 import CopyToClipboard from 'react-copy-to-clipboard'
+import ReactGA from 'react-ga'
 import "./detail-events.css"
 const $ = window.jQuery
 
@@ -57,6 +58,10 @@ function DetailEvent(props) {
     const [kontenfix, setKontenfix] = useState("")
     // const id = props.match.params.id
     const param = props.match.params.paramEvents
+    useEffect(() => {
+        ReactGA.set({ page: window.location.pathname + "/" + param });
+        ReactGA.pageview(window.location.pathname + "/" + param );
+    },[])
     const urlDetailberita = `https://peaceful-meadow-45867.herokuapp.com/events?_where[linkShareEvent]=${param}`
     const [detailberita, setDetailberita] = useState([])
     const [isLoadingdetberita, setIsLoadingdetberita] = useState(true)

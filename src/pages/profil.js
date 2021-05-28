@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import NavbarGK from "../components/navbar"
 import FooterGK from "../components/footer"
+import ReactGA from 'react-ga'
 import "./profil.css"
 
 function ProfilLayout(props) {
+    useEffect(() => {
+        ReactGA.set({ page: window.location.pathname });
+        ReactGA.pageview(window.location.pathname);
+    }, [])
     return (
         <section className="pt-10 pt-md-12">
             <div className="container-lg p-10">
@@ -11,14 +16,14 @@ function ProfilLayout(props) {
                     <div className="col-md-7">
                         <h2>Tentang AQL Peduli</h2>
                         <p className="text-muted paragraf1" style={{ textAlign: `justify` }}>
-                        AQL Peduli adalah sebuah lembaga nirlaba di bawah naungan AQL Islamic Center yang bergerak di bidang sosial yang bersemangat untuk mengedukasi masyarakat dalam hal kemanusiaan mulai pra-bencana, saat bencana dan pasca bencana , dimana dalam kegiatannya terus berusaha memberikan yang terbaik kepada masyarakat yang terkena dampak bencana secara universal, tanpa diskrimanasi dan tidak berafiliasi dengan partai politik manapun.
+                            AQL Peduli adalah sebuah lembaga nirlaba di bawah naungan AQL Islamic Center yang bergerak di bidang sosial yang bersemangat untuk mengedukasi masyarakat dalam hal kemanusiaan mulai pra-bencana, saat bencana dan pasca bencana , dimana dalam kegiatannya terus berusaha memberikan yang terbaik kepada masyarakat yang terkena dampak bencana secara universal, tanpa diskrimanasi dan tidak berafiliasi dengan partai politik manapun.
                         </p>
                     </div>
                     <div className="col-md-5">
                         <img className="img-fluid" src={`${process.env.PUBLIC_URL}/images/profil/logo-aql.png`}></img>
                     </div>
                 </div>
-                <br/>
+                <br />
                 <div className="row row-lb">
                     <div className="col">
                         <div className="wadah-lb">
@@ -27,15 +32,15 @@ function ProfilLayout(props) {
                                 <strong>Latar Belakang</strong>
                             </h3>
                             <p>
-                            Sejak berdirinya, AQL Peduli telah melakukan kegiatan kemanusiaan dengan program-program yang diantaranya di bidang Pendidikan, Religi, Kesehatan, Pangan dan saat bencana.
-                            <br/>
+                                Sejak berdirinya, AQL Peduli telah melakukan kegiatan kemanusiaan dengan program-program yang diantaranya di bidang Pendidikan, Religi, Kesehatan, Pangan dan saat bencana.
+                            <br />
                             Dalam bidang pendidikan membangun madrasah salah satunya di Halmahera, Maluku Utara. Dalam bidang religi membangun masjid, di antaranya di Bogor, Palu, Lombok Utara dan Halmahera Tengah. Dalam bidang kesehatan membangun MCK, pengobatan gratis dan pengadaan ambulance gratis. Dalam bidang pangan, AQL Peduli setiap pekan berbagi makanan kepada dhuafa dalam program dapur sedekah, beras untuk pedalaman, iftar dan sembako dhuafa.
                             </p>
                         </div>
                     </div>
                 </div>
-                <br/>
-                <br/>
+                <br />
+                <br />
                 <div className="row">
                     <div className="col-md-6">
                         <img className="img-fluid" src={`${process.env.PUBLIC_URL}/images/profil/visi.png`}></img>

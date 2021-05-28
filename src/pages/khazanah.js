@@ -3,6 +3,7 @@ import NavbarGK from "../components/navbar"
 import FooterGK from "../components/footer"
 import { Link } from "react-router-dom"
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import ReactGA from 'react-ga'
 import "./khazanah.css"
 
 function SkeletonKhazanah() {
@@ -51,6 +52,10 @@ function SkeletonKhazanah() {
 }
 
 function Khazanah() {
+    useEffect(() => {
+        ReactGA.set({ page: window.location.pathname });
+        ReactGA.pageview(window.location.pathname);
+    }, [])
     function DariTanggal(props) {
         var dariTanggal = new Date(props.tanggal)
         var string = dariTanggal.getDate().toString() + " " + dariTanggal.toLocaleString('default', { month: 'long' }) + " " + dariTanggal.getFullYear()

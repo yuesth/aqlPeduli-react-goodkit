@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import NavbarGK from "../components/navbar"
 import FooterGK from "../components/footer"
 import CarouselLanding from "../components/landing/carousel"
@@ -7,8 +7,14 @@ import KepeduliankitaLanding from "../components/landing/kk"
 import UpdateLanding from "../components/landing/update"
 import BeritaLanding from "../components/landing/berita"
 import Helmet from 'react-helmet'
+import ReactGA from 'react-ga'
+
 
 function Landing() {
+    useEffect(() => {
+        ReactGA.set({ page: window.location.pathname });
+        ReactGA.pageview(window.location.pathname);
+    },[])
     // document.title = "AQL Peduli - Kemanusiaan, Kerelawanan, dan Pemberdayaan Masyarakat"
     // document.getElementsByTagName('meta')[4].content = "AQL Peduli adalah sebuah lembaga nirlaba yang bergerak di bidang sosial yang bersemangat untuk mengedukasi masyarakat dalam hal kemanusiaan mulai pra-bencana, saat bencana dan pasca bencana , dimana dalam kegiatannya terus berusaha memberikan yang terbaik kepada masyarakat yang terkena dampak bencana secara universal, tanpa diskrimanasi dan tidak berafiliasi dengan partai politik manapun."
     return (

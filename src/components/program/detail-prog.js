@@ -8,6 +8,7 @@ import ReactMarkdown from 'react-markdown'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import { Link, useHistory } from 'react-router-dom'
 import Helmet from 'react-helmet'
+import ReactGA from 'react-ga'
 const $ = window.jQuery
 
 
@@ -554,6 +555,10 @@ function DetailProg(props) {
     const [metadata, setMetadata] = useState({})
     const [isLoadingdetprog, setIsLoadingdetprog] = useState(true);
     const hist = useHistory()
+    useEffect(() => {
+        ReactGA.set({ page: window.location.pathname + "/" + custparam });
+        ReactGA.pageview(window.location.pathname + "/" + custparam );
+    },[])
 
     const [showmodal, setShowmodal] = useState(false)
     const handleClose = () => setShowmodal(false);

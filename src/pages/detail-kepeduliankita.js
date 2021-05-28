@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import "./detail-kepeduliankita.css"
 import ReactMarkdown from 'react-markdown'
+import ReactGA from 'react-ga'
 
 function SkeletonDetailKK() {
     return (
@@ -53,6 +54,10 @@ function DariTanggal(props) {
 function DetailKK(props) {
     const [kontenfix, setKontenfix] = useState("")
     const id = props.match.params.id
+    useEffect(() => {
+        ReactGA.set({ page: window.location.pathname + "/" + id });
+        ReactGA.pageview(window.location.pathname + "/" + id );
+    },[])
     const urlDetailKk = `https://peaceful-meadow-45867.herokuapp.com/kepeduliankitas/${id}`
     const [detailkk, setDetailkk] = useState([])
     const [isLoadingdetkk, setIsLoadingdetkk] = useState(true)

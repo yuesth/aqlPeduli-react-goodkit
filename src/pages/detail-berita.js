@@ -5,6 +5,7 @@ import { Link, useHistory } from "react-router-dom"
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import ReactMarkdown from 'react-markdown'
+import ReactGA from 'react-ga'
 import "./detail-berita.css"
 const $ = window.jQuery
 
@@ -56,6 +57,10 @@ function DariTanggal(props) {
 function DetailBerita(props) {
     const [kontenfix, setKontenfix] = useState("")
     const param = props.match.params.paramBerita
+    useEffect(() => {
+        ReactGA.set({ page: window.location.pathname + "/" + param });
+        ReactGA.pageview(window.location.pathname + "/" + param );
+    },[])
     const urlDetailberita = `https://peaceful-meadow-45867.herokuapp.com/beritas?_where[linkShareBerita]=${param}`
     const [detailberita, setDetailberita] = useState([])
     const [isLoadingdetberita, setIsLoadingdetberita] = useState(true)

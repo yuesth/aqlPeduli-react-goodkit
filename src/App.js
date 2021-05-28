@@ -1,7 +1,8 @@
 import './App.css';
-import React, { Suspense, lazy } from 'react'
+import React, { Suspense, lazy, useEffect } from 'react'
 import ScrollToTop from './scrollToTop'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
+import ReactGA from 'react-ga'
 
 // import Landing from "./pages/landing"
 const LazyLanding = lazy(() => import('./pages/landing'))
@@ -226,6 +227,12 @@ const LazyPage500 = lazy(() => import('./pages/page500'))
 // }
 
 function App() {
+  useEffect(() => {
+    if (!window.GA_INITIALIZED) {
+      ReactGA.initialize("UA-198053647-1");
+      window.GA_INITIALIZED = true;
+    }
+  }, [])
   return (
     <>
       <BrowserRouter>

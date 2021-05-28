@@ -164,7 +164,7 @@ function Footer() {
                     <div className="col-12 col-md">
                         <ul className="list-inline list-unstyled text-black small mb-md-0">
                             <li className="list-inline-item">
-                                © 2020 AQL Peduli
+                                © 2021 AQL Peduli
                             </li>
                         </ul>
                     </div>
