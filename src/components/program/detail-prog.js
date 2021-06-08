@@ -7,7 +7,7 @@ import "./detail-prog.css"
 import ReactMarkdown from 'react-markdown'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import { Link, useHistory } from 'react-router-dom'
-import Helmet from 'react-helmet'
+// import Helmet from 'react-helmet'
 import ReactGA from 'react-ga'
 const $ = window.jQuery
 
@@ -697,7 +697,7 @@ function DetailProg(props) {
     // })
     return (
         <>
-            <Helmet>
+            {/* <Helmet>
                 <title>{metadata.title}</title>
                 <meta name="description" content={metadata.desc} />
 
@@ -715,7 +715,7 @@ function DetailProg(props) {
                 <meta name="twitter:title" content={metadata.title} />
                 <meta name="twitter:description" content={metadata.desc} />
                 <meta name="twitter:image" content={metadata.img} />
-            </Helmet>
+            </Helmet> */}
             <section className="pt-10 pt-md-11">
                 <div className="container-xl" id="wadahSticky">
                     <div className="row align-items-center justify-content-center">

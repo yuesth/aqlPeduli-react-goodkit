@@ -6,7 +6,7 @@ import KepedulianLanding from "../components/landing/kepedulian"
 import KepeduliankitaLanding from "../components/landing/kk"
 import UpdateLanding from "../components/landing/update"
 import BeritaLanding from "../components/landing/berita"
-import Helmet from 'react-helmet'
+// import Helmet from 'react-helmet'
 import ReactGA from 'react-ga'
 
 
@@ -19,7 +19,7 @@ function Landing() {
     // document.getElementsByTagName('meta')[4].content = "AQL Peduli adalah sebuah lembaga nirlaba yang bergerak di bidang sosial yang bersemangat untuk mengedukasi masyarakat dalam hal kemanusiaan mulai pra-bencana, saat bencana dan pasca bencana , dimana dalam kegiatannya terus berusaha memberikan yang terbaik kepada masyarakat yang terkena dampak bencana secara universal, tanpa diskrimanasi dan tidak berafiliasi dengan partai politik manapun."
     return (
         <>
-            <Helmet>
+            {/* <Helmet>
                 <title>AQL Peduli - Kemanusiaan, Kerelawanan, dan Pemberdayaan Masyarakat</title>
                 <meta name="description" content="AQL Peduli adalah sebuah lembaga nirlaba yang bergerak di bidang sosial yang bersemangat untuk mengedukasi masyarakat dalam hal kemanusiaan mulai pra-bencana, saat bencana dan pasca bencana , dimana dalam kegiatannya terus berusaha memberikan yang terbaik kepada masyarakat yang terkena dampak bencana secara universal, tanpa diskrimanasi dan tidak berafiliasi dengan partai politik manapun." />
 
@@ -37,7 +37,7 @@ function Landing() {
                 <meta name="twitter:title" content="AQL Peduli - Kemanusiaan, Kerelawanan, dan Pemberdayaan Masyarakat" />
                 <meta name="twitter:description" content="AQL Peduli adalah sebuah lembaga nirlaba yang bergerak di bidang sosial yang bersemangat untuk mengedukasi masyarakat dalam hal kemanusiaan mulai pra-bencana, saat bencana dan pasca bencana , dimana dalam kegiatannya terus berusaha memberikan yang terbaik kepada masyarakat yang terkena dampak bencana secara universal, tanpa diskrimanasi dan tidak berafiliasi dengan partai politik manapun." />
                 <meta name="twitter:image" content="https://res.cloudinary.com/aqlpeduli/image/upload/v1606811406/large_logo_aql_65cc6815e9.png" />
-            </Helmet>
+            </Helmet> */}
             <NavbarGK></NavbarGK>
             <div className="bg-dark" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/dist/assets/img/patterns/pattern-1.svg)` }}>
                 <CarouselLanding></CarouselLanding>
