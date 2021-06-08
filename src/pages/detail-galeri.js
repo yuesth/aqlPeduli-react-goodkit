@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import ReactMarkdown from 'react-markdown'
 import ReactGA from 'react-ga'
+import { useLocation } from 'react-router-dom'
 import "./detail-galeri.css"
 import "flickity-as-nav-for"
 
@@ -41,11 +42,12 @@ function SkeletonDetailGaleri() {
 }
 
 function DetailGaleri(props) {
+    const query = useLocation().search
     const id = props.match.params.id
     useEffect(() => {
         ReactGA.set({ page: window.location.pathname + "/" + id });
-        ReactGA.pageview(window.location.pathname + "/" + id );
-    },[])
+        ReactGA.pageview(window.location.pathname + "/" + id);
+    }, [])
     const urlDetailgaleri = `https://peaceful-meadow-45867.herokuapp.com/galeris/${id}`
     const [detailgaleri, setDetailgaleri] = useState([])
     const [detailgalerigbr, setDetailgalerigbr] = useState([])
@@ -149,7 +151,7 @@ function DetailGaleri(props) {
                                 <nav aria-label="breadcrumb">
                                     <ol className="breadcrumb">
                                         <li className="breadcrumb-item">
-                                            <Link to={`/informasi`} style={{color:`rgb(47, 57, 144)`}}>
+                                            <Link to={`/informasi`} style={{ color: `rgb(47, 57, 144)` }}>
                                                 Galeri
                                             </Link>
                                         </li>

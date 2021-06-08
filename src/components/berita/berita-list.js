@@ -214,7 +214,7 @@ function BeritaList() {
                             <span className="small text-muted mt-n1 mb-0">
                                 <DariTanggal tanggal={doc.mulai}></DariTanggal> - <DariTanggal tanggal={doc.selesai}></DariTanggal>
                             </span>
-                            <Link to={`/events/${doc.linkshare}`}>
+                            <Link to={`/events/${doc.linkshare}?img=${doc.gambar}`}>
                                 <a className="stretched-link" href="" />
                             </Link>
                         </div>
@@ -285,7 +285,7 @@ function BeritaList() {
                 if (itBerNasUt === 1) {
                     itBerNasUt = itBerNasUt + 1
                     return (
-                        <Link to={`/berita/${doc.linkshare}`}>
+                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambar}`}>
                             <div className="berita-header-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." style={{ maxHeight: `360px` }} />
                                 {/* <div className="shadow-header"></div> */}
@@ -311,7 +311,7 @@ function BeritaList() {
                 if (itBerInterUt === 1) {
                     itBerInterUt = itBerInterUt + 1
                     return (
-                        <Link to={`/berita/${doc.linkshare}`} style={{ boxShadow: `0 -100px 20px black inset` }}>
+                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambar}`} style={{ boxShadow: `0 -100px 20px black inset` }}>
                             <div className="berita-header-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." style={{ maxHeight: `360px` }} />
                                 {/* <div className="shadow-header"></div> */}
@@ -349,7 +349,7 @@ function BeritaList() {
                                         <span className="small text-muted mt-n1 mb-0 ml-2" style={{ fontSize: `0.8rem` }}>
                                             <DariTanggal tanggal={doc.tanggal}></DariTanggal>
                                         </span>
-                                        <Link to={`/berita/${doc.linkshare}`} className="stretched-link"></Link>
+                                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambar}`} className="stretched-link"></Link>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-6 rounded-top-left">
@@ -383,7 +383,7 @@ function BeritaList() {
                                         <span className="small text-muted mt-n1 mb-0 ml-2" style={{ fontSize: `0.8rem` }}>
                                             <DariTanggal tanggal={doc.tanggal}></DariTanggal>
                                         </span>
-                                        <Link to={`/berita/${doc.linkshare}`} className="stretched-link"></Link>
+                                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambar}`} className="stretched-link"></Link>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-6 rounded-top-left">

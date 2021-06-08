@@ -108,6 +108,7 @@ function Update() {
                         fromUpdateLanding: true,
                         idprogram: doc.idProg
                     },
+                    search: `?img=${doc.gambarUp}`
                     }}>
                     <div className="card card-sm rounded-top-left rounded-bottom-right lift" style={{ height: `30rem` }}>
                         <div style={{ textAlign: `center` }}>

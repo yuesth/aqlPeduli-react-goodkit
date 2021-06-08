@@ -131,7 +131,7 @@ function Berita() {
                                         </p>
                                     </div>
                                 </div>
-                                <Link className="stretched-link" to={`/berita/${doc.linkshare}`} />
+                                <Link className="stretched-link" to={`/berita/${doc.linkshare}?img=${doc.gambar}`} />
                             </div>
                         </div>
                     </div>
@@ -172,7 +172,7 @@ function Berita() {
                                     </p>
                                 </div>
                             </div>
-                            <Link className="stretched-link" to={`/berita/${doc.linkshare}`} />
+                            <Link className="stretched-link" to={`/berita/${doc.linkshare}?img=${doc.gambar}`} />
                         </div>
                     </div>
                 </div>

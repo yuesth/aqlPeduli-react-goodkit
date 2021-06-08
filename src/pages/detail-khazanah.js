@@ -3,7 +3,7 @@ import NavbarGK from "../components/navbar"
 import FooterGK from "../components/footer"
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import ReactMarkdown from 'react-markdown'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory, useLocation } from 'react-router-dom'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import ReactGA from 'react-ga'
 import './detail-khazanah.css'
@@ -48,6 +48,7 @@ function SkeletonDetailKhazanah() {
 
 
 function DetailKhazanah(props) {
+    const query = useLocation().search
     function DariTanggal(props) {
         var dariTanggal = new Date(props.tanggal)
         var string = dariTanggal.getDate().toString() + " " + dariTanggal.toLocaleString('default', { month: 'long' }) + " " + dariTanggal.getFullYear()
@@ -179,31 +180,31 @@ function DetailKhazanah(props) {
                                     </div>
                                     <div className="col-md col-12 text-right d-flex shareLinkDetail">
                                         <div className="smd">
-                                            <a href={`https://twitter.com/intent/tweet?text=${detailkha.judul}%20melalui%20https%3A//aqlpeduli.or.id/khazanah/${detailkha.linkshare}`} target="_blank" className="d-flex flex-column mx-3">
+                                            <a href={`https://twitter.com/intent/tweet?text=${detailkha.judul}%20melalui%20https%3A//aqlpeduli.or.id/khazanah/${detailkha.linkshare}${query}`} target="_blank" className="d-flex flex-column mx-3">
                                                 <i className=" img-thumbnail fa-twitter fa" style={{ color: '#4c6ef5', backgroundColor: 'aliceblue' }} />
                                                 {/* <span style={{ color: `black`, fontSize:`0.8rem` }}>Twitter</span> */}
                                             </a>
                                         </div>
                                         <div className="smd">
-                                            <a href={`https://www.facebook.com/sharer/sharer.php?u=https%3A//aqlpeduli.or.id/khazanah/${detailkha.linkshare}`} target="_blank" className="d-flex flex-column mx-3">
+                                            <a href={`https://www.facebook.com/sharer/sharer.php?u=https%3A//aqlpeduli.or.id/khazanah/${detailkha.linkshare}${query}`} target="_blank" className="d-flex flex-column mx-3">
                                                 <i className="img-thumbnail fa-facebook fa" style={{ color: '#3b5998', backgroundColor: '#eceff5' }} />
                                                 {/* <span style={{ color: `black`, fontSize:`0.8rem` }}>Facebook</span> */}
                                             </a>
                                         </div>
                                         <div className="smd">
-                                            <a href={`https://t.me/share/url?url=https%3A//aqlpeduli.or.id/khazanah/${detailkha.linkshare}&text=${detailkha.judul}`} target="_blank" className="d-flex flex-column mx-3">
+                                            <a href={`https://t.me/share/url?url=https%3A//aqlpeduli.or.id/khazanah/${detailkha.linkshare}${query}&text=${detailkha.judul}`} target="_blank" className="d-flex flex-column mx-3">
                                                 <i className="img-thumbnail fa-telegram fa" style={{ color: '#4c6ef5', backgroundColor: 'aliceblue' }} />
                                                 {/* <span style={{ color: `black`, fontSize:`0.8rem` }}>Telegram</span> */}
                                             </a>
                                         </div>
                                         <div className="smd">
-                                            <a href={`https://api.whatsapp.com/send?text=${detailkha.judul}%20melalui%20https%3A//aqlpeduli.or.id/khazanah/${detailkha.linkshare}`} target="_blank" className="d-flex flex-column mx-3">
+                                            <a href={`https://api.whatsapp.com/send?text=${detailkha.judul}%20melalui%20https%3A//aqlpeduli.or.id/khazanah/${detailkha.linkshare}${query}`} target="_blank" className="d-flex flex-column mx-3">
                                                 <i className="img-thumbnail fa-whatsapp fa" style={{ color: '#25D366', backgroundColor: '#cef5dc' }} />
                                                 {/* <span style={{ color: `black`, fontSize:`0.8rem` }}>Whatsapp</span> */}
                                             </a>
                                         </div>
                                         <div className="smd">
-                                            <CopyToClipboard onCopy={handlecopy} text={`https://aqlpeduli.or.id/khazanah/${detailkha.linkshare}`}>
+                                            <CopyToClipboard onCopy={handlecopy} text={`https://aqlpeduli.or.id/khazanah/${detailkha.linkshare}${query}`}>
                                                 <button className="d-flex flex-column mx-3 cpy" style={{ width: `30px`, height: `30px` }} onClick={clickedcopy}>
                                                     <img src={`${process.env.PUBLIC_URL}/images/copy-link.png`} width="12" height="12" className="mx-auto my-auto" />
                                                 </button>

@@ -466,8 +466,8 @@ function ModalShare(props) {
                         </div>
                         <div>
                             <label style={{ fontWeight: 400 }}>Page Link <span className="message" /></label><br />
-                            <div className="row"> <input className="col-10 ur" type="url" id="myInput" aria-describedby="inputGroup-sizing-default" style={{ height: 40 }} value={`https://aqlpeduli.or.id/kepedulian/${props.linkshare}`} disabled />
-                                <CopyToClipboard onCopy={props.handlecopied} text={`https://aqlpeduli.or.id/kepedulian/${props.linkshare}`}>
+                            <div className="row"> <input className="col-10 ur" type="url" id="myInput" aria-describedby="inputGroup-sizing-default" style={{ height: 40 }} value={`https://aqlpeduli.or.id/kepedulian/${props.linkshare}?${props.query}`} disabled />
+                                <CopyToClipboard onCopy={props.handlecopied} text={`https://aqlpeduli.or.id/kepedulian/${props.linkshare}?${props.query}`}>
                                     <button className="cpy" onClick={props.messagecopied}><i className="far fa-clone fa" /></button>
                                 </CopyToClipboard>
                             </div>
@@ -775,7 +775,7 @@ function DetailProg(props) {
                                                     </button>
                                                 </div>
                                                 <ModalDonasi status={showmodal} handleclose={handleClose} linkbb={detailprog.linkbb} judulprog={detailprog.judul} idkateggg={detailprog.idKateg} idprog={detailprog.id}></ModalDonasi>
-                                                <ModalShare status={showshare} handlecloseshare={handleCloseShare} id={detailprog.id} judulprog={detailprog.judul} handlecopied={handlecopied} messagecopied={messagecopied} linkshare={detailprog.linkshare}></ModalShare>
+                                                <ModalShare status={showshare} handlecloseshare={handleCloseShare} id={detailprog.id} judulprog={detailprog.judul} handlecopied={handlecopied} messagecopied={messagecopied} linkshare={detailprog.linkshare} query={props.query}></ModalShare>
                                             </div>
                                         </div>
                                     </Sticky>

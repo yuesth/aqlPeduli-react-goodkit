@@ -293,7 +293,8 @@ function ProgramLayout(props) {
                             state: {
                                 fromUpdateLanding: false,
                                 idprogram: doc.id
-                            }
+                            },
+                            search: `?img=${doc.gambar}`
                         }} className="stretched-link">
                         </Link>
                     </div>

@@ -2,10 +2,12 @@ import React, { useState, useEffect, useRef } from "react"
 import NavbarGK from "../components/navbar"
 import FooterGK from "../components/footer"
 import DetailProg from "../components/program/detail-prog"
+import {useLocation} from 'react-router-dom'
 // import Helmet from 'react-helmet'
 
 
 function DetailProgram(props) {
+    const query = useLocation().search
     var fromUpdateLanding = false
     var id = ""
     if (props.location.state) {
@@ -39,7 +41,7 @@ function DetailProgram(props) {
                     <meta name="twitter:image" content="https://res.cloudinary.com/aqlpeduli/image/upload/v1606811406/large_logo_aql_65cc6815e9.png" />
                 </Helmet> */}
                 <NavbarGK></NavbarGK>
-                <DetailProg custparam={custparam} fromupdate={fromupdate} kontenfix={kontenfix}></DetailProg>
+                <DetailProg custparam={custparam} fromupdate={fromupdate} kontenfix={kontenfix} query={query}></DetailProg>
                 <FooterGK></FooterGK>
             </>
         </>

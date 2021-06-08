@@ -134,6 +134,9 @@ function Khazanah() {
                                 return (
                                     <div className="col-6 col-md-4 col-lg-3 my-md-5 my-2" key={idx}>
                                         <div className={`card rounded-top-left rounded-bottom-right lift`}>
+                                            <div>
+                                                <img className="card-img-top rounded-top-left img-fluid w-100" style={{ height: `10rem` }} src={doc.gambar} alt="..." />
+                                            </div>
                                             <div className="row">
                                                 <div className="card-body">
                                                     <h3 className="judulKha">
@@ -148,7 +151,7 @@ function Khazanah() {
                                                             {doc.pemateri}
                                                         </p>
                                                     }
-                                                    <Link to={`/khazanah/${doc.linkshare}`} className="stretched-link"></Link>
+                                                    <Link to={`/khazanah/${doc.linkshare}?img=${doc.gambar}`} className="stretched-link"></Link>
                                                 </div>
                                             </div>
                                         </div>

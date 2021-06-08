@@ -65,7 +65,7 @@ function CarouselLanding() {
     const listcarousel = programcar.map((doc, idx) => {
         return (
             <div style={{ width: `calc(100% - 5rem)`, maxWidth: `780px` }} key={idx}>
-                <a href={doc.link}>
+                <a href={`${doc.link}?img=${doc.gambar}`}>
                     <img className="img-fluid" src={doc.gambar} alt="..." width="780" height="473" />
                 </a>
             </div>
