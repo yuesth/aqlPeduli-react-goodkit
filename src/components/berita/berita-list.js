@@ -126,44 +126,88 @@ function BeritaList() {
     const [isLoadingberkateg, setIsLoadingberkateg] = useState(true);
     const [isShowevent, setIsShowevent] = useState(true)
     useEffect(() => {
-        fetch(urlBerita).then(res => res.json()).then(parsedJson => {
-            setBeritalist(parsedJson)
-            setIsLoadingberlist(false)
-        })
+        fetch(urlBerita).then(res => res.json())
+            .then(parsedJson => parsedJson.map((data, idx) => {
+                if (data.gambarBerita !== null) {
+                    if (data.gambarBerita.formats.medium) {
+                        return ({
+                            id: `${data.id}`,
+                            penulis: `${data.penulisBerita}`,
+                            tanggal: `${data.tanggalBerita}`,
+                            judul: `${data.judulBerita}`,
+                            isi: `${data.isiBerita}`,
+                            tag: `${data.tagBerita}`,
+                            linkshare: `${data.linkShareBerita}`,
+                            gambar: data.gambarBerita.formats.medium.url,
+                            gambarkecil: data.gambarBerita.formats.small.url,
+                            kategori: `${data.kategoriberita.namaKategori}`
+                        })
+                    }
+                    else {
+                        return ({
+                            id: `${data.id}`,
+                            penulis: `${data.penulisBerita}`,
+                            tanggal: `${data.tanggalBerita}`,
+                            judul: `${data.judulBerita}`,
+                            isi: `${data.isiBerita}`,
+                            tag: `${data.tagBerita}`,
+                            linkshare: `${data.linkShareBerita}`,
+                            kategori: `${data.kategoriberita.namaKategori}`
+                        })
+                    }
+                }
+                else {
+                    return ({
+                        id: `${data.id}`,
+                        penulis: `${data.penulisBerita}`,
+                        tanggal: `${data.tanggalBerita}`,
+                        judul: `${data.judulBerita}`,
+                        isi: `${data.isiBerita}`,
+                        tag: `${data.tagBerita}`,
+                        linkshare: `${data.linkShareBerita}`,
+                        kategori: `${data.kategoriberita.namaKategori}`
+                    })
+                }
+            }))
+            .then(data2 => {
+                setBeritalist(data2)
+                setIsLoadingberlist(false)
+            })
         fetch(urlEvent).then(res => res.json()).then(parsedJson => {
             setEventlist(parsedJson)
         })
     }, [])
-    const itemBerita = []
-    beritalist.map(data => {
-        if (data.gambarBerita !== null) {
-            var item1 = {
-                id: `${data.id}`,
-                penulis: `${data.penulisBerita}`,
-                tanggal: `${data.tanggalBerita}`,
-                judul: `${data.judulBerita}`,
-                isi: `${data.isiBerita}`,
-                tag: `${data.tagBerita}`,
-                linkshare: `${data.linkShareBerita}`,
-                gambar: `${data.gambarBerita.url}`,
-                kategori: `${data.kategoriberita.namaKategori}`
-            }
-            itemBerita.push(item1)
-        }
-        else {
-            var item2 = {
-                id: `${data.id}`,
-                penulis: `${data.penulisBerita}`,
-                tanggal: `${data.tanggalBerita}`,
-                judul: `${data.judulBerita}`,
-                isi: `${data.isiBerita}`,
-                tag: `${data.tagBerita}`,
-                linkshare: `${data.linkShareBerita}`,
-                kategori: `${data.kategoriberita.namaKategori}`
-            }
-            itemBerita.push(item2)
-        }
-    })
+    // const itemBerita = []
+    // beritalist.map(data => {
+    //     if (data.gambarBerita !== null) {
+    //         var item1 = {
+    //             id: `${data.id}`,
+    //             penulis: `${data.penulisBerita}`,
+    //             tanggal: `${data.tanggalBerita}`,
+    //             judul: `${data.judulBerita}`,
+    //             isi: `${data.isiBerita}`,
+    //             tag: `${data.tagBerita}`,
+    //             linkshare: `${data.linkShareBerita}`,
+    //             gambar: data.gambarBerita.formats.medium.url,
+    //             gambarkecil: data.gambarBerita.formats.small.url,
+    //             kategori: `${data.kategoriberita.namaKategori}`
+    //         }
+    //         itemBerita.push(item1)
+    //     }
+    //     else {
+    //         var item2 = {
+    //             id: `${data.id}`,
+    //             penulis: `${data.penulisBerita}`,
+    //             tanggal: `${data.tanggalBerita}`,
+    //             judul: `${data.judulBerita}`,
+    //             isi: `${data.isiBerita}`,
+    //             tag: `${data.tagBerita}`,
+    //             linkshare: `${data.linkShareBerita}`,
+    //             kategori: `${data.kategoriberita.namaKategori}`
+    //         }
+    //         itemBerita.push(item2)
+    //     }
+    // })
     const itemEvent = []
     eventlist.map(data => {
         if (data.gambarEvent !== null) {
@@ -190,7 +234,7 @@ function BeritaList() {
             itemEvent.push(item2)
         }
     })
-    const sortedItemBerita = itemBerita.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
+    const sortedItemBerita = beritalist.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
     const sortedItemEvent = itemEvent.sort((a, b) => { return new Date(b.mulai) - new Date(a.mulai) })
     var it = 1
     const listevent = sortedItemEvent.map((doc, idx) => {
@@ -285,7 +329,7 @@ function BeritaList() {
                 if (itBerNasUt === 1) {
                     itBerNasUt = itBerNasUt + 1
                     return (
-                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambar}`}>
+                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`}>
                             <div className="berita-header-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." style={{ maxHeight: `360px` }} />
                                 {/* <div className="shadow-header"></div> */}
@@ -311,7 +355,7 @@ function BeritaList() {
                 if (itBerInterUt === 1) {
                     itBerInterUt = itBerInterUt + 1
                     return (
-                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambar}`} style={{ boxShadow: `0 -100px 20px black inset` }}>
+                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`} style={{ boxShadow: `0 -100px 20px black inset` }}>
                             <div className="berita-header-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." style={{ maxHeight: `360px` }} />
                                 {/* <div className="shadow-header"></div> */}
@@ -349,11 +393,11 @@ function BeritaList() {
                                         <span className="small text-muted mt-n1 mb-0 ml-2" style={{ fontSize: `0.8rem` }}>
                                             <DariTanggal tanggal={doc.tanggal}></DariTanggal>
                                         </span>
-                                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambar}`} className="stretched-link"></Link>
+                                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`} className="stretched-link"></Link>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-6 rounded-top-left">
-                                    <img className="img-fluid w-100 h-auto" src={`${doc.gambar}`} alt="..." style={{ marginTop: `1.5rem`, marginBottom: `1rem`, maxHeight:`300px` }} />
+                                    <img className="img-fluid w-100 h-auto" src={`${doc.gambar}`} alt="..." style={{ marginTop: `1.5rem`, marginBottom: `1rem`, maxHeight: `300px` }} />
                                 </div>
                             </div>
                         </div>
@@ -383,7 +427,7 @@ function BeritaList() {
                                         <span className="small text-muted mt-n1 mb-0 ml-2" style={{ fontSize: `0.8rem` }}>
                                             <DariTanggal tanggal={doc.tanggal}></DariTanggal>
                                         </span>
-                                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambar}`} className="stretched-link"></Link>
+                                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`} className="stretched-link"></Link>
                                     </div>
                                 </div>
                                 <div className="col-md-6 col-6 rounded-top-left">

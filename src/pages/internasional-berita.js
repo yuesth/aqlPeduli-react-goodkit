@@ -210,21 +210,39 @@ function BeritaInternasional() {
     const [hasmore, setHasmore] = useState(true);
     const [isLoadingberheadernas, setIsLoadingberheadernas] = useState(true);
     useEffect(() => {
-        fetch(urlBerita2).then(res => res.json()).then(parsedjson => parsedjson.map((doc) => ({
-            id: `${doc.id}`,
-            penulis: `${doc.penulisBerita}`,
-            tanggal: `${doc.tanggalBerita}`,
-            judul: `${doc.judulBerita}`,
-            isi: `${doc.isiBerita}`,
-            tag: `${doc.tagBerita}`,
-            linkshare: `${doc.linkShareBerita}`,
-            gambar: `${doc.gambarBerita.url}`,
-            kategori: `${doc.kategoriberita.namaKategori}`
-        }))).then(items => {
-            setBeritainter(items)
-            setBeritainterinf(items)
-            setIsLoadingberheadernas(false)
-        })
+        fetch(urlBerita2).then(res => res.json()).then(parsedjson => parsedjson.map((doc) => {
+            if (doc.gambarBerita.formats.small) {
+                return ({
+                    id: `${doc.id}`,
+                    penulis: `${doc.penulisBerita}`,
+                    tanggal: `${doc.tanggalBerita}`,
+                    judul: `${doc.judulBerita}`,
+                    isi: `${doc.isiBerita}`,
+                    tag: `${doc.tagBerita}`,
+                    linkshare: `${doc.linkShareBerita}`,
+                    gambar: `${doc.gambarBerita.url}`,
+                    gambarkecil: doc.gambarBerita.formats.small.url,
+                    kategori: `${doc.kategoriberita.namaKategori}`
+                })
+            }
+            else {
+                return ({
+                    id: `${doc.id}`,
+                    penulis: `${doc.penulisBerita}`,
+                    tanggal: `${doc.tanggalBerita}`,
+                    judul: `${doc.judulBerita}`,
+                    isi: `${doc.isiBerita}`,
+                    tag: `${doc.tagBerita}`,
+                    linkshare: `${doc.linkShareBerita}`,
+                    kategori: `${doc.kategoriberita.namaKategori}`
+                })
+            }
+        }))
+            .then(items => {
+                setBeritainter(items)
+                setBeritainterinf(items)
+                setIsLoadingberheadernas(false)
+            })
     }, [])
     const generateDataBerinter = () => {
         setTimeout(() => {
@@ -239,6 +257,7 @@ function BeritaInternasional() {
                         tag: `${doc.tagBerita}`,
                         linkshare: `${doc.linkShareBerita}`,
                         gambar: `${doc.gambarBerita.url}`,
+                        gambarkecil: doc.gambarBerita.formats.small.url,
                         kategori: `${doc.kategoriberita.namaKategori}`
                     }))
                 )
@@ -260,7 +279,7 @@ function BeritaInternasional() {
     const listberitaheaderinter = sortedItemBerita2.map((doc, idx) => {
         if (idx === 0) {
             return (
-                <Link to={`/berita/${doc.linkshare}?img=${doc.gambar}`}>
+                <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`}>
                     <div className="berita-header-img">
                         <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
                         {/* <div className="shadow-header"></div> */}
@@ -280,7 +299,7 @@ function BeritaInternasional() {
             if (doc.kategori === "Berita Internasional") {
                 return (
                     <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 px-1">
-                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambar}`}>
+                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`}>
                             <div className="berita-headerlain-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
                                 {/* <div className="shadow-header"></div> */}
@@ -302,7 +321,7 @@ function BeritaInternasional() {
             if (doc.kategori === "Berita Internasional") {
                 return (
                     <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 px-1">
-                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambar}`}>
+                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`}>
                             <div className="berita-headerlain-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
                                 {/* <div className="shadow-header"></div> */}
@@ -340,7 +359,7 @@ function BeritaInternasional() {
                                 <h2 className="display-6 judul-ber-list-nas">
                                     {doc.judul}
                                 </h2>
-                                <Link to={`/berita/${doc.linkshare}?img=${doc.gambar}`} className="stretched-link"></Link>
+                                <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`} className="stretched-link"></Link>
                             </div>
                         </div>
                     </div>
@@ -365,7 +384,7 @@ function BeritaInternasional() {
                             <nav aria-label="breadcrumb">
                                 <ol className="breadcrumb">
                                     <li className="breadcrumb-item">
-                                        <Link to={`/berita`} style={{color:`rgb(47, 57, 144)`}}>
+                                        <Link to={`/berita`} style={{ color: `rgb(47, 57, 144)` }}>
                                             Berita
                                         </Link>
                                     </li>

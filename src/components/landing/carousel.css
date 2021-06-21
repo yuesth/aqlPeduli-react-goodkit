@@ -11,9 +11,18 @@
     background-color: rgb(47,57,144);
 }
 
+.carouskel{
+    width: 1280;
+    height: 960;
+}
+
 @media only screen and (max-width:590px){
     .carousel-main-car-landing .flickity-prev-next-button{
         display: none;
         visibility: hidden;
+    }
+    .carouskel{
+        width: 480;
+        height: 360;
     }
 }

@@ -30,49 +30,94 @@ function BeritaHeader() {
     const [berita, setBerita] = useState([])
     const [isLoadingberheader, setIsLoadingberheader] = useState(true);
     useEffect(() => {
-        fetch(urlBerita).then(res => res.json()).then(parsedJson => {
-            setBerita(parsedJson)
-            setIsLoadingberheader(false)
-        })
-    },[])
-    const itemBerita = []
-    berita.map(data => {
-        if (data.gambarBerita !== null) {
-            var item1 = {
-                id: `${data.id}`,
-                penulis: `${data.penulisBerita}`,
-                tanggal: `${data.tanggalBerita}`,
-                judul: `${data.judulBerita}`,
-                isi: `${data.isiBerita}`,
-                tag: `${data.tagBerita}`,
-                linkshare: `${data.linkShareBerita}`,
-                gambar: `${data.gambarBerita.url}`,
-                kategori: `${data.kategoriberita.namaKategori}`
-            }
-            itemBerita.push(item1)
-        }
-        else {
-            var item2 = {
-                id: `${data.id}`,
-                penulis: `${data.penulisBerita}`,
-                tanggal: `${data.tanggalBerita}`,
-                judul: `${data.judulBerita}`,
-                isi: `${data.isiBerita}`,
-                tag: `${data.tagBerita}`,
-                linkshare: `${data.linkShareBerita}`,
-                kategori: `${data.kategoriberita.namaKategori}`
-            }
-            itemBerita.push(item2)
-        }
-    },[])
-    const sortedItemBerita = itemBerita.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
+        fetch(urlBerita).then(res => res.json())
+            .then(data1 => data1.map((data, idx) => {
+                // console.log(data.gambarBerita.formats.small.url)
+                if (data.gambarBerita !== null) {
+                    if (data.gambarBerita.formats.small) {
+                        return ({
+                            id: `${data.id}`,
+                            penulis: `${data.penulisBerita}`,
+                            tanggal: `${data.tanggalBerita}`,
+                            judul: `${data.judulBerita}`,
+                            isi: `${data.isiBerita}`,
+                            tag: `${data.tagBerita}`,
+                            linkshare: `${data.linkShareBerita}`,
+                            gambar: data.gambarBerita.url,
+                            gambarkecil: data.gambarBerita.formats.small.url,
+                            kategori: `${data.kategoriberita.namaKategori}`
+                        })
+                    }
+                    else {
+                        return ({
+                            id: `${data.id}`,
+                            penulis: `${data.penulisBerita}`,
+                            tanggal: `${data.tanggalBerita}`,
+                            judul: `${data.judulBerita}`,
+                            isi: `${data.isiBerita}`,
+                            tag: `${data.tagBerita}`,
+                            linkshare: `${data.linkShareBerita}`,
+                            kategori: `${data.kategoriberita.namaKategori}`
+                        })
+                    }
+                }
+                else {
+                    return ({
+                        id: `${data.id}`,
+                        penulis: `${data.penulisBerita}`,
+                        tanggal: `${data.tanggalBerita}`,
+                        judul: `${data.judulBerita}`,
+                        isi: `${data.isiBerita}`,
+                        tag: `${data.tagBerita}`,
+                        linkshare: `${data.linkShareBerita}`,
+                        kategori: `${data.kategoriberita.namaKategori}`
+                    })
+                }
+            }))
+            .then(res2 => {
+                setBerita(res2)
+                setIsLoadingberheader(false)
+            })
+    }, [])
+    // const itemBerita = []
+    // berita.map(data => {
+    //     if (data.gambarBerita !== null) {
+    //         var item1 = {
+    //             id: `${data.id}`,
+    //             penulis: `${data.penulisBerita}`,
+    //             tanggal: `${data.tanggalBerita}`,
+    //             judul: `${data.judulBerita}`,
+    //             isi: `${data.isiBerita}`,
+    //             tag: `${data.tagBerita}`,
+    //             linkshare: `${data.linkShareBerita}`,
+    //             gambar: `${data.gambarBerita.url}`,
+    //             gambarkecil: data.gambarBerita.formats.small.url,
+    //             kategori: `${data.kategoriberita.namaKategori}`
+    //         }
+    //         itemBerita.push(item1)
+    //     }
+    //     else {
+    //         var item2 = {
+    //             id: `${data.id}`,
+    //             penulis: `${data.penulisBerita}`,
+    //             tanggal: `${data.tanggalBerita}`,
+    //             judul: `${data.judulBerita}`,
+    //             isi: `${data.isiBerita}`,
+    //             tag: `${data.tagBerita}`,
+    //             linkshare: `${data.linkShareBerita}`,
+    //             kategori: `${data.kategoriberita.namaKategori}`
+    //         }
+    //         itemBerita.push(item2)
+    //     }
+    // },[])
+    const sortedItemBerita = berita.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
     const listberitaheader = sortedItemBerita.map((doc, idx) => {
         if (idx === 0) {
-            if(doc.kategori === "Berita Nasional"){
+            if (doc.kategori === "Berita Nasional") {
                 return (
-                    <Link to={`/berita/${doc.linkshare}?img=${doc.gambar}`}>
+                    <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`}>
                         <div className="berita-header-img">
-                            <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." style={{ maxHeight:`360px` }}/>
+                            <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." style={{ maxHeight: `360px` }} />
                             {/* <div className="shadow-header"></div> */}
                             <div className="carousel-caption text-left capt-berita-header">
                                 <span className="badge badge-berlin badge-danger">{doc.kategori}</span>
@@ -84,11 +129,11 @@ function BeritaHeader() {
                     </Link>
                 )
             }
-            else if(doc.kategori === "Berita Internasional"){
+            else if (doc.kategori === "Berita Internasional") {
                 return (
-                    <Link to={`/berita/${doc.linkshare}?img=${doc.gambar}`}>
+                    <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`}>
                         <div className="berita-header-img">
-                            <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." style={{ maxHeight:`360px` }}/>
+                            <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." style={{ maxHeight: `360px` }} />
                             {/* <div className="shadow-header"></div> */}
                             <div className="carousel-caption text-left capt-berita-header">
                                 <span className="badge badge-berlin badge-primary">{doc.kategori}</span>
@@ -100,11 +145,11 @@ function BeritaHeader() {
                     </Link>
                 )
             }
-            else if(doc.kategori === "Event"){
+            else if (doc.kategori === "Event") {
                 return (
-                    <Link to={`/berita/${doc.id}?img=${doc.gambar}`}>
+                    <Link to={`/berita/${doc.id}?img=${doc.gambarkecil}`}>
                         <div className="berita-header-img">
-                            <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." style={{ maxHeight:`360px` }}/>
+                            <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." style={{ maxHeight: `360px` }} />
                             {/* <div className="shadow-header"></div> */}
                             <div className="carousel-caption text-left capt-berita-header">
                                 <span className="badge badge-berlin badge-secondary">{doc.kategori}</span>
@@ -123,7 +168,7 @@ function BeritaHeader() {
             return (
                 <Link to={`/berita/${doc.id}`}>
                     <div className="berita-headerlain-img my-4">
-                        <img className="img-fluid w-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
+                        <img className="img-fluid w-100 img-berita-headerlain" src={`${doc.gambarkecil}`} alt="..." />
                         <div className="carousel-caption text-left capt-beritalain-header">
                             <span className="badge badge-berlin badge-secondary">{doc.kategori}</span>
                             <h6 style={{ color: `black` }}>
@@ -140,7 +185,7 @@ function BeritaHeader() {
             if (doc.kategori === "Berita Nasional") {
                 return (
                     <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 h-100">
-                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambar}`}>
+                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`}>
                             <div className="berita-headerlain-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
                                 {/* <div className="shadow-header"></div> */}
@@ -158,7 +203,7 @@ function BeritaHeader() {
             else if (doc.kategori === "Berita Internasional") {
                 return (
                     <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 h-100">
-                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambar}`}>
+                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`}>
                             <div className="berita-headerlain-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
                                 {/* <div className="shadow-header"></div> */}
@@ -180,7 +225,7 @@ function BeritaHeader() {
             if (doc.kategori === "Berita Nasional") {
                 return (
                     <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 h-100">
-                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambar}`}>
+                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`}>
                             <div className="berita-headerlain-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
                                 {/* <div className="shadow-header"></div> */}
@@ -198,7 +243,7 @@ function BeritaHeader() {
             else if (doc.kategori === "Berita Internasional") {
                 return (
                     <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 h-100">
-                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambar}`}>
+                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`}>
                             <div className="berita-headerlain-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
                                 {/* <div className="shadow-header"></div> */}
@@ -219,7 +264,7 @@ function BeritaHeader() {
         <>
             <div className="row align-items-center justify-content-center mb-7">
                 <div className="col-md-6" style={{ textAlign: `center` }}>
-                    <h2 className="mb-4 mb-md-0" style={{fontSize:`1.75rem`}}>
+                    <h2 className="mb-4 mb-md-0" style={{ fontSize: `1.75rem` }}>
                         Berita <br />
                     </h2>
                 </div>
@@ -244,7 +289,7 @@ function BeritaHeader() {
                     <div className="col-12 col-sm-12 col-md-6 col-lg-6">
                         {listberitaheader}
                     </div>
-                    <div className="col-12 col-sm-12 col-md-12 col-lg-6" style={{ maxHeight:`360px` }}>
+                    <div className="col-12 col-sm-12 col-md-12 col-lg-6" style={{ maxHeight: `360px` }}>
                         {/* {listberitaheaderlain1} */}
                         <div className="row h-50">
                             {listberitaheaderlain1}

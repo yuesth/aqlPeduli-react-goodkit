@@ -69,17 +69,32 @@ function Berita() {
     useEffect(() => {
         fetch(urlBerita).then(res => res.json()).then(parsed => parsed.map(data => {
             if (data.gambarBerita !== null) {
-                return ({
-                    id: `${data.id}`,
-                    penulis: `${data.penulisBerita}`,
-                    tanggal: `${data.tanggalBerita}`,
-                    judul: `${data.judulBerita}`,
-                    isi: `${data.isiBerita}`,
-                    tag: `${data.tagBerita}`,
-                    linkshare: `${data.linkShareBerita}`,
-                    gambar: `${data.gambarBerita.url}`,
-                    kategori: `${data.kategoriberita.namaKategori}`
-                })
+                if (data.gambarBerita.formats.small) {
+                    return ({
+                        id: `${data.id}`,
+                        penulis: `${data.penulisBerita}`,
+                        tanggal: `${data.tanggalBerita}`,
+                        judul: `${data.judulBerita}`,
+                        isi: `${data.isiBerita}`,
+                        tag: `${data.tagBerita}`,
+                        linkshare: `${data.linkShareBerita}`,
+                        gambar: `${data.gambarBerita.url}`,
+                        gambarkecil: data.gambarBerita.formats.small.url,
+                        kategori: `${data.kategoriberita.namaKategori}`
+                    })
+                }
+                else {
+                    return ({
+                        id: `${data.id}`,
+                        penulis: `${data.penulisBerita}`,
+                        tanggal: `${data.tanggalBerita}`,
+                        judul: `${data.judulBerita}`,
+                        isi: `${data.isiBerita}`,
+                        tag: `${data.tagBerita}`,
+                        linkshare: `${data.linkShareBerita}`,
+                        kategori: `${data.kategoriberita.namaKategori}`
+                    })
+                }
             }
             else {
                 return ({
@@ -131,7 +146,7 @@ function Berita() {
                                         </p>
                                     </div>
                                 </div>
-                                <Link className="stretched-link" to={`/berita/${doc.linkshare}?img=${doc.gambar}`} />
+                                <Link className="stretched-link" to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`} />
                             </div>
                         </div>
                     </div>
@@ -172,7 +187,7 @@ function Berita() {
                                     </p>
                                 </div>
                             </div>
-                            <Link className="stretched-link" to={`/berita/${doc.linkshare}?img=${doc.gambar}`} />
+                            <Link className="stretched-link" to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`} />
                         </div>
                     </div>
                 </div>

@@ -507,7 +507,6 @@ function ListUpdate(props) {
         }
     }
     const listup = props.data.map((doc, idx) => {
-        console.log("url: " + doc.gambarUpdate.url)
         return (
             <li className="timeline-item active text-left" key={idx}>
                 <DariTanggal tanggal={doc.tanggalpelaksanaanUpdate}></DariTanggal>
