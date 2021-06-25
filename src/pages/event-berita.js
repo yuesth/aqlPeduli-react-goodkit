@@ -120,7 +120,7 @@ function EventBerita() {
                             <span className="small text-muted mt-n1 mb-0">
                                 <DariTanggal tanggal={doc.mulai}></DariTanggal> - <DariTanggal tanggal={doc.selesai}></DariTanggal>
                             </span>
-                            <Link to={`/events/${doc.linkshare}?img=${doc.gambar}`}>
+                            <Link to={`/events/${doc.linkshare}?img=${doc.gambarkecil}`}>
                                 <a className="stretched-link" href="" />
                             </Link>
                         </div>
@@ -145,31 +145,70 @@ function EventBerita() {
     const [lenSUB, setLenSUB] = useState(0)
     const [isLoadingevent, setIsLoadingevent] = useState(true);
     useEffect(() => {
-        fetch(urlBerita).then(res => res.json()).then(parsedJson => {
-            setEvent(parsedJson)
-            setIsLoadingevent(false)
-        })
+        fetch(urlBerita).then(res => res.json())
+            .then(parsedJson => parsedJson.map((data, idx) => {
+                if(data.gambarBerita[0] !== null){
+                    if(data.gambarEvent[0].formats.small){
+                        return ({
+                            id: `${data.id}`,
+                            mulai: `${data.tanggalmulaiEvent}`,
+                            selesai: `${data.tanggalselesaiEvent}`,
+                            judul: `${data.judulEvent}`,
+                            isi: `${data.isiEvent}`,
+                            gambar: data.gambarEvent[0].url,
+                            gambarkecil: data.gambarEvent[0].formats.small.url,
+                            linkshare: `${data.linkShareEvent}`
+                        })
+                    }
+                    else{
+                        return ({
+                            id: `${data.id}`,
+                            mulai: `${data.tanggalmulaiEvent}`,
+                            selesai: `${data.tanggalselesaiEvent}`,
+                            judul: `${data.judulEvent}`,
+                            isi: `${data.isiEvent}`,
+                            gambar: data.gambarEvent[0].url,
+                            linkshare: `${data.linkShareEvent}`
+                        })
+                    }
+                }
+                else{
+                    return ({
+                        id: `${data.id}`,
+                        mulai: `${data.tanggalmulaiEvent}`,
+                        selesai: `${data.tanggalselesaiEvent}`,
+                        judul: `${data.judulEvent}`,
+                        isi: `${data.isiEvent}`,
+                        gambar: data.gambarEvent[0].url,
+                        linkshare: `${data.linkShareEvent}`
+                    })
+                }
+            }))
+            .then(doc2 => {
+                setEvent(doc2)
+                setIsLoadingevent(false)
+            })
     }, [])
     useEffect(() => {
         setLenSB(sedangevent.length)
         setLenAB(akanevent.length)
         setLenSUB(sudahevent.length)
     }, [])
-    const itemEvent = []
-    event.map(data => {
-        var item1 = {
-            id: `${data.id}`,
-            mulai: `${data.tanggalmulaiEvent}`,
-            selesai: `${data.tanggalselesaiEvent}`,
-            judul: `${data.judulEvent}`,
-            isi: `${data.isiEvent}`,
-            gambar: data.gambarEvent[0].url,
-            linkshare: `${data.linkShareEvent}`
-        }
-        itemEvent.push(item1)
-    })
+    // const itemEvent = []
+    // event.map(data => {
+    //     var item1 = {
+    //         id: `${data.id}`,
+    //         mulai: `${data.tanggalmulaiEvent}`,
+    //         selesai: `${data.tanggalselesaiEvent}`,
+    //         judul: `${data.judulEvent}`,
+    //         isi: `${data.isiEvent}`,
+    //         gambar: data.gambarEvent[0].url,
+    //         linkshare: `${data.linkShareEvent}`
+    //     }
+    //     itemEvent.push(item1)
+    // })
 
-    const sortedItemEvent = itemEvent.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
+    const sortedItemEvent = event.sort((a, b) => { return new Date(b.tanggal) - new Date(a.tanggal) })
     const sedangevent = sortedItemEvent.filter((doc, idx) => {
         return (new Date(doc.mulai) < Date.now() && new Date(doc.selesai) > Date.now())
     })
@@ -196,7 +235,7 @@ function EventBerita() {
                             <nav aria-label="breadcrumb">
                                 <ol className="breadcrumb">
                                     <li className="breadcrumb-item">
-                                        <Link to={`/berita`} style={{color:`rgb(47, 57, 144)`}}>
+                                        <Link to={`/berita`} style={{ color: `rgb(47, 57, 144)` }}>
                                             Berita
                                         </Link>
                                     </li>

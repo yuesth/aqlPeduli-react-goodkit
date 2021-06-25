@@ -108,7 +108,6 @@ app.get("/kepedulian/:judul", (req, response) => {
     const filePath = path.resolve(__dirname, './build', 'index.html')
     var temp = req.params.judul
     var gambar = req.query.img
-    console.log(gambar)
     var judul2 = temp.split("-").map(val => val.charAt(0).toUpperCase() + val.slice(1)).join(" ")
     fs.readFile(filePath, 'utf8', function (err, data) {
         if (err) {
@@ -116,7 +115,7 @@ app.get("/kepedulian/:judul", (req, response) => {
         }
         data = data.replace(/AQL Peduli - Kemanusiaan, Relawan, dan Kepedulian/g, `AQL Kepedulian | ${judul2}`);
         data = data.replace(/AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat./g, "AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat.");
-        data = data.replace(/https:\/\/aqlpeduli\.or\.id/g, `https://aqlpeduli.or.id/kepedulian/${temp}`);
+        data = data.replace(/https:\/\/aqlpeduli\.or\.id/g, `https://aqlpeduli.or.id/kepedulian/${temp}?img=${gambar}`);
         var result = data.replace(/https:\/\/res.cloudinary.com\/aql\-peduli\/image\/upload\/v1623139154\/large_logo_aql_65cc6815e92_jyywvk\.png/g, `${gambar}`);
         response.send(result);
     });
@@ -147,7 +146,7 @@ app.get("/berita/:judul", (req, response) => {
         }
         data = data.replace(/AQL Peduli - Kemanusiaan, Relawan, dan Kepedulian/g, `AQL Berita | ${judul2}`);
         data = data.replace(/AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat./g, "AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat.");
-        data = data.replace(/https:\/\/aqlpeduli\.or\.id/g, `https://aqlpeduli.or.id/berita/${temp}`);
+        data = data.replace(/https:\/\/aqlpeduli\.or\.id/g, `https://aqlpeduli.or.id/berita/${temp}?img=${gambar}`);
         var result = data.replace(/https:\/\/res.cloudinary.com\/aql\-peduli\/image\/upload\/v1623139154\/large_logo_aql_65cc6815e92_jyywvk\.png/g, `${gambar}`);
         response.send(result);
     });
@@ -178,7 +177,7 @@ app.get("/khazanah/:judul", (req, response) => {
         }
         data = data.replace(/AQL Peduli - Kemanusiaan, Relawan, dan Kepedulian/g, `AQL Khazanah | ${judul2}`);
         data = data.replace(/AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat./g, "AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat.");
-        data = data.replace(/https:\/\/aqlpeduli\.or\.id/g, `https://aqlpeduli.or.id/khazanah/${temp}`);
+        data = data.replace(/https:\/\/aqlpeduli\.or\.id/g, `https://aqlpeduli.or.id/khazanah/${temp}?img=${gambar}`);
         var result = data.replace(/https:\/\/res.cloudinary.com\/aql\-peduli\/image\/upload\/v1623139154\/large_logo_aql_65cc6815e92_jyywvk\.png/g, `${gambar}`);
         response.send(result);
     });
@@ -293,9 +292,9 @@ app.get("/events/:judul", (req, response) => {
         if (err) {
             return console.log(err);
         }
-        data = data.replace(/AQL Peduli - Kemanusiaan, Relawan, dan Kepedulian/g, `AQL Events`);
+        data = data.replace(/AQL Peduli - Kemanusiaan, Relawan, dan Kepedulian/g, `AQL Events | ${judul2}`);
         data = data.replace(/AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat./g, "AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat.");
-        data = data.replace(/https:\/\/aqlpeduli\.or\.id/g, `https://aqlpeduli.or.id/events/${temp}`);
+        data = data.replace(/https:\/\/aqlpeduli\.or\.id/g, `https://aqlpeduli.or.id/events/${temp}?img=${gambar}`);
         var result = data.replace(/https:\/\/res.cloudinary.com\/aql\-peduli\/image\/upload\/v1623139154\/large_logo_aql_65cc6815e92_jyywvk\.png/g, `${gambar}`);
         response.send(result);
     });

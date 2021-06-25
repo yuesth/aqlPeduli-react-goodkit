@@ -211,16 +211,31 @@ function BeritaList() {
     const itemEvent = []
     eventlist.map(data => {
         if (data.gambarEvent !== null) {
-            var item1 = {
-                id: `${data.id}`,
-                judul: `${data.judulEvent}`,
-                isi: `${data.isiEvent}`,
-                mulai: `${data.tanggalmulaiEvent}`,
-                selesai: `${data.tanggalselesaiEvent}`,
-                gambar: data.gambarEvent[0].url,
-                linkshare: `${data.linkShareEvent}`
+            if (data.gambarEvent) {
+                var item1 = {
+                    id: `${data.id}`,
+                    judul: `${data.judulEvent}`,
+                    isi: `${data.isiEvent}`,
+                    mulai: `${data.tanggalmulaiEvent}`,
+                    selesai: `${data.tanggalselesaiEvent}`,
+                    gambar: data.gambarEvent[0].url,
+                    gambarkecil: data.gambarEvent[0].formats.small.url,
+                    linkshare: `${data.linkShareEvent}`
+                }
+                itemEvent.push(item1)
             }
-            itemEvent.push(item1)
+            else{
+                var item2 = {
+                    id: `${data.id}`,
+                    judul: `${data.judulEvent}`,
+                    isi: `${data.isiEvent}`,
+                    mulai: `${data.tanggalmulaiEvent}`,
+                    selesai: `${data.tanggalselesaiEvent}`,
+                    gambar: data.gambarEvent[0].url,
+                    linkshare: `${data.linkShareEvent}`
+                }
+                itemEvent.push(item2)
+            }
         }
         else {
             var item2 = {
@@ -258,7 +273,7 @@ function BeritaList() {
                             <span className="small text-muted mt-n1 mb-0">
                                 <DariTanggal tanggal={doc.mulai}></DariTanggal> - <DariTanggal tanggal={doc.selesai}></DariTanggal>
                             </span>
-                            <Link to={`/events/${doc.linkshare}?img=${doc.gambar}`}>
+                            <Link to={`/events/${doc.linkshare}?img=${doc.gambarkecil}`}>
                                 <a className="stretched-link" href="" />
                             </Link>
                         </div>
