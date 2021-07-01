@@ -151,7 +151,7 @@ function Khazanah() {
                                                             {doc.pemateri}
                                                         </p>
                                                     }
-                                                    <Link to={`/khazanah/${doc.linkshare}?img=${doc.gambar}`} className="stretched-link"></Link>
+                                                    <Link to={`/khazanah/${doc.linkshare}`} className="stretched-link"></Link>
                                                 </div>
                                             </div>
                                         </div>

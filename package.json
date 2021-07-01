@@ -12,6 +12,7 @@
     "flickity-as-nav-for": "^2.0.1",
     "flickity-imagesloaded": "^2.0.0",
     "isotope-layout": "^3.0.6",
+    "node-fetch": "^2.6.1",
     "path": "^0.12.7",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",

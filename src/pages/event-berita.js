@@ -120,7 +120,7 @@ function EventBerita() {
                             <span className="small text-muted mt-n1 mb-0">
                                 <DariTanggal tanggal={doc.mulai}></DariTanggal> - <DariTanggal tanggal={doc.selesai}></DariTanggal>
                             </span>
-                            <Link to={`/events/${doc.linkshare}?img=${doc.gambarkecil}`}>
+                            <Link to={`/events/${doc.linkshare}`}>
                                 <a className="stretched-link" href="" />
                             </Link>
                         </div>

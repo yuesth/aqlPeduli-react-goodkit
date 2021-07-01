@@ -165,31 +165,31 @@ function DetailBerita(props) {
                                     </div>
                                     <div className="col-md col-12 text-right d-flex shareLinkDetail">
                                         <div className="smd">
-                                            <a href={`https://twitter.com/intent/tweet?text=${detailberita.judul}%20melalui%20https%3A//aqlpeduli.or.id/berita/${detailberita.linkshare}${query}`} target="_blank" className="d-flex flex-column mx-3">
+                                            <a href={`https://twitter.com/intent/tweet?text=${detailberita.judul}%20melalui%20https%3A//aqlpeduli.or.id/berita/${detailberita.linkshare}`} target="_blank" className="d-flex flex-column mx-3">
                                                 <i className=" img-thumbnail fa-twitter fa" style={{ color: '#4c6ef5' }} />
                                                 {/* <span style={{ color: `black`, fontSize:`0.8rem` }}>Twitter</span> */}
                                             </a>
                                         </div>
                                         <div className="smd">
-                                            <a href={`https://www.facebook.com/sharer/sharer.php?u=https%3A//aqlpeduli.or.id/berita/${detailberita.linkshare}${query}`} target="_blank" className="d-flex flex-column mx-3">
+                                            <a href={`https://www.facebook.com/sharer/sharer.php?u=https%3A//aqlpeduli.or.id/berita/${detailberita.linkshare}`} target="_blank" className="d-flex flex-column mx-3">
                                                 <i className="img-thumbnail fa-facebook fa" style={{ color: '#3b5998' }} />
                                                 {/* <span style={{ color: `black`, fontSize:`0.8rem` }}>Facebook</span> */}
                                             </a>
                                         </div>
                                         <div className="smd">
-                                            <a href={`https://t.me/share/url?url=https%3A//aqlpeduli.or.id/berita/${detailberita.linkshare}${query}&text=${detailberita.judul}`} target="_blank" className="d-flex flex-column mx-3">
+                                            <a href={`https://t.me/share/url?url=https%3A//aqlpeduli.or.id/berita/${detailberita.linkshare}&text=${detailberita.judul}`} target="_blank" className="d-flex flex-column mx-3">
                                                 <i className="img-thumbnail fa fa-telegram" style={{ color: '#4c6ef5' }} />
                                                 {/* <span style={{ color: `black`, fontSize:`0.8rem` }}>Telegram</span> */}
                                             </a>
                                         </div>
                                         <div className="smd">
-                                            <a href={`https://api.whatsapp.com/send?text=${detailberita.judul}%20melalui%20https%3A//aqlpeduli.or.id/berita/${detailberita.linkshare}${query}`} target="_blank" className="d-flex flex-column mx-3">
+                                            <a href={`https://api.whatsapp.com/send?text=${detailberita.judul}%20melalui%20https%3A//aqlpeduli.or.id/berita/${detailberita.linkshare}`} target="_blank" className="d-flex flex-column mx-3">
                                                 <i className="img-thumbnail fa-whatsapp fa" style={{ color: '#25D366' }} />
                                                 {/* <span style={{ color: `black`, fontSize:`0.8rem` }}>Whatsapp</span> */}
                                             </a>
                                         </div>
                                         <div className="smd">
-                                            <CopyToClipboard onCopy={handlecopy} text={`https://aqlpeduli.or.id/berita/${detailberita.linkshare}${query}`}>
+                                            <CopyToClipboard onCopy={handlecopy} text={`https://aqlpeduli.or.id/berita/${detailberita.linkshare}`}>
                                                 <button className="d-flex flex-column mx-3 cpy" style={{ width: `30px`, height: `30px` }} onClick={clickedcopy}>
                                                     <img src={`${process.env.PUBLIC_URL}/images/copy-link.png`} width="12" height="12" className="mx-auto my-auto" />
                                                 </button>

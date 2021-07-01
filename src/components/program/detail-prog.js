@@ -466,8 +466,8 @@ function ModalShare(props) {
                         </div>
                         <div>
                             <label style={{ fontWeight: 400 }}>Page Link <span className="message" /></label><br />
-                            <div className="row"> <input className="col-10 ur" type="url" id="myInput" aria-describedby="inputGroup-sizing-default" style={{ height: 40 }} value={`https://aqlpeduli.or.id/kepedulian/${props.linkshare}?${props.query}`} disabled />
-                                <CopyToClipboard onCopy={props.handlecopied} text={`https://aqlpeduli.or.id/kepedulian/${props.linkshare}?${props.query}`}>
+                            <div className="row"> <input className="col-10 ur" type="url" id="myInput" aria-describedby="inputGroup-sizing-default" style={{ height: 40 }} value={`https://aqlpeduli.or.id/kepedulian/${props.linkshare}`} disabled />
+                                <CopyToClipboard onCopy={props.handlecopied} text={`https://aqlpeduli.or.id/kepedulian/${props.linkshare}`}>
                                     <button className="cpy" onClick={props.messagecopied}><i className="far fa-clone fa" /></button>
                                 </CopyToClipboard>
                             </div>

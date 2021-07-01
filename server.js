@@ -1,5 +1,6 @@
 // in my-app/server.js
 const express = require('express');
+const fetch = require('node-fetch');
 const app = express();
 const port = process.env.PORT || 5000;
 const path = require('path');
@@ -105,20 +106,25 @@ app.get("/kepedulian", (req, response) => {
 })
 
 app.get("/kepedulian/:judul", (req, response) => {
-    const filePath = path.resolve(__dirname, './build', 'index.html')
-    var temp = req.params.judul
-    var gambar = req.query.img
-    var judul2 = temp.split("-").map(val => val.charAt(0).toUpperCase() + val.slice(1)).join(" ")
-    fs.readFile(filePath, 'utf8', function (err, data) {
-        if (err) {
-            return console.log(err);
-        }
-        data = data.replace(/AQL Peduli - Kemanusiaan, Relawan, dan Kepedulian/g, `AQL Kepedulian | ${judul2}`);
-        data = data.replace(/AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat./g, "AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat.");
-        data = data.replace(/https:\/\/aqlpeduli\.or\.id/g, `https://aqlpeduli.or.id/kepedulian/${temp}?img=${gambar}`);
-        var result = data.replace(/https:\/\/res.cloudinary.com\/aql\-peduli\/image\/upload\/v1624982371\/AQLPeduli210_tkn5qk\.png/g, `${gambar}`);
-        response.send(result);
-    });
+    fetch(`https://peaceful-meadow-45867.herokuapp.com/programs?_where[linkShareProgram]=${req.params.judul}`)
+        .then(res => res.json())
+        .then(res2 => {
+            var datagambar = res2[0]['gambarProgram']['formats']['small']['url']
+            const filePath = path.resolve(__dirname, './build', 'index.html')
+            var temp = req.params.judul
+            // var gambar = req.query.img
+            var judul2 = temp.split("-").map(val => val.charAt(0).toUpperCase() + val.slice(1)).join(" ")
+            fs.readFile(filePath, 'utf8', function (err, data) {
+                if (err) {
+                    return console.log(err);
+                }
+                data = data.replace(/AQL Peduli - Kemanusiaan, Relawan, dan Kepedulian/g, `AQL Kepedulian | ${judul2}`);
+                data = data.replace(/AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat./g, "AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat.");
+                data = data.replace(/https:\/\/aqlpeduli\.or\.id/g, `https://aqlpeduli.or.id/kepedulian/${temp}`);
+                var result = data.replace(/https:\/\/res.cloudinary.com\/aql\-peduli\/image\/upload\/v1624982371\/AQLPeduli210_tkn5qk\.png/g, `${datagambar}`);
+                response.send(result);
+            });
+        })
 })
 
 app.get("/berita", (req, response) => {
@@ -136,20 +142,25 @@ app.get("/berita", (req, response) => {
 })
 
 app.get("/berita/:judul", (req, response) => {
-    const filePath = path.resolve(__dirname, './build', 'index.html')
-    var temp = req.params.judul
-    var gambar = req.query.img
-    var judul2 = temp.split("-").map(val => val.charAt(0).toUpperCase() + val.slice(1)).join(" ")
-    fs.readFile(filePath, 'utf8', function (err, data) {
-        if (err) {
-            return console.log(err);
-        }
-        data = data.replace(/AQL Peduli - Kemanusiaan, Relawan, dan Kepedulian/g, `AQL Berita | ${judul2}`);
-        data = data.replace(/AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat./g, "AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat.");
-        data = data.replace(/https:\/\/aqlpeduli\.or\.id/g, `https://aqlpeduli.or.id/berita/${temp}?img=${gambar}`);
-        var result = data.replace(/https:\/\/res.cloudinary.com\/aql\-peduli\/image\/upload\/v1624982371\/AQLPeduli210_tkn5qk\.png/g, `${gambar}`);
-        response.send(result);
-    });
+    fetch(`https://peaceful-meadow-45867.herokuapp.com/beritas?_where[linkShareBerita]=${req.params.judul}`)
+        .then(res => res.json())
+        .then(res2 => {
+            var datagambar = res2[0]['gambarBerita']['formats']['small']['url']
+            const filePath = path.resolve(__dirname, './build', 'index.html')
+            var temp = req.params.judul
+            // var gambar = req.query.img
+            var judul2 = temp.split("-").map(val => val.charAt(0).toUpperCase() + val.slice(1)).join(" ")
+            fs.readFile(filePath, 'utf8', function (err, data) {
+                if (err) {
+                    return console.log(err);
+                }
+                data = data.replace(/AQL Peduli - Kemanusiaan, Relawan, dan Kepedulian/g, `AQL Berita | ${judul2}`);
+                data = data.replace(/AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat./g, "AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat.");
+                data = data.replace(/https:\/\/aqlpeduli\.or\.id/g, `https://aqlpeduli.or.id/berita/${temp}`);
+                var result = data.replace(/https:\/\/res.cloudinary.com\/aql\-peduli\/image\/upload\/v1624982371\/AQLPeduli210_tkn5qk\.png/g, `${datagambar}`);
+                response.send(result);
+            });
+        })
 })
 
 app.get("/khazanah", (req, response) => {
@@ -167,20 +178,25 @@ app.get("/khazanah", (req, response) => {
 })
 
 app.get("/khazanah/:judul", (req, response) => {
-    const filePath = path.resolve(__dirname, './build', 'index.html')
-    var temp = req.params.judul
-    var gambar = req.query.img
-    var judul2 = temp.split("-").map(val => val.charAt(0).toUpperCase() + val.slice(1)).join(" ")
-    fs.readFile(filePath, 'utf8', function (err, data) {
-        if (err) {
-            return console.log(err);
-        }
-        data = data.replace(/AQL Peduli - Kemanusiaan, Relawan, dan Kepedulian/g, `AQL Khazanah | ${judul2}`);
-        data = data.replace(/AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat./g, "AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat.");
-        data = data.replace(/https:\/\/aqlpeduli\.or\.id/g, `https://aqlpeduli.or.id/khazanah/${temp}?img=${gambar}`);
-        var result = data.replace(/https:\/\/res.cloudinary.com\/aql\-peduli\/image\/upload\/v1624982371\/AQLPeduli210_tkn5qk\.png/g, `${gambar}`);
-        response.send(result);
-    });
+    fetch(`https://peaceful-meadow-45867.herokuapp.com/khazanahs?_where[linkShareKhazanah]=${req.params.judul}`)
+        .then(res => res.json())
+        .then(res2 => {
+            var datagambar = res2[0]['gambarKhazanah']['formats']['small']['url']
+            const filePath = path.resolve(__dirname, './build', 'index.html')
+            var temp = req.params.judul
+            // var gambar = req.query.img
+            var judul2 = temp.split("-").map(val => val.charAt(0).toUpperCase() + val.slice(1)).join(" ")
+            fs.readFile(filePath, 'utf8', function (err, data) {
+                if (err) {
+                    return console.log(err);
+                }
+                data = data.replace(/AQL Peduli - Kemanusiaan, Relawan, dan Kepedulian/g, `AQL Khazanah | ${judul2}`);
+                data = data.replace(/AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat./g, "AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat.");
+                data = data.replace(/https:\/\/aqlpeduli\.or\.id/g, `https://aqlpeduli.or.id/khazanah/${temp}`);
+                var result = data.replace(/https:\/\/res.cloudinary.com\/aql\-peduli\/image\/upload\/v1624982371\/AQLPeduli210_tkn5qk\.png/g, `${datagambar}`);
+                response.send(result);
+            });
+        })
 })
 
 app.get("/relawan", (req, response) => {
@@ -284,20 +300,25 @@ app.get("/events", (req, response) => {
 })
 
 app.get("/events/:judul", (req, response) => {
-    const filePath = path.resolve(__dirname, './build', 'index.html')
-    var temp = req.params.judul
-    var gambar = req.query.img
-    var judul2 = temp.split("-").map(val => val.charAt(0).toUpperCase() + val.slice(1)).join(" ")
-    fs.readFile(filePath, 'utf8', function (err, data) {
-        if (err) {
-            return console.log(err);
-        }
-        data = data.replace(/AQL Peduli - Kemanusiaan, Relawan, dan Kepedulian/g, `AQL Events | ${judul2}`);
-        data = data.replace(/AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat./g, "AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat.");
-        data = data.replace(/https:\/\/aqlpeduli\.or\.id/g, `https://aqlpeduli.or.id/events/${temp}?img=${gambar}`);
-        var result = data.replace(/https:\/\/res.cloudinary.com\/aql\-peduli\/image\/upload\/v1624982371\/AQLPeduli210_tkn5qk\.png/g, `${gambar}`);
-        response.send(result);
-    });
+    fetch(`https://peaceful-meadow-45867.herokuapp.com/events?_where[linkShareEvent]=${req.params.judul}`)
+        .then(res => res.json())
+        .then(res2 => {
+            var datagambar = res2[0]['gambarKhazanah']['formats']['small']['url']
+            const filePath = path.resolve(__dirname, './build', 'index.html')
+            var temp = req.params.judul
+            // var gambar = req.query.img
+            var judul2 = temp.split("-").map(val => val.charAt(0).toUpperCase() + val.slice(1)).join(" ")
+            fs.readFile(filePath, 'utf8', function (err, data) {
+                if (err) {
+                    return console.log(err);
+                }
+                data = data.replace(/AQL Peduli - Kemanusiaan, Relawan, dan Kepedulian/g, `AQL Events | ${judul2}`);
+                data = data.replace(/AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat./g, "AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat.");
+                data = data.replace(/https:\/\/aqlpeduli\.or\.id/g, `https://aqlpeduli.or.id/events/${temp}`);
+                var result = data.replace(/https:\/\/res.cloudinary.com\/aql\-peduli\/image\/upload\/v1624982371\/AQLPeduli210_tkn5qk\.png/g, `${datagambar}`);
+                response.send(result);
+            });
+        })
 })
 
 app.get("/informasi", (req, response) => {
@@ -314,21 +335,27 @@ app.get("/informasi", (req, response) => {
     });
 })
 
-app.get("/galeri/:judul", (req, response) => {
-    const filePath = path.resolve(__dirname, './build', 'index.html')
-    var temp = req.params.judul
-    var gambar = req.query.img
-    var judul2 = temp.split("-").map(val => val.charAt(0).toUpperCase() + val.slice(1)).join(" ")
-    fs.readFile(filePath, 'utf8', function (err, data) {
-        if (err) {
-            return console.log(err);
-        }
-        data = data.replace(/AQL Peduli - Kemanusiaan, Relawan, dan Kepedulian/g, `AQL Informasi | Galeri`);
-        data = data.replace(/AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat./g, "AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat.");
-        data = data.replace(/https:\/\/aqlpeduli\.or\.id/g, `https://aqlpeduli.or.id/galeri/${temp}`);
-        var result = data.replace(/https:\/\/res.cloudinary.com\/aql\-peduli\/image\/upload\/v1624982371\/AQLPeduli210_tkn5qk\.png/g, `${gambar}`);
-        response.send(result);
-    });
+app.get("/galeri/:id", (req, response) => {
+    fetch(`https://peaceful-meadow-45867.herokuapp.com/galeris?_where[id]=${req.params.id}`)
+        .then(res => res.json())
+        .then(res2 => {
+            var datagambar = res2[0]['thumbnailGaleri']['formats']['small']['url']
+            var datajudul = res2[0]['judulGaleri']
+            const filePath = path.resolve(__dirname, './build', 'index.html')
+            var temp = req.params.id
+            // var gambar = req.query.img
+            var judul2 = temp.split("-").map(val => val.charAt(0).toUpperCase() + val.slice(1)).join(" ")
+            fs.readFile(filePath, 'utf8', function (err, data) {
+                if (err) {
+                    return console.log(err);
+                }
+                data = data.replace(/AQL Peduli - Kemanusiaan, Relawan, dan Kepedulian/g, `AQL Galeri | ${datajudul}`);
+                data = data.replace(/AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat./g, "AQL Peduli adalah platform lembaga sosial dan kemanusiaan untuk masyarakat.");
+                data = data.replace(/https:\/\/aqlpeduli\.or\.id/g, `https://aqlpeduli.or.id/galeri/${temp}`);
+                var result = data.replace(/https:\/\/res.cloudinary.com\/aql\-peduli\/image\/upload\/v1624982371\/AQLPeduli210_tkn5qk\.png/g, `${datagambar}`);
+                response.send(result);
+            });
+        })
 })
 
 // app.get("/profil", (req, response) => {
