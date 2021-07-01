@@ -92,6 +92,7 @@ function Berita() {
                         isi: `${data.isiBerita}`,
                         tag: `${data.tagBerita}`,
                         linkshare: `${data.linkShareBerita}`,
+                        gambar: `${data.gambarBerita.url}`,
                         kategori: `${data.kategoriberita.namaKategori}`
                     })
                 }
@@ -146,7 +147,7 @@ function Berita() {
                                         </p>
                                     </div>
                                 </div>
-                                <Link className="stretched-link" to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`} />
+                                <Link className="stretched-link" to={`/berita/${doc.linkshare}?img=${doc.gambarkecil ?? doc.gambar}`} />
                             </div>
                         </div>
                     </div>
@@ -187,7 +188,7 @@ function Berita() {
                                     </p>
                                 </div>
                             </div>
-                            <Link className="stretched-link" to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`} />
+                            <Link className="stretched-link" to={`/berita/${doc.linkshare}?img=${doc.gambarkecil ?? doc.gambar}`} />
                         </div>
                     </div>
                 </div>

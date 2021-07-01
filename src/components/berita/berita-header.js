@@ -57,6 +57,7 @@ function BeritaHeader() {
                             isi: `${data.isiBerita}`,
                             tag: `${data.tagBerita}`,
                             linkshare: `${data.linkShareBerita}`,
+                            gambar: data.gambarBerita.url,
                             kategori: `${data.kategoriberita.namaKategori}`
                         })
                     }
@@ -115,7 +116,7 @@ function BeritaHeader() {
         if (idx === 0) {
             if (doc.kategori === "Berita Nasional") {
                 return (
-                    <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`}>
+                    <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil ?? doc.gambar}`}>
                         <div className="berita-header-img">
                             <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." style={{ maxHeight: `360px` }} />
                             {/* <div className="shadow-header"></div> */}
@@ -131,7 +132,7 @@ function BeritaHeader() {
             }
             else if (doc.kategori === "Berita Internasional") {
                 return (
-                    <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`}>
+                    <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil ?? doc.gambar}`}>
                         <div className="berita-header-img">
                             <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." style={{ maxHeight: `360px` }} />
                             {/* <div className="shadow-header"></div> */}
@@ -147,7 +148,7 @@ function BeritaHeader() {
             }
             else if (doc.kategori === "Event") {
                 return (
-                    <Link to={`/berita/${doc.id}?img=${doc.gambarkecil}`}>
+                    <Link to={`/berita/${doc.id}?img=${doc.gambarkecil ?? doc.gambar}`}>
                         <div className="berita-header-img">
                             <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." style={{ maxHeight: `360px` }} />
                             {/* <div className="shadow-header"></div> */}
@@ -185,7 +186,7 @@ function BeritaHeader() {
             if (doc.kategori === "Berita Nasional") {
                 return (
                     <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 h-100">
-                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`}>
+                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil ?? doc.gambar}`}>
                             <div className="berita-headerlain-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
                                 {/* <div className="shadow-header"></div> */}
@@ -203,7 +204,7 @@ function BeritaHeader() {
             else if (doc.kategori === "Berita Internasional") {
                 return (
                     <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 h-100">
-                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`}>
+                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil ?? doc.gambar}`}>
                             <div className="berita-headerlain-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
                                 {/* <div className="shadow-header"></div> */}
@@ -225,7 +226,7 @@ function BeritaHeader() {
             if (doc.kategori === "Berita Nasional") {
                 return (
                     <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 h-100">
-                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`}>
+                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil ?? doc.gambar}`}>
                             <div className="berita-headerlain-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
                                 {/* <div className="shadow-header"></div> */}
@@ -243,7 +244,7 @@ function BeritaHeader() {
             else if (doc.kategori === "Berita Internasional") {
                 return (
                     <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 h-100">
-                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`}>
+                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil ?? doc.gambar}`}>
                             <div className="berita-headerlain-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
                                 {/* <div className="shadow-header"></div> */}

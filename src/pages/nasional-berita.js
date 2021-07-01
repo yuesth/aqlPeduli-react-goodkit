@@ -65,6 +65,7 @@ function BeritaNasional() {
                         isi: `${doc.isiBerita}`,
                         tag: `${doc.tagBerita}`,
                         linkshare: `${doc.linkShareBerita}`,
+                        gambar: `${doc.gambarBerita.url}`,
                         kategori: `${doc.kategoriberita.namaKategori}`
                     })
                 }
@@ -130,7 +131,7 @@ function BeritaNasional() {
     const headerberitanas = sortedItemBerita2.map((doc, idx) => {
         if (idx === 0) {
             return (
-                <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`}>
+                <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil ?? doc.gambar}`}>
                     <div className="berita-header-img">
                         <img className="img-fluid w-100 h-100 img-berita-header" src={`${doc.gambar}`} alt="..." />
                         {/* <div className="shadow-header"></div> */}
@@ -150,7 +151,7 @@ function BeritaNasional() {
             if (doc.kategori === "Berita Nasional") {
                 return (
                     <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 px-1 h-100">
-                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`}>
+                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil ?? doc.gambar}`}>
                             <div className="berita-headerlain-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
                                 {/* <div className="shadow-header"></div> */}
@@ -172,7 +173,7 @@ function BeritaNasional() {
             if (doc.kategori === "Berita Nasional") {
                 return (
                     <div className="col-6 col-sm-6 col-md-6 col-lg-6 py-1 px-1 h-100">
-                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`}>
+                        <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil ?? doc.gambar}`}>
                             <div className="berita-headerlain-img h-100">
                                 <img className="img-fluid w-100 h-100 img-berita-headerlain" src={`${doc.gambar}`} alt="..." />
                                 {/* <div className="shadow-header"></div> */}
@@ -211,7 +212,7 @@ function BeritaNasional() {
                                 <h2 className="display-6 judul-ber-list-nas">
                                     {doc.judul}
                                 </h2>
-                                <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil}`} className="stretched-link"></Link>
+                                <Link to={`/berita/${doc.linkshare}?img=${doc.gambarkecil ?? doc.gambar}`} className="stretched-link"></Link>
                             </div>
                         </div>
                     </div>
