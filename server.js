@@ -13,6 +13,10 @@ app.use(express.static(path.resolve(__dirname, './build')));
 //   response.sendFile(filePath);
 // });
 
+app.get("/y7rbbkmhi8pdxqalva3l982zwf91g5.html", (req, res) => {
+    res.sendFile(path.join(__dirname, "y7rbbkmhi8pdxqalva3l982zwf91g5.html"))
+})
+
 app.get("/sitemap", (req, res) => {
     res.setHeader("Content-Type", "text/xml")
     res.write(`
