@@ -64,7 +64,7 @@ function Khazanah() {
         )
     }
 
-    const urlKhazanah = "https://peaceful-meadow-45867.herokuapp.com/khazanahs"
+    const urlKhazanah = "https://peaceful-meadow-45867.herokuapp.com/khazanahs?_limit=-1"
     const [khazanah, setKhazanah] = useState([])
     const [khazanahdef, setKhazanahdef] = useState([])
     const [key, setKey] = useState("")
