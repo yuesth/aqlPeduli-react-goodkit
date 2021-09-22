@@ -47,13 +47,13 @@ function Footer() {
                 <div className="row">
                     <div className="col-md-7 pr-5">
                         <img src={`${process.env.PUBLIC_URL}/images/logo-aql2.png`} alt="logo-aql" width="160px" height="100px" className="logo-footer mb-5" />
-                        <p className="text-muted mb-4">
-                            AQL Peduli adalah sebuah lembaga nirlaba yang bergerak di bidang sosial yang bersemangat untuk mengedukasi masyarakat dalam hal kemanusiaan mulai pra-bencana, saat bencana dan pasca bencana , dimana dalam kegiatannya terus berusaha memberikan yang terbaik kepada masyarakat yang terkena dampak bencana secara universal, tanpa diskrimanasi dan tidak berafiliasi dengan partai politik manapun.
+                        <p className=" mb-4">
+                            AQL Peduli adalah sebuah lembaga di bawah naungan AQL Islamic Center yang fokus bergerak di bidang kemanusiaan.
                         </p>
                         <p className="text-muted mb-4">
-                            <strong>Kantor Pusat :</strong> <br/>
-                            <span className="text-muted">Jl. Tebet Raya No.16B, RT.1/RW.2, Tebet Bar., Kec. Tebet, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12810 </span><br/>
-                            <strong>Call Center :</strong> <span className="text-muted">0822-3919-3515</span> <br/>
+                            <strong>Kantor Pusat :</strong> <br />
+                            <span className="text-muted">Jl. Tebet Raya No.16B, RT.1/RW.2, Tebet Bar., Kec. Tebet, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12810 </span><br />
+                            <strong>Call Center :</strong> <span className="text-muted">0822-3919-3515</span> <br />
                             <strong>SMS/WA Center :</strong> <span className="text-muted">0822-3919-3515</span>
                         </p>
                         {/* <h2 className="font-family-serif text-white mb-1">
