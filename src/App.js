@@ -264,7 +264,7 @@ function App() {
           </Suspense>
         </ScrollToTop>
       </BrowserRouter>
-      <a href="https://api.whatsapp.com/send?phone=6282239193515&text=" rel="noreferrer" className="float float-wapp" target="_blank">
+      <a href="https://api.whatsapp.com/send?phone=6285693602334&text=" rel="noreferrer" className="float float-wapp" target="_blank">
         <i className="fa fa-whatsapp my-float" />
       </a>
     </>

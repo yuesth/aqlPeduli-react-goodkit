@@ -121,7 +121,7 @@ function ModalDonasi(props) {
     const norekbriscopied = () => {
         $(".norekbrismessage").text("copied");
     }
-    const phone = '6282239193515'
+    const phone = '085693602334'
     const text = `Assalamu'alaikum Warohmatulloh Wabarokatuh\nDengan ini saya menyumbang donasi untuk ${props.judulprog} sebesar .... \nSemoga bermanfaat bagi yang membutuhkan terima kasih.`
     useEffect(() => {
         fetch(urlNorek).then(res => res.json()).then(parsedJson => parsedJson.map(doc => {
