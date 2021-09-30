@@ -250,7 +250,7 @@ function ModalDonasi(props) {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="recipient-nohp" className="col-form-label">No.Handphone:</label>
-                                <input type="tel" className="form-control required" id="recipient-nohp" name="phone_number" onChange={onchangeform} placeholder="Nomor telepon" />
+                                <input type="tel" className="form-control required" id="recipient-nohp" name="phone_number" onChange={onchangeform} placeholder="08xxxx" />
                             </div>
                             <button type="submit" className="btn btn-donasi-sekarang w-100" id="submitdata" disabled>Lanjut ke Metode Donasi</button>
                             <div className="spinner-border text-dark d-none" id="spinner-form" role="status">
