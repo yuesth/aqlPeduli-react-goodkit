@@ -313,10 +313,10 @@ function ModalDonasi(props) {
                                     return (
                                         <div className="row rek-bsm mb-5" key={idx}>
                                             <div className="col-4 col-md-4">
-                                                <img src={`${process.env.PUBLIC_URL}/images/donasi/mandiris.png`} alt="bank mandiri syariah" className="img-fluid" alt="MandiriSyariah" />
+                                                <img src={`${process.env.PUBLIC_URL}/images/donasi/bsi.png`} alt="bank syariah indonesia" className="img-fluid" alt="BSI" />
                                             </div>
                                             <div className="col-8 col-md-8">
-                                                <span className="text-muted" style={{ fontSize: `16px` }}>Bank Mandiri Syariah<br /> a.n {doc.an} <br /></span>
+                                                <span className="text-muted" style={{ fontSize: `16px` }}>Bank Syariah Indonesia<br /> a.n {doc.an} <br /></span>
                                                 <span className="text-muted" style={{ fontSize: `16px` }}>{doc.norek}</span>
                                                 <CopyToClipboard onCopy={handleMandiris} text={doc.norek}>
                                                     <button className="cpy" onClick={norekmandiriscopied}> <i className="far fa-clone fa" /></button>
