@@ -128,7 +128,7 @@ function ModalDonasi(props) {
             // if(doc.kategori.id === props.idkateg){
             return ({
                 id: `${doc.id}`,
-                bank: `${doc.jenisBank}`,
+                bank: doc.jenisBank === "BSM" ? "BSI" : `${doc.jenisBank}`,
                 norek: `${doc.nomorRekening}`,
                 an: `${doc.atasNama}`
             })
@@ -309,7 +309,7 @@ function ModalDonasi(props) {
                                         </div>
                                     )
                                 }
-                                else if (doc.bank === "BSM") {
+                                else if (doc.bank === "BSI") {
                                     return (
                                         <div className="row rek-bsm mb-5" key={idx}>
                                             <div className="col-4 col-md-4">
