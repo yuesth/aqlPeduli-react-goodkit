@@ -82,6 +82,7 @@ function DariTanggal(props) {
 function ModalDonasi(props) {
     const urlNorek = `https://peaceful-meadow-45867.herokuapp.com/nomor-rekening-kategoris?_where[kategori.id]=${props.idkateggg}`
     const urlQr = `https://peaceful-meadow-45867.herokuapp.com/kategoris?_where[id]=${props.idkateggg}`
+    const [disabledbtn, setdisabledbtn] = useState(true)
     const [norek, setNorek] = useState([])
     const [qrcode, setQrcode] = useState([])
     const [form, setForm] = useState({
@@ -145,23 +146,23 @@ function ModalDonasi(props) {
         })
     }, [])
     useEffect(() => {
-        $(document).on('change keyup', '.required', function (e) {
-            let Disabled = true;
-            $(".required").each(function () {
-                let value = this.value
-                if ((value) && (value.trim() != '')) {
-                    Disabled = false
-                } else {
-                    Disabled = true
-                    return false
-                }
-            });
-            if (Disabled) {
-                $('#submitdata').prop("disabled", true);
-            } else {
-                $('#submitdata').prop("disabled", false);
-            }
-        })
+        // $(document).on('change keyup', '.required', function (e) {
+        //     let Disabled = true;
+        //     $(".required").each(function () {
+        //         let value = this.value
+        //         if ((value) && (value.trim() != '')) {
+        //             Disabled = false
+        //         } else {
+        //             Disabled = true
+        //             return false
+        //         }
+        //     });
+        //     if (Disabled) {
+        //         $('#submitdata').prop("disabled", true);
+        //     } else {
+        //         $('#submitdata').prop("disabled", false);
+        //     }
+        // })
         $('#submitdata').click(() => {
             var pages1 = document.getElementById("modal-split1")
             var pages2 = document.getElementById("modal-split2")
@@ -170,10 +171,19 @@ function ModalDonasi(props) {
         })
     })
     const onchangeform = (e) => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value
-        })
+        if (e.target.name === 'amount' && Number(e.target.value) < 10000) {
+            if (form.email === "" || form.phone_number === "" || form.email === "") {
+                setdisabledbtn(true)
+            }
+            setdisabledbtn(true)
+        }
+        else {
+            setForm({
+                ...form,
+                [e.target.name]: e.target.value
+            })
+            setdisabledbtn(false)
+        }
     }
 
     const onsubmitform = (event) => {
@@ -237,7 +247,7 @@ function ModalDonasi(props) {
                                     <div className="input-group-prepend">
                                         <span className="input-group-text">Rp.</span>
                                     </div>
-                                    <input type="text" placeholder="Isi nominal donasi" className="form-control required" aria-label="Amount (to the nearest rupiah)" name="amount" onChange={onchangeform} />
+                                    <input type="number" placeholder="Isi nominal donasi (min. Rp10,0000)" className="form-control required" aria-label="Amount (to the nearest rupiah)" name="amount" onChange={onchangeform} />
                                 </div>
                             </div>
                             <div className="form-group">
@@ -252,7 +262,7 @@ function ModalDonasi(props) {
                                 <label htmlFor="recipient-nohp" className="col-form-label">No.Handphone:</label>
                                 <input type="tel" className="form-control required" id="recipient-nohp" name="phone_number" onChange={onchangeform} placeholder="08xxxx" />
                             </div>
-                            <button type="submit" className="btn btn-donasi-sekarang w-100" id="submitdata" disabled>Lanjut ke Metode Donasi</button>
+                            <button type="submit" className="btn btn-donasi-sekarang w-100" id="submitdata" disabled={disabledbtn}>Lanjut ke Metode Donasi</button>
                             <div className="spinner-border text-dark d-none" id="spinner-form" role="status">
                                 <span className="sr-only">Loading...</span>
                             </div>
@@ -263,7 +273,7 @@ function ModalDonasi(props) {
                             <div className="col-md-11 col-lg-10">
                                 <h3 className="mb-5 mb-md-0 text-center">
                                     Donasi Anda bisa disalurkan melalui
-                            </h3>
+                                </h3>
                             </div>
                         </div>
                         {props.linkbb !== "null"
@@ -283,7 +293,7 @@ function ModalDonasi(props) {
                                     <div className="col-md-11 col-lg-11">
                                         <h4 className="mb-5 mb-md-0 text-center">
                                             Atau
-                            </h4>
+                                        </h4>
                                     </div>
                                 </div>
                             </>
@@ -412,14 +422,14 @@ function ModalDonasi(props) {
                             <div className="col-md-11 col-lg-11">
                                 <h5 className="mb-5 mb-md-0 text-center">
                                     Sudah berdonasi? Jangan lupa konfirmasi ya
-                            </h5>
+                                </h5>
                             </div>
                         </div>
                         <div className="row align-items-center justify-content-center mb-5">
                             <div className="col-md-11 col-lg-11">
                                 <button className="btn btn-success rounded-top-right rounded-bottom-left rounded-top-left rounded-bottom-right rounded-sm w-100 btn-via-wa" onClick={() => window.open(`https://api.whatsapp.com/send?phone=+${phone}*&text=%20${text}`, `_blank`)}>
                                     <i className="fa fa-whatsapp" /> Via WhatsApp
-                            </button>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -521,7 +531,7 @@ function ListUpdate(props) {
                     <button className="btn btn-primary" id="btnImgUp" type="button" aria-haspopup="true" aria-expanded="false" onClick={() => filterLampiran(idx)}>
                         {/* <i class={`fe fe-chevron-up upIcon ${idx}`}></i> */}
                         Lampirkan
-                                {/* {isShowGbr[idx] ? */}
+                        {/* {isShowGbr[idx] ? */}
                         {/* : */}
                         {/* <i class={`fe fe-chevron-down ${idx}`}></i> */}
                         {/* } */}
@@ -556,8 +566,8 @@ function DetailProg(props) {
     const hist = useHistory()
     useEffect(() => {
         ReactGA.set({ page: window.location.pathname + "/" + custparam });
-        ReactGA.pageview(window.location.pathname + "/" + custparam );
-    },[])
+        ReactGA.pageview(window.location.pathname + "/" + custparam);
+    }, [])
 
     const [showmodal, setShowmodal] = useState(false)
     const handleClose = () => setShowmodal(false);
@@ -722,9 +732,9 @@ function DetailProg(props) {
                             <nav aria-label="breadcrumb">
                                 <ol className="breadcrumb px-0">
                                     <li className="breadcrumb-item pl-0">
-                                        <Link to={`/kepedulian`} style={{color:`rgb(47, 57, 144)`, fontWeight:`bold`}}>
+                                        <Link to={`/kepedulian`} style={{ color: `rgb(47, 57, 144)`, fontWeight: `bold` }}>
                                             Program Kepedulian
-                                    </Link>
+                                        </Link>
                                     </li>
                                     <li className="breadcrumb-item active" aria-current="page">{detailprog.judul}</li>
                                 </ol>

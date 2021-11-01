@@ -252,7 +252,7 @@ function ProgramLayout(props) {
 
     const listprogram2 = sortedItemProgram.map((doc, idx) => {
         var tostring = parseInt(doc.terkumpul)
-        var idr = tostring.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+        var idr = tostring.toFixed(0).replace(/\d(?=(\d{3})+\.)/g, '$&,')
         var namaKategori = doc.namaKateg
         var namaKategori2 = namaKategori.replace(/\s/g, "")
         var namaClass = "item-donasi " + namaKategori2
