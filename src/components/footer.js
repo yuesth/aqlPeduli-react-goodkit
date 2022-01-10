@@ -54,7 +54,8 @@ function Footer() {
                             <strong>Kantor Pusat :</strong> <br />
                             <span className="text-muted">Jl. Tebet Raya No.16B, RT.1/RW.2, Tebet Bar., Kec. Tebet, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12810 </span><br />
                             <strong>Call Center :</strong> <span className="text-muted">0822-3919-3515</span> <br />
-                            <strong>SMS/WA Center :</strong> <span className="text-muted">0822-3919-3515</span>
+                            <strong>SMS/WA Center :</strong> <span className="text-muted">0822-3919-3515</span> <br />
+                            <strong>Kantor Yayasan Pusat Peradaban Islam :</strong> <br /> <strong>AQL Islamic Center | </strong><span className="text-muted">Jl. Tebet Utara I No. 40, Tebet, Jakarta Selatan</span>
                         </p>
                         {/* <h2 className="font-family-serif text-white mb-1">
                             AQL Peduli
